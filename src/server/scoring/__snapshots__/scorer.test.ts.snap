@@ -1,0 +1,74 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`menghasilkan skor deterministik untuk pilihan konteks akhir 1`] = `
+{
+  "consequenceIds": [
+    "consequence_strong",
+  ],
+  "dimensions": [
+    {
+      "earned": 30,
+      "id": "context_discipline",
+      "normalized": 100,
+      "possible": 30,
+    },
+    {
+      "earned": 40,
+      "id": "evidence_judgment",
+      "normalized": 100,
+      "possible": 40,
+    },
+    {
+      "earned": 30,
+      "id": "human_oversight",
+      "normalized": 100,
+      "possible": 30,
+    },
+  ],
+  "findings": [
+    {
+      "artifactBlockIds": [],
+      "earned": 30,
+      "eventIds": [
+        "e1",
+      ],
+      "evidencePassageIds": [],
+      "feedbackKey": "select_only_relevant_safe_context",
+      "outcome": "met",
+      "possible": 30,
+      "ruleId": "rule_context_selection",
+    },
+    {
+      "artifactBlockIds": [],
+      "earned": 40,
+      "eventIds": [
+        "e2",
+      ],
+      "evidencePassageIds": [
+        "passage_unesco_scope",
+      ],
+      "feedbackKey": "link_relevant_passage",
+      "outcome": "met",
+      "possible": 40,
+      "ruleId": "rule_evidence_link",
+    },
+    {
+      "artifactBlockIds": [
+        "block_recommendation",
+      ],
+      "earned": 30,
+      "eventIds": [
+        "e3",
+      ],
+      "evidencePassageIds": [],
+      "feedbackKey": "review_ai_change",
+      "outcome": "met",
+      "possible": 30,
+      "ruleId": "rule_diff_review",
+    },
+  ],
+  "scenarioContentHash": "citation-mini-v2-20260831",
+  "scorerVersion": "mini-2",
+  "total": 100,
+}
+`;

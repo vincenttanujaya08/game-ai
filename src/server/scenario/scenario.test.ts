@@ -1,0 +1,1 @@
+import{expect,it}from"vitest";import{citationMini}from"./citation-mini";import{toPublicScenario}from"@/shared/contracts/scenario";it("never projects truth",()=>expect(JSON.stringify(toPublicScenario(citationMini))).not.toMatch(/expectedLinks|feedbackKey|contentHash/));
