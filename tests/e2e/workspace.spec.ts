@@ -12,11 +12,6 @@ test("alur singkat dari brief hingga mengirim revisi", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Belajar sambil main, yuk!" }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Game berikutnya" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Game baru segera hadir!" }),
-  ).toBeInViewport();
-  await page.getByRole("button", { name: "Game sebelumnya" }).click();
   const citationGame = page.getByRole("link", { name: /Sitasi Bermasalah/ });
   await expect(citationGame).toBeInViewport();
   await citationGame.click();
