@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import HomeIcon from "@/app/home-icon";
+import NusaHeader from "@/app/nusa-header";
+import shellStyles from "@/app/landing.module.css";
 import {
   completedFundamentalsModules,
   fundamentalsModuleCount,
@@ -11,133 +12,177 @@ import {
 } from "./progress";
 import styles from "./learn-hub.module.css";
 
-const courses = [
-  {
-    number: "01",
-    title: "AI Fundamentals",
-    description: "Pahami dasar AI, bangun fondasi untuk masa depan.",
-    icon: "book",
-    theme: "fundamentals",
-    href: "/learn/ai-fundamentals",
-  },
-  {
-    number: "02",
-    title: "Prompting",
-    description: "Ubah ide jadi hasil dengan prompt yang tepat.",
-    icon: "prompt",
-    theme: "prompting",
-    href: null,
-  },
-  {
-    number: "03",
-    title: "Vibecoding",
-    description: "Bangun solusi nyata dengan AI, lebih cepat, lebih bebas.",
-    icon: "code",
-    theme: "vibecoding",
-    href: null,
-  },
-] as const;
+const workingLessonCount = 4;
+const vibeLessonCount = 7;
 
 export default function LearnHub() {
   const [progress, setProgress] = useState(initialLearnProgress);
+  const [workingProgress, setWorkingProgress] = useState(initialLearnProgress);
+  const [vibeProgress, setVibeProgress] = useState(initialLearnProgress);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => setProgress(readProgress()));
+    const frame = requestAnimationFrame(() => {
+      setProgress(readProgress());
+      setWorkingProgress(readProgress("nusa-learn-working-generative-ai-v1", workingLessonCount));
+      setVibeProgress(readProgress("nusa-learn-vibe-coding-v1", vibeLessonCount));
+    });
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const completed = completedFundamentalsModules(progress);
+  const completedStages = completedFundamentalsModules(progress);
+  const progressLabel = completedStages === 0
+    ? "Belum dimulai"
+    : completedStages + "/" + fundamentalsModuleCount + " selesai";
+  const progressAria = completedStages + " dari " + fundamentalsModuleCount + " bagian selesai";
+  const completedWorkingStages = workingProgress.completedStages.length;
+  const workingProgressLabel = completedWorkingStages === 0
+    ? "Belum dimulai"
+    : completedWorkingStages + "/" + workingLessonCount + " selesai";
+  const workingProgressAria = completedWorkingStages + " dari " + workingLessonCount + " bagian selesai";
+  const completedVibeStages = vibeProgress.completedStages.length;
+  const vibeProgressLabel = completedVibeStages === 0
+    ? "Belum dimulai"
+    : completedVibeStages + "/" + vibeLessonCount + " selesai";
+  const vibeProgressAria = completedVibeStages + " dari " + vibeLessonCount + " bagian selesai";
 
   return (
-    <main className={styles.learnHub}>
-      <div className={styles.hubBackdrop} aria-hidden="true" />
-      <div className={styles.hubBackdropBottom} aria-hidden="true" />
+    <main className={shellStyles.shell + " " + styles.learnHub}>
+      <NusaHeader active="belajar" />
 
-      <header className={styles.hubHeader}>
-        <Link className={styles.hubBrand} href="/" aria-label="NUSA Lab, beranda">
-          <HomeIcon name="logo" />
-          <span><b>NUSA</b> Lab<small>AI untuk Generasi Hebat</small></span>
-        </Link>
-        <nav className={styles.hubNav} aria-label="Navigasi Learn">
-          <Link href="/"><HomeIcon name="home" />Beranda</Link>
-          <Link href="/#missions"><HomeIcon name="flag" />Missions</Link>
-        </nav>
-      </header>
-
-      <section className={styles.hubHero} aria-labelledby="learn-hub-title">
-        <div className={styles.heroCopy}>
-          <h1 id="learn-hub-title">Peta Belajar AI</h1>
-          <p>Pilih jalur belajarmu, selesaikan setiap misi, dan jadi bagian dari generasi pembangun masa depan bersama AI!</p>
+      <section className={styles.intro} aria-labelledby="learn-hub-title">
+        <div>
+          <p>Ruang belajar</p>
+          <h1 id="learn-hub-title">Tiga jalur untuk memahami dan berkarya dengan AI.</h1>
         </div>
+        <p>
+          Mulai dari AI Fundamentals, pelajari Working with Generative AI, lalu coba
+          membangun ide dengan Vibe Coding.
+        </p>
       </section>
 
-      <section className={styles.activeMission} aria-labelledby="active-course-title">
-        <div className={styles.missionStamp} aria-hidden="true">
-          <span>Jalur<strong>01</strong></span>
-          <HomeIcon name="compass" />
+      <section className={styles.activeCourse} aria-labelledby="active-course-title">
+        <div className={styles.courseNumber}>
+          <span>01</span>
+          <small>Tersedia</small>
         </div>
-        <div className={styles.missionBody}>
-          <p className={styles.missionLabel}>Misi aktif</p>
+
+        <div className={styles.courseBody}>
+          <p className={styles.courseLabel}>Materi aktif</p>
           <h2 id="active-course-title">AI Fundamentals</h2>
-          <div className={styles.missionProgress} aria-label={`${completed} dari ${fundamentalsModuleCount} modul selesai`}>
-            <strong>{completed}/{fundamentalsModuleCount} modul selesai</strong>
-            <div className={styles.progressTrack} aria-hidden="true">
-              <i style={{ width: `${(completed / (fundamentalsModuleCount - 1)) * 100}%` }} />
-              {Array.from({ length: fundamentalsModuleCount }, (_, index) => (
-                <span
-                  key={index}
-                  data-state={index < completed ? "complete" : index === completed ? "active" : "upcoming"}
-                />
-              ))}
-            </div>
+          <p>
+            Tiga pelajaran tentang kemampuan AI hari ini, cara kerjanya, dan cara
+            tetap berpikir jernih saat memakainya.
+          </p>
+          <dl className={styles.courseMeta}>
+            <div><dt>3</dt><dd>Pelajaran</dd></div>
+            <div><dt>3</dt><dd>Cek pemahaman</dd></div>
+          </dl>
+        </div>
+
+        <div className={styles.courseProgress}>
+          <div>
+            <span>Progresmu</span>
+            <strong>{progressLabel}</strong>
           </div>
-        </div>
-        <div className={styles.missionAction}>
-          <p>Langkah kecil untuk masa depan besar!</p>
-          <Link href="/learn/ai-fundamentals">Lanjutkan <HomeIcon name="arrow" /></Link>
+          <div className={styles.progressTrack} aria-label={progressAria}>
+            <i style={{ width: (completedStages / fundamentalsModuleCount) * 100 + "%" }} />
+            {Array.from({ length: fundamentalsModuleCount }, (_, index) => (
+              <span
+                key={index}
+                data-state={index < completedStages ? "complete" : index === completedStages ? "active" : "upcoming"}
+              />
+            ))}
+          </div>
+          <Link href="/learn/ai-fundamentals" aria-label="Buka materi AI Fundamentals">
+            {completedStages === 0 ? "Mulai belajar" : "Lanjutkan"}
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
-      <section className={styles.courseSection} aria-labelledby="course-list-title">
-        <div className={styles.courseHeading}>
-          <h2 id="course-list-title">Pilih jalur belajarmu</h2>
-          <p><HomeIcon name="compass" />Setiap jalur, petualangan baru!</p>
-          <span aria-hidden="true" />
+      <section className={styles.activeCourse} aria-labelledby="working-course-title">
+        <div className={styles.courseNumber}>
+          <span>02</span>
+          <small>Tersedia</small>
         </div>
-        <ol className={styles.courseRail}>
-          {courses.map((course) => {
-            const content = <>
-              <span className={styles.courseNumber}>{course.number}</span>
-              <h3>{course.title}</h3>
-              <p>{course.description}</p>
-              <span className={styles.courseGlyph} aria-hidden="true"><HomeIcon name={course.icon} /></span>
-              <span className={styles.courseStatus}>
-                {course.href ? "TERBUKA" : <><HomeIcon name="lock" />Segera hadir</>}
-              </span>
-              <span className={styles.courseArrow} aria-hidden="true"><HomeIcon name="arrow" /></span>
-            </>;
 
-            return (
-              <li key={course.title}>
-                {course.href ? (
-                  <Link className={styles.courseCard} data-theme={course.theme} href={course.href} aria-label={`Buka course ${course.title}`}>
-                    {content}
-                  </Link>
-                ) : (
-                  <article className={styles.courseCard} data-theme={course.theme} data-locked="true" aria-label={`${course.title}, segera hadir`}>
-                    {content}
-                  </article>
-                )}
-              </li>
-            );
-          })}
-        </ol>
+        <div className={styles.courseBody}>
+          <p className={styles.courseLabel}>Materi aktif</p>
+          <h2 id="working-course-title">Working with Generative AI</h2>
+          <p>
+            Empat pelajaran untuk memberi AI arahan yang jelas, menguji jawabannya,
+            memperbaiki hasil, dan menyusun alur kerja.
+          </p>
+          <dl className={styles.courseMeta}>
+            <div><dt>4</dt><dd>Pelajaran</dd></div>
+            <div><dt>4</dt><dd>Cek pemahaman</dd></div>
+          </dl>
+        </div>
+
+        <div className={styles.courseProgress}>
+          <div>
+            <span>Progresmu</span>
+            <strong>{workingProgressLabel}</strong>
+          </div>
+          <div className={styles.progressTrack} aria-label={workingProgressAria}>
+            <i style={{ width: (completedWorkingStages / workingLessonCount) * 100 + "%" }} />
+            {Array.from({ length: workingLessonCount }, (_, index) => (
+              <span
+                key={index}
+                data-state={index < completedWorkingStages ? "complete" : index === completedWorkingStages ? "active" : "upcoming"}
+              />
+            ))}
+          </div>
+          <Link href="/learn/working-with-generative-ai" aria-label="Buka materi Working with Generative AI">
+            {completedWorkingStages === 0 ? "Mulai belajar" : "Lanjutkan"}
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
       </section>
 
-      <footer className={styles.hubFooter}>
-        <span>Peta ini terus bertambah</span>
-        <i aria-hidden="true" />
-        <span>Karena masa depan selalu punya jalur baru</span>
+      <section className={styles.activeCourse} aria-labelledby="vibe-course-title">
+        <div className={styles.courseNumber}>
+          <span>03</span>
+          <small>Tersedia</small>
+        </div>
+
+        <div className={styles.courseBody}>
+          <p className={styles.courseLabel}>Materi aktif</p>
+          <h2 id="vibe-course-title">Vibe Coding</h2>
+          <p>
+            Tujuh pelajaran untuk mengubah ide menjadi software: pahami coding agent,
+            bangun project, uji hasilnya, lalu bagikan ke internet.
+          </p>
+          <dl className={styles.courseMeta}>
+            <div><dt>7</dt><dd>Pelajaran</dd></div>
+            <div><dt>7</dt><dd>Cek pemahaman</dd></div>
+          </dl>
+        </div>
+
+        <div className={styles.courseProgress}>
+          <div>
+            <span>Progresmu</span>
+            <strong>{vibeProgressLabel}</strong>
+          </div>
+          <div className={styles.progressTrack} aria-label={vibeProgressAria}>
+            <i style={{ width: (completedVibeStages / vibeLessonCount) * 100 + "%" }} />
+            {Array.from({ length: vibeLessonCount }, (_, index) => (
+              <span
+                key={index}
+                data-state={index < completedVibeStages ? "complete" : index === completedVibeStages ? "active" : "upcoming"}
+              />
+            ))}
+          </div>
+          <Link href="/learn/vibe-coding" aria-label="Buka materi Vibe Coding">
+            {completedVibeStages === 0 ? "Mulai belajar" : "Lanjutkan"}
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
+      <footer className={shellStyles.siteFooter}>
+        <span><strong>NUSA</strong> Lab</span>
+        <span>Belajar AI dengan pertimbangan.</span>
       </footer>
     </main>
   );

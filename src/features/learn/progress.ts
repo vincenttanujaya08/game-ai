@@ -1,4 +1,6 @@
-export const progressKey = "nusa-learn-progress-v1";
+import { moduleOneStages } from "./module-one-data";
+
+export const progressKey = "nusa-learn-progress-v2";
 
 export type LearnProgress = {
   completedStages: number[];
@@ -12,30 +14,28 @@ export const initialLearnProgress: LearnProgress = {
   activeStage: 0,
 };
 
-const stageCount = 4;
-export const fundamentalsModuleCount = 4;
+export const fundamentalsModuleCount = moduleOneStages.length;
 
 export function completedFundamentalsModules(progress: LearnProgress) {
-  return progress.completedStages.length === stageCount ? 1 : 0;
+  return progress.completedStages.length;
 }
 
-export function readProgress(): LearnProgress {
+export function readProgress(key = progressKey, stageCount = fundamentalsModuleCount): LearnProgress {
   if (typeof window === "undefined") return initialLearnProgress;
   try {
-    const value = JSON.parse(localStorage.getItem(progressKey) ?? "null");
+    const value = JSON.parse(localStorage.getItem(key) ?? "null");
     const completedStages: number[] = Array.isArray(value?.completedStages)
       ? value.completedStages.filter(
           (item: unknown): item is number =>
-            Number.isInteger(item) && Number(item) >= 0 && Number(item) <= 3,
-        ) as number[]
+            Number.isInteger(item) && Number(item) >= 0 && Number(item) < stageCount,
+        )
       : [];
     const uniqueCompletedStages = [...new Set(completedStages)].sort();
     const nextStage = Array.from({ length: stageCount }, (_, index) => index).find(
       (index) => !uniqueCompletedStages.includes(index),
     );
-    const allComplete = nextStage === undefined;
     const unlockedStage = nextStage ?? stageCount - 1;
-    const activeStage = allComplete && Number.isInteger(value?.activeStage)
+    const activeStage = nextStage === undefined && Number.isInteger(value?.activeStage)
       ? Math.min(stageCount - 1, Math.max(0, value.activeStage))
       : unlockedStage;
     return { completedStages: uniqueCompletedStages, unlockedStage, activeStage };
@@ -44,6 +44,6 @@ export function readProgress(): LearnProgress {
   }
 }
 
-export function saveProgress(progress: LearnProgress) {
-  localStorage.setItem(progressKey, JSON.stringify(progress));
+export function saveProgress(progress: LearnProgress, key = progressKey) {
+  localStorage.setItem(key, JSON.stringify(progress));
 }

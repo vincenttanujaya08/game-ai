@@ -1,214 +1,50 @@
-@font-face { font-family: "Nusa Hub Display"; src: url("/home/reference-03/baloo.ttf") format("truetype"); font-weight: 800; font-display: swap; }
-@font-face { font-family: "Nusa Hub Hand"; src: url("/home/reference-03/patrick-hand.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-
-.learnHub {
-  --navy: #071b3e;
-  --paper: #fffef8;
-  --yellow: #ffd34f;
-  --coral: #ff6858;
-  --mint: #67d5a5;
-  position: relative;
-  isolation: isolate;
-  min-height: max(100dvh, 1024px);
-  overflow: hidden;
-  padding: 14px clamp(20px, 5.6vw, 86px) 24px;
-  background: var(--paper);
-  color: var(--navy);
-  font-family: "Nusa Hub Hand", "Comic Sans MS", cursive;
+.learnHub { min-height:100dvh; background:#f5f2eb; }
+.intro,.activeCourse,.upcoming { width:min(1240px,calc(100% - 64px)); margin-inline:auto; }
+.intro { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr); gap:64px; padding:76px 0 58px; align-items:end; border-bottom:1px solid var(--line); }
+.intro > div > p,.courseLabel { margin:0 0 14px; color:var(--teal-dark); font-size:.76rem; font-weight:780; letter-spacing:.1em; text-transform:uppercase; }
+.intro h1 { max-width:800px; margin:0; color:var(--ink); font-size:clamp(3rem,5.2vw,5.2rem); font-weight:720; line-height:.96; letter-spacing:-.06em; }
+.intro > p { max-width:350px; margin:0 0 5px; color:var(--muted); font-size:1rem; line-height:1.6; }
+.activeCourse { display:grid; grid-template-columns:90px minmax(0,1fr) minmax(270px,330px); gap:38px; padding:54px 0 60px; border-bottom:1px solid var(--line); }
+.courseNumber { display:flex; flex-direction:column; gap:9px; color:var(--teal-dark); }
+.courseNumber span { font-size:1.5rem; font-weight:780; }
+.courseNumber small { font-size:.72rem; font-weight:760; letter-spacing:.06em; text-transform:uppercase; }
+.courseBody h2 { margin:0; color:var(--ink); font-size:clamp(2.5rem,4.5vw,4.5rem); line-height:.95; letter-spacing:-.06em; }
+.courseBody > p:not(.courseLabel) { max-width:570px; margin:19px 0 0; color:var(--muted); line-height:1.58; }
+.courseMeta { display:flex; gap:38px; margin:31px 0 0; }
+.courseMeta div { display:flex; align-items:baseline; gap:8px; }
+.courseMeta dt { color:var(--ink); font-size:1.25rem; font-weight:780; }
+.courseMeta dd { margin:0; color:var(--muted); font-size:.86rem; }
+.courseProgress { display:flex; padding-left:32px; flex-direction:column; justify-content:center; border-left:1px solid var(--line); }
+.courseProgress > div:first-child { display:flex; align-items:baseline; justify-content:space-between; gap:16px; color:var(--muted); font-size:.82rem; }
+.courseProgress strong { color:var(--ink); font-size:.86rem; }
+.progressTrack { position:relative; display:flex; margin:18px 0 30px; align-items:center; justify-content:space-between; }
+.progressTrack::before,.progressTrack > i { position:absolute; right:9px; left:9px; height:2px; background:var(--line); content:""; }
+.progressTrack > i { right:auto; max-width:calc(100% - 18px); background:var(--teal); }
+.progressTrack span { position:relative; width:18px; height:18px; border:2px solid var(--line); border-radius:50%; background:#f5f2eb; }
+.progressTrack span[data-state="complete"] { border-color:var(--teal); background:var(--teal); }
+.progressTrack span[data-state="active"] { border-color:var(--teal); background:var(--teal-soft); }
+.courseProgress a { display:inline-flex; min-height:50px; padding:0 20px; align-items:center; justify-content:space-between; gap:28px; border-radius:8px; background:var(--teal); color:#f7ffff; font-size:.93rem; font-weight:760; text-decoration:none; transition:background-color 180ms ease,transform 180ms ease; }
+.courseProgress a:hover { background:var(--teal-dark); transform:translateY(-2px); }
+.upcoming { display:grid; grid-template-columns:minmax(220px,.55fr) minmax(0,1.45fr); gap:64px; padding:72px 0 92px; }
+.upcomingHeading h2 { margin:0; color:var(--ink); font-size:clamp(2rem,3vw,3rem); line-height:1; letter-spacing:-.05em; }
+.upcomingHeading p { max-width:260px; margin:17px 0 0; color:var(--muted); line-height:1.5; }
+.upcoming ol { margin:0; padding:0; border-top:1px solid var(--line); list-style:none; }
+.upcoming li { display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:24px; padding:27px 0 29px; align-items:start; border-bottom:1px solid var(--line); }
+.upcoming li > span { color:var(--teal-dark); font-size:.9rem; font-weight:780; }
+.upcoming h3 { margin:0; color:var(--ink); font-size:1.65rem; line-height:1.05; letter-spacing:-.045em; }
+.upcoming li p { max-width:500px; margin:10px 0 0; color:var(--muted); line-height:1.5; }
+.upcoming small { color:var(--muted); font-size:.76rem; font-weight:760; letter-spacing:.04em; text-transform:uppercase; }
+@media (max-width:820px) {
+  .intro,.activeCourse,.upcoming { width:min(100% - 32px,620px); }
+  .intro { display:block; padding:54px 0 42px; }
+  .intro h1 { font-size:clamp(2.8rem,12vw,4.2rem); }
+  .intro > p { margin-top:24px; }
+  .activeCourse { grid-template-columns:52px minmax(0,1fr); gap:20px; padding:38px 0 44px; }
+  .courseNumber small { display:none; }
+  .courseProgress { grid-column:2; padding:29px 0 0; border-top:1px solid var(--line); border-left:0; }
+  .upcoming { display:block; padding:58px 0 72px; }
+  .upcomingHeading { margin-bottom:31px; }
+  .upcoming li { grid-template-columns:42px minmax(0,1fr); gap:16px; }
+  .upcoming small { grid-column:2; }
 }
-
-.learnHub *, .learnHub *::before, .learnHub *::after { box-sizing: border-box; }
-.learnHub a { color: inherit; text-decoration: none; }
-.learnHub a:focus-visible { outline: 4px solid var(--yellow); outline-offset: 5px; }
-.hubBackdrop, .hubBackdropBottom { position: absolute; z-index: -2; pointer-events: none; }
-.hubBackdrop { inset: 0; background: url("/learn/learn-hub-bg-desktop.png") center top / 100% auto no-repeat; }
-.hubBackdropBottom { display: none; }
-
-.learnHub > .hubHeader {
-  position: relative;
-  top: auto;
-  z-index: 5;
-  display: flex;
-  grid-template-columns: none;
-  width: min(1365px, 100%);
-  height: 60px;
-  margin: 0 auto;
-  padding: 0;
-  align-items: center;
-  justify-content: space-between;
-  border: 0;
-  background: transparent;
-}
-
-.hubBrand { display: flex; align-items: center; gap: 8px; line-height: .8; transform: rotate(-1deg); }
-.hubBrand > svg { width: 43px; height: 43px; }
-.hubBrand span { display: grid; grid-template-columns: auto auto; align-items: baseline; column-gap: 7px; font-size: 28px; }
-.hubBrand b { font-family: "Nusa Hub Display", sans-serif; font-size: 38px; letter-spacing: 2px; }
-.hubBrand small { grid-column: 1 / -1; margin-top: 7px; color: var(--navy); font-size: 13px; letter-spacing: .03em; }
-.hubNav { display: flex; align-self: start; gap: 40px; padding: 12px 30px 14px; border-radius: 0 0 34px 34px; background: #fffef8f2; box-shadow: 0 3px 0 #071b3e0c; }
-.hubNav a { position: relative; display: flex; align-items: center; gap: 8px; padding: 3px 0 6px; font-size: 19px; }
-.hubNav a:first-child::after { position: absolute; right: 0; bottom: 0; left: 0; height: 4px; border-radius: 50%; background: var(--coral); content: ""; transform: rotate(-1deg); }
-.hubNav svg { width: 22px; height: 22px; }
-
-.hubHero { position: relative; width: min(1365px, 100%); min-height: 244px; margin: 0 auto; }
-.heroCopy { width: 650px; padding: 45px 0 0 60px; }
-.heroCopy h1 { margin: 0; font-family: "Nusa Hub Display", sans-serif; font-size: clamp(70px, 5.5vw, 84px); line-height: .92; letter-spacing: -3px; white-space: nowrap; transform: rotate(-1deg); }
-.heroCopy h1::after { display: block; width: 190px; height: 8px; margin: 12px 0 0 180px; border-radius: 50%; background: var(--yellow); content: ""; transform: rotate(-4deg); }
-.heroCopy p { width: 475px; margin: 3px 0 0 68px; font-size: 20px; line-height: 1.15; }
-
-.activeMission {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 245px minmax(0, 1fr) 270px;
-  width: min(1240px, calc(100% - 80px));
-  min-height: 226px;
-  margin: -3px auto 18px;
-  overflow: visible;
-  border: 3px solid var(--navy);
-  border-radius: 16px 22px 17px 13px;
-  background:
-    radial-gradient(circle at 1px 1px, #8d75450d 1px, transparent 1.6px),
-    #fffdf2;
-  background-size: 13px 13px, auto;
-  box-shadow: 5px 6px 0 #071b3e22;
-  transform: rotate(.15deg);
-}
-
-.activeMission::before { position: absolute; z-index: 4; top: -9px; bottom: -9px; left: 235px; width: 26px; border-inline: 3px solid var(--navy); background: repeating-linear-gradient(180deg, transparent 0 10px, var(--navy) 11px 14px, transparent 15px 27px); content: ""; }
-.missionStamp { position: relative; display: flex; padding: 23px 37px 20px 29px; align-items: center; justify-content: space-around; gap: 12px; }
-.missionStamp > span { display: grid; width: 112px; height: 132px; padding: 13px; place-items: center; border: 3px solid #338675; background: #c7eed3; box-shadow: inset 0 0 0 7px #fff7d577; font-size: 24px; line-height: .8; transform: rotate(-7deg); }
-.missionStamp strong { display: block; font-family: "Nusa Hub Display", sans-serif; font-size: 54px; line-height: 1; }
-.missionStamp > svg { width: 67px; height: 67px; transform: rotate(8deg); }
-.missionBody { position: relative; padding: 39px 28px 24px 42px; }
-.missionLabel { position: absolute; top: -24px; left: 18px; margin: 0; padding: 5px 26px 7px; background: var(--yellow); font-family: "Nusa Hub Display", sans-serif; font-size: 31px; line-height: 1; transform: rotate(-2deg); clip-path: polygon(3% 8%, 97% 0, 100% 83%, 4% 100%); }
-.missionBody h2 { display: table; margin: 0; border-bottom: 8px solid #c8effd; font-family: "Nusa Hub Display", sans-serif; font-size: clamp(38px, 4.1vw, 60px); line-height: 1; letter-spacing: -1px; white-space: nowrap; }
-.missionProgress { display: flex; margin-top: 30px; align-items: center; gap: 26px; }
-.missionProgress > strong { flex: 0 0 auto; font-size: 25px; font-weight: 400; }
-.progressTrack { position: relative; display: flex; width: min(330px, 48%); align-items: center; justify-content: space-between; }
-.progressTrack::before, .progressTrack > i { position: absolute; z-index: 0; right: 10px; left: 10px; height: 4px; background: #7b8490; content: ""; }
-.progressTrack > i { right: auto; max-width: calc(100% - 20px); background: var(--mint); }
-.progressTrack span { position: relative; z-index: 1; width: 27px; height: 27px; border: 3px solid #707984; border-radius: 50%; background: var(--paper); }
-.progressTrack span[data-state="complete"] { border-color: var(--navy); background: var(--mint); }
-.progressTrack span[data-state="active"] { border-color: var(--navy); background: var(--yellow); }
-.missionAction { display: flex; padding: 36px 25px 35px 10px; flex-direction: column; align-items: center; justify-content: center; }
-.missionAction p { max-width: 180px; margin: 0 0 22px; font-size: 18px; line-height: 1.05; text-align: center; transform: rotate(-7deg); }
-.missionAction a { display: flex; width: 220px; min-height: 70px; padding: 10px 23px; align-items: center; justify-content: space-between; border-radius: 18px 14px 20px 15px; background: var(--coral); box-shadow: 4px 5px 0 #e4493e; color: white; font-family: "Nusa Hub Display", sans-serif; font-size: 31px; transition: transform 150ms ease; }
-.missionAction a:hover { transform: translateY(-3px) rotate(-1deg); }
-.missionAction svg { width: 29px; height: 29px; }
-
-.courseSection { position: relative; z-index: 2; width: min(1240px, calc(100% - 80px)); margin: 0 auto; }
-.courseHeading { position: relative; display: flex; min-height: 70px; align-items: center; gap: 70px; }
-.courseHeading h2 { position: relative; margin: 0; font-family: "Nusa Hub Display", sans-serif; font-size: 43px; line-height: 1; letter-spacing: -1px; }
-.courseHeading h2::after { position: absolute; right: 8px; bottom: -10px; left: 34px; height: 7px; border-radius: 50%; background: var(--yellow); content: ""; transform: rotate(-2deg); }
-.courseHeading p { display: flex; margin: 0; align-items: center; gap: 12px; font-size: 18px; transform: rotate(-2deg); }
-.courseHeading p svg { width: 37px; height: 37px; }
-.courseHeading > span { flex: 1; border-top: 3px dashed var(--coral); transform: translateY(8px) rotate(-1deg); }
-.courseRail { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 9px 0 0; padding: 0; gap: 17px; list-style: none; }
-.courseRail li { min-width: 0; }
-.courseCard { position: relative; isolation: isolate; display: block; height: 263px; overflow: hidden; padding: 65px 26px 22px; border: 3px solid var(--navy); border-radius: 17px 13px 19px 15px; box-shadow: 3px 4px 0 #071b3e20; color: var(--navy); transition: transform 150ms ease, box-shadow 150ms ease; }
-a.courseCard:hover { box-shadow: 6px 7px 0 #071b3e32; transform: translateY(-4px) rotate(-.4deg); }
-.courseCard::before, .courseCard::after { position: absolute; z-index: -1; content: ""; }
-.courseCard::before { inset: 0; background: #94dbf7; }
-.courseCard::after { width: 125%; height: 58%; right: -15%; bottom: -18%; background: #66d39f; transform: rotate(-7deg); }
-.courseCard[data-theme="prompting"]::before { background: #ff7468; }
-.courseCard[data-theme="prompting"]::after { background: #ffd25d; transform: rotate(7deg); }
-.courseCard[data-theme="vibecoding"]::before { background: #a994f2; }
-.courseCard[data-theme="vibecoding"]::after { background: #8ee0b4; transform: rotate(-11deg); }
-.courseNumber { position: absolute; top: 13px; left: 18px; min-width: 65px; padding: 3px 12px; background: #fff5cf; font-family: "Nusa Hub Display", sans-serif; font-size: 25px; line-height: 1; text-align: center; transform: rotate(-4deg); clip-path: polygon(3% 7%, 96% 0, 100% 86%, 0 100%); }
-.courseCard h3 { position: relative; z-index: 1; max-width: 72%; margin: 0; font-family: "Nusa Hub Display", sans-serif; font-size: clamp(28px, 2.2vw, 34px); line-height: 1; letter-spacing: -.5px; white-space: nowrap; }
-.courseCard[data-theme="fundamentals"] h3 { font-size: clamp(28px, 2.1vw, 32px); }
-.courseCard > p { position: relative; z-index: 1; max-width: 55%; margin: 9px 0 0; font-size: 18px; line-height: 1.12; }
-.courseGlyph { position: absolute; z-index: 1; right: 26px; top: 64px; display: grid; width: 112px; height: 112px; place-items: center; }
-.courseGlyph > svg { width: 100px; height: 100px; stroke-width: 1.8; }
-.courseCard[data-theme="fundamentals"] .courseGlyph { top: 82px; }
-.courseCard[data-theme="fundamentals"] .courseGlyph svg path[fill] { fill: var(--paper); }
-.courseCard[data-theme="fundamentals"] .courseGlyph::before, .courseCard[data-theme="fundamentals"] .courseGlyph::after { position: absolute; inset: 20px -4px; border: 4px solid var(--navy); border-radius: 50%; content: ""; transform: rotate(25deg); }
-.courseCard[data-theme="fundamentals"] .courseGlyph::after { transform: rotate(-25deg); }
-.courseStatus { position: absolute; z-index: 2; bottom: 16px; left: 21px; display: flex; min-height: 39px; padding: 5px 18px; align-items: center; gap: 9px; border-radius: 18px; background: #f4f0dfb8; color: #697387; font-size: 19px; line-height: 1; }
-.courseCard[data-theme="fundamentals"] .courseStatus { background: #78e5a4; color: #076d54; font-family: "Nusa Hub Display", sans-serif; font-size: 17px; }
-.courseStatus svg { width: 22px; height: 22px; }
-.courseArrow { position: absolute; right: 19px; bottom: 15px; display: grid; width: 45px; height: 45px; place-items: center; border: 2px solid var(--navy); border-radius: 50%; background: #fffef8d9; }
-.courseArrow svg { width: 25px; height: 25px; }
-.courseCard[data-locked="true"] .courseArrow { opacity: .72; }
-.learnHub > .hubFooter { position: relative; inset: auto; z-index: 2; display: flex; width: min(700px, 100%); min-height: 0; margin: 34px auto 0; padding: 0; align-items: center; justify-content: center; gap: 24px; border: 0; background: transparent; font-size: 15px; }
-.learnHub > .hubFooter span { color: var(--navy); }
-.hubFooter i { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
-
-@media (max-width: 1100px) {
-  .learnHub { min-height: 940px; }
-  .heroCopy { padding-left: 25px; }
-  .activeMission { width: 100%; grid-template-columns: 190px minmax(0, 1fr) 210px; }
-  .activeMission::before { left: 183px; }
-  .missionStamp { padding-inline: 16px 25px; }
-  .missionStamp > span { width: 95px; }
-  .missionStamp > svg { width: 53px; }
-  .missionBody { padding-left: 34px; }
-  .missionProgress { gap: 14px; }
-  .missionAction a { width: 185px; font-size: 26px; }
-  .courseSection { width: 100%; }
-  .courseCard h3 { font-size: 29px; }
-  .courseGlyph { right: 15px; width: 88px; height: 88px; }
-  .courseGlyph > svg { width: 78px; height: 78px; }
-}
-
-@media (max-width: 760px) {
-  .learnHub { min-height: 1180px; padding: 10px 14px 145px; overflow: hidden; }
-  .hubBackdrop { inset: 0 0 auto; height: 420px; background-image: url("/learn/learn-hub-bg-mobile.png"); background-size: 100% auto; }
-  .hubBackdropBottom { display: block; right: 0; bottom: 0; left: 0; height: 170px; background: url("/learn/learn-hub-bg-mobile.png") center bottom / 100% auto no-repeat; }
-  .learnHub > .hubHeader { height: 53px; padding: 0; }
-  .hubBrand { gap: 4px; }
-  .hubBrand > svg { width: 30px; height: 30px; }
-  .hubBrand span { column-gap: 4px; font-size: 20px; }
-  .hubBrand b { font-size: 25px; letter-spacing: 0; }
-  .hubBrand small { display: none; }
-  .hubNav { gap: 15px; padding: 8px 11px 10px; border-radius: 0 0 19px 19px; }
-  .hubNav a { gap: 4px; font-size: 14px; }
-  .hubNav svg { width: 17px; height: 17px; }
-  .hubHero { min-height: 253px; }
-  .heroCopy { width: 100%; padding: 125px 4px 0; text-align: center; }
-  .heroCopy h1 { font-size: clamp(49px, 14vw, 68px); letter-spacing: -2px; }
-  .heroCopy h1::after { width: 130px; height: 6px; margin: 8px auto 0; }
-  .heroCopy p { width: min(330px, 95%); margin: 7px auto 0; font-size: 16px; line-height: 1.1; }
-  .activeMission { display: block; width: 100%; min-height: 370px; margin-top: 0; }
-  .activeMission::before { display: none; }
-  .missionStamp { position: absolute; top: 15px; left: 14px; width: 95px; padding: 0; }
-  .missionStamp > span { width: 75px; height: 86px; padding: 5px; font-size: 17px; }
-  .missionStamp strong { font-size: 38px; }
-  .missionStamp > svg { display: none; }
-  .missionBody { padding: 35px 17px 15px 104px; }
-  .missionLabel { top: -19px; left: 92px; padding: 5px 20px; font-size: 24px; }
-  .missionBody h2 { font-size: 36px; white-space: normal; }
-  .missionProgress { display: block; margin-top: 20px; }
-  .missionProgress > strong { display: block; margin-bottom: 10px; font-size: 20px; }
-  .progressTrack { width: 100%; }
-  .missionAction { padding: 13px 18px 22px; }
-  .missionAction p { margin-bottom: 12px; font-size: 16px; }
-  .missionAction a { width: 100%; min-height: 58px; font-size: 27px; }
-  .courseHeading { display: block; min-height: 87px; padding-top: 17px; }
-  .courseHeading h2 { font-size: 34px; }
-  .courseHeading h2::after { right: 45px; }
-  .courseHeading p { margin-top: 17px; font-size: 16px; }
-  .courseHeading p svg { width: 28px; height: 28px; }
-  .courseHeading > span { display: none; }
-  .courseRail { grid-template-columns: none; grid-auto-columns: min(82vw, 330px); grid-auto-flow: column; margin-inline: -14px; padding: 3px 14px 14px; overflow-x: auto; scroll-padding-inline: 14px; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .courseRail::-webkit-scrollbar { display: none; }
-  .courseRail li { scroll-snap-align: start; }
-  .courseCard { height: 255px; }
-  .courseCard h3 { max-width: 72%; font-size: 32px; }
-  .courseCard > p { font-size: 17px; }
-  .courseGlyph { top: 94px; right: 19px; }
-  .courseCard[data-theme="fundamentals"] .courseGlyph { top: 94px; }
-  .learnHub > .hubFooter { margin-top: 25px; gap: 12px; font-size: 13px; text-align: center; }
-}
-
-@media (max-width: 390px) {
-  .hubNav a { font-size: 0; }
-  .hubNav svg { width: 21px; height: 21px; }
-  .missionBody h2 { font-size: 31px; }
-  .courseCard h3 { font-size: 31px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .missionAction a, .courseCard { transition: none; }
-}
+@media (prefers-reduced-motion:reduce) { .courseProgress a { transition:none; } }

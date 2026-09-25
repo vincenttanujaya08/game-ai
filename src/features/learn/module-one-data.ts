@@ -4,49 +4,28 @@ export type LessonStage = {
   area: string;
   question: string;
   intro: string;
-  reward: string;
-  kind: "lesson" | "challenge";
 };
 
 export const moduleOneStages: LessonStage[] = [
   {
-    id: "ai-around-you",
-    title: "AI Around You",
+    id: "ai-today",
+    title: "AI Hari Ini",
     area: "Lesson 1 / 3",
-    question: "Apakah semua teknologi otomatis memakai AI?",
-    intro:
-      "Teknologi bekerja di sekitar kita hampir setiap saat. Tapi tidak semua yang otomatis menggunakan AI.",
-    reward: "AI Radar",
-    kind: "lesson",
+    question: "Seberapa jauh kemampuan AI sekarang?",
+    intro: "Lihat AI di sains, kesehatan, dunia fisik, dan keseharian. Lalu pahami mengapa kemampuan besar tetap perlu diimbangi sikap hati-hati.",
   },
   {
-    id: "generative-ai",
-    title: "What Is Generative AI?",
+    id: "what-is-ai",
+    title: "Sebenarnya, Apa Itu AI?",
     area: "Lesson 2 / 3",
-    question: "Apa yang membedakan Generative AI?",
-    intro:
-      "Semua ini AI, tetapi tidak semuanya melakukan hal yang sama. Mari lihat mana yang menghasilkan konten baru.",
-    reward: "GenAI Explorer",
-    kind: "lesson",
+    question: "Apa yang membuat sebuah sistem disebut AI?",
+    intro: "Mulai dari otomatisasi, lalu kenali data, machine learning, deep learning, generative AI, dan alasan sebuah model bisa keliru.",
   },
   {
-    id: "how-ai-works",
-    title: "How AI Works",
-    area: "Lesson 3 / 3 · From Input to Output",
-    question: "Secara sederhana, dari mana output AI datang?",
-    intro:
-      "Saat memakai AI, kita melihat input dan output. Di tengahnya ada model yang telah belajar pola.",
-    reward: "Model Explorer",
-    kind: "lesson",
-  },
-  {
-    id: "smart-campus",
-    title: "Smart Campus",
-    area: "Module Challenge",
-    question: "Bisakah kamu memakai konsep tadi di skenario kampus?",
-    intro:
-      "Pilih lima lokasi kampus dalam urutan yang kamu mau. Tidak ada materi baru—hanya memakai konsep yang sudah kamu pelajari.",
-    reward: "Understand AI Badge",
-    kind: "challenge",
+    id: "thinking-with-ai",
+    title: "Berpikir di Era AI",
+    area: "Lesson 3 / 3",
+    question: "Bagaimana tetap bernilai dan memegang kendali?",
+    intro: "Pelajari perubahan tugas dalam pekerjaan, risiko terlalu percaya AI, dan cara memakai AI tanpa menyerahkan penilaianmu.",
   },
 ];

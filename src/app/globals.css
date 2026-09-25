@@ -51,7 +51,7 @@ textarea:focus-visible {
 .wide {
   width: 100%;
 }
-header {
+.app header {
   height: 64px;
   display: grid;
   grid-template-columns: 1.1fr 1fr 1fr 1.25fr 1fr;
@@ -63,7 +63,7 @@ header {
   top: 0;
   z-index: 5;
 }
-header strong {
+.app header strong {
   font-family: Georgia, serif;
   font-size: 25px;
 }
@@ -71,7 +71,7 @@ header strong {
   color: #85d98f;
   text-align: right;
 }
-header small {
+.app header small {
   display: block;
   color: var(--amber);
 }
@@ -313,7 +313,7 @@ header small {
 .resolution .scene {
   background: linear-gradient(#4a6573, #283849);
 }
-footer {
+.app footer {
   position: fixed;
   z-index: 6;
   bottom: 0;
@@ -327,12 +327,12 @@ footer {
   justify-content: space-between;
   padding: 8px 24px;
 }
-footer div {
+.app footer div {
   display: flex;
   gap: 22px;
   align-items: center;
 }
-footer span {
+.app footer span {
   color: #c5d0d5;
 }
 .debrief {
