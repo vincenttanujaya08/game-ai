@@ -1,9 +1,9 @@
 import Workspace from "@/features/workspace/workspace";
 
 export const metadata = {
-  title: "Simulasi Sitasi Bermasalah · NUSA Lab",
+  title: "Periksa Jawaban AI · NUSA Lab",
   description:
-    "Latihan mengambil keputusan dengan AI dalam situasi kerja mahasiswa yang realistis.",
+    "Game untuk memeriksa isi, sitasi, dan sumber dalam jawaban AI sebelum dipakai untuk tugas kuliah.",
 };
 
 export default function CitationGamePage() {

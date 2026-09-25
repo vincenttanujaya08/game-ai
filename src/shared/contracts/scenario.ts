@@ -53,7 +53,17 @@ export const ScoreRuleSchema = z
       "responsible_communication",
     ]),
     maxPoints: z.number().positive(),
-    kind: z.enum(["context_selection", "evidence_link", "diff_review"]),
+    kind: z.enum([
+      "context_selection",
+      "evidence_link",
+      "diff_review",
+      "source_choice",
+      "claim_state",
+    ]),
+    documentId: Id.optional(),
+    expectedSelected: z.boolean().optional(),
+    claimId: Id.optional(),
+    expectedState: z.string().optional(),
     feedbackKey: z.string(),
   })
   .strict();

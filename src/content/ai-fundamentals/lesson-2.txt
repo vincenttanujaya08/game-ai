@@ -1,0 +1,526 @@
+Lesson 2 — Sebenarnya, Apa Itu AI?
+Di Lesson Ini Kita Akan Belajar
+Di lesson sebelumnya, kita sudah melihat bahwa teknologi sekarang bisa melakukan banyak hal yang sangat canggih.
+Tapi kita juga meninggalkan satu pertanyaan:
+Kalau sebuah sistem bisa mendeteksi bahaya dan mengambil keputusan secara otomatis, apakah itu berarti sistem tersebut menggunakan AI?
+Di lesson ini kita akan memahami:
+sebenarnya apa yang dimaksud dengan Artificial Intelligence,
+kenapa sesuatu yang otomatis belum tentu AI,
+kenapa Machine Learning dibutuhkan,
+bagaimana AI bisa belajar dari data,
+apa peran Deep Learning,
+bagaimana kita akhirnya sampai ke Generative AI,
+dan kenapa AI yang sangat canggih sekalipun masih bisa salah dengan sangat meyakinkan.
+
+1. Kembali ke TCAS
+Di akhir Lesson 1, kita sudah melihat TCAS — Traffic Alert and Collision Avoidance System.
+TCAS II dapat mendeteksi ketika ada pesawat lain yang berpotensi terlalu dekat, lalu memberikan Resolution Advisory seperti:
+CLIMB
+atau:
+DESCEND
+untuk membantu pilot menjaga jarak aman dengan pesawat lain.
+FAA juga menjelaskan bahwa TCAS II memang dapat memberikan rekomendasi manuver vertikal seperti naik atau turun ketika potensi konflik terdeteksi.
+Kelihatannya pintar sekali.
+Tapi:
+Sesuatu yang bekerja otomatis belum tentu menggunakan AI.
+Sebuah sistem bisa menerima informasi, melakukan perhitungan, mengikuti logika yang sudah dibuat manusia, lalu menghasilkan tindakan tertentu.
+Contoh paling sederhana adalah parking sensor.
+Saat mobil semakin dekat dengan tembok:
+Sensor mendeteksi jarak
+↓
+Sistem mengecek aturan jarak yang sudah ditentukan
+↓
+Bunyi beep semakin cepat
+Sistem tersebut tidak perlu belajar dari ribuan pengalaman parkir sebelumnya.
+Engineer sudah menentukan bagaimana sistem harus bereaksi.
+Secara sederhana:
+Input + Aturan yang Ditulis Manusia → Output
+Dan sistem berbasis aturan seperti ini bisa sangat canggih.
+TCAS jelas jauh lebih kompleks dibanding parking sensor, tetapi ada satu prinsip penting yang sama:
+Kalau manusia sudah tahu logika yang dibutuhkan untuk menyelesaikan sebuah masalah, logika itu bisa kita program ke dalam sistem.
+Masalahnya...
+tidak semua persoalan sesederhana itu.
+
+2. Bagaimana Kalau Aturannya Sulit Ditulis?
+Sekarang bayangkan kita ingin membuat sebuah sistem yang melihat gambar lalu menentukan:
+Cat or Dog?
+Mari coba menggunakan pendekatan sebelumnya.
+Kita tulis beberapa aturan.
+Rule 1
+Kalau punya bulu → Cat.
+Tidak bisa.
+Anjing juga berbulu.
+Rule 2
+Kalau punya empat kaki → Cat.
+Masih tidak bisa.
+Anjing juga punya empat kaki.
+Rule 3
+Kalau telinganya berbentuk segitiga → Cat.
+Masih belum tentu.
+Beberapa jenis anjing juga punya bentuk telinga seperti itu.
+Belum lagi gambar di dunia nyata bisa sangat berbeda-beda.
+Kucingnya bisa:
+difoto dari samping,
+hanya terlihat wajahnya,
+sebagian badannya tertutup,
+berada di tempat gelap,
+gambarnya blur,
+punya warna dan bentuk yang sangat berbeda.
+Kita memang bisa terus menambahkan aturan.
+Tapi semakin lama, jumlah aturan yang harus kita tulis akan menjadi sangat banyak dan rumit.
+
+Interaksi — Bisakah Kamu Menemukan Aturan yang Selalu Benar?
+Mana aturan yang selalu bisa membedakan semua kucing dan anjing?
+A. Punya bulu
+B. Punya empat kaki
+C. Telinganya segitiga
+D. Tidak ada dari aturan tersebut yang selalu benar ✅
+Feedback
+Betul.
+Ada masalah yang terlalu kompleks untuk diselesaikan hanya dengan menuliskan semua kemungkinan aturan satu per satu.
+Jadi kita membutuhkan pendekatan lain.
+
+3. Di Sini Artificial Intelligence Mulai Berguna
+Secara sederhana:
+Artificial Intelligence adalah bidang yang mencoba membuat sistem komputer mampu melakukan tugas yang membutuhkan kemampuan seperti mengenali pola, membuat prediksi, memecahkan masalah, atau menghasilkan informasi.
+Jadi AI bukan cuma ChatGPT.
+AI adalah bidang yang jauh lebih luas.
+Dan ada satu hal penting yang perlu dipahami:
+AI tidak sama dengan Machine Learning.
+Machine Learning adalah salah satu pendekatan penting yang digunakan untuk membangun sistem AI.
+Untuk masalah Cat vs Dog tadi, Machine Learning memberi kita cara yang berbeda.
+Kita tidak perlu mencoba menulis ribuan aturan satu per satu.
+
+4. Daripada Menulis Semua Aturan, Berikan Contoh
+Daripada kita menulis aturan seperti:
+bentuk telinga = X
+jenis bulu = Y
+bentuk hidung = Z
+kita bisa memberikan banyak contoh.
+Gambar
+→ Cat
+Gambar
+→ Dog
+Gambar
+→ Cat
+Gambar
+→ Dog
+Sistem kemudian mencoba mempelajari pola yang membantu membedakan keduanya.
+Inilah ide dasar dari:
+Machine Learning
+Daripada manusia menulis semua kemungkinan aturan secara manual, sistem belajar menemukan pola yang berguna dari data.
+Gambaran sederhananya:
+Traditional Programming
+Input + Aturan yang Ditulis Manusia
+↓
+Output
+Machine Learning
+Contoh / Data
+↓
+Belajar Pola
+↓
+Model
+Kemudian:
+Input Baru + Model
+↓
+Prediksi
+Machine Learning tidak harus menghasilkan aturan sederhana berbentuk:
+IF ini, THEN itu.
+Yang dipelajari model bisa berupa hubungan dan pola yang jauh lebih kompleks.
+
+5. Bagaimana Mesin Bisa Belajar?
+Ada banyak cara untuk melakukan Machine Learning.
+Untuk lesson fundamental ini, kita cukup memahami tiga pendekatan utama.
+
+Supervised Learning — Belajar dari Contoh yang Sudah Ada Jawabannya
+Kembali ke contoh Cat vs Dog.
+Setiap gambar sudah memiliki label:
+Image → Cat
+Image → Dog
+Model diberikan:
+contoh + jawaban yang benar
+lalu belajar pola yang membantu memprediksi gambar baru.
+Contoh lain:
+Email → Spam / Not Spam
+Transaction → Fraud / Not Fraud
+Cara paling gampang mengingatnya:
+Supervised Learning = belajar dari contoh yang sudah diberi label.
+
+Unsupervised Learning — Mencari Pola Tanpa Diberi Jawaban
+Sekarang bayangkan sebuah e-commerce mempunyai data ribuan customer.
+Misalnya:
+seberapa sering mereka belanja,
+berapa banyak uang yang mereka keluarkan,
+kategori produk yang sering dibeli,
+pola behaviour pembelian mereka.
+Tetapi tidak ada label seperti:
+“Customer ini tipe A.”
+Sistem hanya menerima datanya.
+Lalu sistem mencoba mencari customer yang behaviour-nya mirip.
+Misalnya muncul:
+Group A
+Sering belanja, tetapi nilai transaksinya kecil.
+Group B
+Jarang belanja, tetapi sekali transaksi nilainya besar.
+Group C
+Sering membeli barang elektronik.
+Cara paling gampang mengingatnya:
+Unsupervised Learning = sistem mencari pola atau kelompok sendiri tanpa diberi tahu kelompok yang benar sejak awal.
+
+Reinforcement Learning — Belajar dari Percobaan dan Feedback
+Ingat robot Olaf dari Lesson 1?
+Disney Research menggunakan reinforcement learning yang dipandu oleh referensi animasi untuk membantu mengontrol gerakan robot Olaf.
+Cara belajarnya bisa dibayangkan seperti ini:
+Melihat kondisi
+↓
+Mencoba sebuah tindakan
+↓
+Melihat hasilnya
+↓
+Mendapat feedback
+↓
+Menyesuaikan tindakan
+↓
+Mencoba lagi
+Misalnya robot sedang belajar bergerak.
+Kalau tindakannya membuat robot bergerak dengan stabil dan semakin mendekati tujuan:
+hasilnya dianggap bagus.
+Kalau robot kehilangan keseimbangan:
+hasilnya dianggap kurang bagus.
+Sistem kemudian mencoba lagi dan memperbaiki behaviour-nya.
+Cara paling gampang mengingatnya:
+Reinforcement Learning = mencoba → mendapat feedback → memperbaiki tindakan.
+
+Interaksi — Cocokkan Cara Belajarnya
+Cat/Dog dengan label
+→ Supervised Learning
+Mengelompokkan customer tanpa label
+→ Unsupervised Learning
+Robot belajar lewat trial dan feedback
+→ Reinforcement Learning
+
+6. Tapi Data di Dunia Nyata Bisa Jauh Lebih Kompleks
+Sejauh ini beberapa contoh data masih mudah dibayangkan dalam bentuk spreadsheet.
+Age
+Spending
+Purchases
+20
+1.5M
+5
+28
+6M
+17
+34
+2.7M
+8
+
+Informasinya jelas.
+Ada:
+umur, jumlah spending, jumlah pembelian.
+Tapi bagaimana kalau datanya adalah:
+sebuah foto?
+Sebuah foto terdiri dari sangat banyak pixel dan hubungan visual.
+Bagaimana dengan:
+suara manusia?
+Ada suara, timing, frekuensi, pronunciation, dan background noise.
+Bagaimana dengan:
+bahasa?
+Arti sebuah kata bisa berubah tergantung kata lain dan context di sekitarnya.
+Atau:
+video?
+Ada visual, movement, objects, waktu, dan actions yang semuanya terjadi bersamaan.
+Untuk mempelajari pola yang jauh lebih kompleks seperti ini, salah satu pendekatan yang sangat penting adalah:
+Deep Learning
+
+7. Deep Learning
+Deep Learning adalah bagian dari Machine Learning yang menggunakan:
+Artificial Neural Networks
+Neural network secara historis terinspirasi dari ide bahwa banyak unit yang saling terhubung bisa bekerja bersama.
+Tapi jangan membayangkan bahwa di dalam komputer ada otak manusia versi digital.
+Artificial Neural Networks bukan salinan dari otak manusia.
+Cara paling sederhana membayangkannya:
+Input
+↓
+Belajar pola yang sederhana
+↓
+Menggabungkan pola-pola tersebut
+↓
+Belajar representasi yang lebih kompleks
+↓
+Output
+Karena mampu mempelajari pola yang sangat kompleks, Deep Learning banyak digunakan untuk:
+Images
+→ mengenali object dan wajah
+Audio
+→ speech recognition
+Language
+→ translation dan language models
+Video
+→ memahami object, movement, dan actions
+Di lesson ini kita tidak perlu masuk ke detail layer, weights, atau matematika neural network.
+Yang penting dipahami:
+Deep Learning membantu AI mempelajari pola yang kompleks dari data yang kompleks.
+
+8. Dari Mengenali Menjadi Menghasilkan
+Sampai sekarang kita banyak melihat AI yang melakukan hal seperti:
+“Ini apa?”
+Contoh:
+Image
+↓
+Cat
+atau:
+Email
+↓
+Spam
+Ini termasuk prediction atau classification.
+Tapi perkembangan AI berikutnya membuat model tidak hanya mengenali informasi yang sudah ada.
+Sekarang kita bisa meminta:
+“Buat sesuatu yang baru.”
+Prompt:
+“Buatkan email untuk meminta jadwal konsultasi ke dosen.”
+↓
+Text baru
+Prompt:
+“Buat ilustrasi kucing yang sedang belajar di perpustakaan kampus.”
+↓
+Image baru
+Prompt:
+“Buat function untuk mengurutkan data ini.”
+↓
+Code baru
+Inilah yang disebut:
+Generative AI
+Generative AI mempelajari pola dari data yang sudah ada, lalu menggunakan pola tersebut untuk menghasilkan content baru.
+Content yang dihasilkan bisa berupa:
+text,
+image,
+audio,
+video,
+code.
+Tools seperti:
+ChatGPT
+Claude
+Gemini
+adalah contoh Generative AI assistant yang sekarang sudah cukup familiar bagi banyak orang.
+
+Kenapa Generative AI Baru Terasa Sangat Besar Sekarang?
+Kita tidak perlu membahas seluruh sejarah AI untuk menjawab ini.
+Beberapa perkembangan terjadi bersamaan:
+Semakin Banyak Data Digital
+Computing Power Semakin Besar
+Arsitektur Deep Learning Semakin Baik
+AI Semakin Mudah Digunakan
+↓
+Generative AI Boom
+Salah satu arsitektur penting adalah Transformer, yang diperkenalkan melalui paper Attention Is All You Need pada 2017.
+Transformer kemudian menjadi salah satu fondasi penting bagi banyak language model modern.
+Tapi di lesson ini kita tidak perlu mempelajari cara kerja Transformer secara teknis.
+
+9. Bagaimana Language Model Menghasilkan Jawaban?
+Sekarang kita fokus pada text-based Generative AI seperti Large Language Models.
+Selama training, model mempelajari pola dari jumlah contoh bahasa yang sangat besar.
+Misalnya:
+hubungan antar kata,
+struktur kalimat,
+context,
+hubungan antar concept.
+Setelah proses training, kita mendapatkan sebuah:
+Model
+Kemudian kita memberikan prompt.
+Misalnya:
+“Jelaskan fotosintesis untuk anak usia 10 tahun.”
+Secara sangat sederhana:
+Prompt
+↓
+Model
+↓
+Memprediksi token berikutnya yang paling mungkin
+↓
+Token tersebut ditambahkan ke context
+↓
+Memprediksi token berikutnya
+↓
+Diulang terus
+↓
+Response
+OpenAI menjelaskan bahwa text diproses dalam unit kecil yang disebut:
+Token
+Token bisa berupa:
+satu karakter,
+sebagian kata,
+satu kata penuh,
+atau tanda baca,
+tergantung encoding dan context.
+Artinya:
+model tidak selalu “melihat” sebuah kata dengan cara yang sama seperti manusia melihat huruf satu per satu.
+Model menghasilkan jawaban berdasarkan pola yang sudah dipelajari dan kemungkinan kelanjutan yang sesuai dengan context.
+Dan ini membawa kita ke sesuatu yang menarik.
+
+10. AI Bisa Sangat Hebat... Tapi Aneh Sekali pada Hal yang Sederhana
+Di Lesson 1 kita sudah melihat AI bisa mengerjakan problem yang sangat kompleks.
+Sekarang coba sesuatu yang jauh lebih sederhana.
+SEVENTEEN
+Ada berapa huruf:
+E
+Jawabannya:
+4
+Pada Juli 2026, creator Husk mencoba menanyakan hal tersebut kepada GPT-Live.
+Model menjawab bahwa seventeen hanya mempunyai:
+dua huruf E.
+Bahkan setelah model mengeja:
+S-E-V-E-N-T-E-E-N
+dengan empat huruf E, model tetap mempertahankan jawaban dua.
+Ini mirip dengan contoh viral sebelumnya:
+How many R's are in “strawberry”?
+yang juga pernah membuat beberapa language model kesulitan.
+Kita tidak perlu menganggap seventeen dan strawberry sebagai dua kasus yang berbeda.
+Pesan utamanya sama:
+AI tidak selalu memproses informasi dengan cara yang sama seperti manusia.
+AI bisa sangat hebat pada satu task.
+Tapi itu tidak berarti semua task yang terlihat lebih sederhana otomatis mudah bagi AI.
+
+Interaksi — Kok Bisa Dua-duanya Benar?
+AI bisa menyelesaikan problem yang sangat sulit...
+tetapi gagal menghitung huruf dalam satu kata.
+Kesimpulan mana yang paling masuk akal?
+A. Semua AI sebenarnya bodoh.
+B. AI selalu buruk dalam berhitung.
+C. Kemampuan AI tidak sama di semua task. Jago di satu task tidak berarti pasti bisa di task lain. ✅
+
+11. Bagaimana Kalau AI Bilang Bisa Melakukan Sesuatu... Padahal Tidak Bisa?
+Husk juga melakukan eksperimen lain.
+Ia meminta ChatGPT Voice untuk:
+menghitung waktu lari satu milnya.
+AI mengatakan bisa.
+Husk kemudian kembali hanya beberapa detik setelah mengatakan bahwa ia mulai berlari.
+ChatGPT memberikan hasil sekitar:
+10 menit 12 detik.
+Masalahnya:
+waktu tersebut tidak pernah benar-benar diukur.
+Ketika Sam Altman diperlihatkan video tersebut, ia menjelaskan bahwa voice model saat itu memang:
+tidak mempunyai tool untuk menjalankan timer.
+Jadi di sini ada dua masalah.
+Masalah 1 — Salah Mengenali Kemampuan Sendiri
+AI mengatakan:
+“Saya bisa melakukan ini.”
+Padahal tool yang dibutuhkan sebenarnya tidak tersedia.
+Masalah 2 — Menghasilkan Jawaban yang Tidak Berdasarkan Data
+Karena tidak ada pengukuran waktu yang benar-benar dilakukan, angka:
+10:12
+muncul tanpa evidence yang nyata.
+Jadi kasus ini bisa dianggap sebagai salah satu bentuk:
+Hallucination
+Lebih tepatnya:
+model menghasilkan jawaban yang tidak didukung oleh pengukuran nyata, sekaligus gagal menyadari keterbatasan tool yang dimilikinya.
+
+Apa Itu Hallucination?
+Hallucination terjadi ketika Generative AI menghasilkan informasi yang terlihat masuk akal atau meyakinkan...
+tetapi sebenarnya:
+salah,
+tidak didukung evidence,
+atau bahkan dibuat-buat.
+Contohnya bisa berupa:
+academic citation yang ternyata tidak pernah ada,
+fakta yang salah,
+atau seperti kasus timer tadi:
+hasil pengukuran yang sebenarnya tidak pernah dilakukan.
+Hal yang penting dipahami:
+Language model dibuat untuk menghasilkan jawaban yang terlihat masuk akal berdasarkan pola yang sudah dipelajari. Model tidak otomatis memastikan bahwa setiap kalimat yang dihasilkan sudah diverifikasi dengan kenyataan.
+Jadi:
+Terdengar yakin ≠ berarti benar.
+
+Optional Fun Example — “How Was My Song?”
+Husk juga pernah meminta ChatGPT Voice memberikan feedback terhadap sebuah original song.
+Masalahnya...
+ia tidak pernah memutar lagunya.
+Tidak ada music.
+Hanya silence.
+Tapi AI tetap memberikan komentar seolah-olah lagu tersebut benar-benar dimainkan.
+Misalnya mengatakan bahwa melodinya catchy dan memberikan feedback terhadap “song” yang sebenarnya tidak pernah didengar.
+Contoh ini bahkan lebih gampang untuk memahami hallucination:
+Tidak ada lagu yang diputar
+↓
+AI tidak punya evidence
+↓
+AI tetap memberikan feedback
+Itulah masalahnya.
+Bukan cuma:
+jawabannya salah.
+Tetapi:
+model menjelaskan sesuatu yang sebenarnya tidak pernah ia observasi.
+Untuk materi kelas, video-video Husk bisa digunakan sebagai short fun clip karena contohnya mudah dipahami dan cukup relatable.
+Creator: Husk — @husk.irl
+Husk di Instagram
+Contoh: eksperimen silent song dari Husk
+Untuk kasus timer, Husk juga membuat follow-up setelah komentar Sam Altman:
+Follow-up eksperimen timer
+Catatan untuk pengajar: video Husk sebaiknya digunakan sebagai ilustrasi untuk menunjukkan possible AI failure, bukan sebagai benchmark untuk menyimpulkan bahwa semua AI atau semua versi ChatGPT pasti gagal pada task yang sama. Model, mode, dan capability AI dapat terus berubah.
+
+12. Jadi, Apa yang Sebenarnya Kita Pelajari?
+Kita mulai dari TCAS.
+Sebuah sistem bisa:
+mengikuti logika dan bertindak secara otomatis
+tanpa berarti bahwa sistem tersebut otomatis menggunakan AI.
+Lalu contoh Cat vs Dog menunjukkan masalah berikutnya:
+ada task yang terlalu kompleks jika semua aturannya harus ditulis manusia satu per satu.
+Di sinilah Machine Learning menjadi berguna:
+sistem belajar pola dari data.
+Ketika datanya semakin kompleks seperti:
+image,
+audio,
+language,
+video,
+Deep Learning menjadi salah satu pendekatan utama untuk mempelajari pola yang lebih kompleks.
+Kemudian Generative AI membawa capability tersebut lebih jauh.
+Bukan hanya:
+mengenali dan memprediksi,
+tetapi juga:
+menghasilkan content baru.
+Namun setelah memahami cara model bekerja, kita juga menemukan sesuatu yang sama pentingnya:
+Powerful bukan berarti selalu bisa diandalkan.
+AI bisa:
+salah pada task sederhana,
+salah memahami capability yang dimilikinya,
+atau menghasilkan informasi yang terlihat meyakinkan meskipun tidak memiliki evidence.
+
+Key Takeaway
+AI powerful karena dapat belajar dan menggunakan pola yang sangat kompleks.
+Tetapi:
+Mampu menghasilkan jawaban yang meyakinkan tidak sama dengan benar-benar mengetahui bahwa jawaban tersebut benar.
+
+Closing — Sekarang Muncul Pertanyaan yang Lebih Besar
+Sekarang kita sudah memahami sedikit lebih dalam tentang apa yang terjadi di balik banyak AI system modern.
+AI dapat:
+belajar pola,
+mengenali informasi,
+membuat prediksi,
+menghasilkan text,
+menghasilkan image,
+menulis code,
+dan membantu menyelesaikan problem yang semakin kompleks.
+Tapi kita juga sudah melihat:
+AI yang mampu melakukan sesuatu yang sangat sulit...
+bisa gagal pada sesuatu yang terlihat sederhana.
+AI bisa terdengar sangat yakin...
+padahal tidak mempunyai tool yang dibutuhkan.
+Dan AI bisa memberikan jawaban yang terlihat sangat masuk akal...
+padahal jawaban tersebut tidak mempunyai evidence.
+Jadi pertanyaan berikutnya bukan lagi:
+“Apakah AI powerful?”
+Kita sudah tahu jawabannya.
+Pertanyaan yang lebih penting adalah:
+Kapan kita seharusnya percaya pada AI?
+Dan kalau AI semakin banyak digunakan untuk:
+belajar,
+writing,
+coding,
+research,
+dan decision-making...
+Bagaimana caranya supaya AI membantu kita berpikir lebih baik, bukan malah membuat kita berhenti berpikir?
+Kalau mendapatkan sebuah jawaban menjadi semakin mudah:
+Apa yang justru menjadi semakin berharga dari manusia?
+Dan ada satu pertanyaan terakhir:
+Siapa yang sebenarnya bisa menghasilkan hasil terbaik: Human, AI, atau Human + AI?
+Kita akan mulai dari pertanyaan itu di lesson berikutnya.
+Next Lesson — How to Think in the AI Era
+

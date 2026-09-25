@@ -57,4 +57,15 @@ describe("reducer", () => {
     expect(s.aiResponseReady).toBe(false);
     expect(s.evidenceLinks).toEqual([]);
   });
+  it("keeps claim decisions when evidence selection changes", () => {
+    let s = reduceSession(
+      initialSnapshot(),
+      e("claim_state_changed", { claimId: "claim_1", state: "ubah" }),
+    );
+    s = reduceSession(
+      s,
+      e("context_item_added", { documentId: "doc_unesco_students" }, 2),
+    );
+    expect(s.claimStates).toEqual({ claim_1: "ubah" });
+  });
 });

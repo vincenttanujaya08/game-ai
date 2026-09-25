@@ -9,7 +9,7 @@ const sourceAddresses: Record<string, string> = {
   doc_committee_brief: "mail.nusa.ac.id/mail/u/0/#inbox/FMfcgzQX",
   doc_unesco: "arsip-perpustakaan.nusa.ac.id/unesco/literasi-ai",
   doc_unesco_students:
-    "unesco.org/education/digital/ai-competency-framework-students",
+    "kemdiktisaintek.go.id/panduan-genai-perguruan-tinggi.pdf",
   doc_digcomp: "joint-research-centre.ec.europa.eu/digcomp-2-2/ai",
   doc_data_ethics: "belajar.nusa.ac.id/modul/etika-data-ai.pdf",
   doc_participants: "drive.nusa.ac.id/sheets/peserta-ai-campus-day",
@@ -228,55 +228,71 @@ function UnescoArticle() {
 }
 
 function StudentFramework() {
-  const targetId = "kompetensi-pelajar-unesco";
+  const targetId = "cek-keluaran-genai";
   return (
     <article className="web-document unesco-document">
       <header className="site-masthead unesco-masthead">
         <div>
-          <b>UNESCO</b>
-          <span>Education · Digital learning</span>
+          <b>DIKTI</b>
+          <span>Direktorat Pembelajaran dan Kemahasiswaan</span>
         </div>
         <nav aria-label="Navigasi situs simulasi">
-          Publications　Topics　About
+          Panduan　Pustaka　Tentang
         </nav>
       </header>
       <div className="source-linkbar">
-        <span>Terbit 2024 · salinan bahasa Indonesia</span>
-        <JumpLink targetId={targetId}>Lihat kerangka kompetensi</JumpLink>
+        <span>Edisi pertama · Oktober 2024</span>
+        <JumpLink targetId={targetId}>Lihat bagian yang dipakai</JumpLink>
       </div>
       <section className="document-sheet article-page">
-        <p className="section-kicker">KERANGKA KOMPETENSI UNTUK PELAJAR</p>
-        <h1>Menyiapkan pelajar hidup dan bekerja bersama AI</h1>
+        <p className="section-kicker">PANDUAN UNTUK PERGURUAN TINGGI</p>
+        <h1>Penggunaan AI generatif dalam pembelajaran</h1>
         <p className="article-deck">
-          Panduan kurikulum untuk membantu sekolah dan perguruan tinggi
-          mengembangkan kemampuan AI secara bertahap.
+          Pedoman bagi dosen dan mahasiswa untuk memakai AI secara aman, etis,
+          dan bertanggung jawab.
         </p>
-        <p className="article-byline">UNESCO Education Sector · 2024</p>
+        <p className="article-byline">
+          Direktorat Pembelajaran dan Kemahasiswaan · 2024
+        </p>
         <hr />
         <p>
-          Pelajar berinteraksi dengan AI sebagai pengguna, warga, dan calon
-          pembuat teknologi. Karena itu, pembelajaran perlu menghubungkan cara
-          kerja sistem dengan pilihan yang dibuat manusia.
+          Literasi AI tidak hanya berarti dapat memakai alat. Mahasiswa perlu
+          memahami cara kerja dan keterbatasannya, menilai informasi secara
+          kritis, serta mengambil keputusan secara mandiri.
         </p>
         <p>
-          Kerangka ini disusun agar tujuan pembelajaran tidak berhenti pada
-          penggunaan aplikasi. Setiap bidang berkembang dari memahami,
-          menerapkan, sampai menciptakan.
+          Jawaban AI dapat terdengar masuk akal, tetapi tetap keliru, bias, atau
+          bahkan memuat informasi yang dibuat-buat. Karena itu, isi dan
+          sumbernya harus diperiksa sebelum dipakai.
         </p>
         <footer>HALAMAN 1 / 2</footer>
       </section>
-      <section className="document-sheet article-page second-page">
-        <h2 id={targetId}>Empat dimensi kompetensi</h2>
+      <section
+        className="document-sheet article-page second-page"
+        id={targetId}
+      >
+        <h2>Apa yang perlu dilakukan mahasiswa?</h2>
         <ol className="framework-list">
-          <li><strong>Pola pikir berpusat pada manusia</strong></li>
-          <li><strong>Etika AI</strong></li>
-          <li><strong>Teknik dan aplikasi AI</strong></li>
-          <li><strong>Perancangan sistem AI</strong></li>
+          <li>
+            <strong>
+              Nilai akurasi, keterpercayaan, dan kemungkinan bias.
+            </strong>
+          </li>
+          <li>
+            <strong>Periksa fakta dan sumber yang dicantumkan.</strong>
+          </li>
+          <li>
+            <strong>Jangan memasukkan data pribadi tanpa izin.</strong>
+          </li>
+          <li>
+            <strong>
+              Jelaskan penggunaan AI bila aturan tugas memintanya.
+            </strong>
+          </li>
         </ol>
         <p>
-          Keempatnya dipelajari sebagai satu kesatuan. Pelajar tidak hanya
-          mengoperasikan alat, tetapi juga menimbang tujuan, dampak, dan peran
-          manusia pada setiap tahap.
+          AI boleh membantu proses belajar, tetapi tanggung jawab atas keputusan
+          dan karya yang dikumpulkan tetap berada pada manusia.
         </p>
         <footer>HALAMAN 2 / 2</footer>
       </section>
@@ -300,8 +316,8 @@ function DigCompBrief() {
         <p className="section-kicker">DIGCOMP 2.2</p>
         <h1>Contoh pengetahuan, keterampilan, dan sikap terkait AI</h1>
         <p className="article-deck">
-          Contoh kemampuan digital yang digunakan warga ketika berhadapan
-          dengan sistem berbasis data dan kecerdasan artifisial.
+          Contoh kemampuan digital yang digunakan warga ketika berhadapan dengan
+          sistem berbasis data dan kecerdasan artifisial.
         </p>
         <h2>Informasi dan literasi data</h2>
         <p>
@@ -321,8 +337,8 @@ function DigCompBrief() {
         </p>
         <p>
           Contohnya termasuk membandingkan rekomendasi dengan sumber lain,
-          mengenali kapan keputusan otomatis memerlukan peninjauan manusia,
-          dan memahami bahwa hasil dapat berbeda untuk kelompok pengguna yang
+          mengenali kapan keputusan otomatis memerlukan peninjauan manusia, dan
+          memahami bahwa hasil dapat berbeda untuk kelompok pengguna yang
           berbeda.
         </p>
         <footer>HALAMAN 2 / 2</footer>
@@ -738,7 +754,7 @@ function ClassNotes() {
             <strong>etis</strong> → pikirkan dampaknya
           </li>
           <li>
-            <strong>kritis</strong> → jangan langsung percaya output
+            <strong>kritis</strong> → jangan langsung percaya jawaban
           </li>
           <li>
             <strong>sosial</strong> → siapa yang untung / dirugikan?
@@ -765,16 +781,26 @@ function PromptGuide() {
         <p className="section-kicker">PANDUAN PRAKTIS</p>
         <h1>Lima pola prompt untuk tugas kuliah</h1>
         <p className="article-deck">
-          Cara memberi konteks dan format agar chatbot menghasilkan jawaban
-          yang lebih mudah digunakan.
+          Cara memberi konteks dan format agar chatbot menghasilkan jawaban yang
+          lebih mudah digunakan.
         </p>
         <p className="article-byline">Oleh Dimas A. · 19 Agustus 2026</p>
         <ol className="prompt-steps">
-          <li><strong>Berikan peran:</strong> jelaskan siapa pembacanya.</li>
-          <li><strong>Berikan konteks:</strong> tulis tujuan tugas.</li>
-          <li><strong>Tentukan format:</strong> tabel, daftar, atau paragraf.</li>
-          <li><strong>Tambahkan contoh:</strong> tunjukkan gaya yang diinginkan.</li>
-          <li><strong>Minta revisi:</strong> perbaiki bagian yang belum sesuai.</li>
+          <li>
+            <strong>Berikan peran:</strong> jelaskan siapa pembacanya.
+          </li>
+          <li>
+            <strong>Berikan konteks:</strong> tulis tujuan tugas.
+          </li>
+          <li>
+            <strong>Tentukan format:</strong> tabel, daftar, atau paragraf.
+          </li>
+          <li>
+            <strong>Tambahkan contoh:</strong> tunjukkan gaya yang diinginkan.
+          </li>
+          <li>
+            <strong>Minta revisi:</strong> perbaiki bagian yang belum sesuai.
+          </li>
         </ol>
         <p>
           Simpan prompt yang berhasil agar dapat dipakai kembali untuk tugas
@@ -802,7 +828,9 @@ function VendorWhitepaper() {
         </p>
         <div className="vendor-number">
           <b>6,4 jam</b>
-          <span>rata-rata waktu yang disebut hemat per minggu</span>
+          <span>
+            rata-rata waktu yang menurut responden dapat dihemat tiap minggu
+          </span>
         </div>
         <footer>HALAMAN 1 / 2</footer>
       </section>

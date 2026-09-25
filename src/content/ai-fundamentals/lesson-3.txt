@@ -1,0 +1,638 @@
+Lesson 3 — How to Think and Stay Valuable in the AI Era
+What You'll Learn
+Di Lesson 1, kita melihat bahwa AI sudah sangat powerful.
+Di Lesson 2, kita juga melihat sesuatu yang agak aneh:
+AI bisa menyelesaikan problem yang sangat sulit...
+tetapi kadang salah pada hal yang terlihat sederhana.
+AI bisa membantu coding...
+tetapi juga bisa hallucinate.
+Jadi sekarang muncul dua pertanyaan besar:
+Kalau AI masih bisa salah, kenapa banyak orang takut AI akan mengambil pekerjaan manusia?
+dan:
+Kalau AI memang akan mengubah pekerjaan kita, skill apa yang harus kita punya?
+Itulah yang akan kita bahas di lesson ini.
+
+1. If AI Can Be Wrong, How Can It Replace People?
+Kelihatannya bertentangan.
+Di satu sisi:
+AI masih bisa salah.
+Tetapi di sisi lain, kita terus mendengar:
+“AI will replace jobs.”
+Bagaimana dua hal itu bisa sama-sama benar?
+Karena:
+AI tidak harus bisa menggantikan seluruh kemampuan manusia untuk mengubah sebuah pekerjaan.
+Sebuah pekerjaan sebenarnya terdiri dari banyak task kecil.
+
+Imagine a Junior Analyst
+Misalnya pekerjaan seorang junior analyst:
+Cari informasi
+↓
+Baca banyak dokumen
+↓
+Buat summary
+↓
+Buat draft report
+↓
+Buat presentation
+↓
+Pahami kondisi perusahaan
+↓
+Pilih recommendation yang paling masuk akal
+↓
+Presentasikan dan pertanggungjawabkan recommendation tersebut
+Dulu hampir semua langkah itu dilakukan manusia.
+Sekarang AI sudah cukup baik untuk membantu banyak bagian awal:
+mencari dan merangkum informasi,
+membuat draft,
+membantu membuat slide,
+memberikan beberapa pilihan.
+AI mungkin belum mampu menggantikan seluruh pekerjaan analyst.
+Tetapi kalau setengah pekerjaannya menjadi jauh lebih cepat karena AI:
+the job has already changed.
+
+A Job Is Not One Task
+Ini konsep penting:
+A job is a collection of tasks.
+AI tidak harus menggantikan:
+the whole person
+untuk mengurangi kebutuhan manusia pada:
+some parts of the job.
+Karena itu pertanyaan:
+“Will AI replace this job?”
+sering terlalu sederhana.
+Pertanyaan yang lebih baik:
+Which parts of this job can AI already do?
+dan:
+What is still valuable for a human to do?
+
+2. So... Is AI Taking Our Jobs?
+Mari lihat datanya.
+Jawabannya sekarang bukan:
+Yes, everyone will lose their jobs.
+Tetapi juga bukan:
+No, AI is still stupid, so nothing will change.
+Reality-nya ada di tengah.
+
+What Does the Evidence Say?
+International Labour Organization atau ILO melihat dampak Generative AI terhadap pekerjaan di ASEAN.
+Hasilnya:
+sampai sekarang belum ada bukti kehilangan pekerjaan dalam skala besar akibat GenAI di ASEAN.
+Bahkan pekerjaan yang sangat exposed terhadap AI masih tetap tumbuh di beberapa tempat.
+Tetapi ini bukan berarti tidak ada perubahan.
+ILO memperkirakan banyak pekerjaan akan mengalami:
+partial automation
+Artinya bukan seluruh job hilang.
+Tetapi:
+sebagian task mulai dikerjakan atau dibantu AI.
+
+Simple Example
+Dulu:
+seorang employee membuat summary selama 2 jam.
+Sekarang:
+AI membuat first draft dalam 2 menit.
+Employee masih dibutuhkan.
+Tetapi pekerjaannya berubah menjadi:
+cek summary,
+tambahkan context,
+perbaiki yang salah,
+dan gunakan hasilnya untuk membuat decision.
+Jadi bukan selalu:
+job disappears.
+Sering kali:
+the job changes.
+
+3. But There Are Early Warning Signs
+Walaupun belum ada mass job loss, ada tanda bahwa beberapa kelompok mungkin terkena dampaknya lebih awal.
+Stanford Digital Economy Lab melihat data jutaan pekerja di Amerika Serikat.
+Sampai Juni 2026, mereka tidak menemukan bukti bahwa AI sudah menyebabkan kehilangan pekerjaan secara besar-besaran di seluruh ekonomi.
+Tetapi ada satu pattern yang menarik.
+Untuk pekerja muda usia 22–25 tahun di pekerjaan yang paling banyak terkena AI, employment berada sekitar 19% di bawah level yang akan terlihat jika pertumbuhannya mengikuti pekerja muda di pekerjaan yang lebih sedikit terkena AI.
+Perubahannya lebih banyak terlihat dari:
+companies hiring fewer young workers
+bukan:
+companies suddenly firing everyone.
+Important
+Ini data Amerika Serikat.
+Dan penelitian tersebut tidak membuktikan bahwa AI menyebabkan seluruh penurunan itu.
+Tetapi ada signal yang perlu diperhatikan:
+Entry-level work may change faster than we expect.
+
+Why Entry-Level?
+Bayangkan task seorang intern atau fresh graduate:
+membuat first draft,
+mencari informasi,
+input data,
+membuat summary,
+membuat report sederhana,
+mengerjakan task yang sudah punya procedure.
+Banyak dari task ini:
+jelas, berulang, dan mudah dijelaskan ke AI.
+Itulah jenis task yang lebih mudah diautomasi.
+OECD pada 2026 juga menemukan bahwa kemampuan AI sekarang paling dekat dengan pekerjaan yang banyak berisi:
+routine information processing,
+administrative work,
+task yang rules dan prosesnya jelas.
+Sedangkan AI masih lebih jauh dari pekerjaan yang membutuhkan:
+memahami situasi yang kompleks,
+memahami orang lain,
+mengambil keputusan yang sulit,
+dan bertanggung jawab atas hasilnya.
+
+4. What About Indonesia?
+Sekarang kita lihat Indonesia.
+Menurut ILO:
+sekitar 21.7% pekerjaan di Indonesia berada pada pekerjaan yang berpotensi terkena dampak GenAI.
+Tetapi hanya sekitar:
+3–4% pekerjaan
+yang masuk kategori exposure paling tinggi.
+Jadi artinya apa?
+Bukan:
+“21.7% orang Indonesia akan kehilangan pekerjaan.”
+Salah.
+Exposure tidak sama dengan kehilangan pekerjaan.
+Exposure berarti:
+ada bagian dari pekerjaan tersebut yang secara teknis mulai bisa dilakukan atau dibantu AI.
+
+But Some Jobs Are Much More Exposed
+Untuk pekerjaan clerical / administrative support di Indonesia:
+sekitar 93.9% pekerjaannya memiliki GenAI exposure.
+Dan:
+67.5% berada pada kategori exposure tertinggi.
+Contohnya pekerjaan yang banyak berisi:
+data entry,
+record keeping,
+administrasi,
+dokumen rutin.
+Kenapa?
+Karena task-nya banyak yang:
+structured,
+repetitive,
+dan berbasis text/data.
+
+Young Workers Also Matter
+ILO juga menemukan bahwa di Indonesia, GenAI exposure untuk pekerja muda usia 15–24 tahun sekitar:
+26.1%
+dibanding pekerja dewasa sekitar:
+21.1%.
+Sekali lagi:
+ini bukan berarti 26.1% anak muda akan kehilangan pekerjaan.
+Insight-nya adalah:
+Young people entering the workforce need to prepare earlier for jobs that are changing because of AI.
+Dan itu termasuk mahasiswa sekarang.
+
+5. Indonesia Is Still Building Its AI Capability
+Ada context lain yang penting.
+AI ecosystem bukan hanya:
+ChatGPT.
+Untuk benar-benar membangun AI dari bawah, sebuah negara membutuhkan banyak hal.
+Komdigi pada Agustus 2026 menjelaskan lima bagian penting:
+Energy
+↓
+Infrastructure
+↓
+Chips
+↓
+Talent
+↓
+Applications
+Indonesia masih sedang memperkuat semua layer tersebut.
+Pemerintah juga mengatakan bahwa saat ini banyak pengembangan Indonesia masih berada pada application layer:
+memanfaatkan foundation model yang sudah ada,
+kemudian menyesuaikannya untuk kebutuhan seperti:
+health,
+agriculture,
+education.
+Pemerintah sendiri mengatakan target jangka panjangnya adalah agar Indonesia tidak hanya menjadi user, tetapi juga menjadi pemain yang lebih kuat dalam ekosistem AI.
+
+What Does This Mean for Us?
+Tidak semua mahasiswa Indonesia akan:
+build the next ChatGPT from scratch.
+Tetapi hampir semua mahasiswa kemungkinan akan:
+use AI.
+Untuk:
+belajar,
+research,
+coding,
+design,
+business,
+analysis,
+atau pekerjaan sehari-hari.
+Jadi untuk sekarang, salah satu advantage terbesar yang bisa kita bangun adalah:
+being really good at using AI to solve real problems.
+Bukan hanya:
+tahu cara buka ChatGPT.
+Tetapi:
+tahu kapan AI berguna,
+tahu cara mengarahkannya,
+dan tahu kapan output-nya tidak boleh dipercaya begitu saja.
+
+6. But Human + AI Is Not Automatically Better
+Mungkin sekarang kita berpikir:
+“Easy. Tinggal manusia + AI. Pasti lebih bagus.”
+Tidak selalu.
+Bayangkan kamu menjawab sebuah soal:
+B
+Kemudian AI menjawab:
+D
+AI juga memberikan explanation yang panjang dan terlihat sangat yakin.
+Kamu kemudian berpikir:
+“AI pasti lebih tahu.”
+Lalu kamu mengganti jawaban menjadi:
+D
+Ternyata:
+jawaban kamu yang pertama benar.
+AI yang salah.
+
+This Happens in Real Life
+Pada 2026, sebuah studi di Nature Medicine menguji penggunaan AI untuk membantu diagnosis kondisi kulit.
+Penelitian tersebut melibatkan:
+623 orang awam,
+153 dokter umum.
+Ketika AI memberikan recommendation yang benar:
+AI membantu.
+Tetapi ketika AI salah:
+orang yang bukan expert lebih mudah ikut salah.
+Dokter yang lebih berpengalaman lebih mampu menyadari bahwa recommendation AI tersebut tidak masuk akal.
+
+This Is Called Automation Bias
+Istilahnya terdengar rumit.
+Tetapi artinya sederhana:
+Automation bias = kita terlalu percaya kepada sistem otomatis hanya karena sistem itu terlihat pintar atau yakin.
+Contohnya:
+Kamu yakin jawabannya B.
+AI bilang D.
+Kamu tidak mengecek lagi.
+Kamu langsung ikut D karena:
+“AI pasti lebih pintar.”
+Itulah automation bias.
+
+The Important Lesson
+Bukan:
+Don't trust AI.
+Tetapi:
+Don't give AI more trust than it deserves.
+
+7. So What Skills Actually Matter?
+Sekarang kita sampai ke pertanyaan utama lesson ini.
+Kalau AI akan menjadi bagian dari pekerjaan kita...
+what should we become good at?
+Tidak ada skill yang bisa menjamin:
+“Saya pasti tidak akan pernah tergantikan AI.”
+Teknologi dan pekerjaan akan terus berubah.
+Tetapi research saat ini memberi kita beberapa arah yang cukup jelas.
+OECD menyimpulkan bahwa selain digital dan AI skills, kemampuan seperti critical thinking, creativity, collaboration, dan kemampuan terus belajar menjadi semakin penting untuk bekerja bersama AI dan beradaptasi dengan perubahan pekerjaan.
+Mari kita sederhanakan menjadi lima hal.
+
+Skill 1 — Know How to Use AI
+Skill pertama mungkin terdengar obvious:
+be able to use AI well.
+Tetapi ini bukan hanya:
+“bisa bikin prompt.”
+Yang lebih penting adalah mengetahui:
+bagian mana dari pekerjaan yang bisa dibantu AI.
+
+Example
+Kamu harus membuat report.
+Pengguna AI yang kurang efektif:
+“Make my report.”
+Pengguna AI yang lebih efektif memecah pekerjaannya:
+AI membantu:
+mencari ide awal,
+merangkum data,
+membuat first draft,
+mencari weakness dari argument.
+Manusia:
+menentukan tujuan,
+memberikan context,
+memilih information yang relevan,
+menyempurnakan hasil.
+
+Why Does This Matter?
+Dalam studi terhadap 5,172 customer-service agents, pekerja yang mendapat bantuan Generative AI meningkatkan productivity rata-rata sekitar 15%.
+Benefit-nya bahkan lebih besar untuk pekerja yang lebih sedikit pengalaman.
+Artinya:
+People who know how to work with AI can gain real leverage.
+Kalau dua orang punya kemampuan dasar sama...
+tetapi satu orang dapat menggunakan AI untuk bekerja lebih cepat dan lebih baik:
+itu menjadi advantage.
+
+Skill 2 — Actually Understand Your Field
+Kalau AI bisa menghasilkan answer...
+kenapa kita masih harus belajar?
+Karena kalau kita tidak memahami subject-nya:
+kita juga tidak tahu kapan AI salah.
+
+Example — Coding
+AI memberikan code.
+Kalau tidak ngerti coding:
+“Looks okay.”
+Kalau memahami coding:
+“Wait, ini ada security problem.”
+atau:
+“Logic-nya salah.”
+
+Example — Research
+AI memberikan explanation yang sangat convincing.
+Kalau tidak memahami topik:
+semuanya terlihat benar.
+Kalau mempunyai knowledge:
+kita bisa melihat assumption yang salah.
+
+Ingat studi dokter tadi.
+Dokter yang lebih berpengalaman lebih mampu mengabaikan AI ketika AI salah.
+Jadi:
+Knowledge is not useless because AI knows things.
+Knowledge sekarang punya fungsi tambahan:
+helping you judge AI.
+
+Skill 3 — Know When to Question the Answer
+AI bisa sangat membantu.
+Tetapi jangan memperlakukan semua output dengan level trust yang sama.
+Cara paling sederhana:
+What happens if this answer is wrong?
+
+Low Risk
+“Give me five names for my campus event.”
+Kalau AI memberi nama jelek?
+Tidak masalah.
+Pilih yang lain.
+
+Medium Risk
+“Summarize this journal paper for my assignment.”
+Kalau summary-nya salah?
+Kamu bisa salah memahami paper.
+Jadi:
+cek kembali point penting ke paper asli.
+
+High Risk
+“Should I take this medication?”
+Kalau salah?
+Consequence-nya bisa serius.
+Jadi:
+jangan bergantung pada AI saja.
+
+Simple Rule
+The bigger the consequence of being wrong, the more you should check.
+Kita tidak perlu paranoid terhadap setiap AI output.
+Tetapi kita juga tidak boleh:
+copy → trust → use
+tanpa berpikir.
+
+Skill 4 — Get Good at Things That Need Human Context
+AI sangat bagus ketika task dapat dijelaskan dengan jelas.
+Tetapi dunia nyata sering tidak sesederhana itu.
+Misalnya:
+“Customer ini marah. Haruskah kita kasih refund?”
+Tidak selalu ada satu rule.
+Kita mungkin harus memahami:
+sejarah customer,
+kondisi bisnis,
+hubungan dengan customer,
+policy perusahaan,
+apakah customer benar-benar dirugikan.
+Atau:
+“Siapa kandidat terbaik untuk memimpin project?”
+CV saja mungkin tidak cukup.
+Ada:
+teamwork,
+trust,
+communication,
+situation,
+company culture.
+OECD menemukan bahwa pekerjaan yang membutuhkan lebih banyak:
+contextual judgment,
+interpersonal understanding,
+complex decisions,
+responsibility
+masih memiliki gap lebih besar dengan current AI capability.
+Bukan berarti:
+“AI tidak akan pernah bisa melakukan ini.”
+Tetapi untuk sekarang:
+understanding people and context remains highly valuable.
+
+Skill 5 — Keep Learning
+Ini mungkin yang paling penting untuk jangka panjang.
+Tool yang populer hari ini:
+mungkin berbeda dua tahun lagi.
+Task yang hari ini dikerjakan manusia:
+mungkin besok dibantu AI.
+Task yang hari ini sulit untuk AI:
+mungkin suatu hari menjadi mudah.
+Karena itu target kita bukan:
+learn one AI tool forever.
+Tetapi:
+learn how to keep learning.
+OECD juga menekankan pentingnya continuous learning, upskilling, dan reskilling karena jenis task dan skill yang dibutuhkan akan terus berubah.
+Jadi orang yang adaptable mempunyai advantage:
+bukan karena dia tahu semua hal,
+tetapi karena:
+dia bisa terus belajar ketika pekerjaannya berubah.
+
+8. Be Careful Not to Outsource Your Brain
+Ada satu risk ketika AI menjadi terlalu convenient.
+Kita mulai menggunakan AI untuk:
+everything.
+Microsoft Research dan Carnegie Mellon mempelajari 319 knowledge workers dengan 936 contoh penggunaan AI di pekerjaan nyata.
+Mereka menemukan bahwa semakin seseorang percaya AI dapat melakukan task dengan baik, semakin sedikit critical-thinking effort yang mereka laporkan.
+Mereka juga melihat bahwa ketika memakai AI, aktivitas berpikir mulai bergeser menjadi:
+checking AI output,
+menggabungkan output dengan pekerjaan,
+dan memastikan hasil akhirnya benar.
+Ini bukan berarti:
+AI makes you stupid.
+Pesannya lebih sederhana:
+If AI does more of the work, you need to make sure you are still doing the thinking that matters.
+
+Two Students
+Student A
+Prompt:
+“Do my assignment.”
+Copy.
+Submit.
+
+Student B
+Mengerjakan dulu.
+Kemudian bertanya:
+“This is my answer. What am I missing?”
+AI memberikan feedback.
+Student B mengecek.
+Kemudian memperbaiki answer.
+
+Keduanya menggunakan AI.
+Tetapi Student B menggunakan AI untuk:
+improve thinking.
+Student A menggunakan AI untuk:
+avoid thinking.
+Dalam jangka panjang, itu bukan hal yang sama.
+
+9. A Simple Way to Use AI Without Losing Control
+Tidak perlu framework rumit.
+Sebelum menggunakan AI untuk sesuatu yang penting, ingat empat langkah:
+TENTUKAN → GUNAKAN → CEK → PUTUSKAN
+
+1. TENTUKAN
+Apa problem yang sebenarnya ingin saya selesaikan?
+Jangan langsung:
+“Prompt-nya apa?”
+Tentukan dulu:
+“Saya sebenarnya butuh apa?”
+
+2. GUNAKAN
+Gunakan AI untuk bagian yang memang bisa dibantu:
+brainstorming,
+drafting,
+summarizing,
+comparing,
+explaining,
+analyzing.
+
+3. CEK
+Untuk hal penting:
+Does this make sense?
+Kalau ada:
+statistic,
+citation,
+important claim,
+cek source-nya.
+Semakin besar risikonya:
+semakin banyak checking yang dibutuhkan.
+
+4. PUTUSKAN
+AI boleh memberi option.
+AI boleh memberi recommendation.
+Tetapi:
+you decide what to actually use.
+Dan kamu tetap bertanggung jawab terhadap hasilnya.
+
+Interaction — Would You Use It?
+Kamu sedang membuat proposal sponsorship.
+AI memberikan statistic:
+“78% of Gen Z prefer brands that support sustainability.”
+Statistic tersebut sangat membantu argument kamu.
+Apa yang harus kamu lakukan?
+A
+Langsung gunakan. Angkanya terlihat masuk akal.
+B
+Jangan pernah gunakan information dari AI.
+C
+Cari source asli dari statistic tersebut sebelum memasukkannya. ✅
+Feedback
+AI bukan:
+always right.
+Tetapi AI juga bukan:
+always useless.
+Skill-nya adalah:
+knowing how much trust to give it.
+
+10. So What Becomes More Valuable?
+Kalau AI semakin banyak membantu execution, value manusia mulai bergeser.
+Dulu:
+value banyak datang dari melakukan seluruh proses sendiri.
+Sekarang AI bisa membantu banyak bagian.
+Maka value manusia semakin banyak ada pada:
+Knowing the Goal
+What are we actually trying to achieve?
+Choosing the Direction
+AI bisa memberikan 20 ideas.
+Which one should we choose?
+Judging Quality
+AI bisa membuat output.
+Is this actually good enough?
+Understanding Context
+AI punya data.
+But what is happening in the real situation?
+Owning the Outcome
+AI memberikan recommendation.
+Who is responsible for the decision?
+Manusia.
+
+The Big Shift
+Bisa kita sederhanakan:
+AI makes execution easier. Human value moves toward direction, judgment, context, and responsibility.
+Bukan berarti manusia berhenti:
+writing,
+coding,
+analyzing.
+Tetapi semakin banyak pekerjaan tersebut akan dilakukan:
+with AI.
+
+11. So How Do We “Survive” the AI Era?
+Bukan dengan mencoba menjadi:
+faster than AI.
+Dan bukan juga dengan:
+refusing to use AI.
+Yang lebih masuk akal adalah menjadi orang yang:
+can use AI
+actually understands their field
+can judge the output
+understands people and context
+keeps learning
+Itu tidak menjamin sebuah pekerjaan tidak pernah berubah.
+Tidak ada skill yang membuat seseorang benar-benar:
+AI-proof.
+Tetapi skill tersebut membuat kita jauh lebih siap untuk:
+adapt when work changes,
+dan menggunakan AI untuk:
+increase our value instead of simply replacing the tasks we do.
+
+Final Takeaway
+AI bisa:
+sangat pintar pada satu task,
+dan:
+surprisingly weak pada task lain.
+AI juga bisa:
+membuat pekerjaan manusia jauh lebih cepat,
+dan karena itu:
+mengubah pekerjaan kita.
+Jadi respons yang masuk akal bukan:
+panic because AI will replace everyone.
+Dan bukan:
+ignore AI because it still makes mistakes.
+Yang lebih masuk akal:
+Learn to work with AI while keeping the skills that let you stay in control.
+Gunakan AI untuk:
+increase your capability.
+Tetapi jangan menyerahkan:
+your understanding, judgment, and responsibility.
+
+Ready to Test It?
+Membaca lesson ini relatif gampang.
+Situasi nyata tidak selalu sesederhana itu.
+Bagaimana kalau AI memberikan citation yang terlihat sangat credible...
+tetapi paper-nya ternyata tidak ada?
+Bagaimana kalau seseorang mengirim screenshot yang terlihat completely real?
+Bagaimana kalau AI dapat menyelesaikan assignment kamu...
+tetapi kamu tidak yakin apakah cara tersebut masih fair?
+Bagaimana kalau AI meminta data yang sebenarnya bukan milikmu untuk dibagikan?
+Di situ tidak selalu ada jawaban sederhana:
+“AI good.”
+atau:
+“AI bad.”
+Karena yang kita butuhkan adalah:
+judgment.
+
+Test Your AI Judgment
+Di NUSA Lab Game pada Home page, kamu bisa menguji bagaimana kamu mengambil keputusan dalam berbagai real-world AI scenarios.
+Kamu tidak akan hanya ditanya:
+“What is Machine Learning?”
+atau:
+“What is a hallucination?”
+Kamu akan diberikan situation dan harus menentukan:
+What would you do?
+Game tersebut menguji bagaimana kamu:
+memahami situasi,
+menilai AI output,
+mencari evidence ketika dibutuhkan,
+dan mengambil keputusan.
+→ Go to Home and Test Your AI Judgment
+
+Module 1 Complete
+Lesson 1 — AI Today
+Understand how powerful AI has become—and why we should care.
+Lesson 2 — What Actually Is AI?
+Understand how modern AI works—and why it can still fail.
+Lesson 3 — How to Think and Stay Valuable in the AI Era
+Learn how to use AI to increase your capability without giving away your judgment.
+AI literacy isn't just knowing how to use AI.
+It's knowing how to stay valuable and stay in control while using it.
+

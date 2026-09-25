@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "judul": "Kamera yang Rusak",
+    "versi": "Kasus 02 · Rekonstruksi Kronologi",
+    "durasiDetik": 600,
+    "batasWawancaraAkhir": 5,
+    "jatahDalami": 3
+  },
+  "pembuka": {
+    "judul": "Kamera yang Rusak.",
+    "isi": "Kemarin malam, setelah Festival Seni selesai dan penonton mulai meninggalkan tempat acara, panitia membereskan perlengkapan yang digunakan. Sebagian dibawa vendor, sementara sisanya dikembalikan ke ruang multimedia. Kamera-kamera yang dipakai untuk siaran langsung dan dokumentasi juga termasuk di antaranya.\n\nPagi ini, seorang panitia menemukan kamera dengan lensa retak di dalam peti peralatan abu-abu. Tidak ada catatan kapan kamera dimasukkan ke sana atau kapan kerusakannya terjadi.\n\nTugasmu bukan mencari siapa yang harus disalahkan. Susun kembali kronologinya: di mana kamera berada setelah terakhir dipakai, bagaimana kamera masuk ke dalam peti, apakah lensanya sudah rusak sebelum itu, dan apa yang benar-benar bisa disimpulkan dari bukti yang ada.",
+    "catatanAi": "Setiap selesai wawancara, sistem merangkum keterangan dan alibi yang sudah kamu dengar menjadi teori sementara. AI memilih dugaan yang paling masuk akal dari konteks yang tersedia, meski buktinya belum lengkap. Kamu punya waktu 10 menit untuk menyusun kronologi.\n\nKamu tidak harus mewawancarai semua orang atau memakai seluruh jatah pertanyaan lanjutan. Pilih jalur penyelidikanmu; untuk mengakhiri lebih awal, kamu perlu mewawancarai setidaknya lima orang. Kamu bisa bertanya lebih lanjut kepada maksimal tiga orang, satu kali per orang. Pilihanmu menentukan informasi yang diterima AI, jadi ringkasan akhirnya bisa berbeda. Buka tab Keterangan asli untuk membaca kembali hasil wawancara.",
+    "aksi": "Mulai menyelidiki"
+  },
+  "fase": [
+    {
+      "judul": "Langkah 1 · Sebelum pukul 17.56",
+      "ids": [
+        "Arya",
+        "Kevin",
+        "Bella",
+        "Fajar",
+        "Siska"
+      ]
+    },
+    {
+      "judul": "Langkah 2 · Meja ke peti abu-abu",
+      "ids": [
+        "Dimas",
+        "Rafi",
+        "Chris"
+      ]
+    },
+    {
+      "judul": "Langkah 3 · Ruang multimedia",
+      "ids": [
+        "Nina",
+        "Leo",
+        "Maya"
+      ]
+    }
+  ],
+  "tokoh": [
+    {
+      "id": "Arya",
+      "nama": "Arya",
+      "peran": "Dokumentasi · pengguna kamera terakhir yang tercatat",
+      "ringkas": "Pengguna kamera terakhir",
+      "buka": [],
+      "mengapa": "Lembar pengembalian menjadikan Arya titik awal yang masuk akal untuk diwawancarai. Kita belum tahu siapa yang menyebabkan kerusakan. Kita perlu memahami apa yang terjadi pada kamera sebelum dan sesudah Arya menandatangani lembar pengembalian.",
+      "awal": "Aku selesai bertugas untuk dokumentasi sekitar pukul 17.45. Tiga menit kemudian, sekitar pukul 17.48, aku menandatangani lembar pengembalian karena kupikir urusanku dengan kamera sudah selesai. Tugasku juga sudah berakhir.\n\nSetelah itu, aku membantu tim perlengkapan menggulung kabel di dekat panggung. Seingatku, tidak ada masalah besar saat kamera masih kupegang.",
+      "tanya": "Sebelum menandatangani lembar pengembalian, apa ada benturan atau kejadian saat kamera masih kamu pegang?",
+      "lanjut": "Talinya sempat tersangkut saat aku turun dari panggung. Kamera jadi mengayun dan menyenggol pegangan tangga.\n\nAku sempat mengeceknya sekilas dan kelihatannya normal. Tidak ada bunyi pecah, jadi aku lanjut bertugas. Setelah itu, kamera kutaruh di meja dokumentasi."
+    },
+    {
+      "id": "Kevin",
+      "nama": "Kevin",
+      "peran": "Tim panggung · melihat Arya sebelum kamera dikembalikan",
+      "ringkas": "Melihat kejadian sebelum pengembalian",
+      "buka": [
+        "Arya"
+      ],
+      "mengapa": "Kevin berada dekat tangga panggung saat Arya masih membawa kamera. Keterangannya bisa membantu memastikan apakah ada kejadian sebelum kamera diletakkan di meja dokumentasi.",
+      "awal": "Aku lihat Arya turun dari panggung agak buru-buru sambil membawa kamera. Terdengar bunyi kecil seperti benda keras menyenggol besi.\n\nAku tidak terlalu memperhatikan kameranya. Awalnya kupikir gesper tali atau pegangan tangga yang tersenggol.",
+      "tanya": "Kamu benar-benar melihat kamera menyenggol pegangan tangga?",
+      "lanjut": "Iya. Setelah kuingat lagi, bagian depan kamera memang mengayun ke pegangan tangga. Kameranya tidak jatuh, tapi benturannya cukup jelas sampai terdengar bunyi.\n\nArya sempat berhenti sebentar untuk mengecek kamera sebelum lanjut berjalan. Dari tempatku, aku tidak bisa melihat kondisi lensanya."
+    },
+    {
+      "id": "Bella",
+      "nama": "Bella",
+      "peran": "Panitia · mengambil tas kamera dari meja dokumentasi",
+      "ringkas": "Mengambil tas kamera",
+      "buka": [
+        "Arya"
+      ],
+      "mengapa": "Bella berada di dekat meja dokumentasi dan memegang kamera beberapa menit setelah Arya. Keterangannya membantu membedakan apa yang terjadi pada tas kamera dan pada kamera itu sendiri.",
+      "awal": "Kemarin aku mengambil tas kamera karena baterai dan pengisi dayanya perlu dibawa ke tempat pengisian. Kameranya tidak kumasukkan ke dalam tas.\n\nTali tas tertindih barang di meja, jadi aku berhenti sebentar untuk menggeser barang-barang itu sebelum pergi.",
+      "tanya": "Saat menarik tali tas yang tertindih barang, apa kamu menyentuh atau memindahkan kamera?",
+      "lanjut": "Iya. Kamera menutupi sebagian tali, jadi kuangkat sedikit supaya talinya bisa kutarik.\n\nWaktu kutaruh kembali, sisi kamera sempat menyentuh tepi meja. Benturannya tidak terlalu keras dan aku tidak melihat ada kerusakan."
+    },
+    {
+      "id": "Fajar",
+      "nama": "Fajar",
+      "peran": "Tim panggung · berada dekat Bella di meja dokumentasi",
+      "ringkas": "Melihat Bella di meja dokumentasi",
+      "buka": [
+        "Bella"
+      ],
+      "mengapa": "Fajar melihat Bella mengambil tas kamera. Keterangannya bisa menjelaskan apakah Bella hanya mengurus tas atau juga sempat menyentuh kamera.",
+      "awal": "Aku lewat saat Bella sedang menarik tali tas kamera dari meja. Beberapa barang di meja ikut bergeser.\n\nTerdengar bunyi kecil, tapi dari tempatku aku tidak tahu benda apa yang membentur meja.",
+      "tanya": "Kamu sempat melihat apakah kamera menyentuh meja?",
+      "lanjut": "Saat aku menoleh lagi, Bella memegang kamera dengan satu tangan dan tas kamera dengan tangan yang lain. Sepertinya kamera baru saja menyentuh tepi meja.\n\nAku tidak tahu apakah benturannya cukup keras untuk merusak lensa, tapi kamera memang menyentuh tepi meja."
+    },
+    {
+      "id": "Siska",
+      "nama": "Siska",
+      "peran": "Publikasi · memiliki foto kegiatan pukul 17.56",
+      "ringkas": "Memiliki foto pukul 17.56",
+      "buka": [
+        "Arya",
+        "Bella"
+      ],
+      "mengapa": "Foto Siska memberi penanda waktu yang lebih pasti. Foto itu membantu memeriksa klaim tentang posisi kamera di meja dokumentasi.",
+      "awal": "Aku memotret suasana beres-beres untuk diunggah ke fitur Cerita. Salah satu fotonya bertanda waktu 17.56 dan meja dokumentasi terlihat di latar.\n\nKamera masih ada di meja. Bella sudah berjalan agak jauh sambil membawa tas kamera.",
+      "tanya": "Dari foto pukul 17.56, apa kondisi lensa kamera bisa terlihat?",
+      "lanjut": "Tidak. Posisi kamera terlihat cukup jelas, tapi ukurannya terlalu kecil dan sudut fotonya tidak pas untuk melihat apakah lensanya retak.\n\nFoto itu membuktikan lokasi kamera, bukan kondisinya."
+    },
+    {
+      "id": "Dimas",
+      "nama": "Dimas",
+      "peran": "Tim beres-beres · merapikan meja dokumentasi",
+      "ringkas": "Merapikan meja dokumentasi",
+      "buka": [
+        "Arya"
+      ],
+      "mengapa": "Setelah foto pukul 17.56, meja perlu dikosongkan. Dimas bertugas membereskannya. Keterangannya bisa menjelaskan bagaimana kamera masuk ke peti abu-abu.",
+      "awal": "Aku membereskan meja dokumentasi sekitar pukul enam kurang sedikit. Masih ada banyak barang kecil berserakan, seperti adaptor, kabel, penjepit, dan perlengkapan berwarna hitam.\n\nBarang yang terlihat seperti perlengkapan kukumpulkan ke peti abu-abu di sebelah meja supaya area cepat kosong.",
+      "tanya": "Kamu memasukkan barang satu-satu atau sekaligus? Apa ada barang yang terbentur saat dimasukkan ke peti?",
+      "lanjut": "Aku mengambil beberapa barang sekaligus lalu memasukkannya ke peti tanpa mengecek satu-satu. Terdengar bunyi barang saling berbenturan di dalam.\n\nKalau kamera ada di tumpukan itu, kemungkinan besar kamera ikut masuk. Aku baru terpikir begitu setelah kamera ditemukan keesokan harinya."
+    },
+    {
+      "id": "Rafi",
+      "nama": "Rafi",
+      "peran": "Tim lapangan · kembali ke meja sekitar pukul 18.06",
+      "ringkas": "Melihat meja saat beres-beres hampir selesai",
+      "buka": [
+        "Dimas",
+        "Siska"
+      ],
+      "mengapa": "Rafi kembali saat kegiatan beres-beres hampir selesai. Ia bisa menghubungkan kamera yang terlihat di meja pukul 17.56 dengan peti yang sudah tertutup beberapa menit kemudian.",
+      "awal": "Aku kembali ke meja sekitar pukul 18.06 untuk mencari spidol. Mejanya hampir kosong. Peti abu-abu di sebelahnya sudah tertutup.\n\nSebelumnya, aku melihat Dimas memindahkan setumpuk barang dari meja ke arah peti.",
+      "tanya": "Kamu melihat kamera di antara barang-barang yang dibawa Dimas?",
+      "lanjut": "Aku melihat benda hitam yang bentuknya mirip badan kamera di bawah kabel, tapi hanya beberapa detik.\n\nSaat tumpukan itu dimasukkan ke peti, terdengar bunyi cukup keras. Aku tidak melihat kondisi benda hitam itu setelah masuk."
+    },
+    {
+      "id": "Chris",
+      "nama": "Chris",
+      "peran": "Logistik · membawa peti abu-abu ke ruang multimedia",
+      "ringkas": "Membawa peti abu-abu",
+      "buka": [
+        "Rafi"
+      ],
+      "mengapa": "Setelah peti ditutup, Chris membawanya ke ruang multimedia. Keterangannya penting karena benturan selama perjalanan bisa memengaruhi isi peti.",
+      "awal": "Sekitar pukul 18.10, aku diminta membawa peti abu-abu yang sudah tertutup ke ruang multimedia. Aku tidak tahu isi lengkapnya.\n\nAku mengangkatnya dengan kedua tangan dan lewat pintu samping karena jalur utama masih ramai.",
+      "tanya": "Apa ada benturan saat kamu membawa peti?",
+      "lanjut": "Ada. Sisi peti membentur kusen pintu cukup keras sampai aku refleks berhenti.\n\nPeti tetap tertutup. Aku tidak membukanya untuk mengecek isi karena tidak tahu ada kamera di dalamnya."
+    },
+    {
+      "id": "Nina",
+      "nama": "Nina",
+      "peran": "Dekorasi · melihat peti dibawa masuk lewat pintu",
+      "ringkas": "Melihat peti membentur pintu",
+      "buka": [
+        "Chris"
+      ],
+      "mengapa": "Nina berada dekat pintu saat Chris membawa peti. Keterangannya bisa membantu memperkirakan seberapa kuat benturan yang Chris ceritakan.",
+      "awal": "Aku melihat Chris lewat sambil membawa peti abu-abu. Petinya membentur kusen dan bunyinya terdengar jelas.\n\nChris berhenti sebentar untuk melihat peti, lalu lanjut masuk. Tidak ada yang membukanya saat itu.",
+      "tanya": "Menurutmu, benturannya ringan atau cukup kuat sampai isi peti bergeser?",
+      "lanjut": "Benturannya cukup kuat sampai sisi peti memantul sedikit dari kusen. Aku juga mendengar barang-barang di dalamnya bergerak.\n\nAku tidak tahu isi peti, jadi aku tidak bisa memastikan apa yang terjadi pada kamera."
+    },
+    {
+      "id": "Leo",
+      "nama": "Leo",
+      "peran": "Multimedia · merapikan tripod setelah peti tiba",
+      "ringkas": "Melihat kejadian tripod",
+      "buka": [
+        "Chris"
+      ],
+      "mengapa": "Leo masih merapikan tripod setelah peti diletakkan. Keterangannya penting karena mungkin ada kejadian lain setelah peti sampai di ruang multimedia.",
+      "awal": "Aku sedang menyusun tripod di rak setelah peti abu-abu tiba. Salah satu tripod tidak stabil karena raknya penuh.\n\nBeberapa menit kemudian, tripod itu jatuh ke arah peti. Aku mendengar benturan keras, tapi saat itu aku sedang membelakangi rak.",
+      "tanya": "Dari posisi akhirnya, seberapa mungkin tripod benar-benar menyentuh peti?",
+      "lanjut": "Menurutku cukup mungkin. Salah satu kaki tripod berhenti menempel di sisi peti, dan petinya tampak bergeser sedikit.\n\nAku tidak melihat benturannya langsung. Ini kesimpulanku dari posisi benda-benda setelah kejadian."
+    },
+    {
+      "id": "Maya",
+      "nama": "Maya",
+      "peran": "Asisten multimedia · berada di ruangan saat tripod jatuh",
+      "ringkas": "Saksi lain kejadian tripod",
+      "buka": [
+        "Leo"
+      ],
+      "mengapa": "Maya memberi sudut pandang lain tentang kejadian tripod. Keterangannya bisa membantu menilai apakah kejadian setelah peti dipindahkan mungkin menjadi penyebab kerusakan.",
+      "awal": "Sekitar pukul 18.20, aku mendengar bunyi benturan dari arah rak tripod. Saat menoleh, tripod sudah jatuh di samping peti abu-abu.\n\nLeo langsung mengangkat tripod. Peti tetap tertutup dan tidak ada yang memeriksa isinya.",
+      "tanya": "Apa kamu melihat peti bergeser atau tripod menyentuhnya?",
+      "lanjut": "Aku tidak melihat tepat saat tripod jatuh. Tapi waktu menoleh, petinya tampak baru saja bergeser sedikit dan kaki tripod masih menyentuh sisinya.\n\nMenurutku tripod memang mengenai peti, meski aku tidak bisa memastikan bagian mana yang terkena."
+    }
+  ],
+  "bukti": [
+    {
+      "id": "pengembalian",
+      "bukaSetelah": "Arya",
+      "judul": "Lembar pengembalian kamera",
+      "isi": "PENGEMBALIAN KAMERA\n\nArya\n17.48\nDikembalikan ✓\n\nLembar ini mencatat bahwa pengembalian sudah diisi. Namun, lembar ini tidak menunjukkan di mana kamera disimpan secara fisik."
+    },
+    {
+      "id": "foto1756",
+      "bukaSetelah": "Siska",
+      "judul": "Dokumentasi pukul 17.56",
+      "isi": "Penanda waktu: 17.56\n\nKamera sekolah terlihat jelas di meja dokumentasi. Bella tampak agak jauh sambil membawa tas kamera.\n\nPada pukul 17.56, kamera dan tasnya berada di tempat berbeda."
+    },
+    {
+      "id": "papan",
+      "bukaSetelah": "Rafi",
+      "judul": "Daftar tugas beres-beres",
+      "isi": "TUGAS BERES-BERES\n\nMeja dokumentasi — Dimas\nPeti perlengkapan abu-abu ke ruang multimedia — Chris\nTripod dan penyangga — Leo\n\nDaftar ini menunjukkan siapa yang bertanggung jawab atas tiap area, bukan bukti tentang semua tindakan yang dilakukan."
+    },
+    {
+      "id": "log1806",
+      "bukaSetelah": "Rafi",
+      "judul": "Catatan kegiatan pukul 18.06",
+      "isi": "PEMERIKSAAN PUKUL 18.06\n\nMeja dokumentasi: KOSONG\nPeti abu-abu di samping meja: TERTUTUP, SIAP DIPINDAHKAN\nPemindahan ke ruang multimedia: BELUM DILAKUKAN\n\nSepuluh menit sebelumnya, kamera masih terlihat di atas meja."
+    },
+    {
+      "id": "foto1828",
+      "bukaSetelah": "Maya",
+      "judul": "Foto penyimpanan pukul 18.28",
+      "isi": "Penanda waktu: 18.28\n\nPeti abu-abu berada di lantai ruang multimedia. Sebuah tripod tergeletak atau bersandar tepat di sebelahnya.\n\nKamera berada di dalam peti yang tertutup. Jadi, foto ini tidak menunjukkan apakah lensanya sudah retak."
+    }
+  ],
+  "linimasa": "17.45  Arya selesai menggunakan kamera\n\nSekitar 17.46  Kamera mengayun dan menyenggol pegangan tangga saat masih dipegang Arya\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n17.48  Arya menandatangani lembar pengembalian\nKamera ternyata masih tertinggal di meja dokumentasi\n\nSekitar 17.52  Bella melepas tali tas kamera\nKamera menyentuh tepi meja\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n17.56  FOTO: kamera masih terlihat di meja dokumentasi\nFoto membuktikan lokasinya, bukan kondisi lensanya\n\nSekitar 18.03  Dimas memindahkan perlengkapan ke peti abu-abu\nKamera kemungkinan ikut masuk bersama barang-barang lain\nKemungkinan benturan • Barang-barang saling berbenturan di dalam peti\n\n18.06  Meja kosong • Peti abu-abu tertutup\n\n18.10  Chris membawa peti yang tertutup\n\n18.11  Peti membentur kusen pintu\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\nSekitar 18.20  Tripod jatuh ke arah atau mengenai peti\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n18.28  FOTO: tripod berada di samping peti yang masih tertutup\n\nBerikutnya  Kamera ditemukan di dalam peti dengan lensa retak\n\nCELAH UTAMA: Tidak ada yang mencatat kondisi lensa di antara kejadian-kejadian ini."
+}

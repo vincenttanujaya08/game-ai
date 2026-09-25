@@ -13,5 +13,5 @@ it("mengubah saran sesuai konteks dokumen", async () => {
   });
 
   expect(relevant.diffText).toContain("etika");
-  expect(misleading.diffText).toContain("hasil belajar");
+  expect(misleading.diffText).toContain("pengalaman belajar");
 });

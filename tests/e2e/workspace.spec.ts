@@ -1,185 +1,134 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("alur singkat dari brief hingga mengirim revisi", async ({ page }) => {
-  const consoleErrors: string[] = [];
-  page.on("console", (message) => {
-    if (message.type() === "error") consoleErrors.push(message.text());
-  });
+const claimActions = [
+  ["claim 1", "Tidak pakai"],
+  ["claim 2", "Pakai"],
+  ["claim 3", "Tidak pakai"],
+  ["claim 4", "Tidak pakai"],
+  ["claim 5", "Pakai"],
+] as const;
 
+test("membuka bukti, memilih klaim, dan menyusun jawaban akhir", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on(
+    "console",
+    (message) => message.type() === "error" && errors.push(message.text()),
+  );
   await page.request.post("/api/v1/sessions?reset");
-  await page.goto("/");
-  await expect(
-    page.getByRole("heading", { name: "Belajar sambil main, yuk!" }),
-  ).toBeVisible();
-  const citationGame = page.getByRole("link", { name: /Sitasi Bermasalah/ });
-  await expect(citationGame).toBeInViewport();
-  await citationGame.click();
-  await expect(page).toHaveTitle(/Simulasi Sitasi Bermasalah/);
+  await page.goto("/games/sitasi-bermasalah");
+  await expect(page).toHaveTitle(/Periksa Jawaban AI/);
   await expect(
     page.getByRole("heading", {
-      name: "Sitasi Bermasalah",
+      name: "AI sudah membuat draf. Sekarang cek isi dan sumbernya.",
     }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Mulai main" }).click();
-
-  await expect(
-    page.getByRole("heading", { name: "Tolong cek draf ini sebelum kelas" }),
-  ).toBeVisible();
-  await expect(
-    page.getByText(/Apakah literasi AI hanya berarti mampu menggunakan alat/),
-  ).toBeVisible();
-  await expect(
-    page.getByText(/Tugasmu: cari bukti untuk menguji/),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Buka chat Raka" }).click();
-  await expect(page.getByText(/Cari bukti untuk menguji:/)).toBeVisible();
-
-  const misleading = page.locator("article").filter({
-    has: page.getByRole("heading", {
-      name: "Data Lengkap: AI Meningkatkan Nilai Mahasiswa",
-    }),
-  });
-  await misleading.getByRole("button", { name: "Buka" }).click();
-  await page.getByRole("link", { name: /Periksa data studinya/ }).click();
-  await expect(
-    page.getByText(/Kuesioner tidak meminta nilai mata kuliah/),
-  ).toBeInViewport();
-  await page.getByRole("button", { name: "Tutup dokumen" }).click();
-
-  const unesco = page.locator("article").filter({
-    has: page.getByRole("heading", { name: "Kerangka literasi AI UNESCO" }),
-  });
-  await unesco.getByRole("button", { name: "Buka" }).click();
-  await page
-    .getByRole("link", { name: /Lompat ke bagian yang dikutip/ })
-    .click();
-  await expect(page.locator("#kutipan-valid-unesco mark")).toBeInViewport();
-  await page.getByRole("button", { name: "Pilih untuk AIRA" }).click();
-
-  await page.getByRole("button", { name: /Lanjut ke AIRA/ }).click();
-  await expect(
-    page.getByText(/Aku membantu menulis dari dokumen pilihanmu/),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Kirim ke AIRA" }).click();
-  await page.getByRole("button", { name: /Bawa hasil ke Dr. Maya/ }).click();
-  await page.getByLabel(/Saya sudah membaca hasil AIRA/).check();
-  await page.getByRole("button", { name: /Kirim revisi/ }).click();
-
-  await expect(
-    page.getByRole("heading", { name: "Revisi terkirim." }),
-  ).toBeVisible();
-  await expect(
-    page.getByText(/Klaim, sumber, dan tanggung jawabmu sudah jelas/),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Tiga keputusan yang dinilai" }),
-  ).toBeVisible();
-  await expect(page.locator(".result-decisions li.met")).toHaveCount(3);
-  await expect(
-    page.getByRole("heading", { name: "Bawa cara ini ke tugas berikutnya" }),
   ).toBeVisible();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
-  expect(consoleErrors).toEqual([]);
-});
 
-test("status tautan tersembunyi dan risiko data muncul setelah dikirim", async ({
-  page,
-}) => {
-  await page.request.post("/api/v1/sessions?reset");
-  await page.goto("/");
-  await page.getByRole("link", { name: /Sitasi Bermasalah/ }).click();
-  await page.getByRole("button", { name: "Mulai main" }).click();
-  await page.getByRole("button", { name: "Buka chat Raka" }).click();
-
-  const broken = page.locator("article").filter({
-    has: page.getByRole("heading", {
-      name: "Kerangka Kompetensi AI OECD untuk Mahasiswa",
+  await page.getByRole("button", { name: "Periksa jawaban AI" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "Baca draf AI, lalu buka bukti di balik setiap klaim.",
     }),
-  });
-  await expect(broken).not.toContainText(/rusak|404|tidak tersedia/i);
-  await broken.getByRole("button", { name: "Buka" }).click();
-  await expect(page.getByText("404", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Tutup dokumen" }).click();
+  ).toBeVisible();
+  await expect(page.getByLabel("Konteks percakapan dengan AI")).toContainText(
+    "Buat latar belakang singkat untuk program literasi AI",
+  );
 
-  await page
-    .getByRole("button", {
-      name: "Pilih Daftar peserta kegiatan kampus untuk AIRA",
-    })
-    .click();
-  await page
-    .getByRole("button", {
-      name: "Pilih Kerangka literasi AI UNESCO untuk AIRA",
-    })
-    .click();
-  await page.getByRole("button", { name: /Lanjut ke AIRA/ }).click();
-  await page.getByRole("button", { name: "Kirim ke AIRA" }).click();
-  await page.getByRole("button", { name: /Bawa hasil ke Dr. Maya/ }).click();
-  await page.getByLabel(/Saya sudah membaca hasil AIRA/).check();
-  await page.getByRole("button", { name: /Kirim revisi/ }).click();
+  for (let index = 0; index < 5; index += 1) {
+    const claim = page.locator("article.claim-card").nth(index);
+    await claim
+      .getByRole("button", { name: index === 0 ? "Buka bukti" : "Buka bukti" })
+      .click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.keyboard.press("Escape");
+  }
+  await page.getByRole("button", { name: "Lanjut pilih klaim" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "Klaim mana yang layak masuk ke jawaban akhir?",
+    }),
+  ).toBeVisible();
+  for (let index = 0; index < 5; index += 1) {
+    const claim = page.locator("article.claim-card").nth(index);
+    await claim
+      .getByRole("button", { name: claimActions[index][1], exact: true })
+      .click();
+  }
+  await page.getByRole("button", { name: "Lihat jawaban akhir" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "Ini jawaban akhir dari klaim yang kamu pilih.",
+    }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Kirim hasil pemeriksaan" }).click();
 
   await expect(
-    page.getByText(/daftar peserta berisi data pribadi/i),
+    page.getByRole("heading", {
+      name: "Semua keputusanmu tepat.",
+    }),
   ).toBeVisible();
-  await expect(
-    page.getByText(/Jangan kirim nama, email, atau nomor telepon/i),
-  ).toBeVisible();
+  await expect(page.getByLabel("5 dari 5 keputusan tepat")).toBeVisible();
+  await expect(page.locator(".feedback-list article").first()).toContainText(
+    "KLAIM 1 · TIDAK PAKAI",
+  );
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  expect(errors).toEqual([]);
 });
 
-test("lampiran Raka dapat digulir dan dipilih dengan centang hijau", async ({
+test("bukti sumber asli tersedia", async ({
   page,
 }) => {
   await page.request.post("/api/v1/sessions?reset");
-  await page.goto("/");
-  await page.getByRole("link", { name: /Sitasi Bermasalah/ }).click();
-  await page.getByRole("button", { name: "Mulai main" }).click();
-  await page.getByRole("button", { name: "Buka chat Raka" }).click();
+  await page.goto("/games/sitasi-bermasalah");
+  await page.getByRole("button", { name: "Periksa jawaban AI" }).click();
+  const firstClaim = page.locator("article.claim-card").first();
+  await firstClaim.getByRole("button", { name: "Buka bukti" }).click();
+  await page.getByRole("button", { name: "Tutup dokumen" }).click();
+  await page.locator("article.claim-card").nth(1).getByRole("button", { name: "Buka bukti" }).click();
+  await expect(
+    page.getByRole("link", { name: "Buka sumber asli ↗" }),
+  ).toHaveAttribute("href", /kemdiktisaintek\.go\.id/);
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+});
 
-  const messages = page.locator(".message-stack");
+test("audit output tetap terbaca pada layar ponsel", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.request.post("/api/v1/sessions?reset");
+  await page.goto("/games/sitasi-bermasalah");
+  await page.getByRole("button", { name: "Periksa jawaban AI" }).click();
+  await expect(page.locator("article.claim-card")).toHaveCount(5);
+
+  await page.locator("article.claim-card").nth(1).getByRole("button", { name: "Buka bukti" }).click();
+  const dialog = page.getByRole("dialog");
+  const sourceViewport = dialog.locator(".source-browser-viewport");
   await expect
     .poll(() =>
-      messages.evaluate(
+      sourceViewport.evaluate(
         (element) => element.scrollHeight > element.clientHeight,
       ),
     )
     .toBe(true);
-  await messages.evaluate((element) =>
+  await sourceViewport.evaluate((element) =>
     element.scrollTo(0, element.scrollHeight),
   );
   await expect
-    .poll(() => messages.evaluate((element) => element.scrollTop))
+    .poll(() => sourceViewport.evaluate((element) => element.scrollTop))
     .toBeGreaterThan(0);
+  await expect(
+    page.getByRole("button", { name: "Tutup dokumen" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Tutup dokumen" }).click();
 
-  const pickUnesco = page.getByRole("button", {
-    name: "Pilih Kerangka literasi AI UNESCO untuk AIRA",
-  });
-  await expect(pickUnesco).toHaveAttribute("aria-pressed", "false");
-  await expect(pickUnesco).toHaveText("✓");
-  await pickUnesco.click();
-  const removeUnesco = page.getByRole("button", {
-    name: "Keluarkan Kerangka literasi AI UNESCO dari AIRA",
-  });
-  await expect(removeUnesco).toHaveAttribute("aria-pressed", "true");
-  await expect(removeUnesco).toHaveCSS("color", "rgb(22, 139, 99)");
-
-  const ethicsModule = page.locator("article").filter({
-    has: page.getByRole("heading", {
-      name: "Modul etika dan data dalam penggunaan AI",
-    }),
-  });
-  await ethicsModule.getByRole("button", { name: "Buka" }).click();
-  const pageFooter = page.locator(".document-sheet > footer");
-  await expect(pageFooter).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
-  await expect(pageFooter).toHaveCSS("min-height", "0px");
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await expect
-    .poll(() =>
-      pageFooter.evaluate((footer) => {
-        const contentBottom =
-          footer.previousElementSibling?.getBoundingClientRect().bottom;
-        return contentBottom === undefined
-          ? false
-          : contentBottom <= footer.getBoundingClientRect().top;
-      }),
-    )
-    .toBe(true);
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(0);
+  await expect(page.getByRole("button", { name: "Lanjut pilih klaim" })).toBeInViewport();
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(390);
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });

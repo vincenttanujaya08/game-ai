@@ -30,12 +30,19 @@ export function scoreSession(
   events: readonly SessionEvent[],
 ): ScoreReport {
   const context = new Set<string>();
+  const claimStates = new Map<string, string>();
   for (const event of events) {
     if (event.type === "context_item_added") {
       context.add(String(event.payload.documentId));
     }
     if (event.type === "context_item_removed") {
       context.delete(String(event.payload.documentId));
+    }
+    if (event.type === "claim_state_changed") {
+      claimStates.set(
+        String(event.payload.claimId),
+        String(event.payload.state),
+      );
     }
   }
 
@@ -63,15 +70,29 @@ export function scoreSession(
 
   const findings = scenario.truth.rules.map((rule) => {
     const met =
-      rule.kind === "context_selection"
-        ? contextIsFocused
-        : rule.kind === "evidence_link"
-          ? Boolean(link)
-          : diff?.type === "diff_accepted";
+      rule.kind === "source_choice"
+        ? rule.documentId !== undefined &&
+          context.has(rule.documentId) === rule.expectedSelected
+        : rule.kind === "claim_state"
+          ? rule.claimId !== undefined &&
+            claimStates.get(rule.claimId) === rule.expectedState
+          : rule.kind === "context_selection"
+            ? contextIsFocused
+            : rule.kind === "evidence_link"
+              ? Boolean(link)
+              : diff?.type === "diff_accepted";
     const eventIds = met
-      ? rule.kind === "context_selection"
+      ? rule.kind === "context_selection" || rule.kind === "source_choice"
         ? contextEventIds
-        : [String((rule.kind === "evidence_link" ? link : diff)?.id)]
+        : rule.kind === "claim_state"
+          ? events
+              .filter(
+                (event) =>
+                  event.type === "claim_state_changed" &&
+                  event.payload.claimId === rule.claimId,
+              )
+              .map((event) => event.id)
+          : [String((rule.kind === "evidence_link" ? link : diff)?.id)]
       : [];
     return {
       ruleId: rule.id,
@@ -86,18 +107,28 @@ export function scoreSession(
       feedbackKey: rule.feedbackKey,
     };
   });
-  const dimensions = scenario.truth.rules.map((rule) => {
-    const finding = findings.find((item) => item.ruleId === rule.id)!;
-    return {
-      id: rule.dimension,
-      earned: finding.earned,
-      possible: rule.maxPoints,
-      normalized: (finding.earned / rule.maxPoints) * 100,
-    };
-  });
+  const dimensions = Object.values(
+    scenario.truth.rules.reduce<
+      Record<string, { id: string; earned: number; possible: number }>
+    >((result, rule) => {
+      const finding = findings.find((item) => item.ruleId === rule.id)!;
+      const dimension = result[rule.dimension] ?? {
+        id: rule.dimension,
+        earned: 0,
+        possible: 0,
+      };
+      dimension.earned += finding.earned;
+      dimension.possible += finding.possible;
+      result[rule.dimension] = dimension;
+      return result;
+    }, {}),
+  ).map((dimension) => ({
+    ...dimension,
+    normalized: (dimension.earned / dimension.possible) * 100,
+  }));
   const total = findings.reduce((sum, finding) => sum + finding.earned, 0);
   return {
-    scorerVersion: "mini-2",
+    scorerVersion: "ai-output-audit-1",
     scenarioContentHash: scenario.truth.contentHash,
     total,
     dimensions,

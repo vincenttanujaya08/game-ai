@@ -1,0 +1,805 @@
+Lesson 1 — AI Today: How Powerful Is It, and Why Should We Care?
+Tujuan Lesson
+Lesson pertama ini belum bertujuan menjelaskan definisi Artificial Intelligence secara formal.
+Mahasiswa terlebih dahulu diajak melihat:
+seberapa jauh kemampuan AI saat ini,
+bagaimana AI sudah digunakan di berbagai bidang,
+mengapa AI jauh lebih luas daripada ChatGPT atau Generative AI,
+serta mengapa kemampuan yang semakin besar juga membawa risiko baru.
+Setelah menyelesaikan lesson ini, mahasiswa diharapkan memiliki satu pemahaman awal:
+AI is becoming incredibly capable. But capability does not automatically mean reliability, safety, or responsible use.
+Definisi, kategori, dan cara kerja AI akan dibahas pada lesson berikutnya.
+
+Opening — AI Is More Than ChatGPT
+Saat mendengar kata Artificial Intelligence, banyak orang sekarang mungkin langsung membayangkan:
+ChatGPT.
+Gemini.
+AI image generator.
+AI coding assistant.
+Hal tersebut masuk akal karena Generative AI adalah bentuk AI yang paling sering berinteraksi langsung dengan kita.
+Tetapi perkembangan AI sekarang sudah jauh lebih luas.
+AI sudah digunakan untuk:
+menyelesaikan problem matematika tingkat tinggi,
+membantu scientific discovery,
+membantu analisis medical imaging,
+memahami gambar, suara, video, dan kamera,
+membantu kendaraan merespons lingkungan,
+mengendalikan robot di dunia fisik,
+dan menyelesaikan task menggunakan berbagai digital tools.
+Jadi sebelum bertanya:
+“What is AI?”
+kita mulai dari pertanyaan lain:
+“How powerful is AI today?”
+
+Part 1 — What Can AI Actually Do Today?
+
+1. AI Can Solve Extremely Difficult Problems
+AI tidak hanya digunakan untuk membuat tulisan atau menjawab pertanyaan sederhana.
+Sistem AI terbaru juga menunjukkan kemampuan menyelesaikan problem yang membutuhkan reasoning dalam banyak langkah.
+Salah satu contoh yang sangat menarik datang dari International Mathematical Olympiad 2025.
+International Mathematical Olympiad atau IMO adalah kompetisi matematika internasional untuk pelajar terbaik dari berbagai negara.
+Peserta harus menyelesaikan enam problem yang sangat sulit dalam bidang seperti:
+algebra,
+geometry,
+number theory,
+combinatorics.
+Pada IMO 2025, versi advanced dari Gemini Deep Think berhasil menyelesaikan 5 dari 6 soal secara sempurna, mendapatkan 35 dari 42 poin, dan mencapai standar gold medal.
+Yang juga menarik, sistem tersebut menerima soal langsung dalam natural language dan menghasilkan mathematical proof dalam natural language, dalam batas waktu resmi kompetisi 4,5 jam.
+Pada 2026, teknologi Deep Think kemudian digunakan bersama mathematicians dan scientists untuk mengeksplorasi problem tingkat riset dalam mathematics, physics, dan computer science.
+Jangan Salah Menyimpulkan
+Ini tidak berarti:
+“AI berpikir persis seperti manusia.”
+atau:
+“AI tidak pernah salah dalam matematika.”
+Tetapi pencapaian tersebut menunjukkan bahwa:
+AI systems are increasingly capable of working through complex problems, not just generating fluent text.
+Interaction — Quick Choice
+Bentuk: Pilih satu jawaban.
+Apa yang paling tepat kita simpulkan dari contoh IMO tadi?
+A. AI sekarang selalu benar dalam matematika.
+B. AI sudah berpikir persis seperti manusia.
+C. AI dapat menangani problem yang jauh lebih kompleks daripada simple text generation. ✅
+D. AI sekarang lebih pintar daripada manusia dalam semua hal.
+Feedback:
+Kemampuan tinggi pada suatu task tidak berarti AI sempurna atau memiliki cara berpikir yang sama dengan manusia.
+Tetapi capability AI dalam problem solving memang berkembang sangat cepat.
+Key Takeaway
+AI can increasingly solve complex problems, not only generate content.
+
+2. AI Can Help Scientists Discover
+AI juga digunakan untuk membantu scientific discovery.
+Salah satu contoh paling terkenal adalah AlphaFold.
+Protein mempunyai bentuk tiga dimensi yang sangat penting terhadap bagaimana protein tersebut bekerja.
+Selama sekitar 50 tahun, salah satu problem besar dalam biology adalah:
+Jika kita mengetahui urutan amino acid sebuah protein, dapatkah kita memprediksi bentuk tiga dimensinya?
+AlphaFold2 menggunakan Artificial Intelligence untuk melakukan protein structure prediction.
+Pencapaian ini sangat signifikan sehingga Demis Hassabis dan John Jumper menerima setengah dari Nobel Prize in Chemistry 2024 untuk protein structure prediction. Nobel Committee menggambarkan pekerjaan tersebut sebagai solusi terhadap problem ilmiah yang telah dikerjakan selama sekitar 50 tahun.
+Teknologi seperti AlphaFold membantu ilmuwan melakukan penelitian pada berbagai area biology dan medicine.
+Tetapi penting untuk menggunakan wording yang tepat.
+Bukan:
+❌ “AI menyembuhkan penyakit.”
+Melainkan:
+AI can help scientists understand complex biological systems and accelerate scientific discovery.
+Interaction — Match the AI
+Bentuk: Drag and drop.
+Cocokkan teknologi dengan penggunaan yang paling sesuai.
+AlphaFold
+→ Predicting protein structures
+Spotify Recommendation
+→ Recommending content
+ChatGPT
+→ Generating and processing language
+Key Takeaway
+AI is not only a content generator. It can also become a tool for discovery.
+
+3. AI Can Assist Medicine
+Bayangkan seorang radiologist harus memeriksa ribuan mammograms.
+Setiap image harus dianalisis dengan hati-hati karena ada kemungkinan terdapat tanda kanker.
+AI dapat digunakan untuk membantu mengenali pattern dan membantu menentukan pemeriksaan mana yang membutuhkan perhatian lebih besar.
+Pada Maret 2026, sebuah prospective clinical trial yang dipublikasikan di Nature Medicine melibatkan 31.301 perempuan dalam breast-cancer screening.
+Dalam strategi AI yang diuji:
+radiologist workload turun 63,6%,
+cancer detection rate meningkat 15,2% dibanding strategi standar dalam studi tersebut.
+Tetapi recall rate juga meningkat.
+Artinya, hasil penelitian tersebut bukan:
+“AI sudah lebih baik daripada dokter.”
+atau:
+“Dokter sudah tidak diperlukan.”
+Justru penelitian tersebut menunjukkan bahwa cara AI dan manusia bekerja bersama perlu dirancang dan dievaluasi dengan hati-hati.
+Interaction — Replace or Assist?
+Bentuk: Pilih satu.
+Berdasarkan contoh tersebut, penggunaan AI yang paling tepat digambarkan sebagai:
+A. AI menggantikan semua radiologist.
+B. AI membantu workflow manusia, tetapi tetap membutuhkan evaluation dan oversight. ✅
+C. AI dapat menjamin diagnosis selalu benar.
+Key Takeaway
+AI can help humans find patterns and process information at scale.
+
+4. AI Can See, Hear, and Understand More Than Text
+Generative AI awal yang banyak digunakan masyarakat berinteraksi terutama melalui text.
+User mengetik:
+“Explain machine learning.”
+AI membalas dengan text.
+Tetapi AI tidak terbatas pada text.
+AI sudah lama digunakan dalam hal-hal seperti:
+face recognition,
+speech recognition,
+object detection,
+handwriting recognition,
+image analysis.
+Contoh paling sederhana adalah Face ID atau face recognition pada smartphone.
+Kita tidak mengetik:
+“Ini wajah saya.”
+Sistem memproses visual information dan mengenali pattern.
+Tetapi AI modern sekarang dapat bekerja dengan lebih banyak modality sekaligus.
+Multimodal AI
+AI dapat menerima kombinasi:
+Text
+Image
+Audio
+Video
+Camera
+Screen
+Misalnya seseorang melihat lampu error berkedip pada sebuah perangkat.
+Dulu ia mungkin harus menjelaskan:
+“Ada lampu kecil warna merah yang berkedip tiga kali di sebelah kanan…”
+Sekarang user dapat membuka kamera dan mengatakan:
+“Look at this. What does this blinking light mean?”
+Gemini Live, misalnya, memungkinkan user berbicara dengan AI sambil membagikan live camera atau screen. Google secara langsung memberikan contoh penggunaan seperti menunjukkan blinking error code atau meminta bantuan saat menggunakan aplikasi yang membingungkan.
+Contoh lain:
+Mahasiswa sedang membuka Excel.
+Formula menghasilkan error.
+Daripada mencoba menjelaskan seluruh tampilannya:
+Share screen → “Why is this formula producing an error?”
+Perubahan pentingnya adalah:
+Before
+Describe what you see to AI.
+Now
+Show what you see to AI.
+Tetapi jangan mengatakan:
+“AI melihat seperti manusia.”
+Lebih tepat:
+AI can process and reason over multiple forms of information.
+Interaction — Which Input Would You Use?
+Bentuk: Matching sederhana.
+Meminta AI meringkas jurnal
+→ Document / Text
+Menanyakan suara apa yang terdengar di recording
+→ Audio
+Meminta bantuan memahami aplikasi yang sedang terbuka
+→ Screen
+Menanyakan benda yang sedang diarahkan kamera
+→ Camera / Video
+Key Takeaway
+AI is moving beyond what we type toward what we see, hear, and interact with.
+
+5. AI Can Interact With the Physical World
+Sampai sini sebagian besar contoh AI masih terjadi di dalam komputer.
+Tetapi AI juga mulai semakin banyak berinteraksi dengan physical world.
+
+Example 1 — Self-Driving Technology
+Bayangkan sebuah mobil berjalan di jalan raya.
+Sistem perlu memperhatikan:
+lane markings,
+kendaraan di depan,
+pedestrian,
+cyclist,
+traffic lights,
+stop signs,
+intersections,
+obstacles.
+Kemudian sistem harus menentukan tindakan seperti:
+Steer
+Brake
+Accelerate
+Change Lane
+Tesla Full Self-Driving (Supervised) saat ini, misalnya, dapat melakukan lane changes, melakukan left/right turns, mengikuti route, melewati roundabout, serta merespons kendaraan dan pedestrian tertentu.
+Namun Tesla sendiri mengklasifikasikan sistem tersebut sebagai SAE Level 2 supervised driving, bukan fully autonomous driving. Driver tetap harus memperhatikan jalan dan siap mengambil alih.
+Mental model sederhananya:
+Sense Environment
+↓
+Understand Situation
+↓
+Decide
+↓
+Act
+Pertanyaan
+Mengapa bagian supervised penting?
+Karena semakin AI berinteraksi dengan physical world, consequence dari kesalahan juga berubah.
+Kalau chatbot salah menjawab pertanyaan:
+kita mungkin mendapatkan informasi yang salah.
+Kalau sistem kendaraan salah mengambil keputusan:
+konsekuensinya dapat terjadi di dunia fisik.
+Interaction — Can You Look at Your Phone?
+Bentuk: Scenario choice.
+Sebuah mobil dapat melakukan lane changes, turns, dan mengikuti navigation sendiri, tetapi sistem mengatakan driver harus tetap memperhatikan jalan.
+Bolehkah driver bermain HP?
+A. Ya, karena mobil sudah bisa menyetir sendiri.
+B. Tidak. Capability sistem tidak menghilangkan limitation dan tanggung jawab driver. ✅
+Key Takeaway
+The more AI interacts with the physical world, the more important reliability and human oversight become.
+
+Example 2 — Disney's Olaf
+AI di physical world tidak hanya berbentuk kendaraan.
+Pada NVIDIA GTC 2026, Jensen Huang tampil di panggung bersama versi robot fisik Olaf dari Disney's Frozen.
+Membuat Olaf berjalan ternyata bukan hal sederhana.
+Karakter Olaf memiliki:
+kepala yang besar,
+kaki yang kecil,
+bentuk tubuh yang berbeda jauh dari humanoid robot,
+gerakan animasi yang secara fisik tidak selalu mudah direproduksi.
+Disney Research menggunakan reinforcement learning yang dipandu animation references untuk membantu mengontrol gerakan robot.
+Mereka juga menggunakan simulation untuk mengembangkan dan menguji behaviour sebelum diterapkan pada robot fisik.
+Bahkan hal-hal seperti:
+suara kaki ketika menyentuh tanah,
+balance,
+dan risiko actuator overheating
+ikut menjadi bagian dari problem engineering-nya.
+Mental model sederhananya:
+Practice in Simulation
+↓
+Learn Behaviour
+↓
+Test
+↓
+Move in the Real World
+Teknologi seperti ini sering dibahas dalam konteks Physical AI.
+Di bidang AI modern juga berkembang konsep seperti world models, yaitu sistem yang mencoba memodelkan atau memprediksi bagaimana sebuah environment dapat berubah.
+Tetapi untuk saat ini kita tidak perlu memahami world model secara teknis.
+Hal pentingnya adalah:
+AI is increasingly moving from the digital world into the physical world.
+Interaction — Why Simulation?
+Bentuk: Pilih satu.
+Kenapa engineer mungkin melatih robot terlebih dahulu di simulation?
+A. Karena simulation terlihat lebih keren.
+B. Karena behaviour dapat dicoba berkali-kali dengan risiko dan biaya dunia nyata yang lebih rendah. ✅
+C. Karena robot tidak pernah perlu diuji di dunia nyata.
+Key Takeaway
+AI can learn behaviours that are eventually applied to physical systems.
+
+6. AI Can Take Actions Digitally
+Perubahan besar lainnya terjadi pada cara AI berinteraksi dengan software.
+Bandingkan dua contoh berikut.
+Chatbot
+User:
+“Explain what SQL JOIN is.”
+AI:
+memberikan penjelasan.
+Selesai.
+
+AI Agent
+User:
+“Cari tiga paper terbaru tentang AI literacy, bandingkan hasilnya, kemudian buat summary.”
+Sistem dapat melakukan beberapa langkah:
+Understand Goal
+↓
+Plan
+↓
+Search
+↓
+Read
+↓
+Compare
+↓
+Create Output
+↓
+Check Result
+AI seperti ini sering disebut AI Agent atau Agentic AI.
+Perbedaan mental model sederhananya:
+Chatbot
+Ask → Answer
+Agent
+Goal → Plan → Act → Observe → Adjust
+Contoh dalam coding:
+User mengatakan:
+“Cari kenapa tests project ini gagal dan perbaiki.”
+Coding agent dapat:
+membaca file,
+mencari bagian code yang relevan,
+melakukan perubahan,
+menjalankan test,
+membaca hasil test,
+lalu menyesuaikan solusi.
+AI tidak hanya memberikan saran.
+AI dapat menggunakan tools untuk melakukan beberapa tindakan menuju suatu goal.
+Interaction — Chatbot or Agent?
+Bentuk: Matching.
+“Explain SQL JOIN.”
+→ Chatbot
+“Read project files, find the bug, edit it, then run tests.”
+→ Agent
+“Summarize this paragraph.”
+→ Chatbot
+“Research several universities and organize their requirements.”
+→ Agent
+Key Takeaway
+AI is moving from answering questions toward helping accomplish goals.
+
+Reflection — AI Is Bigger Than Generative AI
+Sampai sini kita sudah melihat bahwa AI dapat:
+Solve
+→ difficult problems
+Discover
+→ scientific structures and patterns
+Assist
+→ medical workflows
+See & Hear
+→ multimodal AI
+Interact
+→ vehicles and physical systems
+Learn to Move
+→ robotics / Physical AI
+Act
+→ AI agents
+Maka:
+AI ≠ ChatGPT
+dan bahkan:
+AI ≠ Generative AI
+Generative AI hanyalah salah satu bagian dari landscape Artificial Intelligence yang jauh lebih luas.
+Tetapi semua contoh tadi memperlihatkan sisi AI yang luar biasa.
+Sekarang kita lihat sisi lainnya.
+
+Part 2 — Powerful Capabilities Can Also Create Powerful Risks
+Sebuah kemampuan tidak secara otomatis baik atau buruk.
+Capability yang sama dapat:
+memberikan manfaat,
+gagal,
+digunakan secara tidak tepat,
+atau sengaja disalahgunakan.
+
+7. Can You Trust the Evidence?
+Scenario
+Kamu menjual tiket konser.
+Harga:
+Rp750.000
+Pembeli mengirim screenshot:
+TRANSFER SUCCESSFUL
+Rp750.000
+Nama benar.
+Nominal benar.
+Timestamp terlihat benar.
+UI mobile banking terlihat sangat meyakinkan.
+Interaction — What Would You Do?
+A. Kirim tiket karena sudah ada bukti transfer.
+B. Cari apakah font screenshot terlihat aneh.
+C. Periksa rekening atau transaction history sendiri. ✅
+Mengapa?
+Karena screenshot sekarang semakin mudah dimanipulasi.
+Pada April 2025, OJK secara khusus memperingatkan masyarakat Indonesia mengenai pemalsuan bukti transfer menggunakan AI, di mana AI digunakan untuk mengubah atau memalsukan bukti transfer.
+Lesson yang salah adalah:
+“Belajarlah mengenali foto editan.”
+Teknologi akan semakin baik.
+Lesson yang lebih tahan lama:
+Verify through the original source.
+Untuk transfer:
+Check the account, not just the screenshot.
+Key Takeaway
+Visual evidence is not automatically verified evidence.
+
+8. Can You Trust the Person?
+Sekarang bukan screenshot yang dipalsukan.
+Tetapi identity.
+Bayangkan menerima telepon:
+“Bro, ini aku. HP-ku rusak. Bisa transfer Rp500 ribu dulu ke rekening ini?”
+Suaranya benar-benar terdengar seperti temanmu.
+Apakah suara tersebut cukup untuk membuktikan identitas?
+Belum tentu.
+AI dapat digunakan untuk melakukan voice cloning.
+AI juga dapat menghasilkan deepfake video.
+Satgas PASTI OJK pada November 2025 secara khusus memperingatkan bahwa penipu dapat menggunakan AI untuk meniru suara teman, kolega, atau keluarga, serta membuat tiruan wajah melalui deepfake.
+Interaction — What Would You Do?
+A. Transfer karena suaranya cocok.
+B. Dengarkan apakah suaranya terdengar robotik.
+C. Hubungi orang tersebut melalui channel lain yang sudah dipercaya. ✅
+Kenapa bukan B?
+Karena semakin bagus teknologi, semakin sulit mengandalkan:
+“Kayaknya ini suara AI.”
+Lebih aman:
+Verify the identity independently.
+Old Assumption
+“Aku dengar sendiri suaranya.”
+“Aku lihat sendiri videonya.”
+New Reality
+Voice ≠ verified identity
+Video ≠ verified identity
+
+9. Fake Content Can Cause Real Harm
+Tidak semua penyalahgunaan AI bertujuan mengambil uang.
+Bayangkan seseorang mengambil foto temannya dari Instagram.
+Foto tersebut kemudian digunakan untuk membuat gambar seksual palsu melalui AI.
+Korban:
+tidak pernah mengambil foto tersebut,
+tidak pernah membuat konten tersebut,
+tidak pernah memberikan consent.
+Tetapi hasilnya terlihat realistis.
+Pada Januari 2026, Kemkomdigi menyelidiki penggunaan Grok untuk memproduksi konten asusila melalui manipulasi foto pribadi tanpa consent.
+Beberapa hari kemudian pemerintah melakukan pemutusan akses sementara terhadap Grok di Indonesia dan menyebut non-consensual sexual deepfake sebagai pelanggaran serius terhadap hak, martabat, dan keamanan warga.
+Interaction — Fake Image, Fake Harm?
+Bentuk: Pilih satu.
+Jika gambarnya palsu, apakah dampaknya juga otomatis tidak nyata?
+A. Ya.
+B. Tidak. ✅
+Kontennya mungkin synthetic.
+Tetapi dampak terhadap:
+reputation,
+dignity,
+privacy,
+harassment,
+psychological wellbeing
+dapat sangat nyata.
+Key Takeaway
+“AI can do it” does not mean “I should do it.”
+Technical capability tidak otomatis memberikan ethical permission.
+
+10. What Are You Giving to AI?
+Kita sering fokus pada pertanyaan:
+What can AI give me?
+AI memberikan:
+answer,
+summary,
+analysis,
+image,
+code.
+Tetapi kita jarang bertanya:
+What am I giving to AI?
+Ketika menggunakan AI, kita mungkin memberikan:
+prompt,
+PDF,
+image,
+spreadsheet,
+voice,
+camera,
+screen sharing,
+source code,
+company document,
+personal information.
+Dan di sinilah kita perlu memahami sesuatu yang penting:
+Data yang kita berikan kepada layanan AI dalam kondisi tertentu memang dapat digunakan untuk model improvement atau training.
+Tetapi jangan membuat generalisasi:
+❌ “Semua data yang kita upload ke semua AI pasti dipakai training.”
+Itu tidak benar.
+Jawabannya bergantung pada:
+provider,
+product,
+account type,
+settings,
+dan policy yang berlaku.
+
+Example — ChatGPT
+Untuk consumer services seperti ChatGPT, OpenAI menyatakan bahwa tergantung settings pengguna, prompt, response, images, files, dan content lain dapat digunakan untuk meningkatkan atau melatih model.
+Pengguna dapat memilih keluar dari training melalui Data Controls.
+Untuk produk business dan API, OpenAI menyatakan content secara default tidak digunakan untuk training kecuali organisasi secara eksplisit memilih untuk berbagi data.
+
+Example — Gemini
+Google menjelaskan bahwa Gemini dapat menerima data seperti:
+prompt,
+files,
+video,
+screen,
+photo.
+Jika Keep Activity aktif, Google menyatakan activity tersebut dapat digunakan untuk menyediakan dan meningkatkan layanan, termasuk training generative AI models, dan sebagian data dapat direview manusia.
+Jika Keep Activity dimatikan, future chats tidak digunakan untuk training model kecuali beberapa kondisi seperti feedback; temporary/off-activity chats masih dapat disimpan sementara untuk menjalankan dan melindungi layanan.
+Jadi lesson-nya bukan:
+“Provider A aman, provider B berbahaya.”
+Kebijakan dapat berubah.
+Account mahasiswa dan account perusahaan juga dapat mempunyai aturan berbeda.
+Lesson-nya:
+Don't assume. Read.
+
+Before Sharing Something With AI, Ask:
+1. What am I sharing?
+Public information?
+Personal information?
+Company information?
+Financial information?
+Research data?
+
+2. Is this mine to share?
+Kamu mungkin mempunyai akses ke customer database ketika internship.
+Tetapi:
+Having access does not automatically mean you have permission to upload it to an AI service.
+Hal yang sama berlaku untuk:
+participant research data,
+confidential company files,
+source code perusahaan,
+foto orang lain,
+examination material.
+
+3. Who receives the information?
+Consumer AI?
+University AI account?
+Enterprise account?
+Third-party AI website?
+Local model?
+Tidak semuanya mempunyai policy yang sama.
+
+4. How will the data be used?
+Apakah:
+stored?
+reviewed?
+used for improvement?
+potentially used for training?
+
+5. How long is it retained?
+Retention policy dapat berbeda antarproduk.
+
+6. Do I need to share all of it?
+Gunakan prinsip:
+Share the minimum information necessary.
+Kalau ingin bertanya formula Excel:
+jangan otomatis upload seluruh customer database.
+Gunakan:
+dummy/sample data.
+Kalau ingin menanyakan error code:
+tidak selalu perlu upload seluruh private repository.
+Gunakan:
+minimal relevant example.
+
+Interaction — Would You Share This?
+Bentuk: Drag and drop.
+Generally Low Concern
+Public research paper
+Public government document
+Catatan kuliah sendiri tanpa data sensitif
+Think First
+CV sendiri
+Thesis interview transcript
+Internal meeting notes
+Source code internship
+Personal photo
+Do Not Share Carelessly
+Password
+API Key
+Customer database
+KTP / Passport
+Confidential company document
+Important Feedback
+Kategori tersebut tidak selalu universal.
+Yang ingin dibangun bukan hafalan.
+Yang ingin dibangun adalah kebiasaan bertanya:
+What am I sharing?
+Do I have the right to share it?
+Who receives it?
+What might happen to it?
+Key Takeaway
+Think before you upload.
+
+11. What If Nobody Is Trying to Trick You?
+Semua contoh sebelumnya terlihat seperti masalah karena seseorang sengaja menyalahgunakan AI.
+Tetapi AI dapat menyebabkan masalah bahkan ketika tidak ada malicious actor sama sekali.
+Misalnya mahasiswa meminta:
+“Give me five academic papers that support this argument.”
+AI memberikan:
+judul,
+nama author,
+journal,
+tahun,
+DOI.
+Semuanya terlihat profesional.
+Masalahnya:
+beberapa citation bisa saja tidak pernah ada.
+Generative AI dapat menghasilkan output yang:
+Fluent
+Detailed
+Confident
+Well formatted
+tetapi tetap:
+Wrong.
+Fenomena seperti ini sering disebut:
+Hallucination
+AI menghasilkan informasi yang terlihat masuk akal tetapi sebenarnya salah atau tidak mempunyai dasar yang benar.
+Interaction — Citation Check
+AI memberikan citation yang terlihat lengkap.
+Apa tindakan terbaik?
+A. Gunakan karena DOI-nya terlihat valid.
+B. Tanya AI, “Are you sure?”
+C. Cari paper tersebut melalui source akademik yang sebenarnya. ✅
+Key Takeaway
+Confident ≠ Correct
+Detailed ≠ Verified
+AI Output ≠ Evidence
+Ini akan menjadi dasar module Verify AI nanti.
+
+12. Why Does AI Need Guardrails?
+Mahasiswa mungkin pernah meminta sesuatu kepada AI lalu mendapatkan:
+“I can't help with that request.”
+Kenapa AI mempunyai restriction?
+Karena beberapa capability AI bersifat:
+Dual-Use
+Kemampuan yang sama dapat digunakan untuk tujuan baik maupun berbahaya.
+Contohnya:
+Cybersecurity
+AI yang mampu menemukan vulnerability dapat membantu:
+Security engineer menemukan dan memperbaiki kelemahan.
+Tetapi capability yang sama dapat membantu:
+Attacker menemukan atau mengeksploitasi kelemahan.
+International AI Safety Report 2026 menyimpulkan bahwa sistem AI sudah mampu menemukan software vulnerabilities dan menghasilkan malicious code, dan criminal maupun state-associated actors sudah menggunakan general-purpose AI dalam cyber operations.
+Karena itulah provider menggunakan hal-hal seperti:
+safety training,
+guardrails,
+monitoring,
+red teaming,
+capability evaluation.
+Tetapi safeguards tidak sempurna.
+Ada teknik yang disebut:
+Jailbreaking
+Secara sederhana:
+seseorang mencoba membuat AI melewati safety restrictions yang seharusnya mencegah harmful output.
+International AI Safety Report juga mencatat bahwa safety measures terus membaik, tetapi harmful output terkadang masih dapat diperoleh melalui rephrasing atau dengan memecah request menjadi beberapa langkah kecil. Open-weight models juga membawa tantangan berbeda karena safeguards-nya dapat lebih mudah dimodifikasi setelah model dirilis.
+Interaction — Same Technology, Different Use
+Bentuk: Matching.
+Generate realistic voice
+Useful → dubbing / accessibility
+Harmful → impersonation scam
+Find software vulnerability
+Useful → security testing
+Harmful → exploitation
+Generate realistic image
+Useful → design / creative work
+Harmful → non-consensual deepfake
+Key Takeaway
+The same AI capability can have both beneficial and harmful uses.
+
+Part 3 — What Happens When AI Becomes Even More Powerful?
+Sekarang lihat kembali apa yang sudah kita pelajari.
+AI dapat:
+Solve
+Discover
+See
+Hear
+Generate
+Drive
+Move
+Use Tools
+Take Actions
+Tetapi AI juga dapat:
+Hallucinate
+Fabricate convincing content
+Be misused
+Expose sensitive information
+Enable harmful capabilities
+Maka muncul pertanyaan yang jauh lebih besar:
+What happens if AI capabilities improve faster than our ability to make them safe?
+
+Even AI Leaders Are Debating This
+Perdebatan ini tidak hanya terjadi di media atau masyarakat umum.
+Orang-orang yang membangun teknologi AI juga mempunyai pandangan berbeda.
+Pada 12 September 2026, Anthropic CEO Dario Amodei meminta perusahaan AI mempertimbangkan memperlambat peningkatan capability frontier AI agar safety evaluation dan oversight mempunyai waktu untuk mengejar.
+OpenAI CEO Sam Altman dan Elon Musk kemudian menyatakan dukungan terhadap gagasan coordinated slowdown tersebut.
+Tetapi:
+There is no universal agreement.
+Sebagian perusahaan, pemerintah, dan researchers berpendapat bahwa slowing development dapat memperlambat innovation atau justru memperkuat perusahaan yang sudah berada di depan.
+Misalnya sejumlah perusahaan AI Eropa menolak gagasan slowdown dan berargumen bahwa Eropa perlu terus mengembangkan capability agar tidak semakin tertinggal dari perusahaan frontier Amerika.
+Jadi pertanyaan sebenarnya tidak sesederhana:
+“AI harus dihentikan.”
+atau:
+“AI harus dikembangkan secepat mungkin.”
+Pertanyaannya adalah:
+How do we continue getting the benefits of increasingly capable AI while making sure safety can keep up?
+
+Interaction — Think, Don't Guess
+Bentuk: Pilihan perspektif, bukan benar/salah.
+Menurutmu, ketika AI capability berkembang sangat cepat, apa pendekatan yang paling masuk akal?
+Slow development until safety catches up
+Continue development but strengthen safeguards
+Let innovation continue without additional restrictions
+Not enough information yet
+Tidak ada jawaban benar.
+Setelah memilih:
+Even AI researchers, companies, and governments disagree about this.
+The important skill is understanding the evidence, benefits, risks, and trade-offs behind the debate.
+
+Final Reflection — So, Is AI Good or Bad?
+Setelah melihat semuanya, mahasiswa dapat dengan mudah jatuh ke salah satu ekstrem:
+“AI luar biasa. AI akan menyelesaikan semuanya.”
+atau:
+“AI berbahaya. Kita seharusnya tidak menggunakannya.”
+Dua-duanya terlalu sederhana.
+Artificial Intelligence adalah teknologi dengan:
+capability,
+limitation,
+trade-offs,
+dan consequences.
+AI dapat digunakan untuk:
+help scientists discover.
+Tetapi juga:
+fabricate evidence.
+AI dapat:
+help doctors process medical information.
+Tetapi juga:
+confidently generate false information.
+AI dapat:
+create images.
+Tetapi juga:
+create harmful synthetic media.
+AI dapat:
+find cybersecurity vulnerabilities.
+Tetapi juga:
+potentially help exploit them.
+Maka:
+AI literacy is not about being pro-AI or anti-AI.
+AI literacy adalah kemampuan untuk memahami:
+What am I using?
+What can it actually do?
+What are its limitations?
+What information am I giving it?
+What should I verify?
+What should I not use it for?
+Who is responsible for the outcome?
+
+Key Takeaway Lesson 1
+AI is becoming increasingly powerful. But capability is not the same as reliability, safety, or responsibility.
+Dan satu hal lain yang harus diingat:
+Not every system that looks intelligent is actually Artificial Intelligence.
+Yang membawa kita ke pertanyaan berikutnya.
+
+Bridge to Lesson 2 — Is This AI?
+Sekarang berikan satu scenario terakhir.
+A Near Collision in the Sky
+Bayangkan dua pesawat sedang terbang.
+Tanpa disadari pilot, flight path keduanya mulai terlalu dekat.
+Pesawat mempunyai sistem bernama:
+TCAS — Traffic Alert and Collision Avoidance System
+Sistem ini dapat:
+Track nearby aircraft
+↓
+Detect a potential collision risk
+↓
+Alert the pilots
+↓
+dan jika diperlukan:
+Recommend an avoidance maneuver
+Misalnya:
+CLIMB
+sementara pesawat lainnya mendapat:
+DESCEND
+Jika kedua pesawat dilengkapi sistem yang kompatibel, advisories tersebut bahkan dapat dikoordinasikan sehingga keduanya tidak diarahkan ke arah yang sama.
+FAA menjelaskan TCAS II memang dirancang untuk memberikan Resolution Advisories berupa rekomendasi climb atau descend untuk menghindari conflicting traffic.
+Dan sistem ini bukan hanya teori.
+EUROCONTROL memperkirakan penggunaan ACAS/TCAS mengurangi risiko mid-air collision di Eropa sekitar lima kali lipat jika advisories direspons dengan benar.
+Bahkan ada contoh dari Indonesia.
+Pada 11 Mei 2018, sebuah Garuda Indonesia CRJ1000 yang berangkat dari Tambolaka dan Wings Air ATR72 yang sedang menuju Tambolaka kehilangan safe separation.
+Kedua pesawat menerima coordinated TCAS Resolution Advisories.
+Pilot mengikuti advisories tersebut dan conflict berhasil diselesaikan tanpa damage atau injury.
+
+Final Interaction — Is This AI?
+Bentuk: Yes / No.
+Tampilkan:
+Sistem dapat mendeteksi ancaman tabrakan.
+Sistem dapat menentukan tindakan yang diperlukan.
+Sistem dapat memberi instruksi kepada pilot.
+Sistem tersebut terbukti dapat membantu mencegah collision.
+Lalu pertanyaan:
+This is a great example of AI being used for safety. True or False?
+Pilihan
+True — This is AI.
+False — This is not necessarily AI.
+Jika mahasiswa memilih True:
+❌ Not quite.
+TCAS memang terlihat sangat “smart”.
+Tetapi TCAS merupakan automated collision-avoidance system, bukan contoh modern Artificial Intelligence seperti machine-learning system atau Generative AI.
+Sistem dapat mengambil keputusan secara otomatis berdasarkan logic dan sensor tanpa harus menggunakan AI.
+Jika memilih False:
+✅ Correct.
+A system can detect, calculate, decide, and react automatically without necessarily being AI.
+Kemudian tutup dengan:
+So if a system can make decisions automatically, what actually makes something “AI”?
+Next Lesson — What Actually Is AI?
+Pada lesson berikutnya kita akan membahas:
+Automation vs AI
+↓
+What is Machine Learning?
+↓
+Predictive / Discriminative AI
+↓
+Generative AI
+↓
+Multimodal AI
+↓
+AI Agents
+↓
+Physical AI & World Models
+Tujuannya bukan menghafal taxonomy.
+Tujuannya adalah menjawab satu pertanyaan sederhana:
+When people say “AI”, what are they actually talking about?
+

@@ -1,75 +1,108 @@
-import Link from "next/link";
 import Image from "next/image";
-import HomeProgress from "./home-progress";
-import HomeIcon from "./home-icon";
-import styles from "./home.module.css";
+import Link from "next/link";
+import NusaHeader from "./nusa-header";
+import styles from "./landing.module.css";
+
+const examples = [
+  ["Tugas kuliah", "Riset yang sumber dan klaimnya sudah kamu cek."],
+  ["Kegiatan kampus", "Alur kerja yang lebih rapi dan mudah dipakai tim."],
+  ["Ide produk", "Prototype yang bisa dicoba, dengan atau tanpa kode."],
+] as const;
 
 export const metadata = {
-  title: "NUSA Lab · Main. Belajar. Untuk Nanti.",
-  description: "Belajar AI lewat materi, misi, dan langkah kecil yang bermakna.",
+  title: "NUSA Lab · Belajar dan Berkarya dengan AI",
+  description: "Belajar memahami AI, memakainya dengan bijak, lalu membuat sesuatu yang berguna.",
 };
-
-const stages = [
-  { icon: "play", label: "1. Apa itu AI?" },
-  { icon: "document", label: "2. Cara kerja AI" },
-  { icon: "gear", label: "3. AI di kehidupan nyata" },
-  { icon: "flag", label: "4. Saatnya kamu mencoba" },
-] as const;
 
 export default function HomePage() {
   return (
-    <main className={styles.home}>
-      <section className={styles.hero}>
-        <header className={styles.header}>
-          <Link className={styles.brand} href="/" aria-label="NUSA Lab, beranda"><HomeIcon name="logo" />NUSA Lab<span className={styles.spark} aria-hidden="true" /></Link>
-          <nav className={styles.headerNav} aria-label="Navigasi utama"><a href="#learn">Learn</a><a href="#missions">Missions</a></nav>
-        </header>
+    <main className={styles.shell}>
+      <NusaHeader active="beranda" />
+
+      <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
-          <h1>Belajar sambil main, yuk!<span className={styles.rays} aria-hidden="true" /></h1>
-          <p>Pengetahuan baru. Tantangan seru. Langkah kecil untuk masa depan yang lebih besar.</p>
+          <h1 id="home-title">Paham AI. Pakai dengan bijak. Lalu bikin sesuatu.</h1>
+          <p>
+            NUSA Lab membantu mahasiswa belajar AI dari dasar sampai bisa
+            membuat karya yang berguna.
+          </p>
+          <Link className={styles.primaryAction} href="/learn">
+            Mulai belajar
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13M14 6l6 6-6 6" />
+            </svg>
+          </Link>
         </div>
-        <div className={styles.heroArtwork} aria-hidden="true">
-          <Image src="/home/reference-03/hero-student.png" alt="" fill preload sizes="(max-width: 900px) 130px, 260px" />
-          <p className={styles.stickyNote}>Main<br />hari ini,<br />lebih siap<br />untuk nanti.</p>
+
+        <figure className={styles.heroMedia}>
+          <Image
+            src="/course-visuals/students-laptop.webp"
+            alt="Pelajar berdiskusi sambil menggunakan laptop"
+            width={1280}
+            height={852}
+            priority
+            sizes="(max-width: 760px) 100vw, 55vw"
+          />
+          <figcaption>
+            <span>Belajar lewat contoh, latihan, dan proyek yang dekat dengan kehidupan kampus.</span>
+            <a href="https://commons.wikimedia.org/wiki/File:Students_using_a_computer_laptop.jpg" target="_blank" rel="noreferrer">Foto: Bright Kwame Ayisi · CC0</a>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section className={styles.impact} aria-labelledby="impact-title">
+        <div className={styles.impactIntro}>
+          <p>Dari masalah ke hasil</p>
+          <h2 id="impact-title">AI baru berguna kalau hasilnya bisa kamu pakai.</h2>
+          <span>
+            Mulai dari kebutuhan yang nyata, lalu pakai AI untuk membantu
+            berpikir, mencoba, dan memperbaiki hasilnya.
+          </span>
+        </div>
+
+        <div className={styles.exampleList}>
+          {examples.map(([context, result], index) => (
+            <article key={context}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{context}</p>
+              <h3>{result}</h3>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className={styles.learnSection} id="learn" aria-labelledby="learn-title">
-        <div className={styles.learnCopy}>
-          <p className={styles.sectionTag}>LEARN</p>
-          <h2 id="learn-title">AI Fundamentals</h2>
-          <p>Kenali AI dari dasar</p>
-          <Link className={styles.paperButton} href="/learn">Mulai belajar <HomeIcon name="arrow" /></Link>
+      <section className={styles.gameFeature} aria-labelledby="game-title">
+        <div className={styles.gamePreview} aria-hidden="true">
+          <span className={styles.previewLabel}>NUSA Lab · Game</span>
+          <div className={styles.previewPath}>
+            <i />
+            <i />
+            <i />
+          </div>
+          <div className={styles.previewSteps}>
+            <div><b>01</b><span>Baca buktinya</span></div>
+            <div><b>02</b><span>Uji alasannya</span></div>
+            <div><b>03</b><span>Ambil keputusan</span></div>
+          </div>
+          <p>Setiap kasus punya jalannya sendiri.</p>
         </div>
-        <div className={styles.learnBook}>
-          <Image src="/home/reference-03/learn-book.png" alt="" fill preload sizes="(max-width: 900px) 95vw, 45vw" />
-          <div className={styles.bookNotes}><span>Langkah kecil,<br />pemahaman besar.</span><span>Dari rasa ingin tahu<br />ke dampak nyata</span></div>
-          <ol className={styles.bookStages} aria-label="Perjalanan belajar AI">
-            {stages.map((stage, index) => <li key={stage.icon}><span className={index === 0 ? styles.activeStage : styles.stageIcon}><HomeIcon name={stage.icon} /></span><span>{stage.label}</span></li>)}
-          </ol>
+        <div className={styles.gameFeatureCopy}>
+          <p>Ruang latihan</p>
+          <h2 id="game-title">Pilih kasus yang ingin kamu hadapi.</h2>
+          <span>
+            Setiap game mengajak kamu membaca situasi, menimbang bukti, dan
+            memutuskan langkah yang paling masuk akal.
+          </span>
+          <Link className={styles.secondaryAction} href="/games">
+            Lihat semua game <span aria-hidden="true">→</span>
+          </Link>
         </div>
-        <div className={styles.reader} aria-hidden="true"><Image src="/home/reference-03/learn-reader.png" alt="" fill sizes="(max-width: 900px) 130px, 25vw" /></div>
       </section>
 
-      <section className={styles.missionsSection} id="missions" aria-labelledby="missions-title">
-        <div className={styles.missionsCopy}><h2 id="missions-title" className={styles.sectionTag}>Missions</h2><p>Mainkan cerita.<br />Pecahkan masalah.<br />Jadi bagian dari perubahan.</p><Link className={styles.paperButton} href="/games/sitasi-bermasalah">Mulai main <HomeIcon name="arrow" /></Link></div>
-        <Link className={styles.missionPreview} href="/games/sitasi-bermasalah">
-          <Image src="/home/reference-03/mission-campus.png" alt="Mahasiswa menuju kampus hijau untuk memulai misi" fill sizes="(max-width: 900px) 90vw, 52vw" />
-          <div className={styles.missionNote}><h3>Sitasi Bermasalah</h3><p>Sebuah tugas, banyak pertanyaan.<br />Bantu selesaikan dengan jujur!</p><HomeIcon name="arrow" /></div>
-        </Link>
-        <div className={styles.signpost} aria-hidden="true"><Image src="/home/reference-03/mission-signpost.png" alt="" fill sizes="180px" /><div><span>JELAJAH</span><span>PECAHKAN</span><span>BERDAMPAK</span></div></div>
-      </section>
-
-      <HomeProgress />
-
-      <section className={styles.toolsSection} aria-labelledby="tools-title">
-        <div className={styles.toolsTitle}><p className={styles.sectionTag}>Tools</p><h2 id="tools-title"><HomeIcon name="flask" />Prompt Lab</h2></div>
-        <p className={styles.toolsCopy}>Bereksperimen dengan ide.<br />Dari pertanyaan sederhana, ke kemungkinan besar.</p>
-        <span className={styles.comingSoon}><HomeIcon name="soon" />Segera hadir</span>
-        <span className={styles.flyingPaper} aria-hidden="true" />
-        <div className={styles.robot} aria-hidden="true"><Image src="/home/reference-03/prompt-robot.png" alt="" fill sizes="120px" /></div>
-        <p className={styles.toolNote}>Ide bagus<br />perlu ruang<br />untuk tumbuh.</p>
-      </section>
+      <footer className={styles.siteFooter}>
+        <span><strong>NUSA</strong> Lab</span>
+        <span>Literasi AI untuk mahasiswa Indonesia.</span>
+      </footer>
     </main>
   );
 }

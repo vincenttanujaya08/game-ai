@@ -19,7 +19,6 @@ export function reduceSession(
     next.contextDocumentIds = add(next.contextDocumentIds, p.documentId);
     next.aiResponseReady = false;
     next.evidenceLinks = [];
-    next.claimStates = {};
     next.diffDecision = null;
   }
   if (event.type === "context_item_removed") {
@@ -28,7 +27,6 @@ export function reduceSession(
     );
     next.aiResponseReady = false;
     next.evidenceLinks = [];
-    next.claimStates = {};
     next.diffDecision = null;
   }
   if (event.type === "context_item_blocked") {
