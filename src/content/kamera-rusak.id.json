@@ -8,8 +8,30 @@
   },
   "pembuka": {
     "judul": "Kamera yang Rusak.",
-    "isi": "Kemarin malam, setelah Festival Seni selesai dan penonton mulai meninggalkan tempat acara, panitia membereskan perlengkapan yang digunakan. Sebagian dibawa vendor, sementara sisanya dikembalikan ke ruang multimedia. Kamera-kamera yang dipakai untuk siaran langsung dan dokumentasi juga termasuk di antaranya.\n\nPagi ini, seorang panitia menemukan kamera dengan lensa retak di dalam peti peralatan abu-abu. Tidak ada catatan kapan kamera dimasukkan ke sana atau kapan kerusakannya terjadi.\n\nTugasmu bukan mencari siapa yang harus disalahkan. Susun kembali kronologinya: di mana kamera berada setelah terakhir dipakai, bagaimana kamera masuk ke dalam peti, apakah lensanya sudah rusak sebelum itu, dan apa yang benar-benar bisa disimpulkan dari bukti yang ada.",
-    "catatanAi": "Setiap selesai wawancara, sistem merangkum keterangan dan alibi yang sudah kamu dengar menjadi teori sementara. AI memilih dugaan yang paling masuk akal dari konteks yang tersedia, meski buktinya belum lengkap. Kamu punya waktu 10 menit untuk menyusun kronologi.\n\nKamu tidak harus mewawancarai semua orang atau memakai seluruh jatah pertanyaan lanjutan. Pilih jalur penyelidikanmu; untuk mengakhiri lebih awal, kamu perlu mewawancarai setidaknya lima orang. Kamu bisa bertanya lebih lanjut kepada maksimal tiga orang, satu kali per orang. Pilihanmu menentukan informasi yang diterima AI, jadi ringkasan akhirnya bisa berbeda. Buka tab Keterangan asli untuk membaca kembali hasil wawancara.",
+    "latarBelakang": [
+      {
+        "waktu": "Kemarin malam",
+        "isi": "Setelah Festival Seni selesai dan penonton mulai meninggalkan lokasi, panitia membereskan perlengkapan. Sebagian dibawa vendor; sisanya dikembalikan ke ruang multimedia. Kamera untuk siaran langsung dan dokumentasi termasuk di antaranya."
+      },
+      {
+        "waktu": "Pagi ini",
+        "isi": "Seorang panitia menemukan kamera berlensa retak di dalam peti peralatan abu-abu. Tidak ada catatan kapan kamera masuk ke peti atau kapan lensanya rusak."
+      }
+    ],
+    "tujuan": "Lacak perjalanan kamera dari terakhir dipakai hingga ditemukan di peti. Susun urutannya berdasarkan bukti, bukan untuk mencari siapa yang salah.",
+    "pertanyaanKunci": [
+      "Di mana kamera berada setelah terakhir dipakai?",
+      "Bagaimana kamera masuk ke dalam peti abu-abu?",
+      "Apakah lensanya sudah retak sebelum masuk peti?",
+      "Apa yang bisa dan belum bisa dipastikan dari bukti?"
+    ],
+    "catatanAi": "Setiap wawancara, AI merangkum keterangan dan alibi menjadi teori sementara. AI memilih dugaan paling masuk akal dari informasi yang tersedia, meski buktinya belum lengkap. Teorinya bisa berubah saat ada keterangan baru.",
+    "aturan": [
+      "Waktu penyelidikan: 10 menit.",
+      "Untuk selesai lebih awal, wawancarai minimal lima orang. Tidak perlu mewawancarai semua orang.",
+      "Pertanyaan lanjutan: maksimal tiga orang, satu kali per orang. Tidak harus digunakan.",
+      "Pilihan wawancara menentukan informasi untuk AI, jadi rangkuman akhir bisa berbeda. Buka tab Keterangan asli untuk membaca ulang wawancara."
+    ],
     "aksi": "Mulai menyelidiki"
   },
   "fase": [

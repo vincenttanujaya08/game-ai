@@ -8,7 +8,7 @@ import styles from "./game.module.css";
 
 type Person = { id: string; nama: string; peran: string; ringkas: string; buka: string[]; mengapa: string; awal: string; tanya: string; lanjut: string };
 type Evidence = { id: string; bukaSetelah: string; judul: string; isi: string };
-type Scenario = { meta: { judul: string; versi: string; durasiDetik: number; batasWawancaraAkhir: number; jatahDalami: number }; pembuka: { judul: string; isi: string; catatanAi: string; aksi: string }; fase: { judul: string; ids: string[] }[]; tokoh: Person[]; bukti: Evidence[]; linimasa: string };
+type Scenario = { meta: { judul: string; versi: string; durasiDetik: number; batasWawancaraAkhir: number; jatahDalami: number }; pembuka: { judul: string; latarBelakang: { waktu: string; isi: string }[]; tujuan: string; pertanyaanKunci: string[]; catatanAi: string; aturan: string[]; aksi: string }; fase: { judul: string; ids: string[] }[]; tokoh: Person[]; bukti: Evidence[]; linimasa: string };
 type Stage = "mulai" | "selidik" | "akhir" | "hasil";
 type Tab = "teori" | "sumber" | "riwayat";
 
@@ -158,7 +158,48 @@ export default function BrokenCameraGame() {
 }
 
 function GameNavigation() { return <header className={styles.gameNavigation}><Link href="/" className={styles.gameBrand} aria-label="NUSA Lab, beranda"><strong>NUSA</strong> Lab</Link><Link href="/games" className={styles.back}><span aria-hidden="true">←</span> Kembali ke daftar permainan</Link></header>; }
-function Start({ onStart }: { onStart: () => void }) { return <main className={styles.start}><GameNavigation /><section><p className={styles.kicker}>KASUS 02 · REKONSTRUKSI KRONOLOGI</p><h1>{scenario.pembuka.judul}</h1><TextBlock text={scenario.pembuka.isi} /><aside><h2>Catatan AI</h2><p>{scenario.pembuka.catatanAi}</p></aside><p className={styles.kicker}>Susun kembali urutan kejadian dengan memeriksa keterangan dan bukti.</p><button onClick={onStart}>{scenario.pembuka.aksi}</button></section></main>; }
+function Start({ onStart }: { onStart: () => void }) {
+  const { pembuka } = scenario;
+  return <main className={styles.start}>
+    <GameNavigation />
+    <section>
+      <p className={styles.kicker}>KASUS 02 · REKONSTRUKSI KRONOLOGI</p>
+      <h1>{pembuka.judul}</h1>
+
+      <article className={styles.startStory}>
+        <h2>Latar belakang</h2>
+        {pembuka.latarBelakang.map((moment) => <div className={styles.startStoryBeat} key={moment.waktu}><span>{moment.waktu}</span><p>{moment.isi}</p></div>)}
+      </article>
+
+      <article className={styles.startMission}>
+        <div>
+          <p className={styles.kicker}>TUJUAN PENYELIDIKAN</p>
+          <p className={styles.startObjective}>{pembuka.tujuan}</p>
+        </div>
+        <div className={styles.startQuestions}>
+          <h2>Pertanyaan yang perlu dijawab</h2>
+          <ol>{pembuka.pertanyaanKunci.map((question) => <li key={question}>{question}</li>)}</ol>
+        </div>
+      </article>
+
+      <aside className={styles.startGuide}>
+        <div>
+          <h2>Catatan AI</h2>
+          <p>{pembuka.catatanAi}</p>
+        </div>
+        <div>
+          <h2>Aturan penyelidikan</h2>
+          <ul>{pembuka.aturan.map((rule) => <li key={rule}>{rule}</li>)}</ul>
+        </div>
+      </aside>
+
+      <div className={styles.startAction}>
+        <p>Periksa keterangan dan bukti. Bedakan hal yang benar-benar diketahui dari dugaan.</p>
+        <button onClick={onStart}>{pembuka.aksi}</button>
+      </div>
+    </section>
+  </main>;
+}
 function TextBlock({ text }: { text: string }) { return <>{text.split("\n\n").map((paragraph, index) => <p key={index}>{paragraph}</p>)}</>; }
 
 function makeSynthesis(interviewed: string[], followedUp: string[], ranking: ReturnType<typeof rankCandidates>) {

@@ -24,7 +24,7 @@ export default function NusaHeader({ active }: NusaHeaderProps) {
         </Link>
       </nav>
 
-      <span className={styles.headerNote}>Literasi AI untuk mahasiswa</span>
+      <span className={styles.headerNote}>Literasi AI untuk generasi muda</span>
     </header>
   );
 }

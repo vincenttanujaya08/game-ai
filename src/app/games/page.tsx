@@ -64,7 +64,7 @@ export default function GamesPage() {
 
       <footer className={styles.siteFooter}>
         <span><strong>NUSA</strong> Lab</span>
-        <span>Literasi AI untuk mahasiswa Indonesia.</span>
+        <span>Literasi AI untuk generasi muda Indonesia.</span>
       </footer>
     </main>
   );

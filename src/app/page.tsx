@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import NusaHeader from "./nusa-header";
 import styles from "./landing.module.css";
@@ -21,33 +20,31 @@ export default function HomePage() {
 
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
+          <p className={styles.heroEyebrow}>PAHAMI · GUNAKAN · CIPTAKAN</p>
           <h1 id="home-title">Paham AI. Pakai dengan bijak. Lalu bikin sesuatu.</h1>
           <p>
-            NUSA Lab membantu mahasiswa belajar AI dari dasar sampai bisa
-            membuat karya yang berguna.
+            Ruang belajar AI untuk generasi muda Indonesia. Mulai dari memahami
+            dasarnya, bekerja bersama AI, hingga membangun karya sendiri.
           </p>
-          <Link className={styles.primaryAction} href="/learn">
-            Mulai belajar
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h13M14 6l6 6-6 6" />
-            </svg>
-          </Link>
+          <div className={styles.heroActions}>
+            <Link className={styles.primaryAction} href="/learn">
+              Mulai belajar
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h13M14 6l6 6-6 6" />
+              </svg>
+            </Link>
+            <Link className={styles.secondaryAction} href="/games">Coba game <span aria-hidden="true">→</span></Link>
+          </div>
         </div>
 
-        <figure className={styles.heroMedia}>
-          <Image
-            src="/course-visuals/students-laptop.webp"
-            alt="Pelajar berdiskusi sambil menggunakan laptop"
-            width={1280}
-            height={852}
-            priority
-            sizes="(max-width: 760px) 100vw, 55vw"
-          />
-          <figcaption>
-            <span>Belajar lewat contoh, latihan, dan proyek yang dekat dengan kehidupan kampus.</span>
-            <a href="https://commons.wikimedia.org/wiki/File:Students_using_a_computer_laptop.jpg" target="_blank" rel="noreferrer">Foto: Bright Kwame Ayisi · CC0</a>
-          </figcaption>
-        </figure>
+        <div className={styles.heroJourney} aria-label="Alur belajar di NUSA Lab">
+          <p>Jalur belajar</p>
+          <ol>
+            <li><span>01</span><div><strong>AI Fundamentals</strong><small>Pahami cara kerja dan batas AI.</small></div></li>
+            <li><span>02</span><div><strong>Working with Generative AI</strong><small>Beri arahan, lalu periksa hasilnya.</small></div></li>
+            <li><span>03</span><div><strong>Vibe Coding</strong><small>Ubah ide menjadi software.</small></div></li>
+          </ol>
+        </div>
       </section>
 
       <section className={styles.impact} aria-labelledby="impact-title">
@@ -101,7 +98,7 @@ export default function HomePage() {
 
       <footer className={styles.siteFooter}>
         <span><strong>NUSA</strong> Lab</span>
-        <span>Literasi AI untuk mahasiswa Indonesia.</span>
+        <span>Literasi AI untuk generasi muda Indonesia.</span>
       </footer>
     </main>
   );
