@@ -1,6 +1,8 @@
+@keyframes readerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 .page {
-  --paper: #fff; --ink: #102b43; --muted: #536b7c; --line: #d7e1e3;
-  --teal: #087b78; --teal-dark: #075c5a; --teal-soft: #e6f2f0; --coral: #b84a40;
   min-height: 100dvh; background: var(--paper); color: var(--ink);
   font-family: var(--font-nusa), "Aptos", "Segoe UI", sans-serif;
 }
@@ -102,6 +104,13 @@
 .bridge > span { color: var(--teal); font-size: .67rem; font-weight: 800; letter-spacing: .11em; }
 .bridge p { max-width: 680px; margin: 10px 0 12px; color: var(--ink); font-size: .94rem; line-height: 1.55; }
 .bridge strong { color: var(--teal-dark); font-size: .82rem; }
+/* Latihan singkat: jawaban di balik disclosure supaya pembaca menebak dulu. */
+.reveal { margin: 30px 0; border: 1px solid #bbd6d2; background: #fff; }
+.reveal summary { padding: 15px 20px; color: var(--teal-dark); cursor: pointer; font-size: .84rem; font-weight: 800; letter-spacing: .01em; }
+.reveal summary:hover { background: #f0f8f7; }
+.reveal[open] summary { border-bottom: 1px solid var(--line); }
+.reveal > div { padding: 4px 20px 18px; animation: readerFadeIn var(--nusa-reveal) var(--nusa-ease); }
+.reveal p { margin: 13px 0 0; color: var(--ink); font-size: .92rem; line-height: 1.7; }
 .reflection { margin: 34px 0; padding: 17px 20px; border-left: 3px solid var(--teal); background: #f0f8f7; }
 .reflection summary { color: var(--teal-dark); cursor: pointer; font-size: .9rem; font-weight: 800; line-height: 1.5; }
 .reflection p { margin: 13px 0 0; color: var(--ink); font-size: .9rem; line-height: 1.65; }
@@ -117,12 +126,50 @@
 .choices button { width: 100%; padding: 13px 16px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; font-size: .87rem; line-height: 1.45; text-align: left; }
 .choices button:hover, .choices button[aria-pressed="true"] { border-color: var(--teal); background: #f0f8f7; }
 .feedback { margin: 16px 0 0; color: var(--teal-dark); font-size: .87rem; font-weight: 700; line-height: 1.55; }
+/* Kuis yang dinilai: benar, salah, dan jalan keluar sesudah dua kali salah. */
+.choices button { display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: border-color var(--nusa-reveal) var(--nusa-ease), background-color var(--nusa-reveal) var(--nusa-ease); }
+.choices button > i { flex: none; font-style: normal; font-size: 1rem; line-height: 1; }
+.choices button[data-state="correct"] { border-color: var(--teal); border-left: 3px solid var(--teal); background: #eaf6f4; font-weight: 750; }
+.choices button[data-state="correct"] > i { color: var(--teal-dark); }
+.choices button[data-state="wrong"] { border-color: var(--coral); border-left: 3px solid var(--coral); background: #fdf3f2; color: var(--muted); }
+.choices button[data-state="wrong"] > i { color: var(--coral); }
+.choices button:disabled { cursor: default; }
+.choices button:disabled:not([data-state]) { opacity: .55; }
+.feedback:empty { display: none; }
+.feedback[data-state] { animation: readerFadeIn var(--nusa-reveal) var(--nusa-ease); }
+.feedback[data-state="wrong"] { color: var(--coral); }
+.checkEscape { margin: 18px 0 0; padding: 0; border: 0; border-bottom: 2px solid var(--teal); background: transparent; color: var(--teal-dark); cursor: pointer; font-size: .82rem; font-weight: 750; min-height: 0; }
+.checkEscape:hover { background: transparent; color: var(--ink); }
 .actions { display: flex; margin-top: 56px; padding-top: 20px; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
 .actions button { min-height: 44px; padding: 10px 17px; border: 1px solid var(--teal); background: var(--teal); color: white; cursor: pointer; font-size: .85rem; font-weight: 750; }
 .actions button:first-child { border: 0; background: transparent; color: var(--muted); }
+/* Alasan tombol lanjut terkunci, plus jalan keluarnya sesudah benar-benar dicoba. */
+.gateHint { display: flex; flex: 1; margin: 0; align-items: baseline; justify-content: flex-end; gap: 14px; color: var(--coral); font-size: .82rem; font-weight: 700; text-align: right; }
+.gateHint button { min-height: 0; padding: 0; border: 0; border-bottom: 2px solid var(--muted); background: transparent; color: var(--muted); cursor: pointer; font-size: .8rem; font-weight: 700; }
+.gateHint button:hover { background: transparent; color: var(--ink); }
+@media (max-width: 560px) { .gateHint { flex-basis: 100%; order: 3; justify-content: flex-start; text-align: left; } }
 .actions button:disabled { cursor: not-allowed; opacity: .42; }
 .actions button:not(:disabled):hover { background: var(--teal-dark); }
 .actions button:first-child:not(:disabled):hover { background: var(--teal-soft); }
+/* Diagram konsep: digambar penuh di dalam panel, tanpa kotak ganda. */
+.diagramVisual { margin: 20px 0 4px; }
+/* Penguasaan: kecil, monokrom, tanpa lencana. */
+.practiceCount { color: var(--muted); font-size: .65rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.rail button span small { display: block; margin-top: 3px; color: var(--muted); font-size: .66rem; font-weight: 700; letter-spacing: .05em; }
+.rail button i[data-mastery="sebagian"] { border-color: var(--teal); box-shadow: inset 0 -3px 0 var(--teal); }
+.rail button i[data-mastery="selesai"] { border-color: var(--teal); background: var(--teal); color: #fff; }
+/* Catatan keputusan: keputusan dan alasannya, bukan skor besar. */
+.journal { margin: 8px 0 38px; padding: 26px 0 0; border-top: 1px solid var(--line); }
+.journalLead { margin: 10px 0 24px; color: var(--ink); font-size: 1.02rem; font-weight: 650; line-height: 1.6; }
+.journal ol { display: grid; margin: 0; padding: 0; gap: 14px; list-style: none; }
+.journal li { padding: 16px 18px; border-left: 3px solid var(--line); background: #fafcfc; }
+.journal li[data-state="solved"] { border-left-color: var(--teal); background: #f4faf9; }
+.journal li strong { display: block; color: var(--ink); font-size: .95rem; font-weight: 700; line-height: 1.5; }
+.journal li em { display: block; margin: 6px 0 0; color: var(--teal-dark); font-size: .7rem; font-style: normal; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.journal li[data-state="open"] em { color: var(--coral); }
+.journal li p { margin: 10px 0 0; color: var(--muted); font-size: .87rem; line-height: 1.65; }
+.journal li button { margin: 12px 0 0; min-height: 0; padding: 0; border: 0; border-bottom: 2px solid var(--teal); background: transparent; color: var(--teal-dark); cursor: pointer; font-size: .78rem; font-weight: 750; }
+.journal li button:hover { background: transparent; color: var(--ink); }
 .finish { max-width: 750px; min-height: 60vh; padding: 90px 0 120px; }
 .finish h1 { margin: 20px 0; font-size: clamp(3rem, 6vw, 5.5rem); line-height: .98; letter-spacing: -.07em; }
 .finish p { max-width: 650px; margin: 0 0 30px; color: var(--muted); font-size: 1rem; line-height: 1.7; }

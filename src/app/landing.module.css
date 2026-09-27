@@ -1,13 +1,4 @@
 .shell {
-  --paper: #fff;
-  --surface: #fff;
-  --ink: #102b43;
-  --muted: #536b7c;
-  --line: #d7e1e3;
-  --teal: #087b78;
-  --teal-dark: #075c5a;
-  --teal-soft: #e6f2f0;
-  --coral: #b84a40;
   min-height: 100dvh;
   overflow-x: hidden;
   background: var(--paper);

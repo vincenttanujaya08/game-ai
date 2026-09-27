@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function GamesPage() {
   return (
-    <main className={styles.shell}>
+    <main className={styles.shell} data-nusa-theme="light">
       <NusaHeader active="game" />
 
       <section className={styles.gamesIntro} aria-labelledby="games-title">
@@ -52,7 +52,7 @@ export default function GamesPage() {
               kuat bukti yang mendukung rangkuman AI.
             </span>
             <dl>
-              <div><dt>Waktu</dt><dd>10 menit</dd></div>
+              <div><dt>Waktu</dt><dd>10-15 menit</dd></div>
               <div><dt>Fokus</dt><dd>Jejak bukti &amp; kesimpulan AI</dd></div>
             </dl>
             <Link href="/games/kamera-rusak">

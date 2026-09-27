@@ -2,9 +2,10 @@
   "meta": {
     "judul": "Kamera yang Rusak",
     "versi": "Kasus 02 · Rekonstruksi Kronologi",
-    "durasiDetik": 600,
-    "batasWawancaraAkhir": 5,
-    "jatahDalami": 3
+    "anggaranDetik": 720,
+    "biayaWawancaraDetik": 60,
+    "biayaDalamiDetik": 120,
+    "batasWawancaraAkhir": 5
   },
   "pembuka": {
     "judul": "Kamera yang Rusak.",
@@ -27,10 +28,12 @@
     ],
     "catatanAi": "Setiap wawancara, AI merangkum keterangan dan alibi menjadi teori sementara. AI memilih dugaan paling masuk akal dari informasi yang tersedia, meski buktinya belum lengkap. Teorinya bisa berubah saat ada keterangan baru.",
     "aturan": [
-      "Waktu penyelidikan: 10 menit.",
-      "Untuk selesai lebih awal, wawancarai minimal lima orang. Tidak perlu mewawancarai semua orang.",
-      "Pertanyaan lanjutan: maksimal tiga orang, satu kali per orang. Tidak harus digunakan.",
-      "Pilihan wawancara menentukan informasi untuk AI, jadi rangkuman akhir bisa berbeda. Buka tab Keterangan asli untuk membaca ulang wawancara."
+      "Jatah waktu kasus: 12 menit. Waktu hanya berkurang saat kamu mengambil tindakan, bukan saat kamu membaca.",
+      "Satu wawancara memakai 1 menit. Satu pertanyaan lanjutan memakai 2 menit, jadi harganya sama dengan dua wawancara.",
+      "Pertanyaan lanjutan bisa dipakai ke siapa saja yang sudah kamu wawancarai, satu kali per orang. Jumlahnya dibatasi jatah waktu, bukan kuota terpisah.",
+      "Untuk mengakhiri lebih awal, wawancarai minimal lima orang. Tidak perlu mewawancarai semua orang.",
+      "Kamu tidak akan kehabisan jatah sebelum bisa mengakhiri penyelidikan. Yang harus kamu pilih adalah luas atau dalam.",
+      "Pilihan wawancara menentukan informasi yang masuk ke AI, jadi rangkuman akhirnya bisa berbeda."
     ],
     "aksi": "Mulai menyelidiki"
   },
@@ -72,7 +75,14 @@
       "mengapa": "Lembar pengembalian menjadikan Arya titik awal yang masuk akal untuk diwawancarai. Kita belum tahu siapa yang menyebabkan kerusakan. Kita perlu memahami apa yang terjadi pada kamera sebelum dan sesudah Arya menandatangani lembar pengembalian.",
       "awal": "Aku selesai bertugas untuk dokumentasi sekitar pukul 17.45. Tiga menit kemudian, sekitar pukul 17.48, aku menandatangani lembar pengembalian karena kupikir urusanku dengan kamera sudah selesai. Tugasku juga sudah berakhir.\n\nSetelah itu, aku membantu tim perlengkapan menggulung kabel di dekat panggung. Seingatku, tidak ada masalah besar saat kamera masih kupegang.",
       "tanya": "Sebelum menandatangani lembar pengembalian, apa ada benturan atau kejadian saat kamera masih kamu pegang?",
-      "lanjut": "Talinya sempat tersangkut saat aku turun dari panggung. Kamera jadi mengayun dan menyenggol pegangan tangga.\n\nAku sempat mengeceknya sekilas dan kelihatannya normal. Tidak ada bunyi pecah, jadi aku lanjut bertugas. Setelah itu, kamera kutaruh di meja dokumentasi."
+      "lanjut": "Talinya sempat tersangkut saat aku turun dari panggung. Kamera jadi mengayun dan menyenggol pegangan tangga.\n\nAku sempat mengeceknya sekilas dan kelihatannya normal. Tidak ada bunyi pecah, jadi aku lanjut bertugas. Setelah itu, kamera kutaruh di meja dokumentasi.",
+      "jalur": "Arya",
+      "celah": false,
+      "bobot": {
+        "awal": 4,
+        "lanjut": 16
+      },
+      "sintesis": "Catatan pengembalian pukul 17.48 menunjukkan Arya masih menggunakan kamera menjelang waktu itu, tetapi catatan tersebut tidak memastikan di mana kamera disimpan."
     },
     {
       "id": "Kevin",
@@ -85,7 +95,14 @@
       "mengapa": "Kevin berada dekat tangga panggung saat Arya masih membawa kamera. Keterangannya bisa membantu memastikan apakah ada kejadian sebelum kamera diletakkan di meja dokumentasi.",
       "awal": "Aku lihat Arya turun dari panggung agak buru-buru sambil membawa kamera. Terdengar bunyi kecil seperti benda keras menyenggol besi.\n\nAku tidak terlalu memperhatikan kameranya. Awalnya kupikir gesper tali atau pegangan tangga yang tersenggol.",
       "tanya": "Kamu benar-benar melihat kamera menyenggol pegangan tangga?",
-      "lanjut": "Iya. Setelah kuingat lagi, bagian depan kamera memang mengayun ke pegangan tangga. Kameranya tidak jatuh, tapi benturannya cukup jelas sampai terdengar bunyi.\n\nArya sempat berhenti sebentar untuk mengecek kamera sebelum lanjut berjalan. Dari tempatku, aku tidak bisa melihat kondisi lensanya."
+      "lanjut": "Iya. Setelah kuingat lagi, bagian depan kamera memang mengayun ke pegangan tangga. Kameranya tidak jatuh, tapi benturannya cukup jelas sampai terdengar bunyi.\n\nArya sempat berhenti sebentar untuk mengecek kamera sebelum lanjut berjalan. Dari tempatku, aku tidak bisa melihat kondisi lensanya.",
+      "jalur": "Arya",
+      "celah": true,
+      "bobot": {
+        "awal": 10,
+        "lanjut": 22
+      },
+      "sintesis": "Keterangan Kevin menambahkan kemungkinan benturan sebelum kamera dikembalikan, sehingga Arya tetap ada dalam daftar dugaan."
     },
     {
       "id": "Bella",
@@ -98,7 +115,14 @@
       "mengapa": "Bella berada di dekat meja dokumentasi dan memegang kamera beberapa menit setelah Arya. Keterangannya membantu membedakan apa yang terjadi pada tas kamera dan pada kamera itu sendiri.",
       "awal": "Kemarin aku mengambil tas kamera karena baterai dan pengisi dayanya perlu dibawa ke tempat pengisian. Kameranya tidak kumasukkan ke dalam tas.\n\nTali tas tertindih barang di meja, jadi aku berhenti sebentar untuk menggeser barang-barang itu sebelum pergi.",
       "tanya": "Saat menarik tali tas yang tertindih barang, apa kamu menyentuh atau memindahkan kamera?",
-      "lanjut": "Iya. Kamera menutupi sebagian tali, jadi kuangkat sedikit supaya talinya bisa kutarik.\n\nWaktu kutaruh kembali, sisi kamera sempat menyentuh tepi meja. Benturannya tidak terlalu keras dan aku tidak melihat ada kerusakan."
+      "lanjut": "Iya. Kamera menutupi sebagian tali, jadi kuangkat sedikit supaya talinya bisa kutarik.\n\nWaktu kutaruh kembali, sisi kamera sempat menyentuh tepi meja. Benturannya tidak terlalu keras dan aku tidak melihat ada kerusakan.",
+      "jalur": "Bella",
+      "celah": true,
+      "bobot": {
+        "awal": 6,
+        "lanjut": 16
+      },
+      "sintesis": "Bella tidak membawa kamera di dalam tas, tetapi ia sempat memegang kamera saat melepaskan tali tas."
     },
     {
       "id": "Fajar",
@@ -111,7 +135,14 @@
       "mengapa": "Fajar melihat Bella mengambil tas kamera. Keterangannya bisa menjelaskan apakah Bella hanya mengurus tas atau juga sempat menyentuh kamera.",
       "awal": "Aku lewat saat Bella sedang menarik tali tas kamera dari meja. Beberapa barang di meja ikut bergeser.\n\nTerdengar bunyi kecil, tapi dari tempatku aku tidak tahu benda apa yang membentur meja.",
       "tanya": "Kamu sempat melihat apakah kamera menyentuh meja?",
-      "lanjut": "Saat aku menoleh lagi, Bella memegang kamera dengan satu tangan dan tas kamera dengan tangan yang lain. Sepertinya kamera baru saja menyentuh tepi meja.\n\nAku tidak tahu apakah benturannya cukup keras untuk merusak lensa, tapi kamera memang menyentuh tepi meja."
+      "lanjut": "Saat aku menoleh lagi, Bella memegang kamera dengan satu tangan dan tas kamera dengan tangan yang lain. Sepertinya kamera baru saja menyentuh tepi meja.\n\nAku tidak tahu apakah benturannya cukup keras untuk merusak lensa, tapi kamera memang menyentuh tepi meja.",
+      "jalur": "Bella",
+      "celah": false,
+      "bobot": {
+        "awal": 10,
+        "lanjut": 22
+      },
+      "sintesis": "Keterangan Fajar menambahkan kemungkinan kamera menyentuh tepi meja saat Bella berada di sana."
     },
     {
       "id": "Siska",
@@ -125,7 +156,21 @@
       "mengapa": "Foto Siska memberi penanda waktu yang lebih pasti. Foto itu membantu memeriksa klaim tentang posisi kamera di meja dokumentasi.",
       "awal": "Aku memotret suasana beres-beres untuk diunggah ke fitur Cerita. Salah satu fotonya bertanda waktu 17.56 dan meja dokumentasi terlihat di latar.\n\nKamera masih ada di meja. Bella sudah berjalan agak jauh sambil membawa tas kamera.",
       "tanya": "Dari foto pukul 17.56, apa kondisi lensa kamera bisa terlihat?",
-      "lanjut": "Tidak. Posisi kamera terlihat cukup jelas, tapi ukurannya terlalu kecil dan sudut fotonya tidak pas untuk melihat apakah lensanya retak.\n\nFoto itu membuktikan lokasi kamera, bukan kondisinya."
+      "lanjut": "Tidak. Posisi kamera terlihat cukup jelas, tapi ukurannya terlalu kecil dan sudut fotonya tidak pas untuk melihat apakah lensanya retak.\n\nFoto itu membuktikan lokasi kamera, bukan kondisinya.",
+      "jalur": null,
+      "celah": true,
+      "bobot": {
+        "awal": 0,
+        "lanjut": 0,
+        "bagi": {
+          "ke": [
+            "Arya",
+            "Bella"
+          ],
+          "nilai": 3
+        }
+      },
+      "sintesis": "Foto pukul 17.56 memastikan kamera berada di meja dokumentasi dan terpisah dari tas Bella. Namun, foto itu tidak menunjukkan apakah lensa sudah retak."
     },
     {
       "id": "Dimas",
@@ -138,7 +183,14 @@
       "mengapa": "Setelah foto pukul 17.56, meja perlu dikosongkan. Dimas bertugas membereskannya. Keterangannya bisa menjelaskan bagaimana kamera masuk ke peti abu-abu.",
       "awal": "Aku membereskan meja dokumentasi sekitar pukul enam kurang sedikit. Masih ada banyak barang kecil berserakan, seperti adaptor, kabel, penjepit, dan perlengkapan berwarna hitam.\n\nBarang yang terlihat seperti perlengkapan kukumpulkan ke peti abu-abu di sebelah meja supaya area cepat kosong.",
       "tanya": "Kamu memasukkan barang satu-satu atau sekaligus? Apa ada barang yang terbentur saat dimasukkan ke peti?",
-      "lanjut": "Aku mengambil beberapa barang sekaligus lalu memasukkannya ke peti tanpa mengecek satu-satu. Terdengar bunyi barang saling berbenturan di dalam.\n\nKalau kamera ada di tumpukan itu, kemungkinan besar kamera ikut masuk. Aku baru terpikir begitu setelah kamera ditemukan keesokan harinya."
+      "lanjut": "Aku mengambil beberapa barang sekaligus lalu memasukkannya ke peti tanpa mengecek satu-satu. Terdengar bunyi barang saling berbenturan di dalam.\n\nKalau kamera ada di tumpukan itu, kemungkinan besar kamera ikut masuk. Aku baru terpikir begitu setelah kamera ditemukan keesokan harinya.",
+      "jalur": "Dimas",
+      "celah": false,
+      "bobot": {
+        "awal": 14,
+        "lanjut": 20
+      },
+      "sintesis": "Keterangan Dimas memberi petunjuk kuat tentang bagaimana kamera berpindah dari meja ke peti."
     },
     {
       "id": "Rafi",
@@ -152,7 +204,14 @@
       "mengapa": "Rafi kembali saat kegiatan beres-beres hampir selesai. Ia bisa menghubungkan kamera yang terlihat di meja pukul 17.56 dengan peti yang sudah tertutup beberapa menit kemudian.",
       "awal": "Aku kembali ke meja sekitar pukul 18.06 untuk mencari spidol. Mejanya hampir kosong. Peti abu-abu di sebelahnya sudah tertutup.\n\nSebelumnya, aku melihat Dimas memindahkan setumpuk barang dari meja ke arah peti.",
       "tanya": "Kamu melihat kamera di antara barang-barang yang dibawa Dimas?",
-      "lanjut": "Aku melihat benda hitam yang bentuknya mirip badan kamera di bawah kabel, tapi hanya beberapa detik.\n\nSaat tumpukan itu dimasukkan ke peti, terdengar bunyi cukup keras. Aku tidak melihat kondisi benda hitam itu setelah masuk."
+      "lanjut": "Aku melihat benda hitam yang bentuknya mirip badan kamera di bawah kabel, tapi hanya beberapa detik.\n\nSaat tumpukan itu dimasukkan ke peti, terdengar bunyi cukup keras. Aku tidak melihat kondisi benda hitam itu setelah masuk.",
+      "jalur": "Dimas",
+      "celah": false,
+      "bobot": {
+        "awal": 10,
+        "lanjut": 18
+      },
+      "sintesis": "Rafi mempersempit waktu perpindahan dan menghubungkan tumpukan barang Dimas dengan peti yang sudah tertutup."
     },
     {
       "id": "Chris",
@@ -165,7 +224,14 @@
       "mengapa": "Setelah peti ditutup, Chris membawanya ke ruang multimedia. Keterangannya penting karena benturan selama perjalanan bisa memengaruhi isi peti.",
       "awal": "Sekitar pukul 18.10, aku diminta membawa peti abu-abu yang sudah tertutup ke ruang multimedia. Aku tidak tahu isi lengkapnya.\n\nAku mengangkatnya dengan kedua tangan dan lewat pintu samping karena jalur utama masih ramai.",
       "tanya": "Apa ada benturan saat kamu membawa peti?",
-      "lanjut": "Ada. Sisi peti membentur kusen pintu cukup keras sampai aku refleks berhenti.\n\nPeti tetap tertutup. Aku tidak membukanya untuk mengecek isi karena tidak tahu ada kamera di dalamnya."
+      "lanjut": "Ada. Sisi peti membentur kusen pintu cukup keras sampai aku refleks berhenti.\n\nPeti tetap tertutup. Aku tidak membukanya untuk mengecek isi karena tidak tahu ada kamera di dalamnya.",
+      "jalur": "Chris",
+      "celah": false,
+      "bobot": {
+        "awal": 7,
+        "lanjut": 20
+      },
+      "sintesis": "Chris membawa peti tertutup ke ruang multimedia."
     },
     {
       "id": "Nina",
@@ -178,7 +244,14 @@
       "mengapa": "Nina berada dekat pintu saat Chris membawa peti. Keterangannya bisa membantu memperkirakan seberapa kuat benturan yang Chris ceritakan.",
       "awal": "Aku melihat Chris lewat sambil membawa peti abu-abu. Petinya membentur kusen dan bunyinya terdengar jelas.\n\nChris berhenti sebentar untuk melihat peti, lalu lanjut masuk. Tidak ada yang membukanya saat itu.",
       "tanya": "Menurutmu, benturannya ringan atau cukup kuat sampai isi peti bergeser?",
-      "lanjut": "Benturannya cukup kuat sampai sisi peti memantul sedikit dari kusen. Aku juga mendengar barang-barang di dalamnya bergerak.\n\nAku tidak tahu isi peti, jadi aku tidak bisa memastikan apa yang terjadi pada kamera."
+      "lanjut": "Benturannya cukup kuat sampai sisi peti memantul sedikit dari kusen. Aku juga mendengar barang-barang di dalamnya bergerak.\n\nAku tidak tahu isi peti, jadi aku tidak bisa memastikan apa yang terjadi pada kamera.",
+      "jalur": "Chris",
+      "celah": true,
+      "bobot": {
+        "awal": 20,
+        "lanjut": 18
+      },
+      "sintesis": "Nina membenarkan bahwa peti membentur kusen pintu. Ini mendukung kemungkinan benturan setelah kamera berada di dalam peti."
     },
     {
       "id": "Leo",
@@ -191,7 +264,14 @@
       "mengapa": "Leo masih merapikan tripod setelah peti diletakkan. Keterangannya penting karena mungkin ada kejadian lain setelah peti sampai di ruang multimedia.",
       "awal": "Aku sedang menyusun tripod di rak setelah peti abu-abu tiba. Salah satu tripod tidak stabil karena raknya penuh.\n\nBeberapa menit kemudian, tripod itu jatuh ke arah peti. Aku mendengar benturan keras, tapi saat itu aku sedang membelakangi rak.",
       "tanya": "Dari posisi akhirnya, seberapa mungkin tripod benar-benar menyentuh peti?",
-      "lanjut": "Menurutku cukup mungkin. Salah satu kaki tripod berhenti menempel di sisi peti, dan petinya tampak bergeser sedikit.\n\nAku tidak melihat benturannya langsung. Ini kesimpulanku dari posisi benda-benda setelah kejadian."
+      "lanjut": "Menurutku cukup mungkin. Salah satu kaki tripod berhenti menempel di sisi peti, dan petinya tampak bergeser sedikit.\n\nAku tidak melihat benturannya langsung. Ini kesimpulanku dari posisi benda-benda setelah kejadian.",
+      "jalur": "Leo",
+      "celah": true,
+      "bobot": {
+        "awal": 15,
+        "lanjut": 20
+      },
+      "sintesis": "Leo menambahkan kemungkinan benturan lain setelah peti tiba: sebuah tripod jatuh ke arahnya."
     },
     {
       "id": "Maya",
@@ -204,7 +284,14 @@
       "mengapa": "Maya memberi sudut pandang lain tentang kejadian tripod. Keterangannya bisa membantu menilai apakah kejadian setelah peti dipindahkan mungkin menjadi penyebab kerusakan.",
       "awal": "Sekitar pukul 18.20, aku mendengar bunyi benturan dari arah rak tripod. Saat menoleh, tripod sudah jatuh di samping peti abu-abu.\n\nLeo langsung mengangkat tripod. Peti tetap tertutup dan tidak ada yang memeriksa isinya.",
       "tanya": "Apa kamu melihat peti bergeser atau tripod menyentuhnya?",
-      "lanjut": "Aku tidak melihat tepat saat tripod jatuh. Tapi waktu menoleh, petinya tampak baru saja bergeser sedikit dan kaki tripod masih menyentuh sisinya.\n\nMenurutku tripod memang mengenai peti, meski aku tidak bisa memastikan bagian mana yang terkena."
+      "lanjut": "Aku tidak melihat tepat saat tripod jatuh. Tapi waktu menoleh, petinya tampak baru saja bergeser sedikit dan kaki tripod masih menyentuh sisinya.\n\nMenurutku tripod memang mengenai peti, meski aku tidak bisa memastikan bagian mana yang terkena.",
+      "jalur": "Leo",
+      "celah": false,
+      "bobot": {
+        "awal": 10,
+        "lanjut": 18
+      },
+      "sintesis": "Maya menguatkan keterangan tentang waktu kejadian tripod dan posisinya di dekat peti."
     }
   ],
   "bukti": [
@@ -212,32 +299,343 @@
       "id": "pengembalian",
       "bukaSetelah": "Arya",
       "judul": "Lembar pengembalian kamera",
-      "isi": "PENGEMBALIAN KAMERA\n\nArya\n17.48\nDikembalikan ✓\n\nLembar ini mencatat bahwa pengembalian sudah diisi. Namun, lembar ini tidak menunjukkan di mana kamera disimpan secara fisik."
+      "isi": "PENGEMBALIAN KAMERA\n\nArya\n17.48\nDikembalikan ✓\n\nLembar ini mencatat bahwa pengembalian sudah diisi. Namun, lembar ini tidak menunjukkan di mana kamera disimpan secara fisik.",
+      "jalur": "Arya",
+      "celah": false
     },
     {
       "id": "foto1756",
       "bukaSetelah": "Siska",
       "judul": "Dokumentasi pukul 17.56",
-      "isi": "Penanda waktu: 17.56\n\nKamera sekolah terlihat jelas di meja dokumentasi. Bella tampak agak jauh sambil membawa tas kamera.\n\nPada pukul 17.56, kamera dan tasnya berada di tempat berbeda."
+      "isi": "Penanda waktu: 17.56\n\nKamera sekolah terlihat jelas di meja dokumentasi. Bella tampak agak jauh sambil membawa tas kamera.\n\nPada pukul 17.56, kamera dan tasnya berada di tempat berbeda.",
+      "jalur": null,
+      "celah": true
     },
     {
       "id": "papan",
       "bukaSetelah": "Rafi",
       "judul": "Daftar tugas beres-beres",
-      "isi": "TUGAS BERES-BERES\n\nMeja dokumentasi — Dimas\nPeti perlengkapan abu-abu ke ruang multimedia — Chris\nTripod dan penyangga — Leo\n\nDaftar ini menunjukkan siapa yang bertanggung jawab atas tiap area, bukan bukti tentang semua tindakan yang dilakukan."
+      "isi": "TUGAS BERES-BERES\n\nMeja dokumentasi: Dimas\nPeti perlengkapan abu-abu ke ruang multimedia: Chris\nTripod dan penyangga: Leo\n\nDaftar ini menunjukkan siapa yang bertanggung jawab atas tiap area, bukan bukti tentang semua tindakan yang dilakukan.",
+      "jalur": null,
+      "celah": false
     },
     {
       "id": "log1806",
       "bukaSetelah": "Rafi",
       "judul": "Catatan kegiatan pukul 18.06",
-      "isi": "PEMERIKSAAN PUKUL 18.06\n\nMeja dokumentasi: KOSONG\nPeti abu-abu di samping meja: TERTUTUP, SIAP DIPINDAHKAN\nPemindahan ke ruang multimedia: BELUM DILAKUKAN\n\nSepuluh menit sebelumnya, kamera masih terlihat di atas meja."
+      "isi": "PEMERIKSAAN PUKUL 18.06\n\nMeja dokumentasi: KOSONG\nPeti abu-abu di samping meja: TERTUTUP, SIAP DIPINDAHKAN\nPemindahan ke ruang multimedia: BELUM DILAKUKAN\n\nSepuluh menit sebelumnya, kamera masih terlihat di atas meja.",
+      "jalur": "Dimas",
+      "celah": false
     },
     {
       "id": "foto1828",
       "bukaSetelah": "Maya",
       "judul": "Foto penyimpanan pukul 18.28",
-      "isi": "Penanda waktu: 18.28\n\nPeti abu-abu berada di lantai ruang multimedia. Sebuah tripod tergeletak atau bersandar tepat di sebelahnya.\n\nKamera berada di dalam peti yang tertutup. Jadi, foto ini tidak menunjukkan apakah lensanya sudah retak."
+      "isi": "Penanda waktu: 18.28\n\nPeti abu-abu berada di lantai ruang multimedia. Sebuah tripod tergeletak atau bersandar tepat di sebelahnya.\n\nKamera berada di dalam peti yang tertutup. Jadi, foto ini tidak menunjukkan apakah lensanya sudah retak.",
+      "jalur": "Leo",
+      "celah": true
     }
   ],
-  "linimasa": "17.45  Arya selesai menggunakan kamera\n\nSekitar 17.46  Kamera mengayun dan menyenggol pegangan tangga saat masih dipegang Arya\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n17.48  Arya menandatangani lembar pengembalian\nKamera ternyata masih tertinggal di meja dokumentasi\n\nSekitar 17.52  Bella melepas tali tas kamera\nKamera menyentuh tepi meja\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n17.56  FOTO: kamera masih terlihat di meja dokumentasi\nFoto membuktikan lokasinya, bukan kondisi lensanya\n\nSekitar 18.03  Dimas memindahkan perlengkapan ke peti abu-abu\nKamera kemungkinan ikut masuk bersama barang-barang lain\nKemungkinan benturan • Barang-barang saling berbenturan di dalam peti\n\n18.06  Meja kosong • Peti abu-abu tertutup\n\n18.10  Chris membawa peti yang tertutup\n\n18.11  Peti membentur kusen pintu\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\nSekitar 18.20  Tripod jatuh ke arah atau mengenai peti\nKemungkinan benturan • Kondisi lensa tidak diperiksa\n\n18.28  FOTO: tripod berada di samping peti yang masih tertutup\n\nBerikutnya  Kamera ditemukan di dalam peti dengan lensa retak\n\nCELAH UTAMA: Tidak ada yang mencatat kondisi lensa di antara kejadian-kejadian ini."
+  "linimasa": [
+    {
+      "waktu": "17.45",
+      "isi": "Arya selesai menggunakan kamera",
+      "jenis": "aksi",
+      "tempat": "tangan",
+      "butuh": [
+        "Arya"
+      ]
+    },
+    {
+      "waktu": "Sekitar 17.46",
+      "isi": "Kamera mengayun dan menyenggol pegangan tangga saat masih dipegang Arya",
+      "catatan": "Kondisi lensa tidak diperiksa",
+      "jenis": "benturan",
+      "tempat": "tangan",
+      "butuh": [
+        "Kevin"
+      ]
+    },
+    {
+      "waktu": "17.48",
+      "isi": "Arya menandatangani lembar pengembalian",
+      "catatan": "Kamera ternyata masih tertinggal di meja dokumentasi",
+      "jenis": "aksi",
+      "tempat": "meja",
+      "butuh": [
+        "Arya"
+      ]
+    },
+    {
+      "waktu": "Sekitar 17.52",
+      "isi": "Bella melepas tali tas kamera dan kamera menyentuh tepi meja",
+      "catatan": "Kondisi lensa tidak diperiksa",
+      "jenis": "benturan",
+      "tempat": "meja",
+      "butuh": [
+        "Bella"
+      ]
+    },
+    {
+      "waktu": "17.56",
+      "isi": "Foto memperlihatkan kamera masih di meja dokumentasi",
+      "catatan": "Foto membuktikan lokasinya, bukan kondisi lensanya",
+      "jenis": "foto",
+      "tempat": "meja",
+      "butuh": [
+        "Siska"
+      ]
+    },
+    {
+      "waktu": "Sekitar 18.03",
+      "isi": "Dimas memindahkan perlengkapan ke peti abu-abu",
+      "catatan": "Barang-barang saling berbenturan di dalam peti",
+      "jenis": "benturan",
+      "tempat": "peti",
+      "butuh": [
+        "Dimas"
+      ]
+    },
+    {
+      "waktu": "18.06",
+      "isi": "Meja sudah kosong dan peti abu-abu tertutup",
+      "jenis": "aksi",
+      "tempat": "peti",
+      "butuh": [
+        "Rafi"
+      ]
+    },
+    {
+      "waktu": "18.10",
+      "isi": "Chris membawa peti yang tertutup",
+      "jenis": "aksi",
+      "tempat": "multimedia",
+      "butuh": [
+        "Chris"
+      ]
+    },
+    {
+      "waktu": "18.11",
+      "isi": "Peti membentur kusen pintu",
+      "catatan": "Kondisi lensa tidak diperiksa",
+      "jenis": "benturan",
+      "tempat": "multimedia",
+      "butuh": [
+        "Nina"
+      ]
+    },
+    {
+      "waktu": "Sekitar 18.20",
+      "isi": "Tripod jatuh ke arah peti atau mengenainya",
+      "catatan": "Kondisi lensa tidak diperiksa",
+      "jenis": "benturan",
+      "tempat": "multimedia",
+      "butuh": [
+        "Leo"
+      ]
+    },
+    {
+      "waktu": "18.28",
+      "isi": "Foto memperlihatkan tripod di samping peti yang masih tertutup",
+      "jenis": "foto",
+      "tempat": "multimedia",
+      "butuh": [
+        "Maya"
+      ]
+    },
+    {
+      "waktu": "Berikutnya",
+      "isi": "Kamera ditemukan di dalam peti dengan lensa retak",
+      "jenis": "temuan",
+      "tempat": "peti",
+      "butuh": []
+    }
+  ],
+  "celahUtama": "Tidak ada yang mencatat kondisi lensa di antara kejadian-kejadian ini.",
+  "tempat": [
+    {
+      "id": "tangan",
+      "nama": "Dipegang Arya"
+    },
+    {
+      "id": "meja",
+      "nama": "Meja dokumentasi"
+    },
+    {
+      "id": "peti",
+      "nama": "Peti abu-abu"
+    },
+    {
+      "id": "multimedia",
+      "nama": "Ruang multimedia"
+    }
+  ],
+  "keterbatasan": [
+    {
+      "id": "lensaTidakDiperiksa",
+      "berlaku": "selalu",
+      "teks": "Tidak ada yang memeriksa kondisi lensa di antara kejadian benturan, jadi urutan kejadian tidak menetapkan kapan lensa retak."
+    },
+    {
+      "id": "saksiBelumLengkap",
+      "berlaku": "wawancaraBelumLengkap",
+      "teks": "Sebagian keterangan belum aku dengar, jadi peringkat ini dibuat dari sebagian kejadian saja."
+    },
+    {
+      "id": "tanpaPendalaman",
+      "berlaku": "tanpaPendalaman",
+      "teks": "Aku belum menanyakan pertanyaan lanjutan kepada siapa pun, jadi tiap jalur baru terdengar dari satu sisi."
+    },
+    {
+      "id": "fotoMenetapkanWaktu",
+      "berlaku": "tidakPernah",
+      "teks": "Foto pukul 17.56 sudah membuktikan tepat kapan lensa retak."
+    },
+    {
+      "id": "peringkatMembuktikan",
+      "berlaku": "tidakPernah",
+      "teks": "Peringkat angka dari AI sudah cukup membuktikan penyebabnya."
+    },
+    {
+      "id": "benturanDiperiksa",
+      "berlaku": "tidakPernah",
+      "teks": "Semua kemungkinan benturan sudah diperiksa langsung setelah terjadi."
+    }
+  ],
+  "hasil": {
+    "hatiHatiKuat": {
+      "judul": "Kesimpulan paling hati-hati di kasus ini",
+      "isi": "Kamu menahan diri untuk tidak menyebut satu penyebab, dan kamu menunjuk hal yang memang memperlihatkan celahnya. Tidak ada satu pun pengamatan yang memeriksa lensa di antara kejadian benturan, jadi tidak ada urutan wawancara yang bisa memisahkan satu kejadian sebagai saat lensa retak. Menahan diri di sini bukan berarti semua orang sama mungkin. Artinya buktimu belum memisahkan satu kejadian dari yang lain.",
+      "langkah": "Kalau kasus seperti ini muncul lagi, catat lebih dulu pemeriksaan apa yang tidak pernah dilakukan. Itu yang menentukan sejauh mana kesimpulan boleh melangkah."
+    },
+    "hatiHatiPerluDasar": {
+      "judul": "Arahnya tepat, dasarnya belum menunjuk celah",
+      "isi": "Kesimpulanmu sesuai dengan keadaan buktinya, dan itu bagian yang paling sulit. Yang belum nyambung adalah dasarnya. Kesimpulan seperti ini paling ditopang oleh sumber yang memperlihatkan bahwa kondisi lensa tidak pernah dicatat, bukan oleh sumber yang memastikan lokasi atau waktu kamera.",
+      "langkah": "Buka lagi catatan kasus dan cari sumber yang menyebut sendiri batas dirinya, misalnya foto yang membuktikan tempat tetapi bukan kondisi lensa."
+    },
+    "bandingKuat": {
+      "judul": "Beberapa kemungkinan yang kamu pertahankan bersama",
+      "isi": "Kamu menyebut lebih dari satu jalur dan menunjuk dasar untuk masing-masing. Itu cara membaca kasus ini yang jujur, karena beberapa kejadian benturan sama-sama terjadi dan tidak ada satu pun yang diikuti pemeriksaan lensa. Menyebut dua atau tiga kemungkinan bukan sikap ragu. Itu pernyataan tentang sejauh mana buktimu memisahkan satu kejadian dari yang lain.",
+      "langkah": "Kalau kamu ingin mempersempitnya, yang dibutuhkan bukan wawancara tambahan, melainkan pemeriksaan lensa di antara kejadian. Justru itu yang tidak ada di kasus ini."
+    },
+    "bandingPerluDasar": {
+      "judul": "Beberapa jalur disebut, sebagian belum ada dasarnya",
+      "isi": "Menyebut lebih dari satu kemungkinan cocok dengan keadaan bukti di kasus ini. Yang belum lengkap adalah dasarnya. Tidak semua jalur yang kamu sebut punya sumber yang bisa kamu tunjuk dari penyelidikanmu sendiri.",
+      "langkah": "Tunjuk satu sumber untuk tiap jalur yang kamu sebut. Kalau sebuah jalur tidak punya sumber, jalur itu belum layak ikut disebut."
+    },
+    "dugaanBeralasan": {
+      "judul": "Dugaan dengan alasan yang bisa ditunjuk",
+      "isi": "Dugaanmu bertumpu pada keterangan yang memang kamu kumpulkan, dan kamu menyebut keterbatasannya sendiri. {dukungan} Menyebut satu nama tetap sebuah penilaian. {batasJalur}",
+      "langkah": "Simpan dugaan ini beserta alasannya. Kalau suatu saat ada pemeriksaan lensa yang tercatat, dugaan seperti ini bisa diuji, bukan sekadar dipertahankan."
+    },
+    "dugaanTipis": {
+      "judul": "Satu nama, dasarnya masih tipis",
+      "isi": "Kamu menyebut {jalur} sebagai penyebab. {dukungan} Satu sisi cerita bisa membuat sebuah jalur terdengar jelas padahal jalur lain belum pernah diperiksa dengan cara yang sama.",
+      "langkah": "Lengkapi dengan {saksi}, atau turunkan kesimpulanmu menjadi beberapa kemungkinan yang kamu sebut bersama."
+    },
+    "lompatanTanpaDasar": {
+      "judul": "Kesimpulan ini belum punya pijakan di penyelidikanmu",
+      "isi": "Kamu menyebut {jalur}. Di sepanjang penyelidikan ini kamu belum mengumpulkan satu pun keterangan tentang jalur {jalur}, jadi tidak ada sumber yang bisa kamu tunjuk untuk menopangnya. Mengubah kesimpulan AI boleh saja dan sering memang perlu. Penggantinya tetap harus bertumpu pada bukti yang benar-benar kamu kumpulkan, bukan pada nama yang terasa masuk akal.",
+      "langkah": "Dengarkan {saksi}, lalu tinjau lagi apakah kesimpulan ini masih yang paling sesuai dengan bukti yang ada."
+    }
+  },
+  "pesanInti": "Keterampilannya bukan “jangan pernah percaya AI” dan bukan “selalu benarkan AI”. Keterampilannya adalah tahu peran apa yang sedang dipegang jawaban itu.",
+  "pelajaran": {
+    "teks": "Keputusan yang barusan kamu ambil dibahas di Modul 1, pada bagian tentang kapan jawaban AI cukup dipercaya.",
+    "tautan": "/learn/ai-fundamentals/module-1",
+    "label": "Buka Modul 1"
+  },
+  "jalur": [
+    {
+      "id": "Arya",
+      "saksi": [
+        "Arya",
+        "Kevin"
+      ],
+      "kuat": "Kevin melihat bagian depan kamera Arya menyenggol pegangan tangga sebelum lembar pengembalian ditandatangani.",
+      "batas": "Tidak ada yang memeriksa lensa setelah kamera menyenggol pegangan tangga. Benturannya terjadi, tetapi dampaknya pada lensa hanya dugaan."
+    },
+    {
+      "id": "Bella",
+      "saksi": [
+        "Bella",
+        "Fajar"
+      ],
+      "kuat": "Bella mengaku mengangkat kamera untuk melepaskan tali tas, lalu sisi kamera menyentuh tepi meja.",
+      "batas": "Kamera mungkin menyentuh tepi meja, tetapi tidak ada yang mencatat kondisi lensa tepat sebelum dan sesudah Bella memegangnya."
+    },
+    {
+      "id": "Dimas",
+      "saksi": [
+        "Dimas",
+        "Rafi"
+      ],
+      "kuat": "Dimas mengatakan beberapa barang dimasukkan sekaligus ke peti dan saling berbenturan di dalamnya.",
+      "batas": "Perpindahan kamera ke peti cukup jelas, tetapi benturan barang di dalam peti tidak membuktikan bahwa lensa retak saat meja dibereskan."
+    },
+    {
+      "id": "Chris",
+      "saksi": [
+        "Chris",
+        "Nina"
+      ],
+      "kuat": "Chris mengatakan peti membentur kusen pintu. Nina mendengar benturannya dan suara barang bergeser di dalam.",
+      "batas": "Benturan di kusen didukung keterangan Nina, tetapi tidak ada yang memeriksa lensa sebelum kejadian tripod setelahnya."
+    },
+    {
+      "id": "Leo",
+      "saksi": [
+        "Leo",
+        "Maya"
+      ],
+      "kuat": "Tripod jatuh ke arah peti. Leo dan Maya melihat tripod menyentuh peti setelahnya.",
+      "batas": "Kejadian tripod didukung saksi lain, tetapi tidak ada yang melihat tripod merusak lensa secara langsung. Lensanya mungkin sudah retak sebelumnya."
+    }
+  ],
+  "bonusPasangan": 12,
+  "dukungan": {
+    "tidakAda": "Kamu belum mendengar satu pun keterangan tentang jalur {jalur}.",
+    "awal": "Jalur {jalur} baru kamu dengar dari satu sisi, yaitu keterangan {sumber}.",
+    "tidakLangsung": "Dua keterangan yang kamu dengar, yaitu {sumber}, sama-sama menyentuh jalur {jalur}.",
+    "diakui": "Kamu mendalami keterangan {sumber}, jadi jalur {jalur} bukan hanya disebut sekali lewat.",
+    "dikuatkan": "Kamu mendalami keterangan {sumber}, dua sisi yang sama-sama menyentuh jalur {jalur}."
+  },
+  "sisiLain": {
+    "belumDidengar": "keterangan {sumber}",
+    "belumDidalami": "pertanyaan lanjutan untuk {sumber}",
+    "habis": "sisi lain jalur itu"
+  },
+  "catatan": {
+    "ajakan": "Menurutmu sekarang, jalur mana yang paling kuat?",
+    "bantuan": "Mencatat dugaan tidak memakai jatah waktu. Mengumpulkan itu mahal, berpikir tidak.",
+    "lewati": "Belum mau menebak",
+    "tersimpan": "Catatanmu: {tebakan}",
+    "lewatiTersimpan": "Catatanmu: belum mau menebak",
+    "ubah": "Ubah"
+  },
+  "kamuDanAi": {
+    "judul": "Kamu dan AI",
+    "tanpaCatatan": "Kamu tidak mencatat dugaanmu sendiri di tengah jalan, jadi tidak ada pembandingnya. Lain kali, catat dugaanmu sebelum membuka rangkuman berikutnya.",
+    "perubahanAi": "AI berubah pikiran {jumlah} kali selama penyelidikan ini: {urutan}.",
+    "tanpaPerubahanAi": "Urutan teratas AI tidak pernah berpindah orang selama penyelidikan ini. Itu bukan tanda ia benar, melainkan tanda semua keterangan yang masuk menguatkan satu jalur yang sama.",
+    "samaDenganAi": "Catatanmu selalu sama dengan urutan teratas AI saat itu. Kalau dugaanmu ikut berpindah setiap kali AI berpindah, yang kamu uji adalah ingatan, bukan buktinya.",
+    "bedaDenganAi": "Kamu sempat menahan dugaan yang berbeda dari urutan teratas AI sebanyak {jumlah} kali. Itu bagian yang paling berharga, karena di situ kamu punya pendapat sendiri untuk diuji."
+  },
+  "andaiKata": {
+    "judul": "Jalur lain yang belum kamu tempuh",
+    "wawancara": "Kalau kamu juga mendengar keterangan {nama}, urutan teratas AI berpindah dari {dari} ke {ke}.",
+    "wawancaraTetap": "Kalau kamu juga mendengar keterangan {nama}, urutan teratas AI tetap {dari}, tetapi jaraknya dengan dugaan berikutnya ikut bergeser.",
+    "tafsirWawancara": "Perpindahan itu bukan tanda {ke} penyebabnya. Itu menunjukkan urutan AI ikut bergeser mengikuti keterangan yang masuk.",
+    "pendalaman": "Kalau kamu memakai satu pertanyaan lanjutan lagi untuk {nama}, jalur {jalur} menjadi dugaan teratas AI.",
+    "tafsirPendalaman": "Satu pertanyaan lanjutan bisa membalik peringkat tanpa menambah satu pun pemeriksaan lensa. Yang bertambah adalah keyakinan rangkumannya, bukan buktinya.",
+    "semua": "Kalau kamu mendengar kesebelas keterangan, AI justru berhenti menyebut satu nama dan menyebut {jumlah} jalur sekaligus.",
+    "tafsirSemua": "Makin banyak keterangan yang masuk, makin jelas beberapa kejadian sama-sama mungkin. Rangkuman yang paling terdengar yakin justru muncul saat datanya paling sedikit.",
+    "penutup": "Tidak ada penyebab rahasia di kasus ini. Tidak ada satu keterangan pun yang memeriksa lensa di antara kejadian benturan, jadi tidak ada urutan wawancara yang bisa membuktikan satu penyebab. Yang berubah hanyalah seberapa yakin rangkuman AI terdengar.",
+    "mainLagi": "Main lagi dengan jalur berbeda"
+  },
+  "lanjutkan": {
+    "ajakan": "Lanjutkan penyelidikan ({wawancara} wawancara, sisa {sisa})",
+    "mulaiBaru": "Mulai penyelidikan baru",
+    "catatan": "Penyelidikan ini tersimpan selama tab masih terbuka. Memulai yang baru menghapusnya."
+  }
 }

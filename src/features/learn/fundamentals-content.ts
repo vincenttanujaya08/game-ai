@@ -1,6 +1,11 @@
 export type LessonSection = {
   title: string;
   paragraphs: string[];
+  /**
+   * Jawaban atau pembahasan yang disembunyikan di balik disclosure, supaya
+   * pembaca menebak dulu. Dipakai bagian yang berbentuk latihan singkat.
+   */
+  reveal?: { label?: string; paragraphs: string[] };
   sources?: { label: string; url: string }[];
 };
 
@@ -16,13 +21,13 @@ export type LessonContent = {
 
 export const fundamentalsLessons: LessonContent[] = [
   {
-    lead: "AI sudah jauh lebih luas daripada chatbot. Di lesson ini kita melihat apa yang bisa dilakukannya, lalu belajar membedakan kemampuan dari keandalan.",
+    lead: "AI sudah jauh lebih luas daripada chatbot. Di pelajaran ini kita melihat apa yang bisa dilakukannya, lalu belajar membedakan kemampuan dari keandalan.",
     sections: [
       {
         title: "AI ada di lebih banyak tempat daripada yang kita kira",
         paragraphs: [
           "Saat mendengar AI, kita mungkin langsung membayangkan ChatGPT, Gemini, pembuat gambar, atau asisten coding.\n\nItu wajar: **generative AI, yaitu AI yang bisa membuat teks atau gambar baru**, adalah bentuk yang paling sering kita ajak bicara.\n\nNamun AI juga membantu memilah email spam, merekomendasikan musik, membantu radiolog memeriksa gambar medis, memprediksi bentuk protein, mengendalikan robot, dan menjalankan tugas dengan alat digital.",
-          "Kita mulai dari kemampuan yang terlihat sekarang, sebelum masuk ke definisi dan cara kerjanya pada lesson berikutnya.\n\n**Satu pegangan penting:** sistem yang berhasil pada suatu tugas belum tentu selalu benar, aman, atau cocok digunakan pada tugas lain.",
+          "Kita mulai dari kemampuan yang terlihat sekarang, sebelum masuk ke definisi dan cara kerjanya pada pelajaran berikutnya.\n\n**Satu pegangan penting:** sistem yang berhasil pada suatu tugas belum tentu selalu benar, aman, atau cocok digunakan pada tugas lain.",
         ],
       },
       {
@@ -39,7 +44,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Membantu dokter, tetapi hasilnya tetap perlu dinilai",
         paragraphs: [
-          "AI dapat membantu radiolog memeriksa mammogram, yaitu gambar hasil pemeriksaan payudara, dan menandai gambar yang perlu perhatian lebih.\n\nSebuah uji klinis yang terbit pada Maret 2026 melibatkan **31.301 perempuan**.\n\nPada strategi yang diuji, tugas membaca gambar oleh radiolog berkurang 63,6% dan tingkat deteksi kanker naik 15,2% dibanding strategi standar.\n\nNamun proporsi pasien yang diminta datang lagi untuk pemeriksaan lanjutan juga naik 14,8%.",
+          "AI dapat membantu radiolog memeriksa mammogram, yaitu gambar hasil pemeriksaan payudara, dan menandai gambar yang perlu perhatian lebih.\n\nSebuah uji klinis yang terbit pada Maret 2026 melibatkan **31.301 perempuan**.\n\nPada strategi yang diuji, tugas membaca gambar oleh radiolog berkurang 63,6% dan tingkat deteksi kanker naik 15,2% dibanding strategi standar.\n\nNamun proporsi pasien yang diminta datang lagi untuk pemeriksaan lanjutan ikut naik. Angka pastinya ada di latihan di bawah.",
           "Angka itu berlaku pada studi dan alur kerja tersebut.\n\nKesimpulan yang tepat bukan ‘AI lebih baik daripada dokter’, melainkan bahwa cara manusia dan AI bekerja bersama harus dirancang serta dievaluasi dengan cermat.\n\n**Semakin besar akibat sebuah kesalahan, semakin penting pengawasan manusia.**",
         ],
         sources: [{ label: "Nature Medicine · uji mammogram 2026", url: "https://www.nature.com/articles/s41591-026-04277-x" }],
@@ -107,10 +112,10 @@ export const fundamentalsLessons: LessonContent[] = [
         ],
       },
       {
-        title: "Jembatan ke lesson berikutnya: apakah semua yang otomatis itu AI?",
+        title: "Jembatan ke pelajaran berikutnya: apakah semua yang otomatis itu AI?",
         paragraphs: [
           "Sistem TCAS pada pesawat dapat mendeteksi potensi tabrakan dan memberi pilot saran untuk naik atau turun. Itu kemampuan keselamatan yang penting.\n\nNamun sistem yang mendeteksi, menghitung, dan memberi saran secara otomatis **belum tentu menggunakan machine learning atau AI modern**.\n\nAturan yang ditulis manusia juga bisa menghasilkan perilaku yang sangat canggih.",
-          "Jadi pertanyaan untuk lesson berikutnya ialah: jika kemampuan mengambil keputusan otomatis saja belum cukup, apa yang sebenarnya dimaksud orang ketika mengatakan ‘AI’?",
+          "Jadi pertanyaan untuk pelajaran berikutnya ialah: jika kemampuan mengambil keputusan otomatis saja belum cukup, apa yang sebenarnya dimaksud orang ketika mengatakan ‘AI’?",
         ],
         sources: [{ label: "FAA · penjelasan TCAS II", url: "https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html" }],
       },
@@ -131,7 +136,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Otomatis belum tentu AI",
         paragraphs: [
-          "Ingat TCAS dari lesson pertama. Sistem itu menerima informasi tentang pesawat sekitar, menghitung risiko, lalu memberi saran kepada pilot.\n\nSensor parkir juga menerima jarak, membandingkannya dengan batas yang ditetapkan, lalu membunyikan alarm. Keduanya dapat bekerja otomatis melalui logika yang dirancang manusia.",
+          "Ingat TCAS dari pelajaran pertama. Sistem itu menerima informasi tentang pesawat sekitar, menghitung risiko, lalu memberi saran kepada pilot.\n\nSensor parkir juga menerima jarak, membandingkannya dengan batas yang ditetapkan, lalu membunyikan alarm. Keduanya dapat bekerja otomatis melalui logika yang dirancang manusia.",
           "Gambaran sederhananya: **input (data yang diterima) → aturan yang ditulis manusia → output (hasilnya)**. Aturan bisa sangat rumit dan tetap berguna.\n\nMenyebut suatu fitur ‘pintar’ atau ‘otomatis’ belum membuktikan bahwa ia memakai AI.",
         ],
         sources: [{ label: "FAA · TCAS II", url: "https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html" }],
@@ -186,7 +191,7 @@ export const fundamentalsLessons: LessonContent[] = [
         ],
       },
       {
-        title: "Apa yang perlu dibawa ke lesson terakhir?",
+        title: "Apa yang perlu dibawa ke pelajaran terakhir?",
         paragraphs: [
           "Sistem otomatis dapat bekerja tanpa AI. Machine learning mempelajari pola dari data; deep learning adalah salah satu jenisnya; generative AI membuat konten baru.\n\nPada saat yang sama, model bisa salah, membuat klaim tanpa bukti, atau terlalu percaya diri tentang apa yang dapat dilakukannya.",
           "Pertanyaan selanjutnya bukan lagi sekadar ‘Apakah AI pintar?’. Kita perlu tahu kapan AI membantu, bagaimana menilai hasilnya, dan bagian keputusan mana yang tetap harus dipegang manusia.",
@@ -204,7 +209,7 @@ export const fundamentalsLessons: LessonContent[] = [
     },
   },
   {
-    lead: "AI bisa membantu banyak pekerjaan sekaligus membuat kita terlalu mudah mengikuti jawabannya. Lesson terakhir ini membahas perubahan kerja dan kebiasaan yang membuat kita tetap memegang arah, konteks, dan keputusan.",
+    lead: "AI bisa membantu banyak pekerjaan sekaligus membuat kita terlalu mudah mengikuti jawabannya. Pelajaran terakhir ini membahas perubahan kerja dan kebiasaan yang membuat kita tetap memegang arah, konteks, dan keputusan.",
     sections: [
       {
         title: "Pekerjaan terdiri dari banyak tugas",
@@ -216,9 +221,9 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Apa yang ditunjukkan data pekerjaan?",
         paragraphs: [
-          "ILO melaporkan pada 2026 bahwa di ASEAN belum tampak kehilangan pekerjaan besar-besaran akibat generative AI. Banyak pekerjaan justru menghadapi perubahan sebagian tugas.\n\nDi Indonesia, sekitar 21,7% pekerjaan memiliki tugas yang secara teknis bisa terdampak AI lebih dari tingkat minimal; sekitar 3–4% masuk kategori paparan tertinggi.\n\n**Paparan di sini mengukur bagian tugas yang bisa dipengaruhi AI, bukan persentase orang yang pasti kehilangan pekerjaan.**",
-          "Potensinya berbeda menurut jenis pekerjaan.\n\nMenurut ILO, 93,9% pekerjaan dukungan administratif di Indonesia memiliki tugas yang berpotensi terdampak generative AI, dan 67,5% masuk kategori paparan tertinggi.\n\nUntuk pekerja muda usia 15–24 tahun, angkanya diperkirakan 26,1%, dibanding 21,1% pada pekerja dewasa. Angka-angka ini menunjukkan perlunya persiapan, bukan kepastian nasib setiap individu.",
-          "Data Amerika Serikat dari Stanford Digital Economy Lab memberi sinyal lain.\n\nHingga Juni 2026, tingkat pekerjaan pekerja usia 22–25 tahun di bidang yang sangat terpapar AI sekitar 19% lebih rendah dari perkiraan.\n\nPerkiraan ini memakai pertumbuhan kelompok muda pada pekerjaan dengan paparan AI lebih rendah sebagai pembanding. Penyesuaian lebih banyak tampak pada perekrutan yang melambat daripada PHK.\n\nStudi itu tidak membuktikan bahwa AI sendirian menyebabkan seluruh selisihnya, dan hasil Amerika Serikat tidak boleh langsung dianggap sebagai prediksi Indonesia.",
+          "ILO melaporkan pada 2026 bahwa di ASEAN belum tampak kehilangan pekerjaan besar-besaran akibat generative AI. Banyak pekerjaan justru menghadapi perubahan sebagian tugas.\n\nDi Indonesia, sebagian pekerjaan memiliki tugas yang secara teknis bisa terdampak AI lebih dari tingkat minimal; sekitar 3-4% masuk kategori paparan tertinggi. Angka keseluruhannya ada di latihan di bawah.\n\n**Paparan di sini mengukur bagian tugas yang bisa dipengaruhi AI, bukan persentase orang yang pasti kehilangan pekerjaan.**",
+          "Potensinya berbeda menurut jenis pekerjaan.\n\nMenurut ILO, 93,9% pekerjaan dukungan administratif di Indonesia memiliki tugas yang berpotensi terdampak generative AI, dan 67,5% masuk kategori paparan tertinggi.\n\nUntuk pekerja muda usia 15-24 tahun, angkanya diperkirakan 26,1%, dibanding 21,1% pada pekerja dewasa. Angka-angka ini menunjukkan perlunya persiapan, bukan kepastian nasib setiap individu.",
+          "Data Amerika Serikat dari Stanford Digital Economy Lab memberi sinyal lain.\n\nHingga Juni 2026, tingkat pekerjaan pekerja usia 22-25 tahun di bidang yang sangat terpapar AI sekitar 19% lebih rendah dari perkiraan.\n\nPerkiraan ini memakai pertumbuhan kelompok muda pada pekerjaan dengan paparan AI lebih rendah sebagai pembanding. Penyesuaian lebih banyak tampak pada perekrutan yang melambat daripada PHK.\n\nStudi itu tidak membuktikan bahwa AI sendirian menyebabkan seluruh selisihnya, dan hasil Amerika Serikat tidak boleh langsung dianggap sebagai prediksi Indonesia.",
         ],
         sources: [
           { label: "ILO · pasar kerja ASEAN 2026", url: "https://www.ilo.org/publications/generative-ai-and-labour-markets-asean-significant-exposure-limited" },
@@ -282,7 +287,7 @@ export const fundamentalsLessons: LessonContent[] = [
         title: "Lanjutkan latihan dengan situasi nyata",
         paragraphs: [
           "Di NUSA Lab Game, kamu dapat menguji penilaianmu ketika menemui kutipan AI yang tampak sah, tangkapan layar yang terlihat asli, data yang belum tentu boleh dibagikan, atau tugas kuliah yang bisa dikerjakan AI.\n\nPertanyaannya bukan sekadar ‘AI baik atau buruk?’, melainkan ‘Apa yang akan kamu lakukan, dan **bukti apa yang kamu perlukan?**’",
-          "Setelah tiga lesson ini, bawa satu kebiasaan sederhana ke pekerjaanmu sendiri: tentukan tujuan, gunakan AI saat berguna, cek hal penting, lalu putuskan dengan sadar.",
+          "Setelah tiga pelajaran ini, bawa satu kebiasaan sederhana ke pekerjaanmu sendiri: tentukan tujuan, gunakan AI saat berguna, cek hal penting, lalu putuskan dengan sadar.",
         ],
       },
     ],

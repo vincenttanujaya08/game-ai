@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./tokens.css";
 import { Geist } from "next/font/google";
 
 const geist = Geist({

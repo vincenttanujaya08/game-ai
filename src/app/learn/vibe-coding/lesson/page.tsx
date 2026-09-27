@@ -1,4 +1,4 @@
-import { ModuleOneGame } from "@/features/learn/module-one-game";
+import { LessonReader } from "@/features/learn/lesson-reader";
 
 export const metadata = {
   title: "Vibe Coding · NUSA Lab",
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function VibeCodingLessonPage() {
-  return <ModuleOneGame vibe />;
+  return <LessonReader course="vibe-coding" />;
 }

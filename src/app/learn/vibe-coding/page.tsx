@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function VibeCodingPage() {
-  return <CourseMap vibe />;
+  return <CourseMap course="vibe-coding" />;
 }

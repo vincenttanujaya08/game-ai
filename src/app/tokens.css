@@ -1,0 +1,73 @@
+/*
+  Satu sumber untuk palet permukaan terang (beranda, /games, dan seluruh /learn).
+  Sebelumnya sembilan token ini disalin verbatim ke landing.module.css,
+  learn.module.css, dan fundamentals-reader.module.css.
+
+  Tidak dipasang di :root karena globals.css memakai --ink / --paper / --teal
+  dengan nilai berbeda untuk permukaan game yang gelap.
+*/
+[data-nusa-theme="light"] {
+  --paper: #fff;
+  --surface: #fff;
+  --ink: #102b43;
+  --muted: #536b7c;
+  --line: #d7e1e3;
+  --teal: #087b78;
+  --teal-dark: #075c5a;
+  --teal-soft: #e6f2f0;
+  --coral: #b84a40;
+
+  --nusa-ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --nusa-reveal: 180ms;
+}
+
+/* Dipakai blok latihan saat memunculkan umpan balik dan jawaban. */
+@keyframes nusa-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nusa-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Teks yang hanya dibacakan screen reader. */
+.nusa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px
+;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+  Satu kill-switch untuk seluruh animasi permukaan terang. Stylesheet per-fitur
+  tidak perlu mengulang blok ini lagi.
+*/
+@media (prefers-reduced-motion: reduce) {
+  [data-nusa-theme="light"],
+  [data-nusa-theme="light"] *,
+  [data-nusa-theme="light"] *::before,
+  [data-nusa-theme="light"] *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

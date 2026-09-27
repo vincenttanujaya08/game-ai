@@ -24,14 +24,21 @@ test("Beranda menjelaskan arah belajar tanpa mengulang halaman lain", async ({
       name: "AI baru berguna kalau hasilnya bisa kamu pakai.",
     }),
   ).toBeVisible();
-  await expect(page.getByText("AI Fundamentals", { exact: true })).toHaveCount(0);
+  // Beranda menyebut nama ketiga kursus di panel rute, tapi tidak mengulang
+  // ringkasan panjang milik /learn.
+  const journey = page.getByRole("list").filter({ hasText: "AI Fundamentals" }).first();
+  await expect(journey.getByRole("listitem")).toHaveCount(3);
+  await expect(
+    page.getByText("Tiga pelajaran tentang kemampuan AI hari ini", { exact: false }),
+  ).toHaveCount(0);
 
   await expect(
     page.getByRole("navigation").getByRole("link"),
   ).toHaveCount(3);
   await expect(page.getByRole("link", { name: "Lihat semua game" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Jelajahi" })).toHaveCount(0);
-  await expect(page.getByRole("img")).toHaveJSProperty("complete", true);
+  // Beranda digambar sepenuhnya dengan CSS; tidak ada <img> yang perlu dimuat.
+  await expect(page.getByRole("img")).toHaveCount(0);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 
   for (const width of [1440, 1024, 760, 390, 320]) {
@@ -60,8 +67,12 @@ test("Beranda menjelaskan arah belajar tanpa mengulang halaman lain", async ({
   await expect(
     page.getByRole("link", { name: "Buka materi AI Fundamentals" }),
   ).toBeVisible();
-  await expect(page.getByLabel("Prompt Engineering, segera hadir")).toBeVisible();
-  await expect(page.getByLabel("Build with AI, segera hadir")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Buka materi Working with Generative AI" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Buka materi Vibe Coding" }),
+  ).toBeVisible();
 
   const removedPage = await page.request.get("/explore");
   expect(removedPage.status()).toBe(404);

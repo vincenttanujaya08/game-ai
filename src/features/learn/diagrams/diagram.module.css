@@ -1,0 +1,262 @@
+
+/*
+  Keyframes didefinisikan lokal di modul ini. CSS Modules menulis ulang nilai
+  animation-name, jadi merujuk keyframes dari stylesheet global tidak bisa diandalkan.
+*/
+@keyframes diagramFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes diagramRise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.figure {
+  margin: 0;
+  padding: 0;
+}
+
+.frame {
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  max-width: 620px;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+.replay {
+  min-height: 0;
+  margin: 12px auto 0;
+  padding: 0;
+  display: block;
+  border: 0;
+  border-bottom: 2px solid var(--teal);
+  background: transparent;
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 750;
+}
+
+.replay:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+/*
+  Isi diagram TIDAK PERNAH disembunyikan di balik animasi: kalau animasinya tidak
+  jalan karena setelan kurangi-animasi, CSS gagal dimuat, atau mesin lama, gambarnya tetap
+  utuh. Animasi bertahap hanya dipasang saat pembaca menekan "Putar ulang".
+*/
+.step {
+  opacity: 1;
+}
+
+.stepAnimated {
+  opacity: 0;
+  animation: diagramFadeIn 320ms var(--nusa-ease) forwards;
+}
+
+.slide {
+  animation: diagramRise 340ms var(--nusa-ease) both;
+}
+
+.dash {
+  stroke-dasharray: 6 5;
+}
+
+.label {
+  fill: var(--ink);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.small {
+  fill: var(--muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.note {
+  max-width: 620px;
+  margin: 16px auto 0;
+  color: var(--ink);
+  font-size: .88rem;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.tiny {
+  fill: var(--muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.labelMuted {
+  fill: var(--muted);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.onInkSmall {
+  fill: #cfe0dd;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cross {
+  fill: var(--coral);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.eyebrow {
+  fill: var(--teal-dark);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.box {
+  fill: #fff;
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.boxActive {
+  fill: var(--teal-soft);
+  stroke: var(--teal);
+  stroke-width: 2;
+}
+
+.boxInk {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+
+.onInk {
+  fill: #f4f9f8;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.arrow {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.8;
+}
+
+.arrowTeal {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 2.2;
+}
+
+.arrowBroken {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 2.2;
+  stroke-dasharray: 7 7;
+}
+
+.bar {
+  fill: var(--teal);
+}
+
+.barMuted {
+  fill: #cfe0dd;
+}
+
+.dotA {
+  fill: var(--teal);
+}
+
+.dotB {
+  fill: var(--coral);
+}
+
+.faded {
+  opacity: .32;
+}
+
+.controls {
+  display: flex;
+  margin: 12px auto 0;
+  max-width: 620px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  min-height: 36px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 750;
+}
+
+.controls button:hover {
+  border-color: var(--teal);
+  color: var(--ink);
+}
+
+.controls button[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+/*
+  Di layar sempit diagram tidak dikecilkan sampai tidak terbaca. Ia menahan
+  lebar minimumnya dan digeser mendatar di dalam kotaknya sendiri, jadi
+  halaman tetap tidak punya scroll horizontal.
+*/
+@media (max-width: 640px) {
+  .frame {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .frame svg {
+    min-width: 480px;
+  }
+}
+
+/*
+  Jaring pengaman: saat pembaca meminta pengurangan animasi, browser tidak
+  menjalankan animasinya sama sekali. Tanpa aturan ini, elemen yang memakai
+  opacity 0 sebagai titik awal akan hilang selamanya.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .stepAnimated,
+  .slide {
+    opacity: 1;
+    animation: none;
+  }
+}

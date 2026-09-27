@@ -1,6 +1,6 @@
 # Pedoman Bahasa Indonesia untuk Broken Camera
 
-Riset: 21 September 2026. Berlaku untuk UI dan naskah yang akan dipindahkan dari `public/gamev7.java` ke data JSON.
+Riset: 21 September 2026. Berlaku untuk UI dan naskah yang akan dipindahkan dari `docs/research/gamev7.java` ke data JSON.
 
 ## Arah bahasa
 

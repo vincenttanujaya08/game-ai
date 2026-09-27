@@ -1,4 +1,4 @@
-import { ModuleOneGame } from "@/features/learn/module-one-game";
+import { LessonReader } from "@/features/learn/lesson-reader";
 
 export const metadata = {
   title: "Working with Generative AI · NUSA Lab",
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function WorkingWithGenerativeAILessonPage() {
-  return <ModuleOneGame working />;
+  return <LessonReader course="working-with-generative-ai" />;
 }

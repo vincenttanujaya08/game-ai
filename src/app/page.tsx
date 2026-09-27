@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main className={styles.shell}>
+    <main className={styles.shell} data-nusa-theme="light">
       <NusaHeader active="beranda" />
 
       <section className={styles.hero} aria-labelledby="home-title">
