@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { compileCheck, grade } from "./grade";
-import type { ArrangeActivity, EstimateActivity, PredictActivity, PromptLabActivity, SpotActivity } from "./types";
+import { grade } from "./grade";
+import type { ArrangeActivity, EstimateActivity, PredictActivity, SpotActivity } from "./types";
 
 describe("grade · predict", () => {
   const activity: PredictActivity = {
@@ -162,41 +162,5 @@ describe("grade · estimate", () => {
   it("menolak respons yang bukan angka", () => {
     expect(grade(activity, "14.8").solved).toBe(false);
     expect(grade(activity, Number.NaN).solved).toBe(false);
-  });
-});
-
-describe("grade · promptLab", () => {
-  const activity: PromptLabActivity = {
-    kind: "promptLab",
-    task: "Tulis ulang pertanyaan yang mengarahkan.",
-    startPrompt: "Ide saya pasti laku, kan?",
-    checks: [
-      { id: "netral", label: "Tidak mengarahkan", pattern: "kan\\s*\\?", hint: "Buang ‘…, kan?’ di akhir." },
-      { id: "risiko", label: "Menyebut risiko", pattern: "risiko|kelemahan", hint: "Minta juga sisi risikonya." },
-    ],
-    outputs: { weak: "Jawaban yang mendukung.", strong: "Jawaban yang membandingkan." },
-  };
-
-  it("menandai syarat yang terpenuhi", () => {
-    const verdict = grade(activity, "Bandingkan peluang dan risiko usaha ini.");
-    expect(verdict.hits).toEqual(["risiko"]);
-    expect(verdict.misses).toEqual(["netral"]);
-    expect(verdict.message).toContain("1 dari 2");
-  });
-
-  it("meminta isi saat prompt kosong", () => {
-    expect(grade(activity, "   ").solved).toBe(false);
-    expect(grade(activity, 42).solved).toBe(false);
-  });
-
-  it("pattern rusak dihitung belum terpenuhi, bukan melempar", () => {
-    const broken: PromptLabActivity = {
-      ...activity,
-      checks: [{ id: "rusak", label: "Rusak", pattern: "([unclosed", hint: "tidak dipakai" }],
-    };
-    expect(compileCheck("([unclosed")).toBeNull();
-    const verdict = grade(broken, "teks apa pun");
-    expect(verdict.solved).toBe(false);
-    expect(verdict.misses).toEqual(["rusak"]);
   });
 });

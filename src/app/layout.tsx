@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./tokens.css";
 import { Geist } from "next/font/google";
+import ScrollReveal from "./scroll-reveal";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ export const metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
-      <body className={geist.variable}>{children}</body>
+      <body className={geist.variable}>{children}<ScrollReveal /></body>
     </html>
   );
 }

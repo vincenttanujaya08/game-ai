@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { eventId, registrationSchema, submissionSchema } from "./validation";
+import { isChallengeOpen } from "./status";
 
 const base = "/events/vibe-coding-challenge";
 
@@ -11,6 +12,7 @@ function configured() {
 }
 
 export async function registerChallenge(form: FormData) {
+  if (!isChallengeOpen) redirect(`${base}/register?status=closed`);
   if (!configured()) redirect(`${base}/register?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -28,6 +30,7 @@ export async function registerChallenge(form: FormData) {
 }
 
 export async function submitChallenge(form: FormData) {
+  if (!isChallengeOpen) redirect(`${base}/submit?status=closed`);
   if (!configured()) redirect(`${base}/submit?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

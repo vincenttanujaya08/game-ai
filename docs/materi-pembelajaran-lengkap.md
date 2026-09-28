@@ -41,13 +41,9 @@ Jadi, AI bukan hanya chatbot atau generator gambar. Istilah ini mencakup banyak 
 - **Kesehatan:** AI membantu radiolog memeriksa gambar hasil mammografi.
 - **Robot dan tugas digital:** Robot bisa dilatih bergerak; sistem AI juga bisa memakai alat digital untuk mengerjakan beberapa langkah.
 
-![Logo ChatGPT](../public/course-visuals/chatgpt-logo.svg)
+![Logo ChatGPT](../public/course-visuals/chatgpt-logo.svg) ![Ikon Google Gemini](../public/course-visuals/gemini-logo.svg)
 
-**Visual:** Logo ChatGPT. Sumber: [logo OpenAI](https://commons.wikimedia.org/wiki/File:ChatGPT-Logo.svg).
-
-![Ikon Google Gemini](../public/course-visuals/gemini-logo.svg)
-
-**Visual:** Ikon Google Gemini. Sumber: [logo Google Gemini](https://commons.wikimedia.org/wiki/File:Google_Gemini_icon_2025.svg).
+**Visual:** Logo ChatGPT dari [OpenAI](https://commons.wikimedia.org/wiki/File:ChatGPT-Logo.svg) dan ikon Gemini dari [Google](https://commons.wikimedia.org/wiki/File:Google_Gemini_icon_2025.svg).
 
 #### 1.2 Dari soal matematika hingga penemuan ilmiah
 
@@ -1062,7 +1058,7 @@ Tulis ulang pertanyaan ini supaya tidak mengarahkan jawaban
 
 #### 2.4 Aktivitas · pilih prompt yang netral
 
-Kamu sedang menilai ide usaha makanan sehat di sekitar kampus. Mana yang paling membantu untuk berpikir jernih?
+Kamu sedang menilai ide usaha makanan sehat di sekitar kampus. Dari pilihan berikut, rumusan pertanyaan mana yang paling membantumu menilai ide itu dengan jernih?
 
 **AKTIVITAS 1: Pilih pertanyaan yang membantu berpikir**
 
@@ -1194,9 +1190,9 @@ Kamu bisa menanggapi: ‘Buat nadanya lebih hangat dan alami. Ringkas menjadi ma
 
 Setelah revisi selesai, baca lagi dari sudut pandang penerima. Apakah tujuan mudah ditemukan? Apakah nadanya cocok? Dari situ alurnya menjadi **Tulis prompt → Tinjau → Beri masukan → Perbaiki**.
 
-#### 3.2 Masukan spesifik lebih mudah ditindaklanjuti
+#### 3.2 Arahan spesifik lebih mudah diikuti
 
-Feedback seperti ‘buat lebih bagus’ terlalu umum karena tidak menjelaskan bagian mana yang perlu diubah atau seperti apa hasil yang diharapkan. Katakan bagian yang perlu berubah: ‘Pindahkan tujuan konsultasi ke paragraf pertama, pertahankan waktu yang saya usulkan, dan ringkas pembukanya.’
+Permintaan seperti ‘buat lebih bagus’ terlalu umum karena tidak menjelaskan bagian mana yang perlu diubah atau seperti apa hasil yang diharapkan. Sebutkan perubahan yang kamu inginkan: ‘Pindahkan tujuan konsultasi ke paragraf pertama, pertahankan waktu yang saya usulkan, dan ringkas pembukanya.’
 
 Jenis masalah menentukan feedback yang perlu diberikan. Jika hasil terlalu umum, tambahkan konteks; jika terlalu panjang, tentukan batasnya; jika klaim tidak didukung, minta AI kembali ke dokumen sumber.
 
@@ -1207,23 +1203,23 @@ Jenis masalah menentukan feedback yang perlu diberikan. Jika hasil terlalu umum,
 - **Ada yang hilang:** Tunjuk bagian yang harus dipertahankan atau dilengkapi.
 - **Klaim tanpa dukungan:** Minta sumber atau batasi jawaban pada dokumen.
 
-#### 3.3 Aktivitas · beri masukan pada outline
+#### 3.3 Aktivitas · pilih arahan revisi
 
-Cara memberi masukan yang sama bisa dipakai pada pekerjaan lain. Kali ini AI memberi outline presentasi dengan terlalu banyak detail pada tiap slide. Pilih masukan yang paling mudah ditindaklanjuti.
+AI sudah membuat outline presentasi, tetapi tiap slide terlalu padat. Kamu ingin mempertahankan gagasan utamanya sekaligus membuat isi lebih mudah diikuti. Pilih instruksi yang akan kamu kirim untuk memperbaiki outline.
 
-**AKTIVITAS 8: Masukan yang bisa langsung dikerjakan**
+**AKTIVITAS 8: Pilih arahan revisi**
 
 **Latihan interaktif**
 
-Outline presentasi dari AI terlalu padat di tiap slide. Masukan mana yang paling mudah dikerjakan AI?
+Instruksi mana yang paling membantu AI memperbaiki outline tanpa mengubah gagasan utamanya?
 
 1. ‘Bagi setiap slide yang padat menjadi dua slide, tetapi pertahankan semua kalimatnya.’ — Jumlah slide bertambah, sedangkan kepadatan informasi dan prioritasnya belum benar-benar diselesaikan.
 
-2. ‘Pertahankan gagasan utama, batasi tiga poin per slide, pindahkan rincian ke catatan pembicara.’ **(jawaban tepat)** — Tepat. Masukan ini menyebut apa yang dipertahankan, batasnya, dan ke mana detail dipindahkan.
+2. ‘Pertahankan gagasan utama dan urutan slide. Batasi isi tiap slide menjadi tiga poin; pindahkan bukti rinci ke catatan pembicara.’ **(jawaban tepat)** — Tepat. Arahan ini menjaga bagian yang sudah benar, memberi batas yang bisa diperiksa, dan menjelaskan tempat untuk rincian.
 
 3. ‘Hapus rincian pendukung dari semua slide dan sisakan judul serta satu kalimat.’ — Slide bisa terlalu kosong dan informasi penting terbuang tanpa penilaian mana yang perlu dipertahankan.
 
-**Pembahasan:** Masukan yang berguna menyebut tiga hal: apa yang dipertahankan, batas yang diinginkan, dan ke mana sisanya dipindahkan.
+**Pembahasan:** Arahan revisi yang jelas menyebut bagian yang dipertahankan, perubahan yang bisa diperiksa, dan apa yang perlu dilakukan terhadap rincian.
 
 #### 3.4 Ganti peran AI sesuai tahap kerja
 
@@ -1242,17 +1238,17 @@ Tetap buka sumber aslinya sebelum memakai kutipan, angka, atau kesimpulan pentin
 
 #### 3.5 Aktivitas · susun ulang alurnya
 
-Revisi lebih mudah dilakukan jika langkahnya jelas, bukan hanya meminta AI ‘coba lagi’ berulang kali. Susun urutan berikut sebelum melihat contoh jawabannya.
+Meminta AI ‘coba lagi’ berulang kali belum tentu memperbaiki hasil. Ikuti alur dari permintaan awal, tinjau drafnya, lalu tentukan perubahan yang diperlukan sebelum memeriksa hasil akhir.
 
-**AKTIVITAS 9-10: Perbaiki, lalu periksa lagi**
+**AKTIVITAS 9-10: Dari prompt sampai pemeriksaan akhir**
 
 **Latihan interaktif**
 
-Susun lima langkah proses revisi.
+Urutkan lima langkah kerja berikut, dari permintaan awal sampai hasilnya siap dipakai.
 
 **Pilihan**
 
-- Beri masukan: sebutkan perubahan secara spesifik
+- Beri arahan: sebutkan perubahan yang perlu dilakukan
 - Periksa ulang: pastikan klaimnya didukung
 - Tulis prompt: jelaskan kebutuhan dan sumbernya
 - Minta revisi: minta AI menerapkan arahanmu
@@ -1262,7 +1258,7 @@ Susun lima langkah proses revisi.
 
 **Urutan jawaban:** Tulis prompt: jelaskan kebutuhan dan sumbernya → Tinjau hasil: cari masalah yang paling penting → Beri masukan: sebutkan perubahan secara spesifik → Minta revisi: minta AI menerapkan arahanmu → Periksa ulang: pastikan klaimnya didukung
 
-**Pembahasan:** Tulis prompt → Tinjau hasil → Beri masukan → Minta revisi → Periksa ulang. Langkah terakhir penting karena kamu perlu memastikan fakta, sumber, dan formatnya masih benar setelah revisi.
+**Pembahasan:** Tulis prompt → Tinjau hasil → Beri arahan → Minta revisi → Periksa ulang. Alur ini dimulai dari permintaan awal dan berakhir saat kamu memastikan hasilnya sudah layak dipakai.
 
 #### Penutup pelajaran
 

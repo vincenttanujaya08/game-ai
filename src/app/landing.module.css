@@ -786,7 +786,9 @@
   font-size: .92rem;
   font-weight: 780;
   text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
+.availableGameCopy a:hover { background: var(--teal); color: #fff; transform: translateY(-2px); }
 
 .comingGame {
   display: grid;
@@ -970,7 +972,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .primaryAction {
+  .primaryAction, .availableGameCopy a {
     transition: none;
   }
+  .availableGameCopy a:hover { transform: none; }
 }

@@ -3,7 +3,6 @@ import type {
   ArrangeActivity,
   EstimateActivity,
   PredictActivity,
-  PromptLabActivity,
   SpotActivity,
   Verdict,
 } from "./types";
@@ -16,15 +15,6 @@ import { isArrangeOrdering } from "./types";
 
 function unsolved(message: string): Verdict {
   return { solved: false, hits: [], misses: [], message };
-}
-
-export function compileCheck(pattern: string, flags = "iu"): RegExp | null {
-  try {
-    return new RegExp(pattern, flags);
-  } catch {
-    // Pattern rusak turun jadi "selalu belum terpenuhi", bukan layar putih.
-    return null;
-  }
 }
 
 function gradePredict(activity: PredictActivity, response: unknown): Verdict {
@@ -110,28 +100,6 @@ function gradeEstimate(activity: EstimateActivity, response: unknown): Verdict {
   };
 }
 
-function gradePromptLab(activity: PromptLabActivity, response: unknown): Verdict {
-  const text = typeof response === "string" ? response : "";
-  if (text.trim().length === 0) return unsolved("Tulis promptmu dulu.");
-  const hits: string[] = [];
-  const misses: string[] = [];
-  for (const check of activity.checks) {
-    const expression = compileCheck(check.pattern, check.flags);
-    if (expression?.test(text)) hits.push(check.id);
-    else misses.push(check.id);
-  }
-  const solved = misses.length === 0;
-  const firstMiss = activity.checks.find((check) => check.id === misses[0]);
-  return {
-    solved,
-    hits,
-    misses,
-    message: solved
-      ? "Promptmu sudah memenuhi semua syarat. Bandingkan contoh hasilnya di bawah."
-      : hits.length + " dari " + activity.checks.length + " syarat terpenuhi. " + (firstMiss?.hint ?? ""),
-  };
-}
-
 export function grade(activity: Activity, response: unknown): Verdict {
   switch (activity.kind) {
     case "predict":
@@ -142,7 +110,5 @@ export function grade(activity: Activity, response: unknown): Verdict {
       return gradeArrange(activity, response);
     case "estimate":
       return gradeEstimate(activity, response);
-    case "promptLab":
-      return gradePromptLab(activity, response);
   }
 }

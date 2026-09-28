@@ -3,7 +3,6 @@
 import { Arrange } from "./arrange";
 import { Estimate } from "./estimate";
 import { Predict } from "./predict";
-import { PromptLab } from "./prompt-lab";
 import { Spot } from "./spot";
 import type { Activity, Verdict } from "./types";
 
@@ -19,7 +18,5 @@ export function ActivityBlock({ activity, label, onAttempt }: Props) {
       return <Arrange activity={activity} label={label} onAttempt={onAttempt} />;
     case "estimate":
       return <Estimate activity={activity} label={label} onAttempt={onAttempt} />;
-    case "promptLab":
-      return <PromptLab activity={activity} label={label} onAttempt={onAttempt} />;
   }
 }

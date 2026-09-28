@@ -10,6 +10,7 @@ import { initialLearnProgress, loadProgress, type LearnProgress } from "./progre
 import styles from "./learn-hub.module.css";
 
 type ProgressMap = Record<CourseId, LearnProgress>;
+const visibleCourses = courseList.slice(0, 2);
 
 const initialMap = Object.fromEntries(
   courseList.map((course) => [course.id, initialLearnProgress]),
@@ -35,15 +36,15 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
       <section className={styles.intro} aria-labelledby="learn-hub-title">
         <div>
           <p>Ruang belajar</p>
-          <h1 id="learn-hub-title">Tiga jalur untuk memahami dan berkarya dengan AI.</h1>
+          <h1 id="learn-hub-title">Belajar AI, dari dasar sampai bikin sesuatu sendiri.</h1>
         </div>
         <p>
-          Mulai dari AI Fundamentals, pelajari Working with Generative AI, lalu coba
-          membangun ide dengan Vibe Coding.
+          Mulai dari mengenal cara kerja AI, belajar menggunakan Generative AI dengan lebih baik,
+          lalu mencoba mengubah ide menjadi aplikasi lewat Vibe Coding.
         </p>
       </section>
 
-      {courseList.map((course) => {
+      {visibleCourses.map((course) => {
         const total = course.stages.length;
         const completed = progressMap[course.id].completedStages.length;
         const label = completed === 0 ? "Belum dimulai" : completed + "/" + total + " selesai";
@@ -59,7 +60,9 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
             <div className={styles.courseBody}>
               <p className={styles.courseLabel}>Materi aktif</p>
               <h2 id={titleId}>{course.title}</h2>
-              <p>{course.hubSummary}</p>
+              <p>{course.id === "ai-fundamentals"
+                ? "Kenali cara kerja AI, apa yang bisa dan tidak bisa dilakukannya, serta kapan kamu perlu mengecek kembali hasil yang diberikan."
+                : "Belajar memberi instruksi yang lebih jelas, menilai jawaban AI, dan memperbaiki hasilnya supaya benar-benar sesuai dengan yang kamu butuhkan."}</p>
               <dl className={styles.courseMeta}>
                 <div><dt>{total}</dt><dd>Pelajaran</dd></div>
                 <div><dt>{practice.total}</dt><dd>Latihan</dd></div>
@@ -92,7 +95,7 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
 
       <footer className={shellStyles.siteFooter}>
         <span><strong>NUSA</strong> Lab</span>
-        <span>Belajar AI dengan pertimbangan.</span>
+        <span>Belajar AI. Coba sendiri. Bikin sesuatu.</span>
       </footer>
     </main>
   );

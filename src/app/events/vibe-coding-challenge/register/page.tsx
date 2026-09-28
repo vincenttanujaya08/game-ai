@@ -4,12 +4,13 @@ import { createClient } from "@/lib/supabase/server";
 import landing from "@/app/landing.module.css";
 import styles from "../event.module.css";
 import { registerChallenge } from "../actions";
+import { isChallengeOpen } from "../status";
 
 export const metadata = { title: "Daftar Vibe Coding Challenge · NUSA Lab" };
 
 export default async function RegisterPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {
   const { status } = await searchParams;
-  const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+  const configured = isChallengeOpen && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
   const supabase = configured ? await createClient() : null;
   const user = supabase ? (await supabase.auth.getUser()).data.user : null;
   const { data: saved } = user ? await supabase!.from("event_registrations").select("name,university")
@@ -21,7 +22,8 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
       <Link className={styles.back} href="/events/vibe-coding-challenge">← Vibe Coding Challenge</Link>
       <h1>Daftar challenge.</h1>
       <p className={styles.formLead}>Daftarkan dirimu dengan akun Google. Setelah itu, kamu bisa mengirim atau memperbarui project dari halaman submit.</p>
-      {!configured ? <p className={styles.notice} data-error="true">Pendaftaran belum tersedia karena login Google dan database belum dikonfigurasi.</p>
+      {!isChallengeOpen ? <p className={styles.notice} role="status">Coming Soon. Pendaftaran akan dibuka saat event dimulai.</p>
+        : !configured ? <p className={styles.notice} data-error="true">Pendaftaran belum tersedia karena login Google dan database belum dikonfigurasi.</p>
         : !user ? <p className={styles.notice}><Link href="/login?mode=signin&next=%2Fevents%2Fvibe-coding-challenge%2Fregister">Sign in</Link> atau <Link href="/login?mode=signup&next=%2Fevents%2Fvibe-coding-challenge%2Fregister">Sign up</Link> dengan Google untuk melanjutkan.</p>
           : <>
             {(status === "saved" || (saved && status !== "invalid" && status !== "error")) ? <p className={styles.notice} role="status">Pendaftaranmu tersimpan. Kamu bisa memperbarui data di bawah atau <Link href="/events/vibe-coding-challenge/submit">mengirim project →</Link></p> : null}

@@ -4,8 +4,6 @@
  * baru melihat alasannya.
  */
 
-export type ActivityKind = "predict" | "spot" | "arrange" | "estimate" | "promptLab";
-
 /** Pilih satu jawaban, lalu lihat alasan tiap pilihan. */
 export type PredictActivity = {
   kind: "predict";
@@ -57,25 +55,11 @@ export type EstimateActivity = {
   source?: { label: string; url: string };
 };
 
-/**
- * Tulis ulang sebuah prompt sampai memenuhi beberapa syarat. Syaratnya berupa
- * regex yang ditulis sebagai data; tidak ada panggilan model di sini.
- */
-export type PromptLabActivity = {
-  kind: "promptLab";
-  task: string;
-  startPrompt: string;
-  checks: { id: string; label: string; pattern: string; flags?: string; hint: string }[];
-  /** Contoh hasil sebelum dan sesudah, sebagai gambaran bukan janji. */
-  outputs: { weak: string; strong: string };
-};
-
 export type Activity =
   | PredictActivity
   | SpotActivity
   | ArrangeActivity
-  | EstimateActivity
-  | PromptLabActivity;
+  | EstimateActivity;
 
 /** Hasil satu percobaan. Dipakai UI untuk umpan balik dan progres untuk penguasaan. */
 export type Verdict = {

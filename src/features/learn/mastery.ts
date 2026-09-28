@@ -33,14 +33,10 @@ function questionOf(activity: Activity) {
       return activity.instruction;
     case "estimate":
       return activity.question;
-    case "promptLab":
-      return activity.task;
   }
 }
 
-function reasonOf(activity: Activity) {
-  return activity.kind === "promptLab" ? activity.outputs.strong : activity.reveal;
-}
+function reasonOf(activity: Activity) { return activity.reveal; }
 
 /** Semua latihan dalam satu pelajaran, berurutan sesuai bacaan. */
 export function lessonPractices(course: CourseConfig, stageIndex: number): PracticeRef[] {

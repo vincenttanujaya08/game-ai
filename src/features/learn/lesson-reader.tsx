@@ -18,8 +18,8 @@ import styles from "./fundamentals-reader.module.css";
 const activityBlockIndex = 0;
 const checkActivityIndex = 1;
 
-/** Berapa kali latihan harus dicoba sebelum jalan keluar ditawarkan. */
-const triesBeforeSkip = 2;
+/** Tampilkan pilihan skip setelah jawaban pertama dicoba, benar ataupun salah. */
+const triesBeforeSkip = 1;
 
 export function LessonReader({ course: courseId }: { course: CourseId }) {
   const course = courses[courseId];

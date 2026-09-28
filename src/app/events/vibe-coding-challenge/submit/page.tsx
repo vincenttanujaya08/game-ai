@@ -4,12 +4,13 @@ import { createClient } from "@/lib/supabase/server";
 import landing from "@/app/landing.module.css";
 import styles from "../event.module.css";
 import { submitChallenge } from "../actions";
+import { isChallengeOpen } from "../status";
 
 export const metadata = { title: "Kirim Project Vibe Coding Challenge · NUSA Lab" };
 
 export default async function SubmitPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {
   const { status } = await searchParams;
-  const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+  const configured = isChallengeOpen && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
   const supabase = configured ? await createClient() : null;
   const user = supabase ? (await supabase.auth.getUser()).data.user : null;
   const { data: registered } = user ? await supabase!.from("event_registrations").select("user_id")
@@ -24,7 +25,8 @@ export default async function SubmitPage({ searchParams }: { searchParams: Promi
       <Link className={styles.back} href="/events/vibe-coding-challenge">← Vibe Coding Challenge</Link>
       <h1>Kirim projectmu.</h1>
       <p className={styles.formLead}>Bagikan repository dan rekaman video projectmu. Jelaskan kebutuhan, proses, dan keputusan teknis di README GitHub. Kamu bisa memperbarui kirimanmu dari akun yang sama.</p>
-      {!configured ? <p className={styles.notice} data-error="true">Submit belum tersedia karena login Google dan database belum dikonfigurasi.</p>
+      {!isChallengeOpen ? <p className={styles.notice} role="status">Coming Soon. Pengumpulan project akan dibuka saat periode challenge dimulai.</p>
+        : !configured ? <p className={styles.notice} data-error="true">Submit belum tersedia karena login Google dan database belum dikonfigurasi.</p>
         : !user ? <p className={styles.notice}><Link href="/login?mode=signin&next=%2Fevents%2Fvibe-coding-challenge%2Fsubmit">Sign in</Link> atau <Link href="/login?mode=signup&next=%2Fevents%2Fvibe-coding-challenge%2Fsubmit">Sign up</Link> dengan Google untuk melanjutkan.</p>
           : !registered ? <p className={styles.notice}>Kamu perlu mendaftar lebih dulu. <Link href="/events/vibe-coding-challenge/register">Buka pendaftaran →</Link></p>
             : <>

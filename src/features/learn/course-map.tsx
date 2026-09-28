@@ -144,7 +144,7 @@ export default function CourseMap({ course: courseId, isAuthenticated }: { cours
               const isUnlocked = ready && assessmentReady && index <= progress.unlockedStage;
               const state = isCompleted ? "completed" : isUnlocked ? "current" : "locked";
               return (
-                <button key={stage.id} type="button" className={styles.lessonRow} data-state={state} disabled={!isUnlocked} onClick={() => openStage(index)} aria-label={stage.title + ", " + (state === "locked" ? "terkunci" : isCompleted ? "baca lagi" : "siap dibaca")}>
+                <button key={stage.id} type="button" className={styles.lessonRow} data-reveal-on-scroll data-state={state} disabled={!isUnlocked} onClick={() => openStage(index)} aria-label={stage.title + ", " + (state === "locked" ? "terkunci" : isCompleted ? "baca lagi" : "siap dibaca")}>
                   <span className={styles.lessonNumber}>{isCompleted ? "✓" : String(index + 1).padStart(2, "0")}</span>
                   <span className={styles.lessonCopy}>
                     <small>{stage.area}{lessonMastery[index].solved > 0 ? " · " + lessonMastery[index].solved + "/" + lessonMastery[index].total + " latihan" : ""}</small>

@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { courseList } from "../courses";
-import { compileCheck } from "./grade";
 import { isArrangeOrdering, type Activity } from "./types";
 
 /** Semua blok latihan yang ditulis di data ketiga kursus. */
@@ -72,24 +71,10 @@ describe("data blok latihan", () => {
             expect(activity.tolerance * 2).toBeLessThan((activity.max - activity.min) * 0.6);
             break;
           }
-          case "promptLab": {
-            expect(activity.checks.length).toBeGreaterThan(0);
-            expect(new Set(activity.checks.map((check) => check.id)).size).toBe(activity.checks.length);
-            activity.checks.forEach((check) => {
-              expect(compileCheck(check.pattern, check.flags), check.id).not.toBeNull();
-              expect(check.hint.trim().length).toBeGreaterThan(0);
-            });
-            break;
-          }
         }
       });
 
       it("punya kalimat penutup yang menjelaskan alasannya", () => {
-        if (activity.kind === "promptLab") {
-          expect(activity.outputs.weak.trim().length).toBeGreaterThan(0);
-          expect(activity.outputs.strong.trim().length).toBeGreaterThan(0);
-          return;
-        }
         expect(activity.reveal.trim().length).toBeGreaterThan(20);
       });
     });

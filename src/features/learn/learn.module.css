@@ -45,7 +45,7 @@
 .progress i { display: block; height: 100%; background: var(--teal); transition: width .25s ease; }
 .lessonList { position: relative; margin-top: 40px; border-top: 1px solid var(--line); }
 .lessonList::before { position: absolute; top: 50px; bottom: 50px; left: 35px; width: 1px; background: #b8d2d1; content: ""; }
-.lessonRow { position: relative; display: grid; width: 100%; min-height: 155px; padding: 22px 16px; grid-template-columns: 72px minmax(0, 1fr) 170px; align-items: center; gap: 24px; border: 0; border-bottom: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; text-align: left; }
+.lessonRow { position: relative; display: grid; width: 100%; min-height: 155px; padding: 22px 16px; grid-template-columns: 72px minmax(0, 1fr) 170px; align-items: center; gap: 24px; border: 0; border-bottom: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; text-align: left; transition: background-color 200ms ease; }
 .lessonRow[data-state="current"] { background: #f0f8f7; }
 .lessonRow[data-state="locked"] { cursor: not-allowed; }
 .lessonRow:not(:disabled):hover { background: #e9f4f2; }
@@ -56,7 +56,8 @@
 .lessonCopy strong { font-size: clamp(1.25rem, 2vw, 1.6rem); letter-spacing: -.035em; }
 .lessonCopy > span { max-width: 730px; color: var(--muted); font-size: .87rem; line-height: 1.55; }
 .lessonAction { display: flex; justify-content: space-between; gap: 12px; align-items: center; color: var(--teal-dark); font-size: .83rem; font-weight: 800; }
-.lessonAction i { font-size: 1.35rem; font-style: normal; font-weight: 400; }
+.lessonAction i { font-size: 1.35rem; font-style: normal; font-weight: 400; transition: transform 200ms ease; }
+.lessonRow:not(:disabled):is(:hover, :focus-visible) .lessonAction i { transform: translateX(5px); }
 .lessonRow[data-state="locked"] .lessonAction { color: #789098; }
 .footnote { margin: 24px 0 0 96px; color: var(--muted); font-size: .83rem; }
 @media (max-width: 800px) {
@@ -80,4 +81,7 @@
   .lessonAction { grid-column: 2; margin-top: 6px; justify-content: flex-start; }
   .footnote { margin-left: 64px; }
 }
-@media (prefers-reduced-motion: reduce) { .progress i { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .progress i, .lessonRow, .lessonAction i { transition: none; }
+  .lessonRow:not(:disabled):is(:hover, :focus-visible) .lessonAction i { transform: none; }
+}

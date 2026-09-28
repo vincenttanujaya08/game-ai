@@ -1,4 +1,3 @@
-import Link from "next/link";
 import NusaHeader from "@/app/nusa-header";
 import landing from "@/app/landing.module.css";
 import styles from "./events.module.css";
@@ -15,23 +14,23 @@ export default function EventsPage() {
       <section className={styles.intro} aria-labelledby="events-title">
         <p>EVENT NUSA LAB</p>
         <h1 id="events-title">Belajar bareng.<br />Buat sesuatu.</h1>
-        <span>Di sini kamu bisa menemukan acara NUSA Lab. Buka event yang menarik buatmu untuk melihat detail, mendaftar, dan mengirim karya.</span>
+        <span>Di sini kamu bisa menemukan acara NUSA Lab dan melihat detail kegiatan yang akan datang.</span>
       </section>
 
       <section className={styles.list} aria-label="Daftar event">
-        <Link className={styles.event} href="/events/vibe-coding-challenge">
+        <article className={styles.event} aria-label="Vibe Coding Challenge, Coming Soon">
           <div className={styles.eventCopy}>
-            <span className={styles.label}>Tantangan · Tanggal akan diumumkan</span>
+            <span className={styles.label}>EVENT NUSA LAB · COMING SOON</span>
             <h2>Vibe Coding Challenge</h2>
-            <p>Punya ide untuk mempermudah kehidupan mahasiswa? Wujudkan menjadi aplikasi yang bisa dicoba orang lain dalam tujuh hari, dengan bantuan coding agent.</p>
-            <span className={styles.eventAction}>Lihat detail event <span aria-hidden="true">↗</span></span>
+            <p>Punya ide? Coba wujudkan dalam 7 hari. Buat aplikasi sederhana untuk membantu menyelesaikan masalah mahasiswa.</p>
+            <span className={styles.eventAction} aria-disabled="true">Coming Soon</span>
           </div>
           <div className={styles.poster} aria-hidden="true">
-            <span>BUILD SOMETHING USEFUL</span>
+            <span>COMING SOON</span>
             <strong>07</strong>
-            <span>HARI UNTUK MEMBUAT &amp; MENGIRIM</span>
+            <span>HARI UNTUK MEMBUAT PROJECT</span>
           </div>
-        </Link>
+        </article>
       </section>
     </div>
     <footer className={landing.siteFooter}><span><strong>NUSA</strong> Lab</span><span>Literasi AI untuk generasi muda Indonesia.</span></footer>

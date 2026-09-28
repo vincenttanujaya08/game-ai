@@ -42,14 +42,18 @@ export function MaterialBody({ markdown, presentation }: { markdown: string; pre
   const blocks = markdown.split(/\n\s*\n/).filter(Boolean);
   return <div className={styles.materialBody}>
     {blocks.map((block, index) => {
-      const image = /^!\[([^\]]+)\]\(([^)]+)\)$/.exec(block);
-      if (image) {
-        const src = image[2].replace(/^\.\.\/public/, "");
-        const visual = presentation.visual && presentation.visual.layout !== "diagram"
-          ? presentation.visual.items.find((item) => item.src === src) : undefined;
-        return <figure className={styles.materialImage} key={index}>
-          <Image src={src} alt={image[1]} width={visual?.width ?? 960} height={visual?.height ?? 640} sizes="(max-width: 760px) 100vw, 760px" />
-        </figure>;
+      const imagePattern = /!\[([^\]]+)\]\(([^)]+)\)/g;
+      const images = [...block.matchAll(imagePattern)];
+      if (images.length && block.replace(imagePattern, "").trim() === "") {
+        const rendered = images.map((image) => {
+          const src = image[2].replace(/^\.\.\/public/, "");
+          const visual = presentation.visual && presentation.visual.layout !== "diagram"
+            ? presentation.visual.items.find((item) => item.src === src) : undefined;
+          return <Image key={src} src={src} alt={image[1]} width={visual?.width ?? 960} height={visual?.height ?? 640} sizes="(max-width: 760px) 50vw, 390px" />;
+        });
+        return images.length > 1
+          ? <div className={styles.materialImageRow} key={index}>{rendered}</div>
+          : <figure className={styles.materialImage} key={index}>{rendered}</figure>;
       }
       const lines = block.split("\n");
       if (lines.every((line) => line.startsWith("- "))) {

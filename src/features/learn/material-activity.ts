@@ -62,11 +62,5 @@ export function materialActivity(activity: Activity | undefined, text: string): 
     }
     return { ...activity, instruction: first, items, buckets, hint, answer, reveal: reveal ?? activity.reveal };
   }
-  const checks = [...text.matchAll(/^- (.+?) — (.+?) \(pola pemeriksaan: `(.+?)`(?:; opsi `(.+?)`)?\)$/gm)];
-  return { ...activity, task: first, startPrompt: value(text, "Prompt awal") ?? activity.startPrompt,
-    checks: checks.length === activity.checks.length ? activity.checks.map((check, index) => ({ ...check,
-      label: checks[index][1], hint: checks[index][2], pattern: checks[index][3], flags: checks[index][4],
-    })) : activity.checks,
-    outputs: { weak: value(text, "Contoh hasil sebelum perbaikan") ?? activity.outputs.weak,
-      strong: value(text, "Contoh hasil setelah perbaikan") ?? activity.outputs.strong } };
+  return activity;
 }
