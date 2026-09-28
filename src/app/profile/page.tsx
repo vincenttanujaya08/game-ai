@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import NusaHeader from "@/app/nusa-header";
 import landing from "@/app/landing.module.css";
 import { courseList } from "@/features/learn/courses";
-import { normalizeProgress } from "@/features/learn/progress";
+import { applyPostTestCompletion, normalizeProgress } from "@/features/learn/progress";
 import { displayName } from "@/lib/auth/display-name";
 import { createClient } from "@/lib/supabase/server";
 import styles from "./profile.module.css";
@@ -16,8 +16,14 @@ export default async function ProfilePage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/profile");
 
-  const [{ data: rows, error: courseError }, { data: game, error: gameError }, { data: camera, error: cameraError }] = await Promise.all([
+  const [
+    { data: rows, error: courseError },
+    { data: assessments, error: assessmentError },
+    { data: game, error: gameError },
+    { data: camera, error: cameraError },
+  ] = await Promise.all([
     supabase.from("course_progress").select("course_id,progress").eq("user_id", user.id),
+    supabase.from("course_assessments").select("course_id,post_test_completed_at").eq("user_id", user.id),
     supabase.from("game_sessions").select("snapshot").eq("user_id", user.id).eq("id", "demo").maybeSingle(),
     supabase.from("game_progress").select("completed").eq("user_id", user.id).eq("game_id", "kamera-rusak").maybeSingle(),
   ]);
@@ -35,15 +41,17 @@ export default async function ProfilePage() {
         <p className={styles.email}>{user.email}</p>
       </header>
 
-      {(courseError || gameError || cameraError) && <p className={styles.error} role="alert">Sebagian progres belum bisa dimuat. Coba buka ulang halaman ini.</p>}
+      {(courseError || assessmentError || gameError || cameraError) && <p className={styles.error} role="alert">Sebagian progres belum bisa dimuat. Coba buka ulang halaman ini.</p>}
 
       <section className={styles.section} aria-labelledby="courses-title">
-        <div className={styles.sectionHeading}><h2 id="courses-title">Kelas</h2><p>Pilih kelas untuk melanjutkan belajar.</p></div>
+        <div className={styles.sectionHeading}><h2 id="courses-title">Kelas</h2><p>Sertifikat penyelesaian menyusul setelah kelas dan post-test tuntas.</p></div>
         <ul className={styles.list}>{courseList.map((course) => {
           const row = rows?.find((item) => item.course_id === course.id);
-          const progress = normalizeProgress(row?.progress, course);
+          const assessment = assessments?.find((item) => item.course_id === course.id);
+          const progress = applyPostTestCompletion(normalizeProgress(row?.progress, course), course, Boolean(assessment?.post_test_completed_at));
+          const complete = progress.completedStages.length === course.stages.length;
           return <li key={course.id}>
-            <Link href={course.path}><strong>{course.title}</strong><span>{courseError ? "Progres tidak tersedia" : `${progress.completedStages.length} dari ${course.stages.length} pelajaran selesai`}</span><span className={styles.arrow} aria-hidden="true">→</span></Link>
+            <Link href={course.path}><strong>{course.title}</strong><span>{courseError || assessmentError ? "Progres tidak tersedia" : complete ? "Sertifikat menyusul" : `${progress.completedStages.length} dari ${course.stages.length} pelajaran selesai`}</span><span className={styles.arrow} aria-hidden="true">→</span></Link>
           </li>;
         })}</ul>
       </section>
