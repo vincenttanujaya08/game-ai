@@ -15,7 +15,7 @@ const initialMap = Object.fromEntries(
   courseList.map((course) => [course.id, initialLearnProgress]),
 ) as ProgressMap;
 
-export default function LearnHub() {
+export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean }) {
   const [progressMap, setProgressMap] = useState<ProgressMap>(initialMap);
   const [loadError, setLoadError] = useState(false);
 
@@ -81,8 +81,8 @@ export default function LearnHub() {
                   />
                 ))}
               </div>
-              <Link href={course.path} aria-label={"Buka materi " + course.title}>
-                {completed === 0 ? "Mulai belajar" : "Lanjutkan"}
+              <Link href={isAuthenticated ? course.path : `/login?next=${encodeURIComponent(course.path)}`} aria-label={"Buka materi " + course.title}>
+                {isAuthenticated ? (completed === 0 ? "Mulai belajar" : "Lanjutkan") : "Sign in untuk belajar"}
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

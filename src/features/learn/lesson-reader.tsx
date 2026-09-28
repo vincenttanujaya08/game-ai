@@ -10,6 +10,7 @@ import { initialCheckState, isCheckSettled, type CheckState } from "./lesson-che
 import { LessonMobileIndex, LessonRail } from "./lesson-rail";
 import { LessonSection } from "./lesson-section";
 import { lessonPractices, masteryOf } from "./mastery";
+import { loadAssessmentStatus } from "./assessment-status";
 import { attemptKey, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
 import styles from "./fundamentals-reader.module.css";
 
@@ -32,14 +33,15 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
   /** Latihan yang sengaja dilewati pembaca pada sesi ini. */
   const [skipped, setSkipped] = useState<string[]>([]);
   const [finished, setFinished] = useState(false);
+  const [postTestCompleted, setPostTestCompleted] = useState(false);
   const progressRef = useRef<LearnProgress>(initialLearnProgress);
   const contentRef = useRef<HTMLElement>(null);
   const mobileIndexRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     let cancelled = false;
-    void loadProgress(course).then((value) => {
-      if (!cancelled) { progressRef.current = value; setProgress(value); setReady(true); }
+    void Promise.all([loadProgress(course), loadAssessmentStatus(course.id)]).then(([value, assessment]) => {
+      if (!cancelled) { progressRef.current = value; setProgress(value); setPostTestCompleted(assessment.postTestCompleted); setReady(true); }
     }).catch(() => { if (!cancelled) setLoadError(true); });
     return () => { cancelled = true; };
   }, [course]);
@@ -154,13 +156,18 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
 
   function completeLesson() {
     if (!canCompleteLesson) return;
+    if (stageIndex === stages.length - 1) {
+      setFinished(true);
+      scrollToContent();
+      return;
+    }
     const completedStages = progress.completedStages.includes(stageIndex)
       ? progress.completedStages
       : [...progress.completedStages, stageIndex].sort((a, b) => a - b);
     const nextIndex = Math.min(stageIndex + 1, stages.length - 1);
     setCheckState(initialCheckState);
     setSelectedPanelItem(0);
-    setFinished(stageIndex === stages.length - 1);
+    setFinished(false);
     commit({
       ...progress,
       completedStages,
@@ -212,7 +219,7 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
         </div>
 
         {loadError ? <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p> : !ready ? <p className={styles.loading}>Menyiapkan pelajaran…</p> : finished ? (
-          <LessonFinish course={course} progress={progress} onReview={reviewSection} />
+          <LessonFinish course={course} progress={progress} postTestCompleted={postTestCompleted} onReview={reviewSection} />
         ) : (
           <>
             <header className={styles.lessonHeader}>

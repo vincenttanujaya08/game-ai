@@ -90,6 +90,15 @@ export function normalizeProgress(value: unknown, course: CourseConfig): LearnPr
   }
 }
 
+/** Kelas baru tuntas jika semua pelajaran sebelumnya selesai dan post-test tersimpan di server. */
+export function applyPostTestCompletion(progress: LearnProgress, course: CourseConfig, postTestCompleted: boolean) {
+  const finalStage = course.stages.length - 1;
+  const completedStages = progress.completedStages.filter((index) => index !== finalStage);
+  const earlierLessonsComplete = course.stages.slice(0, -1).every((_, index) => completedStages.includes(index));
+  if (postTestCompleted && earlierLessonsComplete) completedStages.push(finalStage);
+  return normalizeProgress({ ...progress, completedStages }, course);
+}
+
 export function readProgress(course: CourseConfig): LearnProgress {
   if (typeof window === "undefined") return initialLearnProgress;
   try { return normalizeProgress(JSON.parse(localStorage.getItem(course.progressKey) ?? "null"), course); }

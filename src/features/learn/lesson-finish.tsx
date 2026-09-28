@@ -4,9 +4,9 @@ import { coursePractices, masteryOf } from "./mastery";
 import type { LearnProgress } from "./progress";
 import styles from "./fundamentals-reader.module.css";
 
-type Props = { course: CourseConfig; progress: LearnProgress; onReview: (stageIndex: number, sectionIndex: number) => void };
+type Props = { course: CourseConfig; progress: LearnProgress; postTestCompleted: boolean; onReview: (stageIndex: number, sectionIndex: number) => void };
 
-export function LessonFinish({ course, progress, onReview }: Props) {
+export function LessonFinish({ course, progress, postTestCompleted, onReview }: Props) {
   const total = course.stages.length;
   const practices = coursePractices(course);
   const mastery = masteryOf(progress, practices);
@@ -14,9 +14,9 @@ export function LessonFinish({ course, progress, onReview }: Props) {
 
   return (
     <section className={styles.finish}>
-      <span className={styles.eyebrow}>{total} / {total} PELAJARAN SELESAI</span>
-      <h1>{course.finish.title}</h1>
-      <p>{course.finish.body}</p>
+      <span className={styles.eyebrow}>{total} / {total} {postTestCompleted ? "KELAS SELESAI" : "MATERI DIBACA"}</span>
+      <h1>{postTestCompleted ? course.finish.title : "Materi kelas sudah kamu baca."}</h1>
+      <p>{postTestCompleted ? course.finish.body : "Tinggal satu langkah: kirim post-test singkat untuk menutup kelas. Jawaban terbukamu menjadi refleksi, bukan nilai otomatis."}</p>
 
       {attempted.length > 0 ? (
         <div className={styles.journal}>
@@ -45,7 +45,9 @@ export function LessonFinish({ course, progress, onReview }: Props) {
         </div>
       ) : null}
 
-      <Link href={course.finish.cta.href}>{course.finish.cta.label}</Link>
+      {postTestCompleted
+        ? <Link href={course.finish.cta.href}>{course.finish.cta.label}</Link>
+        : <Link href={`${course.path}/assessment?kind=post`}>Kerjakan post-test →</Link>}
     </section>
   );
 }

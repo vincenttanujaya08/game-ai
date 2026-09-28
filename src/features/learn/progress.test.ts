@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { courses } from "./courses";
-import { attemptKey, initialLearnProgress, lessonMastery, loadProgress, readProgress, saveProgress, type LearnProgress } from "./progress";
+import { assessments } from "./assessments";
+import { applyPostTestCompletion, attemptKey, initialLearnProgress, lessonMastery, loadProgress, readProgress, saveProgress, type LearnProgress } from "./progress";
 
 const course = courses["ai-fundamentals"];
 const stageCount = course.stages.length;
@@ -160,5 +161,29 @@ describe("lessonMastery", () => {
       },
     };
     expect(lessonMastery(progress, ["0-0-0", "0-1-0", "0-2-0"])).toEqual({ solved: 2, firstTry: 1, total: 3 });
+  });
+});
+
+describe("applyPostTestCompletion", () => {
+  it("does not count the final lesson until the post-test is submitted", () => {
+    const finalStage = stageCount - 1;
+    const progress = { ...initialLearnProgress, completedStages: Array.from({ length: stageCount }, (_, index) => index) };
+    expect(applyPostTestCompletion(progress, course, false).completedStages).not.toContain(finalStage);
+    expect(applyPostTestCompletion(progress, course, true).completedStages).toContain(finalStage);
+  });
+});
+
+describe("assessment question counts", () => {
+  it("keeps five prompts per pre-test and post-test in every course", () => {
+    for (const assessment of Object.values(assessments)) {
+      expect(assessment.pre).toHaveLength(5);
+      expect(assessment.post).toHaveLength(4);
+      expect(assessment.post.length + 1).toBe(5);
+      for (const question of [...assessment.pre, ...assessment.post]) {
+        expect(question.choices).toHaveLength(3);
+        expect(question.answer).toBeGreaterThanOrEqual(0);
+        expect(question.answer).toBeLessThan(question.choices.length);
+      }
+    }
   });
 });

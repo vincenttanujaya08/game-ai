@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { courses, type CourseId } from "@/features/learn/courses";
-import { initialLearnProgress, normalizeProgress } from "@/features/learn/progress";
+import { applyPostTestCompletion, initialLearnProgress, normalizeProgress } from "@/features/learn/progress";
 import { createClient } from "@/lib/supabase/server";
 
 type Context = { params: Promise<{ course: string }> };
@@ -25,7 +25,15 @@ export async function GET(_request: NextRequest, context: Context) {
   const { data: row, error } = await data.supabase.from("course_progress")
     .select("progress").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle();
   if (error) return NextResponse.json({ error: "LOAD_FAILED" }, { status: 500 });
-  return NextResponse.json({ progress: row ? normalizeProgress(row.progress, data.course) : initialLearnProgress });
+  const { data: assessment, error: assessmentError } = await data.supabase.from("course_assessments")
+    .select("post_test_completed_at").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle();
+  if (assessmentError) return NextResponse.json({ error: "ASSESSMENT_LOAD_FAILED" }, { status: 500 });
+  const progress = applyPostTestCompletion(
+    row ? normalizeProgress(row.progress, data.course) : initialLearnProgress,
+    data.course,
+    Boolean(assessment?.post_test_completed_at),
+  );
+  return NextResponse.json({ progress });
 }
 
 export async function PUT(request: NextRequest, context: Context) {
@@ -40,7 +48,11 @@ export async function PUT(request: NextRequest, context: Context) {
   if (!raw || typeof raw !== "object" || JSON.stringify(raw).length > 25000) {
     return NextResponse.json({ error: "INVALID_PROGRESS" }, { status: 400 });
   }
-  const progress = normalizeProgress(raw, data.course);
+  let progress = normalizeProgress(raw, data.course);
+  const { data: assessment, error: assessmentError } = await data.supabase.from("course_assessments")
+    .select("post_test_completed_at").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle();
+  if (assessmentError) return NextResponse.json({ error: "ASSESSMENT_LOAD_FAILED" }, { status: 500 });
+  progress = applyPostTestCompletion(progress, data.course, Boolean(assessment?.post_test_completed_at));
   const { error } = await data.supabase.from("course_progress").upsert({
     user_id: data.user.id, course_id: data.course.id, progress, updated_at: new Date().toISOString(),
   }, { onConflict: "user_id,course_id" });

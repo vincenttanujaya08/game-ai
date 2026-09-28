@@ -7,15 +7,19 @@ import { useEffect, useState } from "react";
 import NusaHeader from "../../app/nusa-header";
 import { courses, type CourseId } from "./courses";
 import { coursePractices, lessonPractices, masteryOf } from "./mastery";
+import { loadAssessmentStatus } from "./assessment-status";
 import { completedCount, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
 import styles from "./learn.module.css";
 
-export default function CourseMap({ course: courseId }: { course: CourseId }) {
+export default function CourseMap({ course: courseId, isAuthenticated }: { course: CourseId; isAuthenticated: boolean }) {
   const course = courses[courseId];
   const { stages, hero } = course;
   const router = useRouter();
   const [progress, setProgress] = useState<LearnProgress>(initialLearnProgress);
   const [ready, setReady] = useState(false);
+  const [preTestCompleted, setPreTestCompleted] = useState(false);
+  const [assessmentReady, setAssessmentReady] = useState(!isAuthenticated);
+  const [assessmentError, setAssessmentError] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [saveError, setSaveError] = useState(false);
 
@@ -26,6 +30,15 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
     }).catch(() => { if (!cancelled) setLoadError(true); });
     return () => { cancelled = true; };
   }, [course]);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    let cancelled = false;
+    void loadAssessmentStatus(courseId).then((value) => {
+      if (!cancelled) { setPreTestCompleted(value.preTestCompleted); setAssessmentReady(true); }
+    }).catch(() => { if (!cancelled) setAssessmentError(true); });
+    return () => { cancelled = true; };
+  }, [courseId, isAuthenticated]);
 
   useEffect(() => {
     const onError = () => setSaveError(true);
@@ -39,7 +52,15 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
   }, []);
 
   function openStage(index: number) {
-    if (!ready || index > progress.unlockedStage) return;
+    if (!ready || !assessmentReady || index > progress.unlockedStage) return;
+    if (!isAuthenticated) {
+      router.push(`/login?next=${encodeURIComponent(course.lessonPath)}`);
+      return;
+    }
+    if (!preTestCompleted) {
+      router.push(`${course.path}/assessment?kind=pre`);
+      return;
+    }
     const next = { ...progress, activeStage: index, sectionIndex: index === progress.activeStage ? progress.sectionIndex : 0 };
     saveProgress(next, course);
     setProgress(next);
@@ -57,6 +78,7 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
       <div className={styles.wrap}>
         {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course)}>Coba simpan lagi</button></p>}
         {loadError && <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p>}
+        {assessmentError && <p role="alert">Tes awal kelas belum bisa disiapkan. Periksa koneksi dan konfigurasi database, lalu muat ulang halaman.</p>}
         <Link href="/learn" className={styles.back}>← Semua kursus</Link>
         <section className={styles.hero} aria-labelledby="course-title">
           <div className={styles.heroCopy}>
@@ -119,7 +141,7 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
           <div className={styles.lessonList}>
             {stages.map((stage, index) => {
               const isCompleted = progress.completedStages.includes(index);
-              const isUnlocked = ready && index <= progress.unlockedStage;
+              const isUnlocked = ready && assessmentReady && index <= progress.unlockedStage;
               const state = isCompleted ? "completed" : isUnlocked ? "current" : "locked";
               return (
                 <button key={stage.id} type="button" className={styles.lessonRow} data-state={state} disabled={!isUnlocked} onClick={() => openStage(index)} aria-label={stage.title + ", " + (state === "locked" ? "terkunci" : isCompleted ? "baca lagi" : "siap dibaca")}>
@@ -134,7 +156,7 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
               );
             })}
           </div>
-          <p className={styles.footnote}>Pelan-pelan saja. Kamu bisa kembali ke bagian mana pun dalam pelajaran yang sudah terbuka.</p>
+          <p className={styles.footnote}>Saat mulai, kamu akan menjawab lima pertanyaan pemetaan awal. Tidak ada nilai minimum; setelah dikirim, materi langsung terbuka.</p>
         </section>
       </div>
     </main>
