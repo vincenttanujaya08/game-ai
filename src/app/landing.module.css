@@ -850,7 +850,7 @@
 
   .siteHeader {
     min-height: 64px;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto auto;
     row-gap: 10px;
     padding-block: 12px;
@@ -864,16 +864,18 @@
     grid-column: 1 / -1;
     grid-row: 2;
     justify-content: space-between;
-    gap: 20px;
+    gap: clamp(10px, 4vw, 20px);
   }
 
   .siteNav a {
     font-size: .77rem;
+    white-space: nowrap;
   }
 
   .headerNote {
     grid-column: 2;
     grid-row: 1;
+    white-space: nowrap;
   }
 
   .accountName { max-width: 120px; }
