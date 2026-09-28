@@ -12,20 +12,20 @@ export const moduleOneStages: LessonStage[] = [
     title: "AI Hari Ini",
     area: "Pelajaran 1 / 3",
     question: "Seberapa jauh kemampuan AI sekarang?",
-    intro: "Lihat AI di sains, kesehatan, dunia fisik, dan keseharian. Lalu pahami mengapa kemampuan besar tetap perlu diimbangi sikap hati-hati.",
+    intro: "Dari tugas kampus sampai jalan raya, AI sudah hadir di banyak tempat. Ikuti beberapa kisahnya, lalu cari tahu kapan kita perlu berhenti sejenak dan memeriksa hasilnya.",
   },
   {
     id: "what-is-ai",
     title: "Sebenarnya, Apa Itu AI?",
     area: "Pelajaran 2 / 3",
     question: "Apa yang membuat sebuah sistem disebut AI?",
-    intro: "Mulai dari otomatisasi, lalu kenali data, machine learning, deep learning, generative AI, dan alasan sebuah model bisa keliru.",
+    intro: "Sebuah alarm parkir dan pengenal foto sama-sama tampak pintar. Kita telusuri apa yang terjadi di balik keduanya, dari aturan sederhana sampai model yang belajar dari data.",
   },
   {
     id: "thinking-with-ai",
     title: "Berpikir di Era AI",
     area: "Pelajaran 3 / 3",
     question: "Bagaimana tetap bernilai dan memegang kendali?",
-    intro: "Pelajari perubahan tugas dalam pekerjaan, risiko terlalu percaya AI, dan cara memakai AI tanpa menyerahkan penilaianmu.",
+    intro: "Bayangkan AI membantu menyiapkan tugas atau pekerjaan pertamamu. Bagian mana yang boleh dipercepat, dan keputusan mana yang tetap perlu kamu pegang?",
   },
 ];

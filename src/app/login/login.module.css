@@ -1,0 +1,25 @@
+.login { display: grid; width: min(1040px, calc(100% - 64px)); min-height: calc(100dvh - 170px); grid-template-columns: minmax(0, 1fr) minmax(330px, .85fr); align-items: center; gap: clamp(44px, 8vw, 130px); margin: 0 auto; padding: 70px 0 100px; }
+.intro { max-width: 485px; }
+.eyebrow { margin: 0 0 20px; color: var(--teal-dark); font-size: .73rem; font-weight: 800; letter-spacing: .12em; }
+.intro h1 { margin: 0; color: var(--ink); font-size: clamp(3.2rem, 5vw, 5rem); font-weight: 750; letter-spacing: -.06em; line-height: .97; }
+.intro > p:last-child { margin: 26px 0 0; color: var(--muted); font-size: 1.06rem; line-height: 1.68; }
+.form { padding: 34px; border: 1px solid var(--line); background: var(--surface); }
+.tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--line); }
+.tabs a { position: relative; padding: 0 0 17px; color: var(--muted); font-size: .88rem; font-weight: 700; text-decoration: none; }
+.tabs a[aria-current="page"] { color: var(--ink); }
+.tabs a[aria-current="page"]::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; background: var(--teal); content: ""; }
+.form h2 { margin: 30px 0 8px; color: var(--ink); font-size: 1.75rem; letter-spacing: -.04em; }
+.form > p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.action { margin-top: 27px; }
+.action button { width: 100%; min-height: 52px; border: 0; border-radius: 4px; background: var(--teal); color: white; cursor: pointer; font: inherit; font-size: .92rem; font-weight: 750; }
+.action button:hover { background: var(--teal-dark); }
+.action button:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+.action button:disabled { cursor: wait; opacity: .7; }
+.action p { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.form .note { margin-top: 23px; padding-top: 19px; border-top: 1px solid var(--line); font-size: .78rem; }
+.form .error { margin-top: 16px; color: var(--coral); }
+@media (max-width: 760px) {
+  .login { width: min(100% - 32px, 620px); min-height: calc(100dvh - 170px); grid-template-columns: 1fr; gap: 36px; padding: 55px 0 75px; }
+  .intro h1 { font-size: clamp(2.8rem, 11vw, 4rem); }
+  .form { padding: 26px; }
+}

@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useReducer, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState, useSyncExternalStore } from "react";
 import { formatSisa } from "./budget";
 import { FinalScreen } from "./final-screen";
 import { rankCandidates } from "./game-logic";
 import { InvestigationScreen } from "./investigation-screen";
 import { ResultScreen } from "./result-screen";
 import { StartScreen } from "./start-screen";
-import { hapusRun, langgananRun, lupakanRun, runTersimpan, simpanRun } from "./persistence";
+import { bacaRun, hapusRun, langgananRun, lupakanRun, runTersimpan, simpanRun } from "./persistence";
+import { authConfigured } from "@/lib/supabase/client";
 import { initialState, reducer } from "./state";
 import { makeSummary, makeSynthesis } from "./summary";
 import { citationOptions, gradeFinal, keterbatasanPilihan } from "./verdict";
@@ -17,9 +18,49 @@ import { citationOptions, gradeFinal, keterbatasanPilihan } from "./verdict";
  * di modul .ts di sebelahnya, karena di sanalah ia bisa diuji.
  */
 export default function BrokenCameraGame() {
+  const cloudEnabled = authConfigured();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const tersimpan = useSyncExternalStore(langgananRun, () => runTersimpan(window.sessionStorage), () => null);
+  const tersimpan = useSyncExternalStore(langgananRun, () => cloudEnabled ? null : runTersimpan(window.sessionStorage), () => null);
+  const [remoteRun, setRemoteRun] = useState<ReturnType<typeof bacaRun>>(null);
+  const [remoteReady, setRemoteReady] = useState(!cloudEnabled);
+  const [cloudError, setCloudError] = useState(false);
+  const saveQueue = useRef<Promise<void>>(Promise.resolve());
   const { stage, interviewed, followedUp, decision, conclusion, citations, keterbatasan } = state;
+
+  const queueCloud = useCallback((method: "PUT" | "DELETE", body?: { state: unknown; completed: boolean }) => {
+    saveQueue.current = saveQueue.current.catch(() => {}).then(async () => {
+      const response = await fetch("/api/game-progress", {
+        method, headers: body ? { "content-type": "application/json" } : undefined,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      if (!response.ok) throw new Error("GAME_SAVE_FAILED");
+      setCloudError(false);
+    });
+    void saveQueue.current.catch(() => setCloudError(true));
+  }, []);
+
+  const saveCloudState = useCallback(() => {
+    let saved: string | null = null;
+    simpanRun({ getItem: () => null, setItem: (_key, value) => { saved = value; }, removeItem() {} }, state);
+    if (saved) queueCloud("PUT", { state: JSON.parse(saved), completed: state.stage === "hasil" });
+  }, [state, queueCloud]);
+
+  useEffect(() => {
+    if (!cloudEnabled) return;
+    let cancelled = false;
+    void fetch("/api/game-progress", { cache: "no-store" })
+      .then(async (response) => { if (!response.ok) throw new Error("GAME_LOAD_FAILED"); return response.json(); })
+      .then((data) => {
+        if (cancelled) return;
+        if (data.state) {
+          const saved = JSON.stringify(data.state);
+          setRemoteRun(bacaRun({ getItem: () => saved, setItem() {}, removeItem() {} }));
+        }
+        setRemoteReady(true);
+      })
+      .catch(() => { if (!cancelled) setCloudError(true); });
+    return () => { cancelled = true; };
+  }, [cloudEnabled]);
 
   const ranking = useMemo(() => rankCandidates(interviewed, followedUp), [interviewed, followedUp]);
   const summary = useMemo(() => makeSummary(ranking), [ranking]);
@@ -34,21 +75,30 @@ export default function BrokenCameraGame() {
   // mulai, bukan sebagai lompatan diam-diam ke tengah permainan.
   useEffect(() => {
     if (state.stage === "mulai") return;
-    simpanRun(window.sessionStorage, state);
-  }, [state]);
+    if (!cloudEnabled) { simpanRun(window.sessionStorage, state); return; }
+    saveCloudState();
+  }, [state, cloudEnabled, saveCloudState]);
+
+  if (!remoteReady) return <main className="case-state"><p>{cloudError ? "Progres game belum bisa dimuat. Muat ulang halaman untuk mencoba lagi." : "Memuat progres game…"}</p></main>;
+
+  const run = cloudEnabled ? remoteRun : tersimpan;
+  const saveNotice = cloudError ? <p role="alert">Progres game belum tersimpan. <button type="button" onClick={saveCloudState}>Coba simpan lagi</button></p> : null;
 
   if (stage === "mulai") {
-    return (
+    return (<>
+      {saveNotice}
       <StartScreen
-        lanjutan={tersimpan ? { wawancara: tersimpan.interviewed.length, sisa: formatSisa(tersimpan.terpakai) } : null}
+        lanjutan={run ? { wawancara: run.interviewed.length, sisa: formatSisa(run.terpakai) } : null}
         onStart={() => {
           hapusRun(window.sessionStorage);
           lupakanRun();
+          setRemoteRun(null);
+          if (cloudEnabled) queueCloud("DELETE");
           dispatch({ type: "mulai" });
         }}
-        onLanjut={() => { if (tersimpan) dispatch({ type: "pulihkan", state: tersimpan }); }}
+        onLanjut={() => { if (run) dispatch({ type: "pulihkan", state: run }); }}
       />
-    );
+    </>);
   }
 
   if (stage === "akhir") {
@@ -56,7 +106,8 @@ export default function BrokenCameraGame() {
     // dan bisa diuji, tetapi opsi yang berlaku tidak selalu berada di posisi pertama.
     const seed = interviewed.length * 7 + followedUp.length * 3;
 
-    return (
+    return (<>
+      {saveNotice}
       <FinalScreen
         summary={summary}
         ranking={ranking}
@@ -76,12 +127,13 @@ export default function BrokenCameraGame() {
         onBack={() => dispatch({ type: "kembaliKePenyelidikan" })}
         onSubmit={() => dispatch({ type: "simpanKeputusan" })}
       />
-    );
+    </>);
   }
 
   // Reducer hanya meloloskan tahap "hasil" kalau keduanya sudah terisi.
   if (stage === "hasil" && decision && conclusion) {
-    return (
+    return (<>
+      {saveNotice}
       <ResultScreen
         conclusion={conclusion}
         decision={decision}
@@ -102,11 +154,13 @@ export default function BrokenCameraGame() {
           // Main lagi dengan jalur berbeda memang harus benar-benar bersih.
           hapusRun(window.sessionStorage);
           lupakanRun();
+          setRemoteRun(null);
+          if (cloudEnabled) queueCloud("DELETE");
           dispatch({ type: "ulangi" });
         }}
       />
-    );
+    </>);
   }
 
-  return <InvestigationScreen state={state} ranking={ranking} synthesis={synthesis} dispatch={dispatch} />;
+  return <>{saveNotice}<InvestigationScreen state={state} ranking={ranking} synthesis={synthesis} dispatch={dispatch} /></>;
 }

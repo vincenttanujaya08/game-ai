@@ -371,11 +371,11 @@ textarea:focus-visible {
   }
 }
 @media (max-width: 1050px) {
-  header {
+  .app header {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  header > :nth-child(3),
-  header > :nth-child(4) {
+  .app header > :nth-child(3),
+  .app header > :nth-child(4) {
     display: none;
   }
   .workspace {
@@ -389,7 +389,7 @@ textarea:focus-visible {
   }
 }
 @media (max-width: 700px) {
-  header {
+  .app header {
     grid-template-columns: 1fr 1fr;
     height: auto;
     padding: 12px;

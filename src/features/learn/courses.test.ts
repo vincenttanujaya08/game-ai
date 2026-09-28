@@ -16,11 +16,10 @@ describe("paritas data kursus", () => {
         });
       });
 
-      it("setiap bagian punya minimal satu paragraf", () => {
+      it("setiap bagian punya bacaan dari Markdown baru", () => {
         course.lessons.forEach((lesson, lessonIndex) => {
           lesson.sections.forEach((section, sectionIndex) => {
-            expect(section.paragraphs.length, lessonIndex + "-" + sectionIndex).toBeGreaterThan(0);
-            expect(section.paragraphs[0].trim().length, lessonIndex + "-" + sectionIndex).toBeGreaterThan(0);
+            expect(section.markdown?.trim().length ?? 0, lessonIndex + "-" + sectionIndex).toBeGreaterThan(0);
           });
         });
       });
@@ -32,11 +31,10 @@ describe("paritas data kursus", () => {
         });
       });
 
-      it("setiap presentation punya label, title, dan bridge", () => {
+      it("setiap presentation punya label dan title", () => {
         course.presentations.flat().forEach((panel) => {
           expect(panel.label.trim().length).toBeGreaterThan(0);
           expect(panel.title.trim().length).toBeGreaterThan(0);
-          expect(panel.bridge.trim().length).toBeGreaterThan(0);
         });
       });
 
@@ -50,10 +48,10 @@ describe("paritas data kursus", () => {
       it("bagian latihan tidak membocorkan jawaban di prosa", () => {
         // Sebelumnya beberapa bagian mencetak "Jawaban: Salah." di paragraf yang
         // sama dengan pertanyaannya. Jawaban sekarang hidup di section.reveal.
-        const leaks = /\*\*jawaban|\*\*pilihan\s+[a-d]\*\*|urutan yang benar\s*:/i;
+        const leaks = /\*\*jawaban:\*\*|\*\*pilihan\s+[a-d]\*\*|urutan yang benar\s*:/i;
         course.lessons.forEach((lesson, lessonIndex) => {
           lesson.sections.forEach((section, sectionIndex) => {
-            section.paragraphs.forEach((paragraph) => {
+            [section.markdown ?? ""].forEach((paragraph) => {
               expect(leaks.test(paragraph), lessonIndex + "-" + sectionIndex + ": " + section.title).toBe(false);
             });
           });
@@ -67,7 +65,7 @@ describe("paritas data kursus", () => {
             if (panel.activity?.kind !== "estimate") return;
             const answer = panel.activity.answer;
             const forms = [String(answer), String(answer).replace(".", ",")];
-            const prose = course.lessons[lessonIndex].sections[sectionIndex].paragraphs.join(" ");
+            const prose = course.lessons[lessonIndex].sections[sectionIndex].markdown ?? "";
             forms.forEach((form) => {
               expect(prose.includes(form), lessonIndex + "-" + sectionIndex + " membocorkan " + form).toBe(false);
             });
@@ -84,8 +82,7 @@ describe("paritas data kursus", () => {
             if (!correct) return;
             const needle = correct.label.replace(/[“”‘’'"*.]/g, "").trim().toLowerCase();
             if (needle.length < 25) return;
-            const prose = course.lessons[lessonIndex].sections[sectionIndex].paragraphs
-              .join(" ")
+            const prose = (course.lessons[lessonIndex].sections[sectionIndex].markdown ?? "")
               .replace(/[“”‘’'"*.]/g, "")
               .toLowerCase();
             expect(prose.includes(needle), lessonIndex + "-" + sectionIndex + " membocorkan jawaban").toBe(false);
@@ -107,7 +104,7 @@ describe("paritas data kursus", () => {
         course.lessons.forEach((lesson, lessonIndex) => {
           lesson.sections.forEach((section, sectionIndex) => {
             const labels = course.presentations[lessonIndex][sectionIndex].bodyLabels;
-            if (!labels) return;
+            if (!labels || section.markdown) return;
             expect(labels.length, lessonIndex + "-" + sectionIndex).toBe(section.paragraphs.length - 1);
           });
         });

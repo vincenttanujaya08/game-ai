@@ -410,10 +410,11 @@
   color: var(--ink);
 }
 
+.buckets button:not(:disabled):active,
 .buckets button[aria-pressed="true"] {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: #fff;
+  border-color: var(--teal);
+  background: #eaf6f4;
+  color: var(--teal-dark);
 }
 
 .buckets button:disabled {

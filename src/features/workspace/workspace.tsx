@@ -137,8 +137,8 @@ export default function Workspace() {
       const data = await response.json();
       setSnapshot(data.snapshot);
       setScenario(data.scenario);
-      setReport(null);
-      setScreen("brief");
+      setReport(data.report);
+      setScreen(data.report ? "result" : "brief");
       setNotice("Tersimpan");
     } catch {
       setLoadError(true);
@@ -157,6 +157,8 @@ export default function Workspace() {
         if (cancelled) return;
         setSnapshot(data.snapshot);
         setScenario(data.scenario);
+        setReport(data.report);
+        setScreen(data.report ? "result" : "brief");
         setNotice("Tersimpan");
       })
       .catch(() => {

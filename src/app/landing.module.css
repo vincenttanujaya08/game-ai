@@ -80,6 +80,21 @@
   font-size: .78rem;
 }
 
+.headerNote a,
+.headerNote button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.authActions { display: inline-flex; max-width: 100%; align-items: center; gap: 12px; }
+.accountName { display: inline-block; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+
 .hero {
   display: grid;
   min-height: 610px;
@@ -834,6 +849,9 @@
   .siteHeader {
     min-height: 64px;
     grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+    padding-block: 12px;
   }
 
   .brand {
@@ -841,6 +859,9 @@
   }
 
   .siteNav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: space-between;
     gap: 20px;
   }
 
@@ -849,8 +870,11 @@
   }
 
   .headerNote {
-    display: none;
+    grid-column: 2;
+    grid-row: 1;
   }
+
+  .accountName { max-width: 120px; }
 
   .hero {
     min-height: 0;

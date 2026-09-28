@@ -3,6 +3,8 @@ import { sectionPresentations, type SectionPresentation } from "./fundamentals-p
 import { moduleOneStages, type LessonStage } from "./module-one-data";
 import { workingLessons, workingPresentations, workingStages } from "./working-with-generative-ai";
 import { vibeLessons, vibePresentations, vibeStages } from "./vibe-coding";
+import material from "./material-final.json";
+import { materialActivity } from "./material-activity";
 
 export type CourseId = "ai-fundamentals" | "working-with-generative-ai" | "vibe-coding";
 
@@ -50,9 +52,9 @@ export const courses: Record<CourseId, CourseConfig> = {
     path: "/learn/ai-fundamentals",
     lessonPath: "/learn/ai-fundamentals/module-1",
     progressKey: "nusa-learn-progress-v2",
-    summary: "Kenali kemampuan AI hari ini, pahami cara kerjanya, dan belajar memakainya dengan penilaianmu sendiri.",
-    mapSummary: "Tiga pelajaran yang saling menyambung. Mulai dari yang bisa AI lakukan, lalu pahami cara kerja dan peran kita.",
-    hubSummary: "Tiga pelajaran tentang kemampuan AI hari ini, cara kerjanya, dan cara tetap berpikir jernih saat memakainya.",
+    summary: "AI muncul di kotak masuk, ruang riset, sampai tugas kuliahmu. Ikuti ceritanya, pahami cara kerjanya, lalu putuskan kapan hasilnya perlu diperiksa.",
+    mapSummary: "Mulai dari AI yang kamu temui sehari-hari, intip cara kerjanya, lalu coba menilai jawabannya dengan kepalamu sendiri.",
+    hubSummary: "Dari rekomendasi lagu sampai tugas kuliah: kenali AI, cara kerjanya, dan kapan kamu perlu mengecek hasilnya.",
     hero: {
       src: "/course-visuals/aceh-polytechnic.webp",
       alt: "Mahasiswa Politeknik Aceh mempraktikkan keterampilan teknologi komputer di laboratorium",
@@ -80,9 +82,9 @@ export const courses: Record<CourseId, CourseConfig> = {
     path: "/learn/working-with-generative-ai",
     lessonPath: "/learn/working-with-generative-ai/lesson",
     progressKey: "nusa-learn-working-generative-ai-v1",
-    summary: "Belajar memberi arahan yang jelas, menguji jawaban AI, memperbaiki hasil, dan menyusun alur kerja yang tetap kamu kendalikan.",
-    mapSummary: "Empat pelajaran yang saling menyambung. Mulai dari memberi arah, lalu meninjau jawaban hingga merangkai alur kerja.",
-    hubSummary: "Empat pelajaran untuk memberi AI arahan yang jelas, menguji jawabannya, memperbaiki hasil, dan menyusun alur kerja.",
+    summary: "Satu tugas presentasi bisa menghasilkan jawaban AI yang terlalu panjang, terlalu yakin, atau meleset. Pelajari cara mengarahkannya lewat percakapan.",
+    mapSummary: "Dari prompt pertama sampai hasil akhir: beri konteks, uji asumsi, revisi draf, lalu susun pekerjaan langkah demi langkah.",
+    hubSummary: "Mulai dari draf yang meleset, lalu arahkan, uji, dan perbaiki jawaban AI sampai berguna untuk tugasmu.",
     hero: {
       src: "/course-visuals/working-generative-ai-students.jpg",
       alt: "Mahasiswa bekerja bersama menyusun model arsitektur di lingkungan kampus",
@@ -110,9 +112,9 @@ export const courses: Record<CourseId, CourseConfig> = {
     path: "/learn/vibe-coding",
     lessonPath: "/learn/vibe-coding/lesson",
     progressKey: "nusa-learn-vibe-coding-v1",
-    summary: "Bangun software lewat percakapan dengan AI. Kenali coding agent, rencanakan, uji, perbaiki, lalu bagikan project-mu.",
-    mapSummary: "Tujuh pelajaran dari mengenal coding agent hingga menguji dan meluncurkan project sendiri.",
-    hubSummary: "Tujuh pelajaran untuk mengubah ide menjadi software: pahami coding agent, bangun project, uji hasilnya, lalu bagikan ke internet.",
+    summary: "Punya ide aplikasi kecil? Ajak coding agent membantu dari rencana sampai kode, lalu coba, perbaiki, dan bagikan hasilnya.",
+    mapSummary: "Ikuti perjalanan sebuah project: pilih alat, atur izin, beri konteks, bangun versi pertama, lalu uji di perangkat lain.",
+    hubSummary: "Bawa ide aplikasi kecil dari percakapan dengan agent sampai menjadi tautan yang bisa dicoba orang lain.",
     hero: {
       src: "/course-visuals/vibe-coding-person-laptop.jpg",
       alt: "Seseorang sedang bekerja di laptop di ruang kerja yang nyaman",
@@ -134,6 +136,42 @@ export const courses: Record<CourseId, CourseConfig> = {
 };
 
 export const courseOrder: CourseId[] = ["ai-fundamentals", "working-with-generative-ai", "vibe-coding"];
+
+// The Markdown in docs/ is the reviewed source. The compiled JSON replaces
+// every visible lesson text while preserving the existing activity mechanics.
+material.forEach((source, courseIndex) => {
+  const course = courses[courseOrder[courseIndex]];
+  if (source.lessons.length !== course.lessons.length) throw new Error(`Lesson count mismatch: ${source.title}`);
+  course.title = source.title;
+  course.label = source.label;
+  course.summary = source.summary;
+  course.mapSummary = source.mapSummary;
+  course.hubSummary = source.hubSummary;
+  course.hero = { ...course.hero, ...source.hero };
+  course.finish.body = source.finish;
+  course.stages = course.stages.map((stage, lessonIndex) => ({ ...stage,
+    title: source.lessons[lessonIndex].title,
+    question: source.lessons[lessonIndex].question,
+    intro: source.lessons[lessonIndex].intro,
+  }));
+  course.lessons = course.lessons.map((lesson, lessonIndex) => {
+    const updated = source.lessons[lessonIndex];
+    if (updated.sections.length !== lesson.sections.length) throw new Error(`Section count mismatch: ${source.title} / ${updated.title}`);
+    return { ...lesson, lead: updated.lead, takeaway: updated.takeaway, check: updated.check,
+      sections: lesson.sections.map((section, sectionIndex) => ({ ...section,
+        title: updated.sections[sectionIndex].title,
+        markdown: updated.sections[sectionIndex].body,
+        reveal: updated.sections[sectionIndex].reveal
+          ? { paragraphs: [updated.sections[sectionIndex].reveal] } : undefined,
+      })) };
+  });
+  course.presentations = course.presentations.map((lesson, lessonIndex) => lesson.map((section, sectionIndex) => ({
+    ...section,
+    activity: materialActivity(section.activity, source.lessons[lessonIndex].sections[sectionIndex].activity),
+    reflection: source.lessons[lessonIndex].sections[sectionIndex].reflection ?? undefined,
+    bridge: "",
+  })));
+});
 
 export const courseList: CourseConfig[] = courseOrder.map((id) => courses[id]);
 

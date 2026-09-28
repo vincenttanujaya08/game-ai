@@ -1,6 +1,7 @@
 export type LessonSection = {
   title: string;
   paragraphs: string[];
+  markdown?: string;
   /**
    * Jawaban atau pembahasan yang disembunyikan di balik disclosure, supaya
    * pembaca menebak dulu. Dipakai bagian yang berbentuk latihan singkat.
@@ -21,19 +22,19 @@ export type LessonContent = {
 
 export const fundamentalsLessons: LessonContent[] = [
   {
-    lead: "AI sudah jauh lebih luas daripada chatbot. Di pelajaran ini kita melihat apa yang bisa dilakukannya, lalu belajar membedakan kemampuan dari keandalan.",
+    lead: "Satu hari, tiga kejutan: email mencurigakan tersaring, lagu yang pas muncul, dan temanmu menunjukkan riset yang dibantu AI. Kemampuannya nyata. Pertanyaannya: kapan hasil itu cukup untuk dipercaya?",
     sections: [
       {
         title: "AI ada di lebih banyak tempat daripada yang kita kira",
         paragraphs: [
-          "Saat mendengar AI, kita mungkin langsung membayangkan ChatGPT, Gemini, pembuat gambar, atau asisten coding.\n\nItu wajar: **generative AI, yaitu AI yang bisa membuat teks atau gambar baru**, adalah bentuk yang paling sering kita ajak bicara.\n\nNamun AI juga membantu memilah email spam, merekomendasikan musik, membantu radiolog memeriksa gambar medis, memprediksi bentuk protein, mengendalikan robot, dan menjalankan tugas dengan alat digital.",
+          "Yang terlihat hanya hasil akhirnya: pesan pindah folder, lagu masuk daftar putar, jawaban chatbot muncul. Di baliknya bisa ada sistem yang memprediksi, memilih, atau membuat sesuatu.\n\n**Generative AI** membuat teks atau gambar baru. Di tempat lain, AI membantu radiolog membaca gambar medis, ilmuwan memprediksi bentuk protein, dan robot menyesuaikan gerakannya.",
           "Kita mulai dari kemampuan yang terlihat sekarang, sebelum masuk ke definisi dan cara kerjanya pada pelajaran berikutnya.\n\n**Satu pegangan penting:** sistem yang berhasil pada suatu tugas belum tentu selalu benar, aman, atau cocok digunakan pada tugas lain.",
         ],
       },
       {
         title: "Dari soal matematika hingga penemuan ilmiah",
         paragraphs: [
-          "Pada International Mathematical Olympiad 2025, versi khusus Gemini Deep Think menyelesaikan lima dari enam soal dan memperoleh **35 dari 42 poin**, setara standar medali emas.\n\nSoal diberikan dalam bahasa alami dan jawabannya berupa pembuktian matematika. Hasil itu menunjukkan kemampuan memecahkan persoalan kompleks.\n\nHasil tersebut tidak membuktikan bahwa AI berpikir seperti manusia atau akan selalu benar dalam matematika.",
+          "Seberapa jauh kemampuan itu bisa dibawa? Salah satu contoh datang dari International Mathematical Olympiad 2025. Versi khusus Gemini Deep Think menyelesaikan lima dari enam soal dan memperoleh **35 dari 42 poin**, setara standar medali emas.\n\nSoal diberikan dalam bahasa alami dan jawabannya berupa pembuktian matematika. Hasil itu menunjukkan kemampuan memecahkan persoalan kompleks.\n\nHasil tersebut tidak membuktikan bahwa AI berpikir seperti manusia atau akan selalu benar dalam matematika.",
           "Contoh lain datang dari AlphaFold2. Bentuk tiga dimensi protein berpengaruh pada cara protein bekerja. **AlphaFold2 membantu memprediksi bentuk itu dari urutan asam amino**.\n\nDemis Hassabis dan John Jumper menerima sebagian Nobel Kimia 2024 atas pekerjaan tersebut.\n\nAI di sini membantu ilmuwan memahami sistem biologis; ia bukan obat yang secara langsung menyembuhkan penyakit.",
         ],
         sources: [
@@ -44,7 +45,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Membantu dokter, tetapi hasilnya tetap perlu dinilai",
         paragraphs: [
-          "AI dapat membantu radiolog memeriksa mammogram, yaitu gambar hasil pemeriksaan payudara, dan menandai gambar yang perlu perhatian lebih.\n\nSebuah uji klinis yang terbit pada Maret 2026 melibatkan **31.301 perempuan**.\n\nPada strategi yang diuji, tugas membaca gambar oleh radiolog berkurang 63,6% dan tingkat deteksi kanker naik 15,2% dibanding strategi standar.\n\nNamun proporsi pasien yang diminta datang lagi untuk pemeriksaan lanjutan ikut naik. Angka pastinya ada di latihan di bawah.",
+          "Di layanan kesehatan, pertanyaannya lebih berat: apakah bantuan AI membuat pemeriksaan lebih baik tanpa menambah masalah baru? AI dapat membantu radiolog memeriksa mammogram, yaitu gambar hasil pemeriksaan payudara, dan menandai gambar yang perlu perhatian lebih.\n\nSebuah uji klinis yang terbit pada Maret 2026 melibatkan **31.301 perempuan**. Pada strategi yang diuji, tugas membaca gambar oleh radiolog berkurang 63,6% dan tingkat deteksi kanker naik 15,2% dibanding strategi standar.\n\nNamun proporsi pasien yang diminta datang lagi untuk pemeriksaan lanjutan ikut naik. Angka pastinya ada di latihan di bawah.",
           "Angka itu berlaku pada studi dan alur kerja tersebut.\n\nKesimpulan yang tepat bukan ‘AI lebih baik daripada dokter’, melainkan bahwa cara manusia dan AI bekerja bersama harus dirancang serta dievaluasi dengan cermat.\n\n**Semakin besar akibat sebuah kesalahan, semakin penting pengawasan manusia.**",
         ],
         sources: [{ label: "Nature Medicine · uji mammogram 2026", url: "https://www.nature.com/articles/s41591-026-04277-x" }],
@@ -52,8 +53,8 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "AI bisa memproses lebih dari teks",
         paragraphs: [
-          "AI dapat menerima input berupa teks, foto dari kamera, suara, video, tampilan layar, atau dokumen.\n\nPengenalan wajah, mengubah suara menjadi teks (transkripsi), dan deteksi objek sudah lama digunakan.\n\nKini beberapa sistem bisa menggabungkan beberapa jenis input sekaligus; ini **disebut multimodal**.",
-          "Bayangkan lampu indikator error pada perangkat berkedip. Kita dapat mengarahkan kamera ke perangkat itu dan bertanya apa artinya, atau membagikan layar saat rumus spreadsheet bermasalah.\n\nDulu kita harus menjelaskan semua yang terlihat dengan kata-kata. Sekarang kita dapat menunjukkan konteksnya.\n\nMeski begitu, ‘memproses gambar’ **bukan berarti AI melihat dan memahami dunia persis seperti manusia**.",
+          "Saat rumus di spreadsheet milikmu bermasalah, menjelaskannya lewat chat bisa panjang. Beberapa sistem AI kini dapat menerima tangkapan layar, dokumen, suara, atau video selain teks.\n\nPengenalan wajah, mengubah suara menjadi teks (transkripsi), dan deteksi objek sudah lama digunakan. Sistem yang menggabungkan beberapa jenis input sekaligus **disebut multimodal**.",
+          "Misalnya lampu indikator pada perangkat berkedip. Kamu dapat menunjukkan kameramu kepada AI dan bertanya apa arti pola kedipnya. Konteks yang terlihat membantu ketika keadaan sulit dijelaskan dengan kata-kata.\n\nMeski begitu, ‘memproses gambar’ **bukan berarti AI melihat dan memahami dunia persis seperti manusia**. Periksa petunjuk resmi perangkat sebelum mengikuti saran yang berisiko.",
         ],
       },
       {
@@ -70,7 +71,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Dari menjawab ke melakukan",
         paragraphs: [
-          "Chatbot biasa menjawab pertanyaan seperti ‘Apa itu SQL JOIN?’. **AI agent diberi tujuan**, lalu dapat merencanakan langkah, memakai alat, membaca hasil, dan menyesuaikan tindakannya.\n\nMisalnya, AI agent untuk coding bisa membaca file proyek, mencari penyebab test gagal, mengubah kode, menjalankan test, lalu meninjau hasilnya.",
+          "Untuk tugas kuliah, kamu bisa bertanya kepada chatbot, ‘Apa itu SQL JOIN?’ dan menerima penjelasan. Namun jika yang macet adalah project di laptopmu, penjelasan saja mungkin belum menyelesaikannya. **AI agent diberi tujuan** lalu dapat merencanakan langkah, memakai alat, membaca hasil, dan menyesuaikan tindakannya.\n\nMisalnya, AI agent untuk coding bisa membaca file proyek, mencari penyebab test gagal, mengubah kode, menjalankan test, lalu meninjau hasilnya.",
           "Perbedaan sederhananya: chatbot sering mengikuti pola tanya → jawab; AI agent mengikuti tujuan → rencana → tindakan → pemeriksaan.\n\nKemampuan bertindak membuat AI lebih berguna sekaligus menambah hal yang perlu diawasi, terutama jika ia bisa mengubah data atau mengirim sesuatu.",
         ],
       },
@@ -86,12 +87,11 @@ export const fundamentalsLessons: LessonContent[] = [
         ],
       },
       {
-        title: "Konten palsu bisa menimbulkan kerugian nyata",
+        title: "Ketika gambar palsu menyangkut orang lain",
         paragraphs: [
-          "Foto seseorang dapat dipakai tanpa izin untuk membuat gambar seksual palsu. Gambar itu memang sintetis, tetapi **dampak pada martabat, privasi, reputasi, dan rasa aman korban sangat nyata**.\n\nKemampuan teknis untuk membuat sesuatu tidak otomatis memberi hak untuk membuat atau menyebarkannya.",
-          "Pada Januari 2026, pemerintah Indonesia bahkan memutus akses sementara ke Grok setelah kasus konten seksual palsu tanpa persetujuan.\n\nPertimbangan yang sama berlaku pada penipuan, manipulasi opini, dan informasi kesehatan.\n\nKita perlu menilai bukan hanya apakah AI mampu membuat konten, tetapi siapa yang bisa terkena dampak dan siapa yang bertanggung jawab jika terjadi kesalahan.",
+          "Bayangkan foto temanmu diubah menjadi poster seolah ia mengumumkan sesuatu yang tak pernah ia katakan. Orang yang melihatnya mungkin percaya, lalu menyebarkannya lagi. Meski posternya dibuat dengan AI, **dampak pada privasi dan nama baik temanmu sungguhan**.\n\nMinta izin sebelum memakai foto orang lain, dan periksa asal gambar sebelum membagikannya.",
+          "Hal serupa bisa terjadi pada bukti transfer, pengumuman kampus, atau informasi kesehatan. Ketika sebuah konten tampak meyakinkan, tanyakan siapa sumber aslinya, siapa yang terdampak, dan siapa yang perlu memperbaiki kesalahan jika konten itu keliru.",
         ],
-        sources: [{ label: "Komdigi · pernyataan konten deepfake", url: "https://portal.komdigi.go.id/kanal-publik/berita-kini/9923" }],
       },
       {
         title: "Perhatikan juga data yang kita berikan",
@@ -107,20 +107,20 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "AI juga bisa salah tanpa ada yang berniat menipu",
         paragraphs: [
-          "Sebuah jawaban bisa terdengar rapi dan yakin, tetapi memuat angka keliru, sumber yang tidak ada, atau kesimpulan yang tidak didukung bukti.\n\nJika kamu hendak memakai kutipan untuk tugas, buka tulisan aslinya. Jika AI menyebut aturan kampus, periksa halaman resmi kampus.\n\n**Mengulang pertanyaan ke AI yang sama tidak menggantikan verifikasi ke sumber.**",
+          "Saat menyusun tugas, kamu menemukan kutipan yang diberikan AI lengkap dengan judul sumbernya. Sebelum memasukkannya ke daftar pustaka, buka tulisan aslinya: judul yang terdengar meyakinkan belum tentu ada, dan kutipannya bisa saja meleset. Jika AI menyebut aturan kampus, periksa halaman resmi kampus.\n\n**Mengulang pertanyaan ke AI yang sama tidak menggantikan verifikasi ke sumber.**",
           "Karena itu sistem AI memerlukan batas penggunaan, pengujian, dan pengawasan. Kemampuan baru memberi peluang besar, tetapi juga bisa memperbesar kesalahan atau penyalahgunaan.\n\nSikap yang berguna bukan menganggap AI selalu baik atau buruk; lihat tugas, konteks, risiko, dan bukti yang tersedia.",
         ],
       },
       {
-        title: "Jembatan ke pelajaran berikutnya: apakah semua yang otomatis itu AI?",
+        title: "Apakah semua yang otomatis itu AI?",
         paragraphs: [
-          "Sistem TCAS pada pesawat dapat mendeteksi potensi tabrakan dan memberi pilot saran untuk naik atau turun. Itu kemampuan keselamatan yang penting.\n\nNamun sistem yang mendeteksi, menghitung, dan memberi saran secara otomatis **belum tentu menggunakan machine learning atau AI modern**.\n\nAturan yang ditulis manusia juga bisa menghasilkan perilaku yang sangat canggih.",
+          "Sebelum menyebut semua sistem otomatis sebagai AI, lihat satu contoh lagi. TCAS pada pesawat dapat mendeteksi potensi tabrakan dan memberi pilot saran untuk naik atau turun. Itu kemampuan keselamatan yang penting.\n\nNamun sistem yang mendeteksi, menghitung, dan memberi saran secara otomatis **belum tentu menggunakan machine learning atau AI modern**. Aturan yang ditulis manusia juga bisa menghasilkan perilaku yang sangat canggih.",
           "Jadi pertanyaan untuk pelajaran berikutnya ialah: jika kemampuan mengambil keputusan otomatis saja belum cukup, apa yang sebenarnya dimaksud orang ketika mengatakan ‘AI’?",
         ],
         sources: [{ label: "FAA · penjelasan TCAS II", url: "https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html" }],
       },
     ],
-    takeaway: "AI semakin mampu melakukan tugas kompleks, tetapi kemampuan pada satu tugas tidak menjamin jawaban yang benar, penggunaan yang aman, atau keputusan yang bertanggung jawab.",
+    takeaway: "Saat AI memberi hasil yang tampak hebat, tanyakan tugas apa yang berhasil ia lakukan dan bukti apa yang masih perlu kamu periksa. Tangkapan layar transfer, misalnya, tetap harus dicocokkan dengan riwayat bankmu.",
     check: {
       question: "Pembeli mengirim tangkapan layar transfer yang tampak meyakinkan. Langkah paling tepat?",
       choices: [
@@ -131,12 +131,12 @@ export const fundamentalsLessons: LessonContent[] = [
     },
   },
   {
-    lead: "Kita sudah melihat kemampuan AI. Sekarang kita telusuri bagaimana sistem belajar dari data, apa bedanya dengan aturan biasa, dan mengapa jawaban yang meyakinkan tetap bisa keliru.",
+    lead: "Sensor parkir berbunyi saat mobil mendekati dinding. Aplikasi foto mengenali seekor kucing. Keduanya tampak pintar, tetapi bekerja dengan cara yang belum tentu sama.",
     sections: [
       {
         title: "Otomatis belum tentu AI",
         paragraphs: [
-          "Ingat TCAS dari pelajaran pertama. Sistem itu menerima informasi tentang pesawat sekitar, menghitung risiko, lalu memberi saran kepada pilot.\n\nSensor parkir juga menerima jarak, membandingkannya dengan batas yang ditetapkan, lalu membunyikan alarm. Keduanya dapat bekerja otomatis melalui logika yang dirancang manusia.",
+          "Coba lihat urutan kerjanya. Sensor membaca jarak, membandingkannya dengan batas yang sudah diatur, lalu menyalakan alarm. Ia tidak harus belajar dari pengalaman untuk melakukannya.\n\nIngat TCAS dari pelajaran pertama? Sistem pesawat itu juga menerima informasi, menghitung risiko, lalu memberi saran kepada pilot. Kemampuan otomatis yang canggih masih bisa dibangun dari logika yang dirancang manusia.",
           "Gambaran sederhananya: **input (data yang diterima) → aturan yang ditulis manusia → output (hasilnya)**. Aturan bisa sangat rumit dan tetap berguna.\n\nMenyebut suatu fitur ‘pintar’ atau ‘otomatis’ belum membuktikan bahwa ia memakai AI.",
         ],
         sources: [{ label: "FAA · TCAS II", url: "https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html" }],
@@ -158,7 +158,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Tiga cara belajar yang sering dibahas",
         paragraphs: [
-          "Dalam **supervised learning**, contoh sudah diberi jawaban: foto kucing atau anjing, email spam atau bukan spam, transaksi mencurigakan atau tidak.\n\nModel belajar dari contoh berlabel itu untuk memprediksi contoh baru.",
+          "Kembali ke pengenal foto tadi. Jika setiap foto latihan sudah diberi label ‘kucing’ atau ‘anjing’, model punya jawaban untuk dibandingkan selama belajar. Cara ini disebut **supervised learning**. Contoh lain ialah email yang diberi label spam atau bukan spam.\n\nModel memakai contoh berlabel itu untuk membuat prediksi pada foto atau email baru.",
           "Dalam **unsupervised learning**, data tidak diberi kelompok yang benar sejak awal.\n\nSistem mencari pola kemiripan, misalnya pelanggan yang sering belanja kecil-kecilan dan pelanggan yang jarang belanja tetapi sekali transaksi besar.\n\nDalam **reinforcement learning**, sistem mencoba tindakan, menerima umpan balik, lalu menyesuaikan perilaku; robot yang belajar bergerak adalah salah satu contohnya.\n\nKetiganya bukan daftar yang perlu dihafal, melainkan tiga cara memahami bagaimana contoh dan umpan balik dipakai.",
         ],
       },
@@ -179,7 +179,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Mengapa model bahasa bisa menjawab dengan lancar?",
         paragraphs: [
-          "Model bahasa dilatih pada banyak contoh bahasa. Saat menjawab, model memproses input dan memperkirakan kelanjutan yang sesuai dengan pola yang dipelajarinya.\n\nSistem modern melakukan proses ini berulang sehingga dapat menulis kalimat panjang, mengikuti instruksi, merangkum, dan membantu memecahkan masalah.",
+          "Ketika chatbot menjawab pertanyaanmu dengan kalimat yang rapi, dari mana kelancaran itu datang? Model bahasa dilatih pada banyak contoh bahasa. Saat menjawab, model memproses input dan memperkirakan kelanjutan yang sesuai dengan pola yang dipelajarinya.\n\nSistem modern melakukan proses ini berulang sehingga dapat menulis kalimat panjang, mengikuti instruksi, merangkum, dan membantu memecahkan masalah.",
           "Penjelasan ‘memprediksi bagian berikutnya’ adalah gambaran awal, bukan uraian lengkap seluruh cara kerja model.\n\n**Kelancaran bahasa tidak membuktikan** bahwa model memiliki pengalaman, niat, atau pemahaman seperti manusia. Bahkan jawaban yang terdengar sangat yakin bisa berisi informasi yang salah.",
         ],
       },
@@ -198,7 +198,7 @@ export const fundamentalsLessons: LessonContent[] = [
         ],
       },
     ],
-    takeaway: "Banyak model AI mempelajari pola yang kompleks. Jawaban yang terdengar meyakinkan tetap berasal dari model dan belum tentu benar.",
+    takeaway: "Label ‘otomatis’ belum menjelaskan cara sebuah fitur bekerja. Cari tahu apakah ia mengikuti aturan tetap atau memakai model yang belajar dari data; untuk jawaban penting, periksa hasilnya juga.",
     check: {
       question: "Sebuah fitur foto bertuliskan ‘perbaiki otomatis’. Apakah fitur itu pasti memakai AI?",
       choices: [
@@ -209,19 +209,19 @@ export const fundamentalsLessons: LessonContent[] = [
     },
   },
   {
-    lead: "AI bisa membantu banyak pekerjaan sekaligus membuat kita terlalu mudah mengikuti jawabannya. Pelajaran terakhir ini membahas perubahan kerja dan kebiasaan yang membuat kita tetap memegang arah, konteks, dan keputusan.",
+    lead: "Saat magang sebagai analis, kamu diminta menyiapkan ringkasan untuk rapat tim. AI membuat drafnya dalam semenit, tetapi satu angka tidak punya sumber. Apakah angka itu tetap masuk ke slide?",
     sections: [
       {
         title: "Pekerjaan terdiri dari banyak tugas",
         paragraphs: [
-          "Seorang analis junior tidak hanya ‘menganalisis’.\n\nIa mencari informasi, membaca dokumen, membuat ringkasan, menulis draf, menyusun presentasi, memahami kondisi perusahaan, memilih rekomendasi, lalu mempertanggungjawabkannya.\n\nAI dapat mempercepat beberapa langkah awal tanpa mengambil alih seluruh pekerjaan. Meski jabatan orangnya tetap ada, **isi pekerjaannya sudah berubah**.",
-          "Pertanyaan yang lebih berguna daripada ‘Apakah AI menggantikan profesi ini?’\n\nialah ‘Tugas mana yang bisa dibantu AI, dan tugas mana yang masih membutuhkan pemahaman, hubungan dengan orang lain, serta tanggung jawab manusia?’\n\nTugas yang jelas, berulang, dan banyak memproses informasi sering lebih mudah dibantu AI; situasi dengan konteks rumit dan konsekuensi sosial menuntut lebih banyak penilaian.\n\nPembagian ini membantu kita memilih bagian mana yang layak diberikan ke AI.",
+          "Untuk menyiapkan rapat itu, kamu masih harus mencari data, membaca dokumen, menyusun slide, dan memilih rekomendasi yang bisa kamu jelaskan. AI mungkin mempercepat pencarian dan draf awal, tetapi kamu tetap perlu memahami situasi tim dan mempertanggungjawabkan saranmu.\n\nJabatannya sama; **cara mengerjakan sebagian tugasnya sudah berubah**.",
+          "Daripada bertanya apakah AI akan menggantikan seluruh pekerjaan analis, lihat tugasnya satu per satu. Bagian mana yang bisa dibantu AI? Bagian mana yang membutuhkan pemahaman tentang tim, hubungan dengan orang lain, dan tanggung jawabmu sendiri?\n\nTugas yang jelas, berulang, dan banyak memproses informasi sering lebih mudah dibantu AI. Situasi dengan konteks rumit dan akibat bagi orang lain menuntut lebih banyak penilaian.",
         ],
       },
       {
         title: "Apa yang ditunjukkan data pekerjaan?",
         paragraphs: [
-          "ILO melaporkan pada 2026 bahwa di ASEAN belum tampak kehilangan pekerjaan besar-besaran akibat generative AI. Banyak pekerjaan justru menghadapi perubahan sebagian tugas.\n\nDi Indonesia, sebagian pekerjaan memiliki tugas yang secara teknis bisa terdampak AI lebih dari tingkat minimal; sekitar 3-4% masuk kategori paparan tertinggi. Angka keseluruhannya ada di latihan di bawah.\n\n**Paparan di sini mengukur bagian tugas yang bisa dipengaruhi AI, bukan persentase orang yang pasti kehilangan pekerjaan.**",
+          "Perubahan pada pekerjaan analis tadi menimbulkan pertanyaan yang lebih luas: apa yang terjadi di pasar kerja? ILO melaporkan pada 2026 bahwa di ASEAN belum tampak kehilangan pekerjaan besar-besaran akibat generative AI. Banyak pekerjaan justru menghadapi perubahan sebagian tugas.\n\nDi Indonesia, sebagian pekerjaan memiliki tugas yang secara teknis bisa terdampak AI lebih dari tingkat minimal; sekitar 3-4% masuk kategori paparan tertinggi. Angka keseluruhannya ada di latihan di bawah.\n\n**Paparan di sini mengukur bagian tugas yang bisa dipengaruhi AI, bukan persentase orang yang pasti kehilangan pekerjaan.**",
           "Potensinya berbeda menurut jenis pekerjaan.\n\nMenurut ILO, 93,9% pekerjaan dukungan administratif di Indonesia memiliki tugas yang berpotensi terdampak generative AI, dan 67,5% masuk kategori paparan tertinggi.\n\nUntuk pekerja muda usia 15-24 tahun, angkanya diperkirakan 26,1%, dibanding 21,1% pada pekerja dewasa. Angka-angka ini menunjukkan perlunya persiapan, bukan kepastian nasib setiap individu.",
           "Data Amerika Serikat dari Stanford Digital Economy Lab memberi sinyal lain.\n\nHingga Juni 2026, tingkat pekerjaan pekerja usia 22-25 tahun di bidang yang sangat terpapar AI sekitar 19% lebih rendah dari perkiraan.\n\nPerkiraan ini memakai pertumbuhan kelompok muda pada pekerjaan dengan paparan AI lebih rendah sebagai pembanding. Penyesuaian lebih banyak tampak pada perekrutan yang melambat daripada PHK.\n\nStudi itu tidak membuktikan bahwa AI sendirian menyebabkan seluruh selisihnya, dan hasil Amerika Serikat tidak boleh langsung dianggap sebagai prediksi Indonesia.",
         ],
@@ -234,7 +234,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Apa artinya bagi mahasiswa Indonesia?",
         paragraphs: [
-          "Ekosistem AI memerlukan energi, infrastruktur, chip, talenta, dan aplikasi. Indonesia masih membangun kemampuan di berbagai lapisan itu.\n\n**Tidak setiap mahasiswa perlu membuat model sebesar ChatGPT dari awal.** Jauh lebih banyak orang akan memakai AI dalam belajar, riset, desain, coding, bisnis, dan pelayanan sehari-hari.",
+          "Bagi mahasiswa Indonesia, pertanyaannya bukan hanya pekerjaan mana yang berubah, tetapi kemampuan apa yang bisa dibangun sekarang. Ekosistem AI memerlukan energi, infrastruktur, chip, talenta, dan aplikasi. Indonesia masih membangun kemampuan di berbagai lapisan itu.\n\n**Tidak setiap mahasiswa perlu membuat model sebesar ChatGPT dari awal.** Jauh lebih banyak orang akan memakai AI dalam belajar, riset, desain, coding, bisnis, dan pelayanan sehari-hari.",
           "Karena itu, nilai praktis yang bisa dibangun sekarang adalah tahu kapan AI membantu menyelesaikan masalah nyata, bagaimana memberi konteks yang cukup, dan kapan hasilnya perlu diperiksa lagi.\n\nMenguasai nama satu alat saja tidak cukup, karena alatnya akan berubah.",
         ],
         sources: [{ label: "Komdigi · lima lapisan AI", url: "https://portal.komdigi.go.id/kanal-publik/berita-kini/10477" }],
@@ -250,7 +250,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Lima kemampuan yang tetap perlu dilatih",
         paragraphs: [
-          "Pertama, gunakan AI dengan tujuan yang jelas: minta bantuan untuk ide awal, ringkasan, atau draf, lalu tentukan sendiri bagian yang masih perlu pekerjaan manusia. Kedua, pahami bidangmu.\n\nPengetahuan coding membantu melihat celah keamanan pada kode AI; pengetahuan riset membantu mengenali asumsi yang salah dalam ringkasan.",
+          "Dari contoh magang dan tugas kuliah tadi, ada lima kebiasaan yang bisa dilatih. Pertama, gunakan AI dengan tujuan yang jelas: minta bantuan untuk ide awal, ringkasan, atau draf, lalu tentukan sendiri bagian yang masih perlu pekerjaan manusia. Kedua, pahami bidangmu.\n\nPengetahuan coding membantu melihat celah keamanan pada kode AI; pengetahuan riset membantu mengenali asumsi yang salah dalam ringkasan.",
           "Ketiga, **sesuaikan tingkat pemeriksaan dengan akibat kesalahan**.\n\nNama acara kampus yang kurang menarik mudah diganti; ringkasan jurnal perlu dicek ke tulisan asli; keputusan kesehatan perlu sumber dan tenaga profesional yang tepat.\n\nKeempat, latih pemahaman konteks dan orang lain. Keputusan tentang pelanggan, tim, atau kebijakan jarang selesai hanya dari data yang mudah dimasukkan ke prompt.\n\nKelima, terus belajar, karena alat dan tugas kerja berubah.",
           "Tidak ada daftar keterampilan yang menjamin seseorang ‘kebal AI’.\n\nNamun **kemampuan menggunakan alat, memahami bidang, menilai hasil AI, membaca konteks manusia, dan belajar lagi** membuat kita lebih siap menyesuaikan diri.",
           "Ada manfaat yang terukur pada beberapa tugas.\n\nDalam studi atas 5.172 agen layanan pelanggan, akses ke asisten AI meningkatkan produktivitas rata-rata 15% menurut ukuran persoalan yang diselesaikan per jam; manfaatnya berbeda antarpekerja.\n\nHasil satu lingkungan kerja ini bukan janji bahwa setiap pekerjaan akan naik 15%. Yang dapat diambil ialah potensi AI membantu orang bekerja lebih baik jika tugas dan cara pakainya sesuai.",
@@ -263,7 +263,7 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Jangan menyerahkan seluruh proses berpikir",
         paragraphs: [
-          "Sebuah studi Microsoft Research dan Carnegie Mellon mengumpulkan 936 contoh penggunaan generative AI dari 319 pekerja pengetahuan.\n\nDalam laporan diri mereka, kepercayaan yang lebih tinggi pada AI berkaitan dengan lebih sedikit upaya berpikir kritis pada tugas tertentu.\n\nPeneliti juga melihat pergeseran: pengguna **lebih banyak memeriksa, menggabungkan, dan mengawasi hasil AI**.\n\nIni tidak membuktikan bahwa AI membuat orang bodoh; hasilnya mengingatkan kita agar tetap mengerjakan bagian berpikir yang penting.",
+          "Memakai AI untuk mempercepat pekerjaan juga bisa mengubah cara kita berpikir selama mengerjakannya. Sebuah studi Microsoft Research dan Carnegie Mellon mengumpulkan 936 contoh penggunaan generative AI dari 319 pekerja pengetahuan.\n\nDalam laporan diri mereka, kepercayaan yang lebih tinggi pada AI berkaitan dengan lebih sedikit upaya berpikir kritis pada tugas tertentu.\n\nPeneliti juga melihat pergeseran: pengguna **lebih banyak memeriksa, menggabungkan, dan mengawasi hasil AI**.\n\nIni tidak membuktikan bahwa AI membuat orang bodoh; hasilnya mengingatkan kita agar tetap mengerjakan bagian berpikir yang penting.",
           "Bandingkan dua cara memakai AI untuk tugas kuliah. Mahasiswa pertama meminta AI mengerjakan semuanya, lalu menyalin hasilnya.\n\nMahasiswa kedua membuat jawabannya dahulu, meminta AI mencari kelemahannya, memeriksa umpan balik, dan memperbaiki jawabannya sendiri.\n\nKeduanya memakai AI, tetapi hanya cara kedua yang jelas mempertahankan latihan berpikir mahasiswa.",
         ],
         sources: [{ label: "Microsoft Research · studi berpikir kritis", url: "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/" }],
@@ -271,15 +271,15 @@ export const fundamentalsLessons: LessonContent[] = [
       {
         title: "Empat langkah yang mudah dipakai",
         paragraphs: [
-          "**TENTUKAN:** apa masalah yang sebenarnya ingin diselesaikan? Mulai dari tujuan, bukan dari merangkai prompt.\n\n**GUNAKAN:** pilih bagian yang bisa dibantu AI, seperti mencari ide, membuat draf, merangkum, membandingkan, atau menjelaskan.",
+          "Kembali ke slide magang yang memuat angka tanpa sumber. Sebelum memakainya, coba empat langkah berikut.\n\n**TENTUKAN:** apa masalah yang sebenarnya ingin diselesaikan? Mulai dari tujuan, bukan dari merangkai prompt.\n\n**GUNAKAN:** pilih bagian yang bisa dibantu AI, seperti mencari ide, membuat draf, merangkum, membandingkan, atau menjelaskan.",
           "**CEK:** untuk klaim penting, angka, kutipan, dan sumber, kembali ke bukti aslinya. Semakin besar akibat jika jawaban salah, semakin teliti pemeriksaannya.\n\n**PUTUSKAN:** AI dapat memberi pilihan dan rekomendasi, tetapi kamu menentukan apa yang dipakai dan bertanggung jawab atas hasilnya.",
-          "Contohnya, AI memberi angka ‘78% Gen Z menyukai merek yang mendukung keberlanjutan’ untuk proposal sponsor. Angkanya terdengar masuk akal, tetapi jangan langsung memakainya.\n\nCari penelitian aslinya, lihat siapa yang disurvei dan kapan, lalu putuskan apakah angka itu relevan.",
+          "Di draf slide rapat tadi, AI menulis ‘78% Gen Z menyukai merek yang mendukung keberlanjutan’ tanpa sumber. Kalimat itu mungkin cocok dengan cerita yang ingin disampaikan tim, tetapi angkanya belum bisa dipertanggungjawabkan.\n\nCari penelitian aslinya, lihat siapa yang disurvei dan kapan. Jika tidak ditemukan atau tidak relevan, keluarkan angka itu dari slide.",
         ],
       },
       {
         title: "Nilai manusia ada pada arah dan penilaian",
         paragraphs: [
-          "AI dapat mempercepat pelaksanaan.\n\n**Manusia tetap perlu menentukan tujuan**, memilih arah di antara banyak usulan, menilai apakah hasil cukup baik, memahami keadaan nyata, dan bertanggung jawab atas akibatnya.\n\nItu tidak berarti kita berhenti menulis, menganalisis, atau membuat kode. Semakin sering pekerjaan tersebut dilakukan bersama AI, semakin penting tahu apa yang sedang kita lakukan.",
+          "Lihat lagi pekerjaan analis tadi. AI dapat mempercepat pembuatan ringkasan dan draf slide.\n\n**Manusia tetap perlu menentukan tujuan**, memilih arah di antara banyak usulan, menilai apakah hasil cukup baik, memahami keadaan nyata, dan bertanggung jawab atas akibatnya.\n\nItu tidak berarti kita berhenti menulis, menganalisis, atau membuat kode. Semakin sering pekerjaan tersebut dilakukan bersama AI, semakin penting tahu apa yang sedang kita lakukan.",
           "Jangan panik seolah setiap pekerjaan pasti hilang, dan jangan pula mengabaikan perubahan hanya karena AI masih bisa salah.\n\nGunakan AI untuk memperluas kemampuanmu sambil menjaga pemahaman, penilaian, dan keputusanmu sendiri.",
         ],
       },
@@ -291,7 +291,7 @@ export const fundamentalsLessons: LessonContent[] = [
         ],
       },
     ],
-    takeaway: "AI dapat mempercepat tugas. Manusia tetap memegang tujuan, konteks, penilaian mutu, dan tanggung jawab atas hasilnya.",
+    takeaway: "Biarkan AI membantu menyiapkan draf, lalu buka sumber untuk klaim yang menentukan keputusan. Jika angka dalam slide tadi tidak bisa dibuktikan, coret atau ganti sebelum rapat.",
     check: {
       question: "AI memberi statistik yang cocok untuk proposalmu, tetapi tidak menyertakan sumber. Apa langkah berikutnya?",
       choices: [

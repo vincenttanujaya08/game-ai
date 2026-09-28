@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import NusaHeader from "../../app/nusa-header";
 import { courses, type CourseId } from "./courses";
 import { coursePractices, lessonPractices, masteryOf } from "./mastery";
-import { completedCount, initialLearnProgress, readProgress, saveProgress, type LearnProgress } from "./progress";
+import { completedCount, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
 import styles from "./learn.module.css";
 
 export default function CourseMap({ course: courseId }: { course: CourseId }) {
@@ -16,14 +16,27 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
   const router = useRouter();
   const [progress, setProgress] = useState<LearnProgress>(initialLearnProgress);
   const [ready, setReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [saveError, setSaveError] = useState(false);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setProgress(readProgress(course));
-      setReady(true);
-    });
-    return () => cancelAnimationFrame(frame);
+    let cancelled = false;
+    void loadProgress(course).then((value) => {
+      if (!cancelled) { setProgress(value); setReady(true); }
+    }).catch(() => { if (!cancelled) setLoadError(true); });
+    return () => { cancelled = true; };
   }, [course]);
+
+  useEffect(() => {
+    const onError = () => setSaveError(true);
+    const onOk = () => setSaveError(false);
+    window.addEventListener("nusa-progress-save-error", onError);
+    window.addEventListener("nusa-progress-save-ok", onOk);
+    return () => {
+      window.removeEventListener("nusa-progress-save-error", onError);
+      window.removeEventListener("nusa-progress-save-ok", onOk);
+    };
+  }, []);
 
   function openStage(index: number) {
     if (!ready || index > progress.unlockedStage) return;
@@ -42,6 +55,8 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
     <main className={styles.page} data-nusa-theme="light">
       <NusaHeader active="belajar" />
       <div className={styles.wrap}>
+        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course)}>Coba simpan lagi</button></p>}
+        {loadError && <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p>}
         <Link href="/learn" className={styles.back}>← Semua kursus</Link>
         <section className={styles.hero} aria-labelledby="course-title">
           <div className={styles.heroCopy}>
@@ -62,6 +77,28 @@ export default function CourseMap({ course: courseId }: { course: CourseId }) {
             </div>
           </div>
         </section>
+
+        {courseId === "vibe-coding" ? (
+          <section className={styles.kiloSetup} aria-labelledby="kilo-setup-title">
+            <div className={styles.kiloSetupIntro}>
+              <span className={styles.eyebrow}>MULAI DARI SINI</span>
+              <h2 id="kilo-setup-title">Pasang Kilo Code di VS Code</h2>
+              <p>Di kelas ini kamu akan belajar memakai AI coding agent lewat extension Kilo Code. Siapkan alatnya sekarang agar kamu bisa langsung mencoba saat masuk ke latihan.</p>
+            </div>
+            <ol className={styles.kiloSteps}>
+              <li><strong>Buka Extensions di VS Code.</strong> Cari “Kilo Code”, lalu pilih <b>Install Pre-Release Version</b> dari menu di samping tombol Install.</li>
+              <li><strong>Masuk ke akunmu.</strong> Buka panel Kilo Code di sidebar, pilih Sign In atau buat akun, lalu selesaikan prosesnya di browser.</li>
+              <li><strong>Pilih model dan izin.</strong> Klik roda gigi di panel Kilo, lalu pilih Auto Free jika tersedia. Di Settings → Auto Approve, atur <b>read: Allow</b>, serta <b>edit</b> dan <b>bash: Ask</b>.</li>
+              <li><strong>Coba di sebuah project.</strong> Buka folder project di VS Code, lalu minta agent Ask menjelaskan isi folder tanpa mengubah file.</li>
+            </ol>
+            <p className={styles.kiloSetupNote}>Extension VS Code sudah membawa runtime Kilo; kamu tidak perlu memasang CLI untuk mengikuti kelas ini. Tampilan video bisa berbeda dari versi extension terbaru.</p>
+            <div className={styles.kiloResources}>
+              <a href="https://kilo.ai/docs/getting-started/installing" target="_blank" rel="noreferrer">Panduan instalasi resmi ↗</a>
+              <a href="https://www.youtube.com/watch?v=rqyv8iM6KDA" target="_blank" rel="noreferrer">Video instalasi di VS Code ↗</a>
+              <a href="https://youtu.be/4YPE73HE7r8?si=5HHsMuq1WfsHTNpW" target="_blank" rel="noreferrer">Video penggunaan dasar ↗</a>
+            </div>
+          </section>
+        ) : null}
 
         <section className={styles.curriculum} aria-labelledby="path-title">
           <div className={styles.sectionHeading}>

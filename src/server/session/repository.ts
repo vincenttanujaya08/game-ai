@@ -7,6 +7,7 @@ import {
 } from "@/shared/contracts/session";
 import { reduceSession } from "./reducer";
 import { citationMini } from "@/server/scenario/citation-mini";
+import { appendCloud, getSessionCloud, startOrResumeCloud } from "./cloud-repository";
 type Stored = {
   id: string;
   ownerId: string;
@@ -15,7 +16,9 @@ type Stored = {
 };
 const sessions = new Map<string, Stored>();
 export const testUserId = "fixture-learner";
-export function startOrResume(reset = false) {
+export async function startOrResume(reset = false) {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) return startOrResumeCloud(reset);
+  if (process.env.NODE_ENV === "production") throw new Error("AUTH_NOT_CONFIGURED");
   const old = sessions.get("demo");
   if (!reset && old?.snapshot.status === "in_progress") return old;
   const session = {
@@ -27,13 +30,18 @@ export function startOrResume(reset = false) {
   sessions.set("demo", session);
   return session;
 }
-export function getSession(id: string) {
+export async function getSession(id: string) {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) return getSessionCloud(id);
+  if (process.env.NODE_ENV === "production") throw new Error("AUTH_NOT_CONFIGURED");
   const s = sessions.get(id);
   if (!s || s.ownerId !== testUserId) throw new Error("NOT_FOUND");
   return s;
 }
-export function append(id: string, expected: number, inputs: EventInput[]) {
-  const s = getSession(id);
+export async function append(id: string, expected: number, inputs: EventInput[]) {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) return appendCloud(id, expected, inputs);
+  if (process.env.NODE_ENV === "production") throw new Error("AUTH_NOT_CONFIGURED");
+  const s = sessions.get(id);
+  if (!s || s.ownerId !== testUserId) throw new Error("NOT_FOUND");
   if (s.snapshot.streamVersion !== expected)
     throw new Error("STREAM_VERSION_CONFLICT");
   for (const input of inputs) {

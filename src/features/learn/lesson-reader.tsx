@@ -10,7 +10,7 @@ import { initialCheckState, isCheckSettled, type CheckState } from "./lesson-che
 import { LessonMobileIndex, LessonRail } from "./lesson-rail";
 import { LessonSection } from "./lesson-section";
 import { lessonPractices, masteryOf } from "./mastery";
-import { attemptKey, initialLearnProgress, readProgress, saveProgress, type LearnProgress } from "./progress";
+import { attemptKey, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
 import styles from "./fundamentals-reader.module.css";
 
 /** Satu bagian punya paling banyak satu blok latihan (indeks 0); cek pemahaman memakai indeks 1. */
@@ -25,21 +25,35 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
   const { stages, lessons, presentations } = course;
   const [progress, setProgress] = useState<LearnProgress>(initialLearnProgress);
   const [ready, setReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const [checkState, setCheckState] = useState<CheckState>(initialCheckState);
   const [selectedPanelItem, setSelectedPanelItem] = useState(0);
   /** Latihan yang sengaja dilewati pembaca pada sesi ini. */
   const [skipped, setSkipped] = useState<string[]>([]);
   const [finished, setFinished] = useState(false);
+  const progressRef = useRef<LearnProgress>(initialLearnProgress);
   const contentRef = useRef<HTMLElement>(null);
   const mobileIndexRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setProgress(readProgress(course));
-      setReady(true);
-    });
-    return () => cancelAnimationFrame(frame);
+    let cancelled = false;
+    void loadProgress(course).then((value) => {
+      if (!cancelled) { progressRef.current = value; setProgress(value); setReady(true); }
+    }).catch(() => { if (!cancelled) setLoadError(true); });
+    return () => { cancelled = true; };
   }, [course]);
+
+  useEffect(() => {
+    const onError = () => setSaveError(true);
+    const onOk = () => setSaveError(false);
+    window.addEventListener("nusa-progress-save-error", onError);
+    window.addEventListener("nusa-progress-save-ok", onOk);
+    return () => {
+      window.removeEventListener("nusa-progress-save-error", onError);
+      window.removeEventListener("nusa-progress-save-ok", onOk);
+    };
+  }, []);
 
   const stageIndex = progress.activeStage;
   const stage = stages[stageIndex];
@@ -65,6 +79,7 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
   const canOfferSkip = activityBlocks && activityTries >= triesBeforeSkip;
 
   const commit = useCallback((next: LearnProgress) => {
+    progressRef.current = next;
     saveProgress(next, course);
     setProgress(next);
   }, [course]);
@@ -98,24 +113,24 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
 
   /** Satu percobaan blok latihan atau cek pemahaman dicatat di progres. */
   const recordAttempt = useCallback((activityIndex: number, solved: boolean) => {
-    setProgress((prev) => {
-      const key = attemptKey(prev.activeStage, prev.sectionIndex, activityIndex);
-      const previous = prev.attempts[key];
-      const tries = (previous?.tries ?? 0) + 1;
-      const next: LearnProgress = {
-        ...prev,
-        attempts: {
-          ...prev.attempts,
-          [key]: {
-            tries,
-            solved: previous?.solved === true || solved,
-            firstTryCorrect: previous?.firstTryCorrect === true || (solved && tries === 1),
-          },
+    const prev = progressRef.current;
+    const key = attemptKey(prev.activeStage, prev.sectionIndex, activityIndex);
+    const previous = prev.attempts[key];
+    const tries = (previous?.tries ?? 0) + 1;
+    const next: LearnProgress = {
+      ...prev,
+      attempts: {
+        ...prev.attempts,
+        [key]: {
+          tries,
+          solved: previous?.solved === true || solved,
+          firstTryCorrect: previous?.firstTryCorrect === true || (solved && tries === 1),
         },
-      };
-      saveProgress(next, course);
-      return next;
-    });
+      },
+    };
+    progressRef.current = next;
+    saveProgress(next, course);
+    setProgress(next);
   }, [course]);
 
   /** Cek pemahaman: benar membuka jalan, salah boleh diulang tanpa penalti. */
@@ -190,12 +205,13 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
     <main className={styles.page} data-nusa-theme="light">
       <NusaHeader active="belajar" />
       <div className={styles.wrap}>
+        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course)}>Coba simpan lagi</button></p>}
         <div className={styles.utility}>
           <Link href={course.path}>← Peta pelajaran</Link>
           <span>{ready ? progress.completedStages.length : 0} / {stages.length} pelajaran selesai</span>
         </div>
 
-        {!ready ? <p className={styles.loading}>Menyiapkan pelajaran…</p> : finished ? (
+        {loadError ? <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p> : !ready ? <p className={styles.loading}>Menyiapkan pelajaran…</p> : finished ? (
           <LessonFinish course={course} progress={progress} onReview={reviewSection} />
         ) : (
           <>
@@ -205,7 +221,6 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
                 <h1>{stage.title}</h1>
                 <p>{lesson.lead}</p>
               </div>
-              <span className={styles.headerNumber} aria-hidden="true">{String(stageIndex + 1).padStart(2, "0")}</span>
             </header>
 
             <div className={styles.layout}>

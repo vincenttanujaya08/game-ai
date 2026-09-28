@@ -6,7 +6,7 @@ import NusaHeader from "@/app/nusa-header";
 import shellStyles from "@/app/landing.module.css";
 import { courseList, type CourseId } from "./courses";
 import { coursePractices, masteryOf } from "./mastery";
-import { initialLearnProgress, readProgress, type LearnProgress } from "./progress";
+import { initialLearnProgress, loadProgress, type LearnProgress } from "./progress";
 import styles from "./learn-hub.module.css";
 
 type ProgressMap = Record<CourseId, LearnProgress>;
@@ -17,19 +17,20 @@ const initialMap = Object.fromEntries(
 
 export default function LearnHub() {
   const [progressMap, setProgressMap] = useState<ProgressMap>(initialMap);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setProgressMap(
-        Object.fromEntries(courseList.map((course) => [course.id, readProgress(course)])) as ProgressMap,
-      );
-    });
-    return () => cancelAnimationFrame(frame);
+    let cancelled = false;
+    void Promise.all(courseList.map(async (course) => [course.id, await loadProgress(course)] as const))
+      .then((entries) => { if (!cancelled) setProgressMap(Object.fromEntries(entries) as ProgressMap); })
+      .catch(() => { if (!cancelled) setLoadError(true); });
+    return () => { cancelled = true; };
   }, []);
 
   return (
     <main className={shellStyles.shell + " " + styles.learnHub} data-nusa-theme="light">
       <NusaHeader active="belajar" />
+      {loadError && <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p>}
 
       <section className={styles.intro} aria-labelledby="learn-hub-title">
         <div>

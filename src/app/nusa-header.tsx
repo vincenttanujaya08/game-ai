@@ -1,8 +1,9 @@
 import Link from "next/link";
 import styles from "./landing.module.css";
+import AuthControl from "./auth-control";
 
 type NusaHeaderProps = {
-  active?: "beranda" | "belajar" | "game";
+  active?: "beranda" | "belajar" | "game" | "event";
 };
 
 export default function NusaHeader({ active }: NusaHeaderProps) {
@@ -22,9 +23,12 @@ export default function NusaHeader({ active }: NusaHeaderProps) {
         <Link data-active={active === "game" || undefined} href="/games">
           Game
         </Link>
+        <Link data-active={active === "event" || undefined} href="/events">
+          Event
+        </Link>
       </nav>
 
-      <span className={styles.headerNote}>Literasi AI untuk generasi muda</span>
+      <span className={styles.headerNote}><AuthControl /></span>
     </header>
   );
 }

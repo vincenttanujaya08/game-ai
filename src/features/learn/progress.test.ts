@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { courses } from "./courses";
-import { attemptKey, initialLearnProgress, lessonMastery, readProgress, saveProgress, type LearnProgress } from "./progress";
+import { attemptKey, initialLearnProgress, lessonMastery, loadProgress, readProgress, saveProgress, type LearnProgress } from "./progress";
 
 const course = courses["ai-fundamentals"];
 const stageCount = course.stages.length;
@@ -123,6 +123,29 @@ describe("readProgress", () => {
     };
     saveProgress(progress, course);
     expect(readProgress(course)).toEqual(progress);
+  });
+
+  it("progres akun berasal dari server, bukan progres tamu di browser yang sama", async () => {
+    write({ completedStages: [0, 1], activeStage: 2 });
+    const originalFetch = globalThis.fetch;
+    const originalUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const originalKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+    process.env.NEXT_PUBLIC_SUPABASE_URL = "https://example.supabase.co";
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "test";
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true, status: 200, json: async () => ({ progress: initialLearnProgress }),
+    });
+    try {
+      expect(await loadProgress(course)).toEqual(initialLearnProgress);
+      expect(globalThis.fetch).toHaveBeenCalledWith(`/api/progress/${course.id}`, { cache: "no-store" });
+    } finally {
+      globalThis.fetch = originalFetch;
+      if (originalUrl === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+      else process.env.NEXT_PUBLIC_SUPABASE_URL = originalUrl;
+      if (originalKey === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+      else process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = originalKey;
+      await loadProgress(course);
+    }
   });
 });
 

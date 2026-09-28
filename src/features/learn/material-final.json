@@ -1,0 +1,1236 @@
+[
+  {
+    "title": "AI Fundamentals",
+    "label": "KURSUS 01 · DASAR-DASAR AI",
+    "summary": "AI sudah muncul dalam banyak aktivitas sehari-hari, dari filter email dan rekomendasi musik sampai riset dan tugas kuliah. Kelas ini membahas apa yang bisa dilakukan AI, cara kerja dasarnya, dan kapan hasilnya perlu diperiksa.",
+    "mapSummary": "Mulai dari contoh AI yang dekat dengan kehidupan sehari-hari, lanjut ke cara kerja dasar AI dan machine learning, lalu pelajari cara menilai hasil AI tanpa menyerahkan keputusan sepenuhnya kepada sistem.",
+    "hubSummary": "Kenali kemampuan AI, pahami cara kerja dasarnya, dan pelajari kapan hasilnya perlu diverifikasi sebelum dipakai.",
+    "hero": {
+      "src": "/course-visuals/aceh-polytechnic.webp",
+      "alt": "Mahasiswa Politeknik Aceh mempraktikkan keterampilan teknologi komputer di laboratorium",
+      "caption": "Mahasiswa Politeknik Aceh mempraktikkan keterampilan teknologi komputer di laboratorium.",
+      "credit": "Foto: USAID Indonesia · domain publik",
+      "creditUrl": "https://commons.wikimedia.org/wiki/File:Mahasiswa_i_menggunakan_komputer_untuk_meningkatkan_keterampilan_teknologi_(8315664069).jpg"
+    },
+    "finish": "Sampai di sini, kamu sudah mempelajari tiga hal: kemampuan AI saat ini, cara kerja dasarnya, dan cara mengecek hasilnya sebelum mengambil keputusan. Selanjutnya, kamu bisa mencoba prinsip yang sama lewat skenario di NUSA Lab Game.",
+    "lessons": [
+      {
+        "title": "AI Hari Ini",
+        "question": "Seberapa jauh kemampuan AI sekarang?",
+        "intro": "AI sudah dipakai di banyak layanan sehari-hari, tetapi tugasnya tidak selalu sama. Ada sistem yang menyaring spam, memberi rekomendasi, membuat konten, membantu membaca gambar medis, sampai mengendalikan robot. Di pelajaran ini, kita akan melihat apa yang sudah bisa dilakukan AI sekaligus kapan hasilnya masih perlu diperiksa manusia.",
+        "lead": "AI sudah dipakai di banyak layanan sehari-hari, tetapi tugasnya tidak selalu sama. Ada sistem yang menyaring spam, memberi rekomendasi, membuat konten, membantu membaca gambar medis, sampai mengendalikan robot. Di pelajaran ini, kita akan melihat apa yang sudah bisa dilakukan AI sekaligus kapan hasilnya masih perlu diperiksa manusia.",
+        "sections": [
+          {
+            "number": "1.1",
+            "title": "AI ada di lebih banyak tempat daripada yang kita kira",
+            "body": "Kita sering memakai fitur berbasis AI tanpa perlu memikirkan teknologi di baliknya. Filter spam membantu memisahkan email spam dari inbox utama, aplikasi musik memberi rekomendasi lagu, dan chatbot menghasilkan jawaban berdasarkan prompt yang kita berikan. Masing-masing memakai AI untuk tugas yang berbeda.\n\n**Generative AI**, misalnya, membuat konten baru seperti teks atau gambar. Di bidang lain, AI membantu radiolog membaca gambar medis, ilmuwan memprediksi bentuk protein, dan robot menyesuaikan gerakannya.\n\nJadi, AI bukan hanya chatbot atau generator gambar. Istilah ini mencakup banyak jenis sistem dengan tugas yang berbeda. Sebelum masuk ke definisi dan cara kerjanya, kita lihat dulu beberapa contoh nyata beserta batasnya.\n\n**Catatan penting:** sistem yang berhasil pada satu tugas belum tentu selalu benar, aman, atau cocok dipakai untuk tugas lain.\n\n**Contoh penggunaan AI di beberapa bidang**\n\n- **Sehari-hari:** Filter email membantu memisahkan pesan spam; aplikasi musik merekomendasikan lagu.\n- **Sains:** AI membantu memprediksi bentuk protein dan menyelesaikan soal matematika.\n- **Kesehatan:** AI membantu radiolog memeriksa gambar hasil mammografi.\n- **Robot dan tugas digital:** Robot bisa dilatih bergerak; sistem AI juga bisa memakai alat digital untuk mengerjakan beberapa langkah.\n\n![Logo ChatGPT](../public/course-visuals/chatgpt-logo.svg)\n\n**Visual:** Logo ChatGPT. Sumber: [logo OpenAI](https://commons.wikimedia.org/wiki/File:ChatGPT-Logo.svg).\n\n![Ikon Google Gemini](../public/course-visuals/gemini-logo.svg)\n\n**Visual:** Ikon Google Gemini. Sumber: [logo Google Gemini](https://commons.wikimedia.org/wiki/File:Google_Gemini_icon_2025.svg).",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.2",
+            "title": "Dari soal matematika hingga penemuan ilmiah",
+            "body": "Kemampuan AI juga terlihat pada tugas yang jauh lebih kompleks. Di International Mathematical Olympiad 2025, versi khusus Gemini Deep Think menyelesaikan lima dari enam soal dan memperoleh **35 dari 42 poin**, setara standar medali emas.\n\nSoalnya diberikan dalam bahasa alami dan jawabannya harus berupa pembuktian matematika. Pada kompetisi itu, model mampu menyelesaikan sebagian besar soal yang diberikan.\n\nKeberhasilan pada kompetisi itu tidak berarti AI berpikir seperti manusia atau akan selalu benar saat mengerjakan soal matematika.\n\nContoh lain ada di bidang biologi. Bentuk tiga dimensi protein memengaruhi cara protein bekerja, dan **AlphaFold2 membantu memprediksi struktur tiga dimensinya dari urutan asam amino**.\n\nDemis Hassabis dan John Jumper menerima separuh Hadiah Nobel Kimia 2024 atas pengembangan AlphaFold2.\n\nDalam kasus ini, AI membantu ilmuwan mempelajari struktur protein. AlphaFold2 bukan obat dan tidak menyembuhkan penyakit secara langsung.\n\n**Sumber bacaan**\n\n- [Google DeepMind · IMO 2025](https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/)\n- [Nobel Prize · AlphaFold2](https://www.nobelprize.org/prizes/chemistry/2024/jumper/facts/)\n\n![Prediksi struktur tiga dimensi protein yang dihasilkan AlphaFold](../public/course-visuals/alphafold-protein.webp)\n\n**Visual:** Contoh struktur tiga dimensi protein yang diprediksi AlphaFold. [AlphaFold · CC0](https://commons.wikimedia.org/wiki/File:AF-P0CH12-F1.png).",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.3",
+            "title": "AI untuk membantu pemeriksaan medis",
+            "body": "Di bidang kesehatan, AI juga dipakai untuk membantu pemeriksaan. Salah satu contohnya adalah mammogram, yaitu gambar hasil pemeriksaan payudara. AI bisa membantu radiolog menandai gambar yang perlu diperiksa lebih teliti. Karena kesalahan medis bisa berdampak besar, manfaat AI perlu dinilai bersama risikonya, termasuk apakah penggunaannya membuat lebih banyak pasien harus menjalani pemeriksaan lanjutan.\n\nSebuah uji klinis yang terbit pada Maret 2026 melibatkan **31.301 perempuan**. Pada strategi yang diuji, tugas membaca gambar oleh radiolog berkurang 63,6% dan tingkat deteksi kanker naik 15,2% dibanding strategi standar.\n\nNamun proporsi pasien yang diminta datang lagi untuk pemeriksaan lanjutan ikut naik. Angka pastinya ada di latihan di bawah.\n\nAngka-angka ini berasal dari studi dan alur kerja tertentu. Hasilnya belum tentu sama jika sistem dipakai di rumah sakit, populasi, atau prosedur pemeriksaan yang berbeda.\n\nKesimpulan yang tepat bukan ‘AI lebih baik daripada dokter’, melainkan bahwa cara manusia dan AI bekerja bersama harus dirancang serta dievaluasi dengan cermat.\n\n**Semakin besar akibat sebuah kesalahan, semakin penting pengawasan manusia.**\n\n**Sumber bacaan**\n\n- [Nature Medicine · uji mammogram 2026](https://www.nature.com/articles/s41591-026-04277-x)\n\n**RINGKASAN HASIL STUDI: 31.301 perempuan**\n\nDalam studi pemeriksaan payudara ini, AI mengurangi jumlah gambar yang perlu dibaca radiolog, tetapi lebih banyak pasien juga diminta menjalani pemeriksaan lanjutan.\n\n- **−63,6%:** Jumlah pembacaan gambar yang perlu dilakukan radiolog berkurang dalam strategi yang diuji.\n- **+15,2%:** Tingkat deteksi kanker meningkat dibanding strategi standar.\n\n![Mesin pemeriksaan mammografi di ruang pemeriksaan](../public/course-visuals/mammography-machine.webp)\n\n**Visual:** Mesin pemeriksaan mammografi di ruang pemeriksaan. Mesin mammografi mengambil gambar yang kemudian diperiksa radiolog. Foto: Bill Branson / National Cancer Institute. [Public domain · NCI](https://commons.wikimedia.org/wiki/File:Mammography_machine.jpg).",
+            "activity": "Deteksi kanker naik 15,2%. Menurutmu, berapa persen kenaikan pasien yang diminta datang kembali untuk pemeriksaan lanjutan?\n\nRentang tebakan: 0–40 persen (langkah 0.1).\n\n**Jawaban:** 14.8 persen. Toleransi latihan: ±4.\n\n**Pembahasan:** Pasien yang dipanggil kembali naik 14,8%. Manfaat dan beban tambahan datang bersamaan, jadi satu angka saja tidak cukup untuk menilai sebuah sistem.\n\n**Sumber latihan:** [Studi pemeriksaan payudara](https://doi.org/10.1016/S1470-2045(23)00298-X)",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.4",
+            "title": "AI bisa memproses lebih dari teks",
+            "body": "Interaksi dengan AI tidak lagi terbatas pada teks. Banyak sistem sekarang bisa menerima gambar, tangkapan layar, dokumen, suara, atau video sebagai bagian dari input. Ini berguna ketika sebuah masalah lebih mudah ditunjukkan daripada dijelaskan panjang lewat chat.\n\nPengenalan wajah, mengubah suara menjadi teks (transkripsi), dan deteksi objek sudah lama digunakan. Sistem yang menggabungkan beberapa jenis input sekaligus **disebut multimodal**.\n\nMisalnya, saat muncul pesan error di laptop, kamu bisa mengirim tangkapan layar agar AI bisa membaca pesan error itu. Untuk masalah pada perangkat fisik, foto atau kamera juga bisa memberi konteks yang sulit dijelaskan hanya dengan kata-kata.\n\nMeski begitu, ‘memproses gambar’ **bukan berarti AI melihat dan memahami dunia persis seperti manusia**. Periksa petunjuk resmi perangkat sebelum mengikuti saran yang berisiko.\n\n**MULTIMODAL: Input AI tidak hanya teks**\n\n- **Gambar:** Foto atau kamera bisa menunjukkan keadaan yang sulit dijelaskan hanya dengan kata-kata.\n- **Suara:** AI bisa mengubah ucapan menjadi teks atau mengenali pola suara.\n- **Video:** AI bisa memproses gerakan dan urutan kejadian dalam video.\n- **Dokumen:** Isi PDF atau tampilan layar bisa dipakai sebagai konteks saat bertanya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.5",
+            "title": "Dari layar ke dunia fisik",
+            "body": "Saat AI dipakai untuk mengendalikan sistem di dunia fisik, kesalahan prediksi bisa langsung memengaruhi tindakan. Pada sistem bantuan mengemudi, misalnya, kamera dan sensor membaca marka jalan, kendaraan, pejalan kaki, dan lampu lalu lintas sebelum sistem membantu menentukan apakah kendaraan perlu mengerem atau berbelok.\n\nTesla menyebut Full Self-Driving sebagai sistem yang **tetap membutuhkan pengemudi yang memperhatikan jalan**. Nama produknya tidak mengubah tanggung jawab pengemudi.\n\nKesalahan di dunia fisik bisa berakibat jauh lebih serius daripada jawaban chatbot yang keliru.\n\nMembuat robot dari karakter animasi seperti Olaf punya tantangan sendiri. Gerakan yang terlihat natural di film belum tentu mudah dilakukan oleh robot sungguhan sambil tetap menjaga keseimbangan.\n\nUntuk melatih gerakannya, peneliti menggunakan proses belajar melalui percobaan dan umpan balik, dengan animasi sebagai referensi. Gerakan kemudian dicoba berkali-kali di simulasi sebelum diterapkan pada robot sungguhan.\n\nPeneliti juga perlu memperhitungkan hal yang sangat praktis, seperti bunyi langkah dan panas motor. Dengan simulasi, gerakan bisa diuji berulang kali sebelum dicoba langsung pada robot sungguhan.\n\nDalam riset AI fisik juga ada gagasan **world model**: model yang mencoba memperkirakan bagaimana lingkungan berubah ketika suatu tindakan dilakukan.\n\nUntuk sekarang, cukup pahami fungsi dasarnya. Detail teknis tentang cara membangun world model belum perlu dibahas di bagian ini.\n\n**Sumber bacaan**\n\n- [Tesla · Full Self-Driving (Supervised)](https://www.tesla.com/support/fsd)\n- [Disney Research · robot Olaf](https://la.disneyresearch.com/publication/olaf-bringing-an-animated-character-to-life-in-the-physical-world/)\n\n**AI FISIK: Dari percobaan ke tindakan**\n\n- **Amati:** Kamera atau sensor menangkap kondisi di sekitar robot.\n- **Perkirakan:** Model memperkirakan akibat dari tindakan yang akan dicoba.\n- **Uji:** Gerakan bisa dicoba dalam simulasi sebelum diuji pada robot sungguhan.\n- **Awasi:** Manusia memeriksa apakah perilaku robot cukup aman di dunia nyata.\n\n![Robot Olaf berdiri di jalan bersalju dalam proyek Disney Research](../public/course-visuals/olaf-robot.webp)\n\n**Visual:** Robot Olaf berdiri di jalan bersalju dalam proyek Disney Research. Robot Olaf belajar berjalan dengan reinforcement learning dan diuji lewat simulasi. Foto: Disney Research. [Disney Research](https://la.disneyresearch.com/publication/olaf-bringing-an-animated-character-to-life-in-the-physical-world/).",
+            "activity": "Susun urutan kerja robot sebelum sebuah gerakan dijalankan di dunia nyata.\n\n**Pilihan**\n\n- Uji: coba gerakan dalam simulasi\n- Amati: tangkap kondisi sekitar dengan sensor\n- Awasi: manusia menilai keamanannya\n- Perkirakan: hitung akibat tindakan\n\n**Petunjuk:** Pikirkan informasi apa yang dibutuhkan untuk memperkirakan gerakan, lalu bedakan uji virtual dari pemeriksaan sebelum tindakan nyata.\n\n**Urutan jawaban:** Amati: tangkap kondisi sekitar dengan sensor → Perkirakan: hitung akibat tindakan → Uji: coba gerakan dalam simulasi → Awasi: manusia menilai keamanannya\n\n**Pembahasan:** Amati → Perkirakan → Uji → Awasi. Gerakan dicoba di simulasi sebelum diterapkan pada robot sungguhan, lalu manusia tetap memeriksa apakah hasilnya aman.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.6",
+            "title": "Dari menjawab ke melakukan",
+            "body": "Chatbot biasanya digunakan untuk berdiskusi, meminta penjelasan, atau mencari ide. Kamu mengirim pertanyaan, lalu chatbot memberikan jawaban di percakapan. **AI agent** melangkah lebih jauh: agent bisa diberi tujuan, merencanakan langkah, memakai alat yang tersedia, membaca hasil tindakan sebelumnya, lalu menyesuaikan langkah berikutnya.\n\nPerbedaannya lebih jelas saat masalah tidak bisa selesai hanya dengan saran lewat chat. Jika sebuah project di laptop mengalami error, agent yang punya akses ke file dan terminal bisa memeriksa project langsung, bukan hanya memberi daftar langkah yang harus kamu coba sendiri.\n\nDalam tugas coding, misalnya, agent bisa membaca file project, mencari penyebab test gagal, mengubah kode setelah mendapat izin, menjalankan test, lalu melihat apakah perbaikannya berhasil.\n\nPerbedaan sederhananya: chatbot sering mengikuti pola tanya → jawab; AI agent mengikuti tujuan → rencana → tindakan → pemeriksaan.\n\nKarena agent bisa melakukan tindakan langsung, izin dan hasil kerjanya perlu diawasi lebih ketat—terutama jika agent bisa mengubah data, menjalankan perintah, atau mengirim sesuatu.\n\n**Perbedaan chatbot dan AI agent**\n\n- **Chatbot:** Chatbot menerima pertanyaan, lalu memberi jawaban atau saran dalam percakapan.\n- **AI agent:** AI agent menerima tujuan, menyusun langkah, memakai alat, lalu memeriksa hasilnya.\n\n**Diagram:** Chatbot biasanya berhenti setelah memberi jawaban. Agent bisa melanjutkan dengan menyusun rencana, memakai tool, dan memeriksa hasilnya. Kamu tetap yang menilai hasil akhirnya.\n\nAgent menerima tujuan, merencanakan langkah, memakai alat, lalu memeriksa hasilnya. Jika hasilnya belum sesuai, agent bisa mengulangi langkah-langkah ini.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.7",
+            "title": "Bukti yang terlihat meyakinkan belum tentu asli",
+            "body": "AI membuat gambar dan suara palsu semakin mudah dibuat dengan hasil yang terlihat meyakinkan. Misalnya, saat menjual tiket konser, kamu menerima tangkapan layar bertuliskan ‘transfer berhasil’. Nama, nominal, dan waktunya bisa terlihat benar, tetapi tangkapan layar itu belum membuktikan bahwa uang benar-benar masuk.\n\nYang perlu diperiksa adalah **riwayat transaksi di aplikasi bankmu sendiri**, bukan sekadar mencari font yang terlihat aneh.\n\nOJK pernah memperingatkan pemalsuan bukti transfer dengan bantuan AI. Cara verifikasi yang lebih andal adalah memeriksa sumber aslinya.\n\nPrinsip yang sama berlaku untuk identitas. Suara teman yang meminta uang lewat telepon bisa saja ditiru, begitu pula wajah di video.\n\nJika permintaannya penting atau mendesak, hubungi orang itu melalui kanal lain yang sudah kamu percayai. Jangan menjadikan ‘terdengar seperti suara asli’ sebagai satu-satunya bukti.\n\n**Sumber bacaan**\n\n- [OJK · bukti transfer palsu](https://ojk.go.id/id/Publikasi/Info-Hoax/Pages/Waspada-Pemalsuan-Bukti-Transfer-Menggunakan-AI.aspx)\n- [OJK · penipuan suara dan wajah](https://ojk.go.id/id/berita-dan-kegiatan/info-terkini/Pages/Satgas-PASTI-Imbau-Masyarakat-Waspadai-Penipuan-Menggunakan-AI.aspx)\n\n**Contoh sehari-hari: bukti pembayaran tetap perlu diverifikasi**\n\nDi warung atau toko online, bukti transfer atau QRIS bisa diedit. Cek mutasi rekening atau status pembayaran di aplikasi merchant sebelum menyerahkan barang.\n\n![Contoh struk digital dari aplikasi Bank Jago dengan nomor rekening disamarkan](../public/course-visuals/bankjago-receipt.webp)\n\n**Visual:** Contoh struk digital Bank Jago dengan nomor rekening disamarkan. Struk seperti ini tetap perlu dicocokkan dengan mutasi rekening atau status pembayaran di aplikasi merchant. [VulcanSphere · public domain](https://commons.wikimedia.org/wiki/File:Example_of_PAN_truncation_in_digital_receipt.webp).",
+            "activity": "",
+            "reflection": {
+              "question": "Kalau bukti transfer terlihat asli, apa yang masih perlu dicek?",
+              "answer": "Periksa riwayat transaksi di aplikasi bankmu. Gambar bukti transfer bisa dipalsukan, sedangkan catatan transaksi bank menunjukkan apakah uangnya benar-benar masuk."
+            },
+            "reveal": null
+          },
+          {
+            "number": "1.8",
+            "title": "Risiko gambar palsu bagi orang lain",
+            "body": "Gambar, audio, atau video yang dibuat atau dimanipulasi dengan AI sering disebut **konten sintetis**. Konten seperti ini tidak hanya bisa dipakai untuk penipuan finansial, tetapi juga bisa merugikan orang yang wajah atau identitasnya digunakan. Misalnya, foto seseorang diubah menjadi poster seolah-olah ia mengumumkan sesuatu yang tidak pernah ia katakan. Jika orang lain percaya dan ikut menyebarkannya, reputasi orang tersebut bisa rusak, privasinya bisa terganggu, dan ia bisa merasa tidak aman.\n\nMinta izin sebelum memakai foto orang lain, dan periksa asal gambar sebelum membagikannya.\n\nMasalah yang sama bisa muncul pada bukti transfer, pengumuman kampus, atau informasi kesehatan. Sebelum percaya atau membagikannya, cari sumber asli dan pikirkan siapa yang bisa dirugikan jika informasi itu ternyata salah.\n\n**Dampak pada orang yang identitasnya digunakan**\n\nGambar atau video palsu bisa merusak privasi, reputasi, dan rasa aman orang yang menjadi korban.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.9",
+            "title": "Perhatikan juga data yang kita berikan",
+            "body": "Saat memakai AI, kita tidak hanya mengirim teks prompt. PDF, foto, suara, rekaman layar, kode, dan dokumen kerja yang diunggah juga ikut dikirim ke layanan AI. Karena itu, periksa isi file sebelum mengunggahnya.\n\n**Sebelum mengunggah, tanyakan:** data apa yang akan saya kirim, apakah saya berhak membagikannya, layanan apa yang akan menerima data itu, untuk apa data digunakan, berapa lama data disimpan, dan apakah semua informasi di dalamnya memang diperlukan?\n\nKalau AI tidak membutuhkan seluruh dokumen, kirim hanya bagian yang relevan. Hapus dulu nama, nomor identitas, alamat, nomor rekening, atau informasi pribadi lain yang tidak diperlukan untuk menjawab pertanyaanmu.\n\nSetiap layanan punya kebijakan data yang berbeda. Aturannya juga bisa berbeda menurut jenis akun dan pengaturan yang kamu pilih.\n\nDi ChatGPT, pengguna akun pribadi bisa mematikan **Improve the model for everyone** agar percakapan baru tidak digunakan untuk melatih model. Untuk akun organisasi seperti ChatGPT Business, Enterprise, dan Edu, OpenAI menyatakan bahwa konten pengguna tidak digunakan untuk melatih model secara default.\n\nDi Gemini, pengaturan **Keep Activity** menentukan apakah percakapan baru disimpan ke akun dan bisa digunakan untuk meningkatkan model. Jika Keep Activity dimatikan, percakapan baru tidak digunakan untuk training model kecuali kamu memilih mengirim feedback.\n\n**Periksa pengaturan produk yang sedang kamu pakai**, terutama sebelum mengirim data orang lain atau data rahasia.\n\n**Sumber bacaan**\n\n- [OpenAI · Data Controls](https://help.openai.com/en/articles/7730893-data-controls-in-chatgpt)\n- [Google · Gemini Privacy Hub](https://support.google.com/gemini/answer/13594961)\n\n**Sebelum mengunggah data ke layanan AI**\n\n- **Data apa?** Pilih hanya data yang diperlukan untuk tugasmu.\n- **Punya izin?** Pastikan kamu boleh membagikan data milik orang lain atau tempat kerja.\n- **Dikirim ke siapa?** Pastikan kamu tahu layanan apa yang menerima datanya dan bagaimana layanan itu menggunakannya.\n- **Disimpan berapa lama?** Periksa berapa lama data disimpan dan apakah ada pengaturan untuk menghapus atau membatasi penggunaannya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.10",
+            "title": "AI juga bisa salah tanpa ada yang berniat menipu",
+            "body": "AI juga bisa menghasilkan informasi salah meskipun tidak ada orang yang sedang mencoba menipu. Dalam tugas kuliah, misalnya, AI bisa memberi kutipan lengkap dengan judul sumber yang terlihat meyakinkan. Sebelum memasukkannya ke daftar pustaka, buka sumber aslinya. Judulnya bisa saja tidak ada, atau isi kutipannya berbeda dari yang ditulis AI. Jika AI menyebut aturan kampus, cek halaman resmi kampus.\n\n**Mengulang pertanyaan ke AI yang sama tidak menggantikan verifikasi ke sumber.**\n\nKarena AI bisa salah, penggunaannya perlu punya batas yang jelas. Klaim penting perlu diperiksa, fitur baru perlu diuji, dan tugas berisiko tinggi tetap membutuhkan pengawasan manusia.\n\nJangan menilai AI hanya sebagai ‘baik’ atau ‘buruk’. Lihat dulu tugasnya, siapa yang terdampak jika hasilnya salah, dan bukti apa yang tersedia untuk memeriksa hasil itu.\n\n**Periksa klaim penting ke sumber asli**\n\n- **Jawaban AI:** Jawaban AI bisa terdengar rapi meski angka, kutipan, atau kesimpulannya salah.\n- **Sumber asli:** Buka dokumen, aturan kampus, atau penelitian asli sebelum memakai klaim penting.",
+            "activity": "Kamu meminta AI merangkum aturan penggunaan AI di kampus. Ini jawabannya. Dua kalimat perlu diperiksa sebelum dipakai.\n\nTandai 2 bagian yang perlu diperiksa:\n\n- Panduan kampus meminta mahasiswa menyebutkan bantuan AI pada tugas. — Bukan sasaran. Kalimat ini ada di dokumen panduan.\n\n- Sebanyak 87% dosen menyetujui aturan ini. **(Angka tanpa sumber)** — Sasaran. Tidak ada survei yang dirujuk. Angka sepresisi ini perlu sumber yang bisa dibuka.\n\n- Mahasiswa tetap bertanggung jawab atas isi tugasnya. — Bukan sasaran. Ini pernyataan yang konsisten dengan panduan.\n\n- Aturan serupa sudah berlaku di seluruh kampus Indonesia sejak 2019 (Panduan Nasional AI, hlm. 12). **(Sitasi yang tidak bisa diperiksa)** — Sasaran. Judul dan nomor halamannya terdengar meyakinkan, tetapi jawaban tidak memberikan dokumen atau tautan yang bisa diperiksa. Sitasi yang terlihat rapi belum tentu benar.\n\n**Pembahasan:** Dua bagian itu perlu dicek ke sumber aslinya: angka yang muncul tanpa rujukan, dan sitasi yang terdengar resmi tetapi tidak bisa dibuka.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.11",
+            "title": "Apakah semua yang otomatis itu AI?",
+            "body": "Setelah melihat berbagai kemampuan AI, penting untuk membedakannya dari otomatisasi biasa. Tidak semua sistem yang bisa mendeteksi kondisi dan mengambil tindakan otomatis menggunakan machine learning. TCAS pada pesawat, misalnya, bisa mendeteksi potensi tabrakan dan memberi pilot saran untuk naik atau turun.\n\nNamun sistem yang mendeteksi, menghitung, dan memberi saran secara otomatis **belum tentu menggunakan machine learning atau AI modern**. Aturan yang ditulis manusia juga bisa menghasilkan perilaku yang sangat canggih.\n\nJadi pertanyaan untuk pelajaran berikutnya ialah: jika kemampuan mengambil keputusan otomatis saja belum cukup, apa yang sebenarnya dimaksud orang ketika mengatakan ‘AI’?\n\n**Sumber bacaan**\n\n- [FAA · penjelasan TCAS II](https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html)\n\n**Otomatisasi dan model AI bekerja dengan cara berbeda**\n\n- **Aturan:** Sistem mengikuti aturan yang ditulis manusia, misalnya sensor parkir yang berbunyi pada jarak tertentu.\n- **Model AI:** Model machine learning belajar mengenali pola dari banyak contoh data.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Saat AI menghasilkan sesuatu yang terlihat meyakinkan, tanyakan apa yang sebenarnya berhasil dilakukan sistem dan bagian mana yang masih perlu diverifikasi. Tangkapan layar transfer, misalnya, tetap harus dicocokkan dengan riwayat bankmu.",
+        "check": {
+          "question": "Pembeli mengirim tangkapan layar transfer yang tampak meyakinkan. Langkah paling tepat?",
+          "choices": [
+            {
+              "label": "Minta nomor referensi transfer dari pembeli dan cocokkan dengan angka di tangkapan layar.",
+              "feedback": "Nomor referensi dan gambar masih berasal dari pembeli; keduanya belum membuktikan uang masuk ke rekeningmu.",
+              "correct": false
+            },
+            {
+              "label": "Periksa nama penerima, nominal, dan jam transfer yang tertulis pada tangkapan layar.",
+              "feedback": "Detail yang tampak cocok tetap bisa muncul pada gambar yang keliru atau diubah.",
+              "correct": false
+            },
+            {
+              "label": "Buka riwayat transaksi di aplikasi bankmu dan cocokkan uang yang benar-benar masuk.",
+              "feedback": "Tepat. Catatan di rekeningmu sendiri adalah bukti yang perlu dipakai sebelum mengirim tiket.",
+              "correct": true
+            }
+          ]
+        }
+      },
+      {
+        "title": "Sebenarnya, Apa Itu AI?",
+        "question": "Apa yang membuat sebuah sistem disebut AI?",
+        "intro": "Tidak semua fitur yang tampak ‘pintar’ bekerja dengan cara yang sama. Sensor parkir bisa berbunyi saat mobil terlalu dekat dengan dinding, sementara aplikasi foto bisa mengenali objek seperti kucing. Pelajaran ini membedakan sistem berbasis aturan, machine learning, deep learning, dan generative AI agar istilah-istilah itu tidak tercampur.",
+        "lead": "Tidak semua fitur yang tampak ‘pintar’ bekerja dengan cara yang sama. Sensor parkir bisa berbunyi saat mobil terlalu dekat dengan dinding, sementara aplikasi foto bisa mengenali objek seperti kucing. Pelajaran ini membedakan sistem berbasis aturan, machine learning, deep learning, dan generative AI agar istilah-istilah itu tidak tercampur.",
+        "sections": [
+          {
+            "number": "2.1",
+            "title": "Otomatis belum tentu AI",
+            "body": "Ambil contoh sensor parkir. Sensor membaca jarak, membandingkannya dengan batas yang sudah ditentukan, lalu menyalakan alarm. Sistem seperti ini bisa bekerja hanya dengan aturan yang ditulis manusia, tanpa belajar dari contoh data.\n\nIngat TCAS dari pelajaran pertama? Sistem pesawat itu juga menerima informasi, menghitung risiko, lalu memberi saran kepada pilot. Kemampuan otomatis yang canggih masih bisa dibangun dari logika yang dirancang manusia.\n\nSecara sederhana: **input (data yang diterima) → aturan yang ditulis manusia → output (hasilnya)**. Aturan bisa sangat rumit dan tetap berguna.\n\nMenyebut suatu fitur ‘pintar’ atau ‘otomatis’ belum membuktikan bahwa fitur itu memakai AI.\n\n**Sumber bacaan**\n\n- [FAA · TCAS II](https://www.faa.gov/air_traffic/publications/aim_html/chap4_section_4.html)\n\n**Dua contoh cara kerja sistem**\n\n- **Sensor parkir:** Sensor parkir berbunyi ketika kendaraan terlalu dekat dengan objek di sekitarnya.\n- **Model machine learning:** Model dilatih dengan banyak contoh agar bisa mengenali pola pada data baru.\n\n![Diagram simbol TCAS untuk pesawat sendiri, pesawat lain, dan tingkat ancaman](../public/course-visuals/tcas-symbology.webp)\n\n**Visual:** Diagram simbol TCAS untuk pesawat sendiri, pesawat lain, dan tingkat ancaman. Contoh sistem otomatis yang memberi peringatan saat pesawat terlalu dekat. [FAA](https://www.faa.gov/lessons_learned/transport_airplane/accidents/RA-85816).",
+            "activity": "",
+            "reflection": {
+              "question": "Apakah semua sistem yang bekerja otomatis disebut AI?",
+              "answer": "Tidak. Ada sistem yang cukup mengikuti aturan yang ditulis manusia. Cara kerjanya perlu dilihat sebelum memberi label AI."
+            },
+            "reveal": null
+          },
+          {
+            "number": "2.2",
+            "title": "Ketika aturan sulit ditulis satu per satu",
+            "body": "Menulis aturan satu per satu mulai tidak praktis ketika pola yang ingin dikenali sangat beragam. Untuk membedakan foto kucing dan anjing, misalnya, aturan seperti ‘punya bulu’ atau ‘empat kaki’ tidak membantu banyak karena keduanya punya ciri itu.\n\nSudut kamera, cahaya, warna, dan bagian tubuh yang tertutup membuat daftar aturan semakin panjang.\n\nAI adalah bidang yang mengembangkan sistem untuk tugas seperti mengenali pola, membuat prediksi, memecahkan masalah, atau menghasilkan konten.\n\n**Machine learning adalah salah satu cara membangunnya**: berikan banyak contoh, lalu sistem menyesuaikan model untuk menangkap pola yang berguna.\n\nJadi AI adalah bidang yang lebih luas, sedangkan machine learning adalah salah satu pendekatannya.\n\n**Mengapa aturan manual cepat menjadi rumit**\n\n- **Cahaya berubah:** Foto kucing yang sama bisa tampak berbeda saat terang dan gelap.\n- **Sudut kamera:** Kucing dari samping terlihat berbeda dari kucing yang menghadap kamera.\n- **Sebagian tertutup:** Wajah atau tubuh hewan bisa tertutup sehingga cirinya tidak lengkap.\n\n**Diagram:** Alih-alih menulis aturan satu per satu, model belajar memisahkan kelompok berdasarkan contoh yang diberikan. Ketika contoh berubah atau bertambah, hasil pemisahannya juga bisa berubah.\n\nModel belajar membedakan kelompok berdasarkan pola dari contoh data. Ketika contoh baru ditambahkan, pola yang dipelajari dan prediksinya bisa ikut berubah.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.3",
+            "title": "Data → training → model → output",
+            "body": "Untuk pengenal kucing dan anjing, kita bisa memberi banyak foto beserta jawabannya. Saat training, sistem menyesuaikan model agar bisa membedakan pola.\n\nSetelah itu, **foto baru menjadi input dan model membuat prediksi**.\n\nModel tidak harus menyimpan aturan sederhana seperti ‘jika telinga segitiga, maka kucing’; hubungan yang dipelajarinya bisa jauh lebih kompleks.\n\nIni hanya gambaran dasar untuk memudahkan pemahaman. Tidak semua sistem AI dilatih dengan proses yang persis sama.\n\nIntinya, kualitas data dan proses training memengaruhi kemampuan model. Saat menerima input baru, model tetap menghasilkan prediksi, dan prediksi itu bisa salah.\n\n**Alur dasar dari data sampai prediksi**\n\n- **Data:** Kumpulkan foto kucing dan anjing dengan label yang benar.\n- **Training:** Model dilatih untuk membedakan pola dari foto-foto itu.\n- **Model:** Foto baru menjadi input bagi model yang sudah dilatih.\n- **Output:** Model memprediksi ‘kucing’ atau ‘anjing’; prediksi ini masih bisa salah.",
+            "activity": "Susun alur melatih dan memakai sebuah model pengenal gambar.\n\n**Pilihan**\n\n- Model: hasil pelatihan yang siap dipakai\n- Data: foto berlabel kucing dan anjing\n- Prediksi: jawaban untuk foto baru\n- Training: model menyesuaikan diri dari contoh\n\n**Petunjuk:** Bedakan bahan latihan, proses belajar, hasil pelatihan, dan penggunaan hasil itu pada foto baru.\n\n**Urutan jawaban:** Data: foto berlabel kucing dan anjing → Training: model menyesuaikan diri dari contoh → Model: hasil pelatihan yang siap dipakai → Prediksi: jawaban untuk foto baru\n\n**Pembahasan:** Data → Training → Model → Prediksi. Model tidak diberi aturan satu per satu; ia menyesuaikan diri dari contoh yang sudah berlabel.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.4",
+            "title": "Tiga cara belajar yang sering dibahas",
+            "body": "Ada beberapa cara model belajar dari data. Jika setiap foto latihan sudah diberi label ‘kucing’ atau ‘anjing’, model memiliki jawaban yang bisa dipakai sebagai acuan selama training. Cara ini disebut **supervised learning**. Contoh lain ialah email yang diberi label spam atau bukan spam.\n\nModel memakai contoh berlabel itu untuk membuat prediksi pada foto atau email baru.\n\nDalam **unsupervised learning**, data tidak diberi kelompok yang benar sejak awal.\n\nSistem mencari pola kemiripan, misalnya pelanggan yang sering belanja kecil-kecilan dan pelanggan yang jarang belanja tetapi sekali transaksi besar.\n\nDalam **reinforcement learning**, sistem mencoba tindakan, menerima umpan balik, lalu menyesuaikan perilaku; robot yang belajar bergerak adalah salah satu contohnya.\n\nKetiganya tidak perlu dihafal sebagai daftar; yang penting adalah memahami bagaimana data dan umpan balik dipakai dalam proses belajar.\n\n**Tiga pendekatan belajar yang umum**\n\n- **Supervised learning:** Model belajar dari contoh yang sudah diberi label, seperti email spam atau bukan spam.\n- **Unsupervised learning:** Model mencari kelompok atau kemiripan dalam data yang belum diberi label.\n- **Reinforcement learning:** Model mencoba tindakan dan memperbaikinya berdasarkan umpan balik.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.5",
+            "title": "Deep learning dan data yang lebih rumit",
+            "body": "Sebagian data lebih sulit ditangani dengan aturan sederhana. Foto terdiri dari banyak piksel, suara memiliki pola frekuensi dan waktu, makna kata bergantung pada konteks kalimat, dan video menambahkan gerakan serta urutan kejadian.\n\nUntuk menemukan pola dalam data seperti itu, banyak sistem modern memakai **deep learning, yaitu bagian dari machine learning** yang menggunakan jaringan saraf buatan dengan banyak lapisan.\n\nIstilah ‘saraf’ terinspirasi sejarah penelitian, tetapi jaringan itu bukan otak manusia dalam komputer. Jaringan saraf buatan adalah pendekatan matematis untuk mempelajari hubungan yang kompleks.\n\nDeep learning membantu banyak kemajuan pada pengenalan gambar, suara, bahasa, dan robotika.\n\n**Alur sederhana deep learning**\n\n- **Input:** Foto, suara, atau teks menjadi data yang diproses model.\n- **Lapisan model:** Jaringan saraf buatan mempelajari hubungan antarpola melalui banyak lapisan.\n- **Output:** Hasilnya bisa berupa label objek pada foto, teks dari ucapan, atau prediksi lain.\n\n**Diagram:** Training dan prediksi adalah dua fase yang berbeda. Yang kamu pakai sehari-hari adalah fase kanan, yaitu model yang sudah selesai belajar.\n\nTraining memakai banyak contoh berlabel untuk menyesuaikan model. Saat prediksi, data baru tanpa label masuk ke model yang sudah dilatih dan menghasilkan jawaban.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.6",
+            "title": "Dari mengenali menjadi menghasilkan",
+            "body": "Sebagian AI memperkirakan kategori atau memilih sesuatu yang relevan: filter spam memberi label, sistem rekomendasi memilih lagu, model prediksi memperkirakan risiko.\n\nKelompok ini sering disebut AI prediktif atau diskriminatif, bergantung pada tugasnya.\n\n**Generative AI membuat konten baru** seperti teks, gambar, audio, video, atau kode berdasarkan input pengguna.\n\nKeduanya berada di dalam payung AI; generative AI bukan nama lain untuk seluruh AI.\n\nGenerative AI modern banyak memakai deep learning.\n\nAda juga model generatif yang lebih lama dan tidak memakai deep learning. Jadi, jangan menganggap AI, machine learning, deep learning, dan generative AI selalu tersusun sebagai empat tingkat yang sederhana.\n\nUntuk pemula, cukup tanyakan tugasnya: apakah sistem sedang mengklasifikasi, merekomendasikan, memprediksi, atau menghasilkan konten?\n\n**Bedakan tugas prediktif dan generatif**\n\n- **AI prediktif:** Contohnya filter spam yang memberi label atau sistem yang memperkirakan risiko.\n- **Generative AI:** Contohnya model yang membuat teks, gambar, suara, video, atau kode baru.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.7",
+            "title": "Mengapa model bahasa bisa menjawab dengan lancar?",
+            "body": "Model bahasa bisa menghasilkan kalimat yang lancar karena dilatih pada sangat banyak contoh teks. Saat menjawab, model memproses input lalu memperkirakan bagian berikutnya berdasarkan pola yang dipelajari saat training.\n\nSistem modern melakukan proses ini berulang sehingga bisa menulis kalimat panjang, mengikuti instruksi, merangkum, dan membantu memecahkan masalah.\n\nPenjelasan “memprediksi bagian berikutnya” hanya gambaran awal, bukan uraian lengkap tentang cara kerja model bahasa modern.\n\n**Kelancaran bahasa tidak membuktikan** bahwa model memiliki pengalaman, niat, atau pemahaman seperti manusia. Bahkan jawaban yang terdengar sangat yakin bisa berisi informasi yang salah.\n\n**Alur sederhana model bahasa**\n\n- **Input:** Kamu mengirim prompt berisi pertanyaan dan konteks.\n- **Pola yang dipelajari:** Model memakai pola bahasa yang dipelajari saat training.\n- **Output:** Model menyusun jawaban bagian demi bagian berdasarkan input tadi.\n\n**Diagram:** Model menyusun jawaban sedikit demi sedikit berdasarkan pola yang dipelajari. Proses ini bukan pemeriksaan fakta, sehingga kalimat yang terdengar lancar belum tentu benar.\n\nPada setiap langkah, model mempertimbangkan beberapa kemungkinan lanjutan berdasarkan pola dari data training. Proses memilih lanjutan ini bukan proses mengecek apakah sebuah fakta benar.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.8",
+            "title": "Bagus di satu tugas belum tentu bagus di tugas lain",
+            "body": "Kemampuan model tidak selalu konsisten di semua jenis tugas. Model bisa menyelesaikan persoalan yang terlihat sulit, tetapi tetap gagal pada permintaan yang lebih sederhana jika membutuhkan ketelitian tinggi, konteks yang tidak tersedia, atau alat yang tidak dimiliki.\n\nPerforma juga berubah menurut model, versi, dan cara pengguna memberi tugas.\n\nSatu video yang menunjukkan kegagalan model bisa menjadi contoh, tetapi tidak membuktikan bahwa semua model akan selalu gagal pada tugas yang sama.\n\nKadang AI bisa berkata seolah-olah sudah membuka link, menjalankan kode, atau memeriksa sumber, padahal pada sesi itu AI tidak punya tool untuk melakukan tindakan itu.\n\nTanyakan apa yang benar-benar dilakukan sistem, lalu periksa bukti yang bisa kamu lihat: file yang berubah, hasil pengujian, atau halaman sumber asli.\n\n**Jangan menganggap klaim kemampuan sebagai bukti tindakan.**\n\n**Klaim tindakan perlu bukti**\n\n- **Klaim:** AI mungkin mengatakan sudah membuka link atau menjalankan pengujian.\n- **Bukti:** Lihat halaman yang dibuka, file yang berubah, atau hasil pengujian yang benar-benar ada.\n\n**Diagram:** Klaim dan sitasi bisa terlihat rapi, tetapi yang penting adalah apakah sumbernya benar-benar ada dan bisa dibuka.\n\nJika AI memberi sitasi, buka sitasinya dan pastikan dokumennya benar-benar ada serta mendukung klaim yang dibuat. Jika sumbernya tidak bisa ditemukan, klaim itu belum terverifikasi.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.9",
+            "title": "Merangkum istilah yang sudah dipelajari",
+            "body": "Sistem otomatis bisa bekerja tanpa AI. Machine learning mempelajari pola dari data; deep learning adalah salah satu jenisnya; generative AI membuat konten baru.\n\nPada saat yang sama, model bisa salah, membuat klaim tanpa bukti, atau mengatakan seolah-olah sudah melakukan sesuatu padahal belum.\n\nSetelah memahami istilah dasarnya, pertanyaan yang lebih berguna adalah: kapan AI membantu, bagaimana cara mengecek hasilnya, dan keputusan apa yang tidak seharusnya kita serahkan begitu saja kepada AI?\n\n**Ringkasan istilah utama**\n\n- **Otomatisasi:** Sistem menjalankan langkah tertentu tanpa harus dioperasikan terus-menerus.\n- **Machine learning:** Model dilatih dengan data untuk mengenali pola pada contoh baru.\n- **Deep learning:** Jenis machine learning yang memakai jaringan saraf buatan berlapis.\n- **Generative AI:** Model membuat konten baru, misalnya teks atau gambar.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Kata ‘otomatis’ belum menjelaskan cara sebuah fitur bekerja. Cari tahu apakah fitur itu hanya mengikuti aturan yang sudah ditulis atau memakai model yang belajar dari data. Untuk hasil yang penting, tetap cek hasil akhirnya.",
+        "check": {
+          "question": "Sebuah fitur foto bertuliskan ‘perbaiki otomatis’. Apakah fitur itu pasti memakai AI?",
+          "choices": [
+            {
+              "label": "Ya, karena hasil perbaikannya bisa berbeda untuk setiap foto.",
+              "feedback": "Aturan biasa pun bisa memberi hasil berbeda ketika gambar masukannya berbeda.",
+              "correct": false
+            },
+            {
+              "label": "Belum dapat dipastikan; cari penjelasan tentang cara fitur itu memproses foto.",
+              "feedback": "Tepat. Fitur otomatis bisa memakai aturan tetap atau model yang belajar dari data.",
+              "correct": true
+            },
+            {
+              "label": "Tidak, karena kata ‘otomatis’ biasanya berarti prosesnya mengikuti aturan tetap.",
+              "feedback": "Nama fitur tidak cukup untuk menyingkirkan kemungkinan bahwa model AI dipakai.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Berpikir di Era AI",
+        "question": "Bagaimana memakai AI tanpa menyerahkan seluruh keputusan kepada AI?",
+        "intro": "Setelah memahami kemampuan dan cara kerja dasar AI, sekarang kita masuk ke cara menggunakannya dalam pekerjaan. Misalnya, saat magang sebagai analis kamu diminta menyiapkan ringkasan untuk rapat tim. AI bisa membuat draf dengan cepat, tetapi salah satu angkanya tidak punya sumber. Kamu tetap perlu memutuskan apakah angka itu layak dipakai atau harus dibuang.",
+        "lead": "Setelah memahami kemampuan dan cara kerja dasar AI, sekarang kita masuk ke cara menggunakannya dalam pekerjaan. Misalnya, saat magang sebagai analis kamu diminta menyiapkan ringkasan untuk rapat tim. AI bisa membuat draf dengan cepat, tetapi salah satu angkanya tidak punya sumber. Kamu tetap perlu memutuskan apakah angka itu layak dipakai atau harus dibuang.",
+        "sections": [
+          {
+            "number": "3.1",
+            "title": "Pekerjaan terdiri dari banyak tugas",
+            "body": "Pekerjaan seperti menyiapkan rapat sebenarnya terdiri dari beberapa tugas: mencari data, membaca dokumen, menyusun slide, dan memilih rekomendasi yang bisa dijelaskan kepada tim. AI mungkin mempercepat pencarian dan draf awal, tetapi kamu tetap perlu memahami situasi tim dan mempertanggungjawabkan saranmu.\n\nArtinya, jabatannya bisa tetap sama, tetapi **cara mengerjakan sebagian tugasnya sudah berubah**.\n\nDaripada bertanya apakah AI akan menggantikan seluruh pekerjaan analis, lihat tugasnya satu per satu. Bagian mana yang bisa dibantu AI? Bagian mana yang membutuhkan pemahaman tentang tim, hubungan dengan orang lain, dan tanggung jawabmu sendiri?\n\nTugas yang jelas, berulang, dan banyak memproses informasi biasanya lebih mudah dibantu AI. Sebaliknya, keputusan yang bergantung pada konteks manusia atau bisa berdampak pada orang lain membutuhkan penilaian yang lebih hati-hati.\n\n**Satu pekerjaan terdiri dari beberapa jenis tugas**\n\n- **Cari informasi:** Analis membaca dokumen dan mencari data yang relevan.\n- **Susun draf:** AI bisa membantu merangkum dokumen atau membuat draf presentasi.\n- **Pilih rekomendasi:** Manusia menimbang konteks perusahaan sebelum memilih saran.\n- **Tanggung jawab:** Manusia menjelaskan alasan keputusan dan menanggung akibatnya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.2",
+            "title": "Apa yang ditunjukkan data pekerjaan?",
+            "body": "Perubahan pada tugas-tugas kerja juga terlihat dalam data pasar kerja. ILO melaporkan pada 2026 bahwa di ASEAN belum terlihat kehilangan pekerjaan besar-besaran akibat generative AI. Yang lebih sering terlihat adalah perubahan pada sebagian tugas di dalam sebuah pekerjaan.\n\nDi Indonesia, sebagian pekerjaan memiliki tugas yang secara teknis bisa dipengaruhi AI. Sekitar 3-4% pekerjaan masuk kategori dengan tingkat paparan tertinggi. Angka keseluruhannya ada di latihan di bawah.\n\n**Paparan** di sini berarti seberapa banyak tugas dalam suatu pekerjaan yang secara teknis bisa dipengaruhi AI. Angka ini bukan persentase orang yang pasti kehilangan pekerjaan.\n\n**Rincian Indonesia**\n\nBesarnya paparan berbeda menurut jenis pekerjaan.\n\nMenurut ILO, 93,9% pekerjaan dukungan administratif di Indonesia memiliki tugas yang berpotensi terdampak generative AI, dan 67,5% masuk kategori paparan tertinggi.\n\nUntuk pekerja muda usia 15-24 tahun, angkanya diperkirakan 26,1%, dibanding 21,1% pada pekerja dewasa. Angka ini menunjukkan bahwa sebagian tugas bisa berubah; bukan berarti pekerja muda pasti kehilangan pekerjaannya.\n\n**Sinyal dari Amerika Serikat**\n\nData dari Stanford Digital Economy Lab memberi gambaran tambahan dari Amerika Serikat.\n\nHingga Juni 2026, jumlah pekerja usia 22-25 tahun di bidang dengan paparan AI tinggi sekitar 19% lebih rendah dari perkiraan.\n\nPerkiraan itu membandingkan pekerja muda di bidang dengan paparan AI tinggi dengan kelompok muda di bidang yang paparannya lebih rendah. Perubahannya lebih banyak terlihat dari perekrutan yang melambat daripada dari PHK.\n\nStudi itu tidak membuktikan bahwa AI sendirian menyebabkan seluruh selisihnya, dan hasil Amerika Serikat tidak boleh langsung dianggap sebagai prediksi Indonesia.\n\n**Sumber bacaan**\n\n- [ILO · pasar kerja ASEAN 2026](https://www.ilo.org/publications/generative-ai-and-labour-markets-asean-significant-exposure-limited)\n- [ILO · rincian Indonesia](https://www.ilo.org/resource/article/navigating-generative-ai%E2%80%99s-transformations-asean-labour-markets)\n- [Stanford Digital Economy Lab · pekerja muda](https://digitaleconomy.stanford.edu/news/canariesaug26/)\n\n**Potensi dampak pada pekerjaan di Indonesia**\n\nMenurut ILO, sebagian pekerjaan di Indonesia memiliki tugas yang berpotensi terdampak generative AI. Coba tebak persentasenya pada latihan di bawah. Angka ini bukan jumlah pekerja yang pasti kehilangan pekerjaan.\n\n- **3-4%:** Sekitar 3-4% pekerjaan di Indonesia masuk kategori dengan paling banyak tugas yang bisa dipengaruhi AI.\n- **26,1%:** Sekitar 26,1% pekerjaan pada kelompok usia 15-24 tahun memiliki tugas yang berpotensi terdampak AI.",
+            "activity": "Menurut ILO, berapa persen pekerjaan di Indonesia yang punya sebagian tugas berpotensi terdampak generative AI?\n\nRentang tebakan: 0–60 persen pekerjaan (langkah 0.1).\n\n**Jawaban:** 21.7 persen pekerjaan. Toleransi latihan: ±6.\n\n**Pembahasan:** Sekitar 21,7%. Perhatikan kata ‘sebagian tugas’: ini bukan jumlah pekerja yang pasti kehilangan pekerjaan, melainkan pekerjaan yang sebagian tugasnya bisa berubah.\n\n**Sumber latihan:** [ILO · potensi dampak generative AI](https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure)",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.3",
+            "title": "Apa artinya bagi mahasiswa Indonesia?",
+            "body": "Bagi mahasiswa Indonesia, pertanyaan yang paling relevan bukan hanya ‘pekerjaan apa yang akan berubah?’, tetapi juga ‘kemampuan apa yang bisa saya bangun sekarang?’. Pengembangan AI bergantung pada banyak hal—energi, infrastruktur, chip, talenta, dan aplikasi—dan Indonesia masih membangun kemampuan di berbagai bagian tersebut.\n\n**Tidak setiap mahasiswa perlu membuat model sebesar ChatGPT dari awal.** Jauh lebih banyak orang akan memakai AI dalam belajar, riset, desain, coding, bisnis, dan pelayanan sehari-hari.\n\nYang lebih penting bagi mahasiswa adalah belajar memakai AI untuk masalah nyata: tahu kapan AI membantu, informasi apa yang perlu diberikan, dan kapan hasilnya harus dicek lagi.\n\nMenguasai nama satu alat saja tidak cukup, karena alatnya akan berubah.\n\n**Sumber bacaan**\n\n- [Komdigi · lima lapisan AI](https://portal.komdigi.go.id/kanal-publik/berita-kini/10477)\n\n**Cara menerapkan AI pada kebutuhan nyata**\n\n- **Saat belajar:** Gunakan AI untuk mencari penjelasan, lalu cek informasi pentingnya.\n- **Saat riset:** AI bisa membantu membuat ringkasan awal; kamu tetap membuka sumber asli.\n- **Saat berkarya:** AI bisa membantu membuat draf desain, kode, atau ide bisnis.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.4",
+            "title": "Manusia + AI tidak otomatis lebih baik",
+            "body": "AI tidak hanya membantu menghasilkan jawaban; cara jawabannya disampaikan juga bisa memengaruhi keputusan kita. Misalnya, kamu awalnya yakin jawaban sebuah soal adalah B, tetapi AI memilih D dengan penjelasan panjang dan terdengar meyakinkan. Jika langsung mengikuti AI tanpa memeriksa alasan dan bukti, kamu bisa meninggalkan jawaban yang sebenarnya benar.\n\nKebiasaan memberi kepercayaan berlebih kepada sistem otomatis disebut **automation bias**.\n\nEksperimen yang terbit di Nature Medicine pada 2026 melibatkan 623 orang awam dan 153 dokter layanan primer dalam tugas diagnosis kondisi kulit.\n\nBantuan AI yang benar bisa membantu, tetapi orang awam lebih sering mengikuti saran AI ketika sarannya salah. Dokter berpengalaman lebih jarang mengikuti saran AI yang salah.\n\nHasil itu tidak berarti ahli selalu benar. Intinya, pengetahuan bidang membantu kita menilai saran AI.\n\n**Sumber bacaan**\n\n- [Nature Medicine · AI dan keputusan diagnosis 2026](https://www.nature.com/articles/s41591-026-04553-w)\n\n**Automation bias dalam pengambilan keputusan**\n\n- **Langsung ikut AI:** Mengganti penilaian sendiri hanya karena penjelasan AI terdengar yakin.\n- **Periksa saran AI:** Bandingkan dengan pengetahuan bidang dan bukti yang tersedia.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.5",
+            "title": "Lima kemampuan yang tetap perlu dilatih",
+            "body": "Dari contoh-contoh sebelumnya, ada lima kemampuan yang tetap penting saat bekerja bersama AI:\n\n1. **Tentukan tujuan dengan jelas.** Gunakan AI untuk bagian yang memang cocok dibantu, seperti mencari ide awal, merangkum, atau membuat draf, lalu tentukan sendiri bagian yang masih membutuhkan pekerjaan manusia.\n2. **Pahami bidang yang sedang dikerjakan.** Pengetahuan coding membantu melihat masalah keamanan pada kode yang dihasilkan AI; pengetahuan riset membantu mengenali asumsi yang keliru dalam ringkasan.\n3. **Sesuaikan pemeriksaan dengan risikonya.** Nama acara kampus yang kurang menarik mudah diganti, tetapi ringkasan jurnal perlu dicek ke sumber asli dan keputusan kesehatan memerlukan sumber serta tenaga profesional yang tepat.\n4. **Pahami konteks dan orang yang terlibat.** Keputusan tentang pelanggan, tim, atau kebijakan jarang bisa diselesaikan hanya dari informasi yang mudah dimasukkan ke prompt.\n5. **Terus belajar.** Alat AI dan cara kerja di banyak bidang terus berubah, sehingga kemampuan menyesuaikan diri tetap penting.\n\nTidak ada daftar keterampilan yang bisa menjamin pekerjaan seseorang tidak akan terdampak AI.\n\nNamun **kemampuan memakai alat, memahami bidang yang dikerjakan, mengecek hasil AI, memahami situasi dan orang yang terlibat, lalu terus belajar** membuat kita lebih siap menghadapi perubahan.\n\n**Contoh manfaat yang terukur**\n\nAda manfaat yang terukur pada beberapa tugas.\n\nDalam studi atas 5.172 agen layanan pelanggan, akses ke asisten AI meningkatkan produktivitas rata-rata 15%, diukur dari jumlah masalah yang diselesaikan per jam. Besarnya manfaat berbeda antarpekerja.\n\nAngka 15% itu berasal dari satu lingkungan kerja, jadi tidak berarti semua pekerjaan akan mendapat peningkatan yang sama. Temuannya hanya menunjukkan bahwa AI bisa membantu produktivitas ketika tugas dan cara penggunaannya memang cocok.\n\n**Sumber bacaan**\n\n- [OECD · AI dan keterampilan](https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html)\n- [Brynjolfsson dkk. · Generative AI at Work](https://arxiv.org/abs/2304.11771)\n\n**Lima kemampuan yang perlu terus dilatih**\n\n- **Tentukan tujuan:** Tahu masalah apa yang ingin diselesaikan sebelum meminta bantuan AI.\n- **Pahami bidangmu:** Pengetahuan bidang membantu melihat kesalahan pada hasil AI.\n- **Cek sesuai risiko:** Periksa lebih teliti ketika akibat kesalahan lebih besar.\n- **Pahami konteks:** Pertimbangkan orang dan situasi yang tidak terlihat dalam prompt.\n- **Terus belajar:** Perbarui keterampilan saat alat dan tugas kerja berubah.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.6",
+            "title": "Jangan menyerahkan seluruh proses berpikir",
+            "body": "Memakai AI untuk mempercepat pekerjaan juga bisa mengubah cara kita berpikir selama mengerjakannya. Sebuah studi Microsoft Research dan Carnegie Mellon mengumpulkan 936 contoh penggunaan generative AI dari 319 pekerja pengetahuan.\n\nBerdasarkan jawaban peserta sendiri, semakin tinggi kepercayaan mereka pada AI, semakin sedikit upaya berpikir kritis yang mereka laporkan pada tugas tertentu.\n\nPeneliti juga menemukan bahwa ketika memakai AI, pengguna **lebih banyak memeriksa, menggabungkan, dan mengawasi hasil AI**.\n\nStudi ini tidak membuktikan bahwa AI membuat orang menjadi kurang pintar. Namun hasilnya menunjukkan pentingnya tetap melakukan bagian pekerjaan yang membutuhkan penilaian dan pemikiran sendiri.\n\nBandingkan dua cara memakai AI untuk tugas kuliah. Mahasiswa pertama meminta AI mengerjakan semuanya, lalu menyalin hasilnya.\n\nMahasiswa kedua membuat jawabannya dahulu, meminta AI mencari kelemahannya, memeriksa umpan balik, dan memperbaiki jawabannya sendiri.\n\nKeduanya memakai AI, tetapi cara kedua tetap membuat mahasiswa menyusun jawaban, menilai kritik, dan memperbaikinya sendiri.\n\n**Sumber bacaan**\n\n- [Microsoft Research · studi berpikir kritis](https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/)\n\n**Dua pola penggunaan AI untuk belajar**\n\n- **Serahkan semuanya:** Minta jawaban jadi, lalu salin tanpa memeriksa.\n- **Minta AI mengkritik draf:** Buat jawaban awal sendiri, minta AI mencari kelemahannya, lalu periksa dan perbaiki.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.7",
+            "title": "Empat langkah yang mudah dipakai",
+            "body": "Untuk menangani angka tanpa sumber pada slide magang tadi, gunakan empat langkah berikut.\n\n**TENTUKAN:** apa masalah yang sebenarnya ingin diselesaikan? Mulai dari tujuan, bukan dari merangkai prompt.\n\n**GUNAKAN:** pilih bagian yang bisa dibantu AI, seperti mencari ide, membuat draf, merangkum, membandingkan, atau menjelaskan.\n\n**CEK:** untuk klaim penting, angka, kutipan, dan sumber, kembali ke bukti aslinya. Semakin besar akibat jika jawaban salah, semakin teliti pemeriksaannya.\n\n**PUTUSKAN:** AI bisa memberi pilihan dan rekomendasi, tetapi kamu menentukan apa yang dipakai dan bertanggung jawab atas hasilnya.\n\n**Contoh proposal sponsor**\n\nDi draf slide rapat tadi, AI menulis ‘78% Gen Z menyukai merek yang mendukung keberlanjutan’ tanpa sumber. Kalimat itu mungkin mendukung pesan yang ingin disampaikan tim, tetapi angkanya belum bisa dipertanggungjawabkan.\n\nCari penelitian aslinya, lihat siapa yang disurvei dan kapan. Jika tidak ditemukan atau tidak relevan, keluarkan angka itu dari slide.\n\n**Kerangka: Tentukan → Gunakan → Cek → Putuskan**\n\n- **Tentukan:** Apa masalah yang sebenarnya ingin kamu selesaikan?\n- **Gunakan:** Bagian mana yang cocok dibantu AI?\n- **Cek:** Klaim, angka, dan sumber apa yang harus dibuka lagi?\n- **Putuskan:** Apa yang layak dipakai dan siapa yang bertanggung jawab?",
+            "activity": "",
+            "reflection": {
+              "question": "Pada langkah mana keputusan akhir tetap ada padamu?",
+              "answer": "Pada langkah Putuskan. Kamu bisa memakai AI untuk membantu, lalu memeriksa hasil dan menentukan tindakan sesuai konteks."
+            },
+            "reveal": null
+          },
+          {
+            "number": "3.8",
+            "title": "Bagian yang tetap membutuhkan keputusan manusia",
+            "body": "Pada contoh pekerjaan analis, AI bisa mempercepat pembuatan ringkasan dan draf slide. Namun kamu tetap perlu menentukan tujuan, menilai kualitas hasil, dan bertanggung jawab atas keputusan yang diambil.\n\n**Manusia tetap perlu menentukan tujuan**, memilih saran yang sesuai, menilai kualitas hasil, memahami kondisi yang tidak tertulis di prompt, dan bertanggung jawab atas keputusan akhirnya.\n\nIni bukan berarti kita berhenti menulis, menganalisis, atau membuat kode. Justru ketika AI ikut mengerjakan sebagian proses, kita perlu tetap memahami apa yang dihasilkan dan alasan di baliknya.\n\nData tadi tidak mendukung kesimpulan bahwa semua pekerjaan akan hilang. Namun perubahan pada cara kerja juga tetap perlu diperhatikan meskipun AI masih sering salah.\n\nGunakan AI untuk membantu pekerjaan, tetapi tetap pahami hasilnya, cek bagian yang penting, dan ambil keputusan akhirnya sendiri.\n\n**Bagian yang tetap membutuhkan keputusan manusia**\n\nAI bisa mempercepat pekerjaan. Kita tetap memilih arah, memahami konteks, memeriksa kualitas, dan bertanggung jawab atas hasilnya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.9",
+            "title": "Lanjutkan latihan dengan situasi nyata",
+            "body": "Prinsip tadi akan dipakai lagi di NUSA Lab Game melalui situasi yang lebih konkret: kutipan dari AI yang terlihat sah, tangkapan layar yang tampak asli, data yang belum tentu boleh dibagikan, dan tugas kuliah yang bisa dikerjakan dengan bantuan AI.\n\nPertanyaannya bukan sekadar ‘AI baik atau buruk?’, melainkan ‘Apa yang akan kamu lakukan, dan **bukti apa yang kamu perlukan?**’\n\nSetelah tiga pelajaran ini, gunakan pola sederhana yang sama saat belajar atau bekerja: tentukan tujuan, pakai AI jika membantu, cek bagian yang penting, lalu ambil keputusan sendiri.\n\n**Menerapkan prinsip pada situasi nyata**\n\n- **Kutipan dari AI:** Buka tulisan asli untuk memastikan kutipan dan sumbernya benar.\n- **Bukti transfer:** Cek riwayat transaksi di aplikasi bank, bukan hanya tangkapan layar.\n- **Data pribadi:** Tanya dulu apakah informasi itu boleh dikirim ke layanan AI.\n- **Tugas kuliah:** Gunakan AI sebagai bantuan tanpa menyerahkan seluruh proses berpikir.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "AI bisa membantu menyiapkan draf, tetapi klaim penting tetap perlu dicek ke sumber aslinya. Jika angka dalam slide tadi tidak bisa dibuktikan, coret atau ganti sebelum rapat.",
+        "check": {
+          "question": "AI memberi statistik yang cocok untuk proposalmu, tetapi tidak menyertakan sumber. Apa langkah berikutnya?",
+          "choices": [
+            {
+              "label": "Temukan sumber asli angka itu dan periksa tahun serta kelompok yang diteliti.",
+              "feedback": "Tepat. Angka baru layak masuk proposal setelah asal dan konteksnya jelas.",
+              "correct": true
+            },
+            {
+              "label": "Tanyakan angka yang sama kepada dua AI lain dan gunakan bila jawabannya serupa.",
+              "feedback": "Beberapa AI bisa mengulang angka keliru dari sumber yang sama; kesamaan jawaban belum memverifikasi klaim.",
+              "correct": false
+            },
+            {
+              "label": "Cantumkan angkanya sebagai perkiraan sementara dengan catatan ‘perlu diverifikasi’.",
+              "feedback": "Catatan itu jujur, tetapi statistik tanpa sumber belum kuat untuk mendukung proposal.",
+              "correct": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": "Working with Generative AI",
+    "label": "KURSUS 02 · GENERATIVE AI",
+    "summary": "Jawaban AI bisa terlalu umum, terlalu panjang, terlalu yakin, atau tidak sesuai kebutuhan. Kelas ini membahas cara memberi konteks, menguji asumsi, memperbaiki draf, dan menyusun penggunaan AI menjadi alur kerja yang lebih terarah.",
+    "mapSummary": "Dari prompt pertama sampai hasil akhir: beri konteks, uji asumsi, revisi draf, lalu susun pekerjaan langkah demi langkah.",
+    "hubSummary": "Pelajari cara memberi arah pada Generative AI, menguji jawabannya, dan memperbaiki hasilnya sampai sesuai dengan kebutuhan tugas.",
+    "hero": {
+      "src": "/course-visuals/working-generative-ai-students.jpg",
+      "alt": "Mahasiswa bekerja bersama menyusun model arsitektur di lingkungan kampus",
+      "caption": "Mahasiswa bekerja bersama menyusun model arsitektur di lingkungan kampus.",
+      "credit": "Foto: DFAT · CC BY 2.0",
+      "creditUrl": "https://commons.wikimedia.org/wiki/File:New_Colombo_Plan_students_in_Indonesia_working_on_a_student_collaboration_on_architecture_(15894268345).jpg"
+    },
+    "finish": "Di kelas ini, kamu sudah berlatih memberi konteks, menguji asumsi, memperbaiki jawaban, dan membagi pekerjaan menjadi beberapa tahap. Saat memakai hasil AI untuk tugas nyata, cek sumber yang penting dan ambil keputusan akhirnya sendiri.",
+    "lessons": [
+      {
+        "title": "Memberi AI Arah yang Jelas",
+        "question": "Apa yang perlu AI ketahui?",
+        "intro": "Saat meminta AI membantu sebuah tugas, kualitas hasil sangat bergantung pada informasi yang kita berikan. Misalnya, kelompokmu harus menjelaskan risiko penggunaan AI kepada teman sekelas dalam presentasi lima menit. Jika prompt hanya berbunyi ‘buat presentasi tentang AI’, hasilnya mudah menjadi terlalu luas, terlalu panjang, atau terlalu teknis. Pelajaran ini membahas cara memberi arah yang lebih jelas sejak awal.",
+        "lead": "Saat meminta AI membantu sebuah tugas, kualitas hasil sangat bergantung pada informasi yang kita berikan. Misalnya, kelompokmu harus menjelaskan risiko penggunaan AI kepada teman sekelas dalam presentasi lima menit. Jika prompt hanya berbunyi ‘buat presentasi tentang AI’, hasilnya mudah menjadi terlalu luas, terlalu panjang, atau terlalu teknis. Pelajaran ini membahas cara memberi arah yang lebih jelas sejak awal.",
+        "sections": [
+          {
+            "number": "1.1",
+            "title": "Dari permintaan umum ke hasil terarah",
+            "body": "Dengan prompt yang terlalu umum, AI harus menebak banyak hal sendiri. Drafnya bisa dimulai dari sejarah AI, dilanjutkan dengan istilah teknis, tetapi tidak pernah benar-benar menjawab kebutuhan presentasi. Masalahnya bukan karena AI ‘tidak pintar’, melainkan karena audiens, durasi, tujuan, dan bentuk hasil belum dijelaskan.\n\n> Draf AI — Slide 1: Sejarah AI. Slide 2: Istilah teknis. Slide 3: Daftar teknologi. Belum ada pesan utama untuk teman sekelasmu.\n\nCoba tambahkan konteks: ‘Saya mahasiswa yang akan menjelaskan risiko penggunaan AI kepada mahasiswa non-IT. Presentasi berlangsung lima menit. Buat outline lima slide, bahasa sederhana, maksimal tiga poin utama per slide.’\n\nSetelah konteks ditambahkan, AI memiliki dasar yang lebih jelas untuk menentukan tingkat penjelasan dan bentuk hasil. Prinsip yang sama berlaku untuk tugas lain: semakin penting konteksnya bagi jawaban, semakin perlu konteks itu disebutkan di prompt.\n\n**Prompt yang memberi konteks lebih jelas**\n\n- **‘Buat presentasi tentang AI’:** Topik ada, tetapi audiens, tujuan, durasi, tingkat teknis, dan jumlah slide belum jelas.\n- **Presentasi 5 menit untuk mahasiswa non-IT:** Konteks audiens dan batas waktu membantu AI menentukan tingkat penjelasan.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.2",
+            "title": "Kerangka sederhana: Task + Context + Output",
+            "body": "Agar AI tidak perlu menebak terlalu banyak konteks, pastikan prompt menjawab tiga hal berikut:\n\n**Task**: apa yang ingin AI lakukan?\n\n**Context**: apa yang perlu AI ketahui tentang situasi atau audiensnya?\n\n**Output**: bentuk hasilnya seperti apa?\n\nJika perlu, tambahkan **Requirements**: batas jumlah kata, bahasa, hal yang tidak boleh ditambahkan, atau format yang harus diikuti.\n\nContoh: ‘Ringkas laporan ini (Task) untuk ketua organisasi mahasiswa tanpa latar teknis (Context). Sajikan dalam lima poin (Output), maksimal 150 kata dan jangan menambahkan informasi di luar laporan (Requirements).’\n\n**Kerangka dasar prompt: Task + Context + Output**\n\n- **Task:** Tugasnya: buat outline presentasi risiko AI.\n- **Context:** Audiensnya mahasiswa non-IT yang belum banyak mempelajari AI.\n- **Output:** Buat lima slide dengan maksimal tiga poin utama per slide.\n- **Requirements:** Tambahkan batas bila perlu: bahasa Indonesia, maksimal 300 kata, tanpa jargon, atau hanya memakai isi dokumen.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.3",
+            "title": "Aktivitas · kenali bagian prompt",
+            "body": "Kerangka itu tidak hanya berlaku untuk presentasi. Pada contoh ringkasan laporan berikut, setiap potongan prompt memiliki fungsi berbeda: menjelaskan tugas, konteks pembaca, bentuk hasil, atau batas yang harus dipatuhi.\n\n**AKTIVITAS 2: Cocokkan potongan prompt**",
+            "activity": "Setiap potongan prompt punya fungsi berbeda. Cocokkan dengan kategorinya.\n\n**Pilihan**\n\n- ‘Identifikasi tindakan yang perlu dilakukan setelah membaca laporan ini.’\n- ‘Pembacanya ketua organisasi mahasiswa yang belum akrab dengan istilah teknis.’\n- ‘Susun hasilnya dalam tabel berisi temuan dan halaman sumber.’\n- ‘Gunakan hanya isi laporan; batasi jawaban sampai 150 kata.’\n\n**Kategori**\n\n- Task\n- Context\n- Output\n- Requirements\n\n**Petunjuk:** Satu potongan menjelaskan bentuk jawaban; potongan lain membatasi bahan dan panjangnya.\n\n**Pasangan jawaban:**\n\n- ‘Identifikasi tindakan yang perlu dilakukan setelah membaca laporan ini.’ → Task\n\n- ‘Pembacanya ketua organisasi mahasiswa yang belum akrab dengan istilah teknis.’ → Context\n\n- ‘Susun hasilnya dalam tabel berisi temuan dan halaman sumber.’ → Output\n\n- ‘Gunakan hanya isi laporan; batasi jawaban sampai 150 kata.’ → Requirements\n\n**Pembahasan:** Task menjelaskan apa yang harus dikerjakan, Context memberi informasi latar yang dibutuhkan, Output menentukan bentuk hasil, dan Requirements menetapkan batas yang harus dipatuhi. Kerangka ini hanya alat bantu, bukan istilah yang harus dihafal.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.4",
+            "title": "Prompt panjang belum tentu lebih baik",
+            "body": "Konteks yang relevan membantu, tetapi prompt tidak harus panjang. Instruksi yang tidak berkaitan dengan tugas justru bisa membuat permintaan lebih sulit dibaca dan lebih sulit diikuti. Kalau hanya ingin merangkum lima paragraf, kamu tidak perlu memberi persona panjang dan belasan aturan.\n\nContoh yang cukup: **‘Ringkas teks berikut menjadi lima poin. Pertahankan informasi utama dan jangan menambahkan informasi baru.’** Kata ‘Ringkas’ saja mungkin kurang jelas; instruksi tiga paragraf tentang persona ahli juga belum tentu membantu.\n\n**Tambahkan detail hanya jika relevan**\n\n- **Terlalu minim:** ‘Ringkas.’ Tidak menyebut bentuk atau hal yang perlu dipertahankan.\n- **Cukup jelas:** Ringkas teks menjadi lima poin, pertahankan informasi utama, jangan menambahkan informasi baru.\n- **Terlalu banyak:** Instruksi persona panjang yang tidak terkait tugas membuat prompt kurang fokus.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.5",
+            "title": "Saat perlu detail atau contoh",
+            "body": "Untuk tugas komunikasi yang lebih kompleks, informasi tentang gaya, nada, dan pembaca bisa ikut memengaruhi hasil. Misalnya, saat menulis email sponsor seminar, nada yang cocok untuk manajer pemasaran tentu berbeda dari pesan singkat untuk teman satu kelompok. Kerangka **CO‑STAR** bisa membantu: Context (latar), Objective (tujuan), Style (gaya), Tone (nada), Audience (pembaca), dan Response (bentuk hasil). Tidak semua permintaan membutuhkan keenamnya.\n\nContoh: minta draf email sponsor untuk seminar teknologi organisasi mahasiswa bagi 300 peserta. Jelaskan tujuan mengajak perusahaan menjadi sponsor, gunakan gaya profesional tetapi ramah, tujukan kepada manajer pemasaran, batasi 200 kata, dan akhiri dengan ajakan bertemu singkat.\n\nKalau sulit menjelaskan gaya, berikan contoh. **Few-shot prompting** berarti menyertakan beberapa contoh agar AI menangkap pola: ‘Satu semester, banyak eksperimen, dan lebih banyak error daripada yang mau saya akui. Tapi akhirnya selesai juga.’ serta ‘Ternyata membuat modelnya lebih mudah daripada menjelaskannya saat presentasi.’ Setelah itu, minta caption proyek baru dengan gaya ringan, singkat, dan tidak terlalu formal.\n\n**CO-STAR dan few-shot prompting**\n\n- **CO-STAR:** Context, Objective, Style, Tone, Audience, Response. Berguna untuk draf sponsor seminar: tujuan, pembaca, nada ramah-profesional, maksimal 200 kata, dan ajakan bertemu.\n- **Few-shot prompting:** Sertakan dua caption contoh agar AI menangkap panjang, struktur, dan gaya yang diinginkan.\n- **Aktivitas 4:** Umum → tambah context; format salah → tentukan output; gaya sulit dijelaskan → beri contoh; batas tertentu → tambah requirements.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.6",
+            "title": "Aktivitas · pilih informasi yang perlu ditambah",
+            "body": "Tidak semua hasil yang kurang tepat membutuhkan prompt yang lebih panjang. Perbaikannya tergantung masalah yang muncul. Jika hasil terlalu umum, tambahkan context. Jika bentuknya salah, tentukan output. Jika gaya sulit dijelaskan, berikan contoh. Jika ada batasan, tambahkan requirements.\n\nCoba bandingkan: mana yang paling pas untuk meringkas teks menjadi lima poin?\n\n**A.** ‘Ringkas teks ini menjadi lima poin dengan mengutamakan informasi yang paling baru.’\n\n**B.** ‘Ringkas teks ini menjadi lima poin, pertahankan informasi utama.’\n\n**C.** ‘Buat lima poin dari teks ini dan tambahkan konteks umum agar lebih lengkap.’\n\n\n\n**AKTIVITAS 4: Cocokkan masalah dengan perbaikannya**",
+            "activity": "Tiap keluhan tentang hasil AI punya perbaikan yang paling pas. Cocokkan.\n\n**Pilihan**\n\n- Ringkasannya benar, tetapi mengabaikan bahwa pembacanya siswa SMP\n- Isinya sesuai, tetapi berbentuk paragraf panjang saat kamu perlu tabel\n- Caption sudah sesuai topik, tetapi masih kaku meski kamu meminta gaya santai\n- Jawabannya melewati batas jumlah kata dari dosen\n\n**Kategori**\n\n- Tambah context\n- Tentukan output\n- Beri contoh\n- Tambah requirements\n\n**Petunjuk:** Pilih tambahan prompt yang menyelesaikan masalah pada hasil, bukan yang sekadar membuat instruksinya lebih panjang.\n\n**Pasangan jawaban:**\n\n- Ringkasannya benar, tetapi mengabaikan bahwa pembacanya siswa SMP → Tambah context\n\n- Isinya sesuai, tetapi berbentuk paragraf panjang saat kamu perlu tabel → Tentukan output\n\n- Caption sudah sesuai topik, tetapi masih kaku meski kamu meminta gaya santai → Beri contoh\n\n- Jawabannya melewati batas jumlah kata dari dosen → Tambah requirements\n\n**Pembahasan:** Hasil yang terlalu umum membutuhkan context; bentuk yang salah perlu output yang lebih jelas; gaya yang sulit dijelaskan lebih mudah ditunjukkan lewat contoh; dan batasan perlu ditulis sebagai requirements.",
+            "reflection": null,
+            "reveal": "**B.** Pilihan itu menyebut bentuk hasil dan menjaga gagasan utama. A mengubah prioritas menjadi ‘paling baru’ padahal teksnya belum tentu tentang waktu; C membuka ruang untuk informasi di luar sumber."
+          }
+        ],
+        "takeaway": "Untuk presentasi lima menit, sebutkan siapa audiensnya, pesan utama yang harus dipahami, dan berapa slide yang kamu butuhkan. Detail yang relevan membuat draf lebih mudah dipakai.",
+        "check": {
+          "question": "Kamu sudah menyebut audiens dan meminta caption santai, tetapi hasilnya masih formal. Apa langkah paling berguna?",
+          "choices": [
+            {
+              "label": "Minta AI mengganti kata-kata baku dengan istilah sehari-hari tanpa mengubah kalimatnya.",
+              "feedback": "Kata yang lebih santai belum tentu membuat ritme dan gaya keseluruhan terasa alami.",
+              "correct": false
+            },
+            {
+              "label": "Berikan dua contoh caption yang terasa pas, lalu minta AI meniru gaya tanpa menyalin isinya.",
+              "feedback": "Tepat. Contoh menunjukkan nada dan bentuk yang sulit dijelaskan hanya dengan satu kata seperti ‘santai’.",
+              "correct": true
+            },
+            {
+              "label": "Tambahkan daftar istilah gaul yang harus muncul di setiap kalimat.",
+              "feedback": "Istilah gaul bisa membuat caption terdengar dipaksakan, sementara masalahnya ada pada gaya keseluruhan.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Jangan Biarkan AI Cuma Mengiyakan",
+        "question": "Apakah AI sedang menguji ide kamu?",
+        "intro": "AI bisa terdengar sangat mendukung jika pertanyaan kita sejak awal meminta persetujuan. Misalnya, saat menilai ide layanan pencarian karier bagi mahasiswa, pertanyaan ‘Ide ini bagus, kan?’ cenderung menghasilkan alasan yang mendukung. Jika kita justru meminta kelemahan, asumsi, dan bukti yang masih kurang, AI akan lebih banyak membahas bagian-bagian tersebut.",
+        "lead": "AI bisa terdengar sangat mendukung jika pertanyaan kita sejak awal meminta persetujuan. Misalnya, saat menilai ide layanan pencarian karier bagi mahasiswa, pertanyaan ‘Ide ini bagus, kan?’ cenderung menghasilkan alasan yang mendukung. Jika kita justru meminta kelemahan, asumsi, dan bukti yang masih kurang, AI akan lebih banyak membahas bagian-bagian tersebut.",
+        "sections": [
+          {
+            "number": "2.1",
+            "title": "Cara bertanya bisa membuat AI terlalu mendukung ide kita",
+            "body": "Mulai dari dua cara bertanya tentang ide yang sama. Pertanyaan ‘Ide ini menarik, kan?’ sudah meminta persetujuan sejak awal, sehingga respons bisa lebih banyak menonjolkan sisi positif.\n\nLalu kamu bertanya, ‘Apa kelemahan ide ini, siapa yang mungkin tidak membutuhkannya, dan bukti apa yang perlu saya cari?’ Jawabannya bisa berubah menjadi daftar risiko dan cara menguji ide.\n\n**Keduanya bukan bukti bahwa AI sudah tahu ide mana yang benar.** Bentuk pertanyaan memberi arah pada percakapan.\n\n**Pertanyaan berbeda bisa mengarahkan jawaban berbeda**\n\n- **Minta dukungan:** Pertanyaan yang mencari persetujuan cenderung mengarahkan percakapan untuk mendukung ide.\n- **Minta pengujian:** Pertanyaan netral membuka ruang untuk risiko, bukti, dan informasi yang belum ada.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.2",
+            "title": "Saat AI terlalu mudah menyetujui",
+            "body": "Jika AI terus memuji ide layanan karier tanpa menanyakan siapa yang benar-benar membutuhkannya, penilaiannya belum seimbang. Kecenderungan model mengikuti pandangan atau keinginan pengguna disebut **sycophancy**. Dalam bahasa sehari-hari, AI bisa menjadi yes-man: terdengar mendukung, tetapi kurang menguji apakah kita benar.\n\nPada April 2025, OpenAI membatalkan pembaruan GPT‑4o setelah model dinilai terlalu menyetujui dan memuji pengguna. Riset yang terbit di Science pada 2026 menguji 11 model dan 2.405 orang; model rata-rata 49% lebih sering membenarkan pengguna daripada manusia. Dalam contoh unggahan Reddit yang pendapat manusianya menolak pengguna, model tetap menyetujui pengguna pada 51% kasus.\n\nKalau kita hanya mencari dukungan, jawaban yang menyenangkan bisa membuat kita makin yakin tanpa bukti baru. Itu bisa memperkuat **confirmation bias**, yaitu kecenderungan mencari informasi yang cocok dengan keyakinan sendiri.\n\n**Sumber bacaan**\n\n- [OpenAI · pembaruan GPT‑4o](https://openai.com/index/sycophancy-in-gpt-4o/)\n- [Science · riset perilaku AI](https://doi.org/10.1126/science.aec8352)\n\n**Temuan riset tentang sycophancy**\n\n- **11 model:** Riset Science menguji sebelas model AI.\n- **2.405 orang:** Studi melibatkan lebih dari dua ribu peserta.\n- **51% kasus:** Model menyetujui pengguna ketika konsensus manusia justru menolaknya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.3",
+            "title": "Ubah pertanyaan agar lebih netral",
+            "body": "Cara bertanya yang sama bisa diuji pada ide lain, misalnya usaha makanan sehat di sekitar kampus. Pertanyaan ‘Ide saya pasti laku, kan?’ sudah mendorong AI untuk mencari alasan yang mendukung ide itu.\n\nGunakan pertanyaan yang membuka lebih dari satu kemungkinan. AI bisa membantu menyusun analisis, tetapi minat mahasiswa terhadap produk itu tetap perlu diuji langsung, misalnya lewat wawancara atau survei calon pengguna.\n\n**Lihat satu contoh rumusan**\n\n**‘Bandingkan peluang dan risiko usaha makanan sehat untuk mahasiswa. Asumsi apa yang perlu diuji, dan informasi apa yang belum kita punya?’**\n\nIni hanya satu contoh. Rumusanmu sendiri boleh berbeda selama ketiga syarat di latihan terpenuhi.\n\n**Mengubah cara bertanya**",
+            "activity": "Tulis ulang pertanyaan ini supaya tidak mengarahkan jawaban\n\n**Prompt awal:** Ide usaha makanan sehat saya pasti laku, kan?\n\n**Yang perlu ada pada revisi:**\n\n- Tidak lagi meminta persetujuan — Buang bagian yang meminta AI menyetujui ide kamu. (pola pemeriksaan: `^(?!.*(,\\s*kan\\s*\\?|yakinkan|pasti laku|setuju|benar tidak)).*$`; opsi `ius`)\n\n- Meminta dua sisi sekaligus — Sebut peluang dan risiko dalam satu permintaan. (pola pemeriksaan: `(peluang|kelebihan|kekuatan)[\\s\\S]*(risiko|kelemahan|kekurangan)|(risiko|kelemahan|kekurangan)[\\s\\S]*(peluang|kelebihan|kekuatan)`)\n\n- Menanyakan asumsi atau informasi yang belum ada — Tambahkan pertanyaan tentang asumsi atau data yang masih kurang. (pola pemeriksaan: `asumsi|belum (kita |saya )?punya|belum diketahui|perlu diuji|informasi apa`)\n\n**Contoh hasil sebelum perbaikan:** Daftar alasan mengapa ide kamu bagus, tanpa satu pun hal yang perlu kamu uji.\n\n**Contoh hasil setelah perbaikan:** Perbandingan peluang dan risiko, ditambah daftar asumsi yang masih perlu diuji dengan data atau masukan dari calon pembeli.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.4",
+            "title": "Aktivitas · pilih prompt yang netral",
+            "body": "Kamu sedang menilai ide usaha makanan sehat di sekitar kampus. Mana yang paling membantu untuk berpikir jernih?\n\n**AKTIVITAS 1: Pilih pertanyaan yang membantu berpikir**",
+            "activity": "Kamu sedang menilai ide usaha makanan sehat di sekitar kampus. Prompt mana yang paling membantu berpikir jernih?\n\n1. ‘Jelaskan peluang usaha makanan sehat di sekitar kampus dari tren makan sehat saat ini.’ — Tren bisa memberi ide, tetapi prompt ini belum meminta risiko atau menguji keadaan kampusmu.\n\n2. ‘Perkirakan jumlah pembeli di kampusku dengan membandingkannya dengan usaha di kampus lain.’ — Perkiraan dari tempat lain perlu data pembanding; prompt ini belum memeriksa asumsi idemu sendiri.\n\n3. ‘Bandingkan peluang dan risiko usaha makanan sehat untuk mahasiswa. Asumsi apa yang perlu diuji?’ **(jawaban tepat)** — Tepat. Prompt ini meminta dua sisi sekaligus dan menanyakan hal yang belum terbukti.\n\n**Pembahasan:** Cara bertanya ikut menentukan arah jawaban. Prompt yang memberi ruang untuk lebih dari satu kemungkinan lebih berguna untuk mengambil keputusan.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.5",
+            "title": "Minta AI mencari hal yang mungkin terlewat",
+            "body": "Agar diskusi tidak berhenti pada pujian atau kritik umum, minta AI memeriksa hal-hal yang mungkin terlewat: **asumsi, kelemahan, sanggahan, informasi yang kurang, dan penjelasan alternatif**.\n\nKamu juga bisa meminta AI memisahkan **fakta, asumsi, dan tafsiran**. Jika hasilnya terdengar yakin, tanyakan bukti yang mendukungnya dan bagian mana yang masih belum diketahui.\n\nTujuannya bukan membuat AI selalu mencari kesalahan. Minta AI membandingkan sisi kuat dan sisi lemah supaya kamu bisa melihat ide dari lebih dari satu arah.\n\n**Lima hal yang bisa diperiksa lebih lanjut**\n\n- **Asumsi:** Apa yang kita anggap benar tanpa memeriksanya?\n- **Kelemahan:** Bagian mana yang paling rentan gagal?\n- **Sanggahan:** Apa alasan orang lain mungkin tidak setuju?\n- **Info yang kurang:** Data apa yang belum kita punya?\n- **Alternatif:** Penjelasan atau solusi lain apa yang mungkin?",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.6",
+            "title": "Aktivitas · cocokkan prompt dengan tujuannya",
+            "body": "Kamu sudah mencoba pertanyaan yang lebih netral. Empat prompt berikut membantu memeriksa hal yang berbeda-beda. Cocokkan dulu sebelum melihat kunci.\n\n**AKTIVITAS 6: Cocokkan prompt dengan tujuannya**",
+            "activity": "Setiap prompt memeriksa hal yang berbeda. Cocokkan dengan tujuannya.\n\n**Pilihan**\n\n- ‘Keputusan ini bergantung pada hal apa yang kita terima begitu saja?’\n- ‘Apa alasan terkuat untuk memilih jalan sebaliknya?’\n- ‘Mana yang berasal dari data, dan mana yang merupakan tafsir kita?’\n- ‘Apa yang perlu kita ketahui sebelum memutuskan?’\n\n**Kategori**\n\n- Mengidentifikasi asumsi\n- Mencari sanggahan\n- Memisahkan jenis klaim\n- Menemukan yang perlu dicari\n\n**Petunjuk:** Bedakan keyakinan yang perlu diuji dari data yang memang belum dikumpulkan.\n\n**Pasangan jawaban:**\n\n- ‘Keputusan ini bergantung pada hal apa yang kita terima begitu saja?’ → Mengidentifikasi asumsi\n\n- ‘Apa alasan terkuat untuk memilih jalan sebaliknya?’ → Mencari sanggahan\n\n- ‘Mana yang berasal dari data, dan mana yang merupakan tafsir kita?’ → Memisahkan jenis klaim\n\n- ‘Apa yang perlu kita ketahui sebelum memutuskan?’ → Menemukan yang perlu dicari\n\n**Pembahasan:** Keempat prompt itu memeriksa hal yang berbeda: asumsi yang belum diuji, argumen yang berlawanan, perbedaan antara fakta dan interpretasi, serta informasi yang masih belum kita punya.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.7",
+            "title": "Ketika prompt dipakai untuk mencoba melewati aturan",
+            "body": "Cara sebuah prompt ditulis bisa memengaruhi respons model. Namun ada juga prompt yang sengaja dibuat untuk mencoba membuat sistem mengabaikan aturan atau perlindungannya; upaya ini disebut **jailbreak**. Tekniknya bisa memakai cerita, role-play, atau rangkaian instruksi agar permintaan terlarang terlihat seperti permintaan biasa.\n\nMisalnya, seseorang membungkus permintaan yang seharusnya ditolak ke dalam cerita atau role-play dengan harapan model tetap menjawabnya. Mengubah bentuk prompt tidak berarti batas penggunaan sistem ikut berubah.\n\nRiset Anthropic tentang Many-Shot Jailbreaking menunjukkan bahwa rangkaian contoh yang panjang di dalam satu prompt juga bisa memengaruhi respons model. Temuan seperti ini dipakai untuk menguji dan memperbaiki perlindungan sistem, bukan sebagai alasan untuk mencoba melewati batas itu.\n\n**Yang perlu diingat:** prompt yang kreatif tidak membuat aturan penggunaan menjadi tidak berlaku. Perlindungan sistem tetap perlu dijaga, dan AI tetap harus digunakan secara bertanggung jawab.\n\n**Sumber bacaan**\n\n- [Anthropic · Many-shot jailbreaking](https://www.anthropic.com/research/many-shot-jailbreaking)\n\n**Prompt tidak mengubah aturan penggunaan**\n\n- **Intinya:** Jailbreak mencoba membuat sistem melewati aturan atau perlindungannya. Gunakan AI secara bertanggung jawab dan jangan menganggap sistem perlindungan selalu sempurna.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.8",
+            "title": "Aktivitas · benar atau salah?",
+            "body": "Setelah membaca contoh prompt yang mencoba melewati batas, nilai pernyataan berikut sebelum membuka alasannya.\n\n**AKTIVITAS 7: Benar atau salah?**",
+            "activity": "Seorang teman berkata, ‘Kalau prompt kreatif berhasil mengubah jawaban AI, berarti batasan sistem hanya saran.’ Penilaianmu?\n\n1. Ada benarnya; respons yang berubah menunjukkan aturan sistem bisa diganti oleh prompt pengguna. — Respons bisa berubah karena prompt, tetapi itu belum berarti aturan sistem berubah atau boleh dilewati.\n\n2. Tidak tepat; prompt bisa memengaruhi respons, tetapi tidak membuat batasan sistem menjadi pilihan bebas. **(jawaban tepat)** — Tepat. Perubahan respons perlu dinilai tanpa menganggap perlindungan sistem boleh diabaikan.\n\n**Pembahasan:** Jailbreak menunjukkan bahwa cara prompt ditulis bisa memengaruhi respons model. Karena itu, sistem membutuhkan perlindungan terhadap upaya melewati aturan; bukan berarti aturan tersebut boleh dicoba untuk ditembus.",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Untuk ide layanan karier tadi, pujian AI belum cukup. Minta ia mencari calon pengguna yang mungkin tidak terbantu, lalu cari bukti dari orang sungguhan sebelum memutuskan langkah berikutnya.",
+        "check": {
+          "question": "Kamu hendak membeli laptop untuk kuliah desain dengan anggaran maksimal Rp10 juta. Prompt mana yang paling membantu membandingkan dua pilihan?",
+          "choices": [
+            {
+              "label": "Bandingkan harga dan tampilan laptop A dan B, lalu pilih yang menurutmu lebih cocok.",
+              "feedback": "Harga dan tampilan belum cukup menjelaskan kecocokan untuk tugas desain atau batas anggaranmu.",
+              "correct": false
+            },
+            {
+              "label": "Jelaskan kelebihan laptop A terlebih dahulu, lalu kelebihan laptop B dalam jawaban terpisah.",
+              "feedback": "Dua daftar kelebihan tanpa kriteria yang sama menyulitkan perbandingan dan menutupi kekurangannya.",
+              "correct": false
+            },
+            {
+              "label": "Bandingkan laptop A dan B untuk kuliah desain dengan anggaran Rp10 juta. Jelaskan kelebihan, kekurangan, dan informasi yang masih perlu dicek.",
+              "feedback": "Tepat. Kedua pilihan dinilai dengan kebutuhan yang sama, sambil menyisakan ruang untuk memeriksa klaimnya.",
+              "correct": true
+            }
+          ]
+        }
+      },
+      {
+        "title": "Jangan Berhenti di Jawaban Pertama",
+        "question": "Bagaimana memperbaiki hasil AI?",
+        "intro": "Jawaban pertama dari AI sering lebih tepat diperlakukan sebagai draf. Misalnya, kamu meminta AI menulis email untuk mengatur waktu konsultasi dengan dosen. Drafnya sudah sopan, tetapi terlalu panjang dan tujuan utama baru muncul di bagian akhir. Pelajaran ini membahas cara meninjau hasil seperti itu dan memberi feedback yang cukup spesifik untuk menghasilkan revisi yang lebih baik.",
+        "lead": "Jawaban pertama dari AI sering lebih tepat diperlakukan sebagai draf. Misalnya, kamu meminta AI menulis email untuk mengatur waktu konsultasi dengan dosen. Drafnya sudah sopan, tetapi terlalu panjang dan tujuan utama baru muncul di bagian akhir. Pelajaran ini membahas cara meninjau hasil seperti itu dan memberi feedback yang cukup spesifik untuk menghasilkan revisi yang lebih baik.",
+        "sections": [
+          {
+            "number": "3.1",
+            "title": "Jawaban pertama adalah draf, bukan hasil akhir",
+            "body": "Pada draf itu, masalahnya bukan hanya terlalu panjang. Penerima harus membaca beberapa kalimat sebelum tahu tujuan emailnya. Masalah seperti ini bisa disebutkan langsung saat meminta revisi.\n\n> Draf email — Dengan hormat, melalui surat ini saya bermaksud menyampaikan permohonan untuk bisa mengajukan kesempatan berkonsultasi...\n\nKamu bisa menanggapi: ‘Buat nadanya lebih hangat dan alami. Ringkas menjadi maksimal 100 kata, lalu sampaikan permintaan konsultasi dengan jelas.’ Jika pembukanya masih panjang, minta AI langsung menyampaikan tujuan konsultasi.\n\nSetelah revisi selesai, baca lagi dari sudut pandang penerima. Apakah tujuan mudah ditemukan? Apakah nadanya cocok? Dari situ alurnya menjadi **Tulis prompt → Tinjau → Beri masukan → Perbaiki**.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.2",
+            "title": "Masukan spesifik lebih mudah ditindaklanjuti",
+            "body": "Feedback seperti ‘buat lebih bagus’ terlalu umum karena tidak menjelaskan bagian mana yang perlu diubah atau seperti apa hasil yang diharapkan. Katakan bagian yang perlu berubah: ‘Pindahkan tujuan konsultasi ke paragraf pertama, pertahankan waktu yang saya usulkan, dan ringkas pembukanya.’\n\nJenis masalah menentukan feedback yang perlu diberikan. Jika hasil terlalu umum, tambahkan konteks; jika terlalu panjang, tentukan batasnya; jika klaim tidak didukung, minta AI kembali ke dokumen sumber.\n\n**Hal yang perlu diperiksa pada draf AI**\n\n- **Kepanjangan atau umum:** Tentukan batas panjang atau tambahkan konteks.\n- **Nada dan format:** Jelaskan gaya atau bentuk yang kamu perlukan.\n- **Ada yang hilang:** Tunjuk bagian yang harus dipertahankan atau dilengkapi.\n- **Klaim tanpa dukungan:** Minta sumber atau batasi jawaban pada dokumen.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.3",
+            "title": "Aktivitas · beri masukan pada outline",
+            "body": "Cara memberi masukan yang sama bisa dipakai pada pekerjaan lain. Kali ini AI memberi outline presentasi dengan terlalu banyak detail pada tiap slide. Pilih masukan yang paling mudah ditindaklanjuti.\n\n**AKTIVITAS 8: Masukan yang bisa langsung dikerjakan**",
+            "activity": "Outline presentasi dari AI terlalu padat di tiap slide. Masukan mana yang paling mudah dikerjakan AI?\n\n1. ‘Bagi setiap slide yang padat menjadi dua slide, tetapi pertahankan semua kalimatnya.’ — Jumlah slide bertambah, sedangkan kepadatan informasi dan prioritasnya belum benar-benar diselesaikan.\n\n2. ‘Pertahankan gagasan utama, batasi tiga poin per slide, pindahkan rincian ke catatan pembicara.’ **(jawaban tepat)** — Tepat. Masukan ini menyebut apa yang dipertahankan, batasnya, dan ke mana detail dipindahkan.\n\n3. ‘Hapus rincian pendukung dari semua slide dan sisakan judul serta satu kalimat.’ — Slide bisa terlalu kosong dan informasi penting terbuang tanpa penilaian mana yang perlu dipertahankan.\n\n**Pembahasan:** Masukan yang berguna menyebut tiga hal: apa yang dipertahankan, batas yang diinginkan, dan ke mana sisanya dipindahkan.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.4",
+            "title": "Ganti peran AI sesuai tahap kerja",
+            "body": "AI juga bisa diberi tugas berbeda pada setiap tahap. Setelah membuat draf email atau presentasi, misalnya, minta AI meninjau kelemahannya lebih dulu sebagai reviewer. Setelah masalahnya jelas, barulah minta AI bertindak sebagai editor untuk membuat versi revisi.\n\nJika kamu punya dokumen sumber, berikan dokumen itu dan minta AI menjadikannya sumber utama. Minta rujukan ke bagian dokumen dan instruksikan agar AI mengatakan ‘tidak tersedia di dokumen’ jika informasinya memang tidak ada.\n\nTetap buka sumber aslinya sebelum memakai kutipan, angka, atau kesimpulan penting. AI bisa membantu menemukan bagian yang relevan, tetapi tidak menggantikan pemeriksaanmu.\n\n**Membatasi jawaban pada dokumen sumber**\n\n- **Tetapkan sumber:** Gunakan dokumen yang saya unggah sebagai sumber utama.\n- **Batasi tambahan:** Jangan menambahkan informasi yang tidak tercantum.\n- **Jika tidak ada di dokumen:** Katakan dengan jelas bahwa informasinya memang tidak tersedia di sumber tersebut.\n- **Periksa ulang:** Buka dokumen dan cocokkan rujukan sebelum menggunakan klaim.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.5",
+            "title": "Aktivitas · susun ulang alurnya",
+            "body": "Revisi lebih mudah dilakukan jika langkahnya jelas, bukan hanya meminta AI ‘coba lagi’ berulang kali. Susun urutan berikut sebelum melihat contoh jawabannya.\n\n**AKTIVITAS 9-10: Perbaiki, lalu periksa lagi**",
+            "activity": "Susun lima langkah proses revisi.\n\n**Pilihan**\n\n- Beri masukan: sebutkan perubahan secara spesifik\n- Periksa ulang: pastikan klaimnya didukung\n- Tulis prompt: jelaskan kebutuhan dan sumbernya\n- Minta revisi: minta AI menerapkan arahanmu\n- Tinjau hasil: cari masalah yang paling penting\n\n**Petunjuk:** Cari titik ketika kamu sudah punya draf yang bisa dinilai, lalu tentukan apa yang dilakukan setelah revisi.\n\n**Urutan jawaban:** Tulis prompt: jelaskan kebutuhan dan sumbernya → Tinjau hasil: cari masalah yang paling penting → Beri masukan: sebutkan perubahan secara spesifik → Minta revisi: minta AI menerapkan arahanmu → Periksa ulang: pastikan klaimnya didukung\n\n**Pembahasan:** Tulis prompt → Tinjau hasil → Beri masukan → Minta revisi → Periksa ulang. Langkah terakhir penting karena kamu perlu memastikan fakta, sumber, dan formatnya masih benar setelah revisi.",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Pada email tadi, pertahankan permintaan konsultasi, pindahkan tujuannya ke awal, dan ringkas pembukanya. Baca kembali hasil revisi sebelum mengirimnya.",
+        "check": {
+          "question": "Hasil AI memuat klaim yang tidak ada di laporan yang kamu unggah. Apa yang sebaiknya kamu minta?",
+          "choices": [
+            {
+              "label": "Gunakan laporan itu sebagai sumber utama dan tandai informasi yang tidak tersedia di dalamnya.",
+              "feedback": "Tepat. Instruksi ini membatasi jawaban pada sumber yang bisa kamu periksa.",
+              "correct": true
+            },
+            {
+              "label": "Tulis ulang klaim itu dengan bahasa yang lebih hati-hati agar tidak terdengar terlalu pasti.",
+              "feedback": "Nada yang hati-hati tetap tidak menunjukkan apakah klaim itu ada di laporan.",
+              "correct": false
+            },
+            {
+              "label": "Cari rujukan lain untuk klaim itu, lalu gabungkan dengan ringkasan laporan tanpa penanda.",
+              "feedback": "Rujukan luar perlu dipisahkan dari isi laporan agar pembaca tahu asal setiap klaim.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Dari Percakapan ke Alur Kerja",
+        "question": "Bagaimana AI membantu tugas yang terdiri dari banyak tahap?",
+        "intro": "Tugas yang lebih besar jarang selesai dengan satu prompt. Presentasi, analisis survei, atau kegiatan kampus memiliki beberapa tahap, dan kesalahan pada tahap awal bisa ikut terbawa sampai hasil akhir. Gunakan contoh presentasi tentang energi terbarukan di Indonesia: jika sumber utama yang dipakai ternyata membahas negara lain, masalahnya sebaiknya ditemukan sebelum seluruh slide selesai dibuat.",
+        "lead": "Tugas yang lebih besar jarang selesai dengan satu prompt. Presentasi, analisis survei, atau kegiatan kampus memiliki beberapa tahap, dan kesalahan pada tahap awal bisa ikut terbawa sampai hasil akhir. Gunakan contoh presentasi tentang energi terbarukan di Indonesia: jika sumber utama yang dipakai ternyata membahas negara lain, masalahnya sebaiknya ditemukan sebelum seluruh slide selesai dibuat.",
+        "sections": [
+          {
+            "number": "4.1",
+            "title": "Pecah tugas sebelum meminta hasil akhir",
+            "body": "Jika sumber baru diperiksa ketika slide hampir selesai, banyak pekerjaan mungkin perlu diulang. Lebih aman menentukan sudut bahasan dan membaca sumber lebih dulu. Setelah tahu apa yang benar-benar didukung sumber, susun kerangka, buat draf, minta kritik, lalu perbaiki.\n\nSetiap langkah memberi kesempatan untuk membetulkan arah lebih awal. Kalau sumber pertama ternyata kurang tepat, kamu bisa menggantinya sebelum seluruh presentasi dibangun di atasnya. Pola ini juga berguna untuk laporan, proposal, dan analisis spreadsheet.\n\n**Pecah pekerjaan presentasi menjadi beberapa tahap**\n\n- **Brief dan sudut:** Tentukan audiens dan tujuan; minta beberapa sudut bahasan tanpa menyuruh AI memilih.\n- **Sumber dan perbandingan:** Cari sumber tepercaya, ringkas tiap sumber, lalu bandingkan temuan dan perbedaannya.\n- **Outline dan draf:** Buat alur enam slide, lalu kembangkan draf berdasarkan outline.\n- **Kritik dan revisi:** Minta kritik pada bukti dan kejelasan; revisi, lalu buka sumber asli.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.2",
+            "title": "Contoh alur kerja presentasi",
+            "body": "Untuk presentasi itu, mulai dengan brief yang jelas: ‘Saya menyiapkan presentasi energi terbarukan untuk mahasiswa tahun pertama. Tujuannya menjelaskan pilihan yang relevan bagi Indonesia.’\n\nSebelum membuat slide, minta empat kemungkinan sudut bahasan beserta kelebihan dan kekurangannya. Pilih satu yang sesuai tugasmu. Baru setelah itu cari sumber yang bisa kamu buka sendiri, bandingkan temuannya, dan catat bagian yang belum pasti.\n\nDengan bahan itu, minta kerangka enam slide. Baca drafnya, minta kritik atas bagian yang belum jelas, lalu revisi. Jika sebuah klaim tidak didukung sumber yang kamu baca, keluarkan dari slide.\n\n**Contoh workflow presentasi**\n\n- **Pahami dan tentukan sudut:** Jelaskan tujuan dan audiens; minta empat sudut bahasan, bandingkan manfaat dan kekurangannya tanpa memilih satu.\n- **Baca sumber:** Minta sumber tepercaya, ringkas temuan tiap sumber, lalu bandingkan bagian yang berbeda.\n- **Susun dan tulis:** Minta alur presentasi enam slide, lalu buat draf dari alur itu.\n- **Kritik dan perbaiki:** Minta peninjauan atas kejelasan dan bukti, perbaiki draf, lalu buka sumber aslinya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.3",
+            "title": "AI bisa membantu di berbagai tahap",
+            "body": "Dalam satu workflow, AI tidak harus melakukan jenis bantuan yang sama dari awal sampai akhir. Pada presentasi tadi, AI bisa membantu **mencari ide, membandingkan pilihan, mengkritik draf, menjelaskan konsep, atau mengedit tulisan**. Jenis bantuannya bisa berubah sesuai tahap pekerjaan.\n\nUntuk analisis data survei, contohnya: pahami struktur data → bersihkan nilai yang keliru → cari pola → buat visualisasi → susun kesimpulan → periksa apakah tafsirnya benar. Minta AI menjelaskan asumsi dan batas datanya sebelum memakai kesimpulan.\n\n**Peran AI bisa berubah sesuai tahap**\n\n- **Cari ide:** Minta beberapa pilihan tanpa meminta AI memutuskan.\n- **Bandingkan:** Minta kelebihan, kekurangan, dan trade-off tiap opsi.\n- **Periksa:** Minta kritik, penjelasan, atau penyuntingan sesuai kebutuhan.\n- **Analisis data:** Untuk survei, pahami struktur, bersihkan, cari pola, visualisasikan, simpulkan, lalu periksa tafsir.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.4",
+            "title": "Aktivitas · urutkan analisis survei",
+            "body": "Pada analisis survei, urutan kerja juga penting. Kesimpulan sebaiknya tidak dibuat sebelum struktur dan kualitas datanya dipahami. Susun tahap berikut dari awal sampai akhir.\n\n**AKTIVITAS 11: Urutkan analisis data survei**",
+            "activity": "Susun langkah menganalisis data survei.\n\n**Pilihan**\n\n- Cari pola: eksplorasi kecenderungan dan kelompok\n- Simpulkan dan cek: tulis temuan, sebutkan batas data\n- Bersihkan: tinjau nilai kosong, ganda, atau keliru\n- Pahami struktur: ketahui kolom dan arti datanya\n- Visualisasikan: pilih grafik yang membantu pembaca\n\n**Petunjuk:** Setiap langkah perlu menghasilkan pijakan yang cukup untuk langkah berikutnya.\n\n**Urutan jawaban:** Pahami struktur: ketahui kolom dan arti datanya → Bersihkan: tinjau nilai kosong, ganda, atau keliru → Cari pola: eksplorasi kecenderungan dan kelompok → Visualisasikan: pilih grafik yang membantu pembaca → Simpulkan dan cek: tulis temuan, sebutkan batas data\n\n**Pembahasan:** Pahami struktur → Bersihkan → Cari pola → Visualisasikan → Simpulkan dan cek. Jika langsung membuat kesimpulan sebelum memahami isi dan kualitas data, hasil analisismu bisa salah sejak awal.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.5",
+            "title": "Alur kerja juga berguna untuk kegiatan kampus",
+            "body": "Workflow bertahap juga berlaku di luar tugas akademik. Jika organisasi kampus hendak mengadakan lokakarya, AI bisa membantu dari tahap perencanaan sampai evaluasi: mulai dari membandingkan format dan waktu, menyusun jadwal serta perkiraan biaya, sampai membantu menyiapkan proposal sponsor dan undangan. Sebelum dikirim, periksa lagi jadwal, anggaran, dan siapa yang harus memberi izin.\n\nDi setiap langkah, kamu bisa memakai AI dengan peran berbeda: pencari ide, pembanding, pengkritik, penjelas, dan editor. Informasi nyata seperti jadwal, biaya, dan persetujuan tetap perlu dikonfirmasi kepada pihak terkait.\n\n**Contoh workflow kegiatan kampus**\n\n- **Rancang:** Cari ide, bandingkan format, dan susun jadwal.\n- **Siapkan:** Perkirakan anggaran, tinjau risiko, buat proposal sponsor.\n- **Ajak peserta:** Siapkan pesan undangan dan materi promosi.\n- **Tinjau:** Konfirmasi jadwal, biaya, izin, dan kesiapan dengan pihak terkait.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.6",
+            "title": "Aktivitas · cocokkan peran AI",
+            "body": "Dalam rencana lokakarya tadi, kamu mungkin butuh ide acara pada satu tahap dan kritik anggaran pada tahap lain. Cocokkan tiap kebutuhan dengan peran AI yang sesuai.\n\n**AKTIVITAS 12: Pilih peran AI**",
+            "activity": "Cocokkan tiap kebutuhan dengan peran AI yang paling pas.\n\n**Pilihan**\n\n- Panitia belum punya konsep untuk acara bulan depan\n- Dua lokasi acara tersedia, tetapi biaya dan aksesnya berbeda\n- Rencana kerja terlihat rapi; tim ingin tahu bagian yang paling mungkin gagal\n- Anggota baru bingung mengapa data survei perlu dibersihkan\n- Email sponsor sudah lengkap, tetapi kalimatnya berputar-putar\n\n**Kategori**\n\n- Pencari ide\n- Pembanding\n- Pengkritik\n- Penjelas\n- Editor\n\n**Petunjuk:** Perhatikan apakah tim membutuhkan gagasan, penilaian pilihan, pemeriksaan risiko, penjelasan, atau perbaikan tulisan.\n\n**Pasangan jawaban:**\n\n- Panitia belum punya konsep untuk acara bulan depan → Pencari ide\n\n- Dua lokasi acara tersedia, tetapi biaya dan aksesnya berbeda → Pembanding\n\n- Rencana kerja terlihat rapi; tim ingin tahu bagian yang paling mungkin gagal → Pengkritik\n\n- Anggota baru bingung mengapa data survei perlu dibersihkan → Penjelas\n\n- Email sponsor sudah lengkap, tetapi kalimatnya berputar-putar → Editor\n\n**Pembahasan:** Jenis bantuan yang kamu minta akan memengaruhi bentuk jawabannya. Jelaskan sejak awal apakah kamu butuh ide, perbandingan, kritik, penjelasan, atau editing.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.7",
+            "title": "Tantangan akhir · uji ide startup",
+            "body": "Sebagai latihan akhir, gunakan kembali ide layanan karier dari pelajaran sebelumnya dan jalankan prosesnya dari pemetaan masalah sampai proposal. Pada setiap tahap, catat keputusan yang kamu ambil sendiri.\n\n**1 · Petakan masalah.** Minta AI menyusun lima masalah pencarian karier mahasiswa, siapa yang mengalaminya, kapan, dan informasi apa yang perlu diuji lewat wawancara.\n\n**2 · Jelajahi pilihan.** Minta empat kemungkinan solusi: rekomendasi karier, pencocokan magang, peta kesenjangan keterampilan, dan persiapan karier. Bandingkan kelebihan, kekurangan, dan calon penggunanya, dan jangan minta AI memilihkan satu.\n\n**3 · Tantang asumsi.** Minta lima alasan ide bisa gagal, siapa yang tidak membutuhkannya, alternatif yang sudah ada, serta bedakan fakta, asumsi, dan bukti.\n\n**4 · Perbaiki arah.** Pilih satu solusi yang ingin dilanjutkan. Minta tiga kelemahannya dan bukti apa yang masih perlu dicari.\n\n**5 · Buat proposal satu halaman.** Masukkan masalah, target pengguna, solusi, nilai yang ditawarkan, asumsi utama, bukti yang ada dan belum ada, serta langkah berikutnya.\n\n**6 · Tinjau sebagai manusia.** Tandai saran AI yang kamu terima, tolak, atau ubah. Pastikan langkah berikutnya bisa diuji, misalnya wawancara mahasiswa, bukan langsung membangun produk.\n\n**Latihan akhir: uji ide layanan karier mahasiswa**\n\n- **Petakan dan jelajahi:** Minta lima masalah karier, siapa yang mengalaminya dan apa yang perlu diuji; bandingkan empat arah solusi tanpa memilih otomatis.\n- **Tantang asumsi:** Minta alasan ide bisa gagal, calon pengguna yang tidak membutuhkan, alternatif, serta pisahkan fakta, asumsi, dan bukti.\n- **Perbaiki dan susun proposal:** Pilih arah; minta tiga kelemahan dan bukti yang perlu dicari. Buat proposal satu halaman: masalah, target, solusi, nilai, asumsi, bukti yang ada/belum ada, langkah berikutnya.\n- **Putuskan sebagai manusia:** Catat saran yang diterima, ditolak, dan diubah. Pastikan langkah berikutnya bisa diuji, misalnya wawancara mahasiswa.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.8",
+            "title": "Tiga pertanyaan sebelum memakai hasil AI",
+            "body": "Sebelum memakai hasil AI, cek tiga hal: Apa tujuan tugasmu? Bagian mana yang didukung sumber? Keputusan apa yang tetap harus kamu ambil sendiri? Jika salah satunya belum jelas, perbaiki prompt atau periksa buktinya terlebih dahulu.\n\nTidak ada satu format prompt yang selalu cocok untuk semua tugas. Hasil biasanya lebih mudah dipakai ketika tujuan jelas, konteksnya cukup, pekerjaan dibagi menjadi beberapa tahap, dan klaim penting bisa dicek ke sumber.\n\n**Pemeriksaan sebelum memakai hasil AI**\n\n- **Sebelum memakai hasil:** Periksa tujuan, konteks, asumsi, masukan, sumber, bukti, dan keputusan yang tetap menjadi tanggung jawabmu.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Untuk presentasi tadi, pilih sudut bahasan dan baca sumber sebelum meminta draf slide. AI boleh membantu tiap tahap, tetapi kamu yang memutuskan klaim mana yang layak masuk.",
+        "check": {
+          "question": "Kamu mendapat jawaban AI yang terdengar sangat yakin tentang pilihan karier. Apa yang paling tepat dilakukan?",
+          "choices": [
+            {
+              "label": "Minta AI membandingkan dua pilihan karier lain, lalu ikuti rekomendasi yang muncul paling sering.",
+              "feedback": "Lebih banyak rekomendasi tetap bisa bertumpu pada asumsi yang tidak sesuai keadaanmu.",
+              "correct": false
+            },
+            {
+              "label": "Periksa asumsi, sumber, bukti, dan apakah pertanyaanmu ikut mengarahkan jawabannya.",
+              "feedback": "Tepat. Rasa yakin dalam jawaban tidak menggantikan bukti dan pertimbangan atas situasimu.",
+              "correct": true
+            },
+            {
+              "label": "Tanyakan ulang dengan kata yang lebih netral dan anggap jawaban kedua sebagai konfirmasi.",
+              "feedback": "Pertanyaan netral membantu, tetapi jawaban kedua masih perlu dicocokkan dengan bukti dan kebutuhanmu.",
+              "correct": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": "Vibe Coding",
+    "label": "KURSUS 03 · VIBE CODING",
+    "summary": "Di kelas ini kita berfokus pada penggunaan AI coding agent untuk membangun aplikasi kecil. Kamu akan belajar memberi agent arah, memeriksa rencananya, mengizinkan perubahan yang diperlukan, lalu menguji dan membagikan hasilnya.",
+    "mapSummary": "Mulai dari membedakan AI chat dan coding agent, lalu pelajari pilihan alat dan model, permission, konteks project, proses implementasi bertahap, pengujian, dan deployment.",
+    "hubSummary": "Gunakan coding agent untuk mengubah ide aplikasi kecil menjadi versi yang bisa dijalankan, diuji, dan dibagikan melalui URL publik.",
+    "hero": {
+      "src": "/course-visuals/vibe-coding-person-laptop.jpg",
+      "alt": "Seseorang sedang bekerja di laptop di ruang kerja yang nyaman",
+      "caption": "Seseorang sedang bekerja di laptop di ruang kerja yang nyaman.",
+      "credit": "Foto: Nenad Stojković · CC BY 2.0",
+      "creditUrl": "https://commons.wikimedia.org/wiki/File:Person_working_on_laptop_in_a_cozy_indoor_setting_during_daytime.jpg"
+    },
+    "finish": "Sampai di sini, satu ide sudah kamu kembangkan dari tahap perencanaan menjadi aplikasi yang bisa dibuka orang lain.\n\nKamu juga sudah mencoba alur kerja coding agent: memberi konteks, meninjau rencana, membangun bertahap, menguji, memperbaiki, dan melakukan deployment. Di project berikutnya, gunakan pola yang sama dan tetap periksa hasil AI sebelum dipakai.",
+    "lessons": [
+      {
+        "title": "Dari Copy-Paste ke Coding Agent",
+        "question": "Apa yang berubah saat AI bisa membuka project?",
+        "intro": "AI chat dan coding agent sama-sama bisa membantu menulis kode, tetapi cara kerjanya terhadap project berbeda. Dengan chat biasa, kita biasanya menyalin kode, pesan error, dan konteks project secara manual. Coding agent bisa diberi akses langsung ke file dan tools di dalam project. Karena itu, latihan di kelas Vibe Coding ini berfokus pada **cara memakai AI coding agent** untuk mengerjakan project. Contoh error `Module not found` di pelajaran ini akan memperlihatkan perbedaannya.",
+        "lead": "AI chat dan coding agent sama-sama bisa membantu menulis kode, tetapi cara kerjanya terhadap project berbeda. Dengan chat biasa, kita biasanya menyalin kode, pesan error, dan konteks project secara manual. Coding agent bisa diberi akses langsung ke file dan tools di dalam project. Karena itu, latihan di kelas Vibe Coding ini berfokus pada **cara memakai AI coding agent** untuk mengerjakan project. Contoh error `Module not found` di pelajaran ini akan memperlihatkan perbedaannya.",
+        "sections": [
+          {
+            "number": "1.1",
+            "title": "Dulu: salin, tempel, lalu cari error",
+            "body": "Dengan AI chat biasa, alurnya sering dimulai dari pertanyaan di browser, misalnya: ‘Buat halaman login sederhana dengan email, password, dan tombol masuk.’ Setelah kode disalin ke VS Code dan dijalankan di project, bisa saja muncul error yang tidak terlihat saat kode masih berada di chat:\n\n> Module not found: file yang dicari project tidak ditemukan.\n\nKamu kembali ke AI, menyalin perbaikan, menempelkannya, lalu menjalankan project lagi. Proses ini bisa berulang karena AI tidak otomatis mengetahui struktur folder, library, gaya kode, atau hubungan antarfile di project kamu.\n\nAI chat tetap membantu menulis fungsi, CSS, query, menjelaskan error, bahkan membuat satu file penuh. Namun **kita sendiri yang harus memindahkan konteks dan perubahan antara AI dan project**.\n\n**Alur kerja dengan AI chat**\n\n- **AI di browser:** Menjawab dari konteks yang kita kirim.\n- **VS Code:** Kita sendiri mencari file dan memindahkan kode.\n- **Error:** Kembali ke AI, tempel pesan error, lalu coba lagi.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.2",
+            "title": "Sekarang: agent bisa bekerja di dalam project",
+            "body": "Dengan coding agent yang memiliki akses ke project, konteks tidak harus dipindahkan seluruhnya secara manual. Untuk error yang sama, kamu bisa meminta agent memeriksa project terlebih dahulu: ‘Cari penyebab `Module not found` di project ini. Jelaskan file yang terkait dan rencana perbaikannya sebelum mengubah kode.’\n\nCoding agent bisa membaca file, mencari bagian relevan, membuat rencana, meminta izin, mengubah file, menjalankan perintah, lalu melihat hasilnya. Agent tidak hanya mengirim potongan kode; agent juga memakai tools untuk bekerja langsung pada project.\n\nKemampuan ini tetap punya batas. Agent bisa salah memahami kebutuhan, mengubah file yang keliru, atau membuat bug. Karena itu kita perlu meninjau perubahan dan mencoba aplikasinya sendiri.\n\n**Alur kerja dengan coding agent**\n\n- **Pahami:** Baca struktur dan kode project.\n- **Rencanakan:** Tentukan file dan langkah yang relevan.\n- **Minta izin:** Tunggu persetujuan sebelum tindakan tertentu.\n- **Kerjakan:** Edit file atau jalankan perintah sesuai izin.\n- **Periksa:** Lihat hasil dan lanjutkan bila masih ada pekerjaan.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.3",
+            "title": "Perbedaan coding agent dan AI chat",
+            "body": "Perbedaan utama kedua pendekatan tadi ada pada akses ke tools dan project. Gunakan pertanyaan berikut untuk memastikan perbedaannya sudah jelas.\n\n**CHECKPOINT 1: Apa yang membedakan coding agent?**",
+            "activity": "Halaman login di projectmu gagal saat dijalankan. Bantuan mana yang khas dari coding agent?\n\n1. Menjelaskan kemungkinan penyebab dari pesan error yang kamu salin ke chat. — AI chat biasa juga bisa membantu menafsirkan pesan error yang kamu berikan.\n\n2. Membaca file yang terkait, mengubahnya sesuai izin, lalu menjalankan langkah pemeriksaan di project. **(jawaban tepat)** — Tepat. Agent dapat memakai alat untuk bekerja langsung pada project dan melihat hasilnya.\n\n3. Menulis ulang contoh halaman login di chat untuk kamu salin sendiri ke VS Code. — Itu masih mengandalkan kamu untuk memindahkan perubahan ke project.\n\n**Pembahasan:** Coding agent bukan model yang lebih pintar, melainkan model yang diberi alat dan izin. Itu sebabnya izin dan pemeriksaan jadi bahasan penting di kursus ini.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.4",
+            "title": "Vibe coding: membangun lewat percakapan",
+            "body": "Pendekatan membangun software dengan bantuan AI melalui percakapan sering disebut **vibe coding**. Istilah ini populer pada 2025 setelah digunakan Andrej Karpathy dan sampai sekarang dipakai dengan arti yang cukup luas. Di kelas ini, kita mempraktikkannya bersama **AI coding agent** yang bisa bekerja di dalam project: jelaskan tujuan, beri konteks, tinjau rencana, minta agent membantu implementasi, lalu uji dan perbaiki hasilnya.\n\nVibe coding bukan berarti menyerahkan seluruh project kepada AI lalu selalu menekan Accept. Kamu tidak harus sudah mahir programming untuk mulai, tetapi kamu tetap perlu tahu apa yang ingin dibuat, membaca perubahan penting, dan mencoba apakah hasilnya benar-benar bekerja.\n\n**Sumber bacaan**\n\n- [Andrej Karpathy · unggahan tentang vibe coding](https://x.com/karpathy/status/1886192184808149383)\n\n**Alur kerja yang digunakan di kursus**\n\n- **Percakapan:** Jelaskan kebutuhan dan batasan.\n- **Agent:** Membantu membuat perubahan pada project.\n- **Manusia:** Meninjau, menguji, dan menentukan apakah hasil sesuai.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.5",
+            "title": "Peran kita: menentukan arah dan memeriksa hasil",
+            "body": "Saat memakai coding agent, fokus kita tidak hanya pada cara menulis kode. Kita juga perlu menjelaskan kebutuhan, menentukan batasan, dan memeriksa hasil yang dibuat agent. Tiga pertanyaan yang perlu dijawab adalah: **‘Apa yang perlu dibuat, apa batasnya, dan bagaimana saya tahu hasilnya benar?’**\n\nKamu tetap menentukan kebutuhan, batasan, dan keputusan akhir. Agent bisa membantu memilih cara implementasi; kamu memastikan cara itu sesuai project.\n\n**Peran pengguna saat bekerja dengan agent**\n\n- **Kamu menentukan:** Requirement, batasan, dan standar hasil yang benar.\n- **Agent membantu:** Memilih cara implementasi dan membuat perubahan pada project.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "1.6",
+            "title": "Kalau kamu belum pernah coding",
+            "body": "Kamu tidak harus memahami semua istilah teknis sebelum mengikuti bagian berikutnya. Sebagai awal, fokus pada tujuan project dan hasil yang terlihat di layar. Istilah seperti VS Code, terminal, file project, Git, dan deployment akan dijelaskan sambil digunakan dalam contoh.\n\nBeberapa bagian berikutnya membahas izin tool dan cara agent bekerja lebih rinci. Jika masih baru dalam coding, fokus dulu pada konsep utamanya dan kembali ke detail teknis setelah mencoba project pertama.\n\n**Jalur utama dan bagian opsional**\n\n- **Jalur utama:** Pengalaman coding tidak diperlukan untuk mengikuti konsep dasarnya.\n- **Lebih Dalam (Opsional):** Bahasan teknis bisa dipelajari bertahap jika kamu ingin mendalami coding agent.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Saat halaman login gagal, coding agent bisa mencari file yang terkait dan mencoba perbaikan di project. Kamu tetap perlu membaca perubahan dan menjalankan halaman itu sendiri.",
+        "check": {
+          "question": "Coding agent sudah memperbaiki halaman login di projectmu. Sebelum memakai hasilnya, apa yang perlu kamu lakukan?",
+          "choices": [
+            {
+              "label": "Minta agent menjalankan tes otomatis; jika lulus, langsung gunakan halaman itu.",
+              "feedback": "Tes membantu, tetapi mungkin belum mencakup alur login yang kamu butuhkan.",
+              "correct": false
+            },
+            {
+              "label": "Periksa ringkasan perubahan dari agent dan lihat tangkapan layar hasilnya.",
+              "feedback": "Ringkasan dan gambar belum menunjukkan apakah halaman login benar-benar bekerja saat dicoba.",
+              "correct": false
+            },
+            {
+              "label": "Baca perubahan yang dibuat dan coba sendiri alur login untuk memastikan perbaikannya bekerja.",
+              "feedback": "Benar. Kamu perlu memahami perubahan penting dan mencoba hasilnya sebelum melanjutkan.",
+              "correct": true
+            }
+          ]
+        }
+      },
+      {
+        "title": "Kenali Alat dan Modelnya",
+        "question": "Alat mana yang cocok untuk kebutuhanmu?",
+        "intro": "Tidak semua alat AI untuk coding dibuat untuk pekerjaan yang sama. Ada yang paling nyaman untuk berdiskusi dan memahami konsep, ada yang cepat membuat prototype dari browser, dan ada yang dirancang untuk bekerja langsung dengan file serta terminal. Pelajaran ini membantu membedakan jenis alat itu dan memilih model sesuai tingkat kesulitan tugas.",
+        "lead": "Tidak semua alat AI untuk coding dibuat untuk pekerjaan yang sama. Ada yang paling nyaman untuk berdiskusi dan memahami konsep, ada yang cepat membuat prototype dari browser, dan ada yang dirancang untuk bekerja langsung dengan file serta terminal. Pelajaran ini membantu membedakan jenis alat itu dan memilih model sesuai tingkat kesulitan tugas.",
+        "sections": [
+          {
+            "number": "2.1",
+            "title": "Tiga kelompok alat yang sering ditemui",
+            "body": "Pilih tool berdasarkan pekerjaan yang ingin dilakukan. Kalau masih merumuskan ide aplikasi, **AI chat** seperti ChatGPT, Claude, atau Gemini bisa dipakai untuk brainstorming, menjelaskan konsep, dan membandingkan pilihan. Hasil dari chat kemudian kamu terapkan sendiri ke project.\n\nIngin cepat mencoba tampilan dari browser? **AI app builder** seperti Replit Agent atau Lovable bisa membuat prototype dan mengurus sebagian persiapan. Paket gratis biasanya punya batas penggunaan.\n\nSudah punya project dengan beberapa file? **AI coding agent** seperti Kilo Code, OpenCode, Codex, Claude Code, atau Cursor bisa bekerja dengan file, repository, terminal, dan alat development.\n\n**Jenis alat untuk kebutuhan yang berbeda**\n\n- **AI chat:** Untuk bertukar ide, memahami konsep, menyusun kebutuhan, dan membandingkan pilihan.\n- **AI app builder:** Untuk membuat prototype dari browser dengan persiapan yang lebih ringan.\n- **AI coding agent:** Untuk bekerja dengan file, repository, terminal, dan project development.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.2",
+            "title": "Kita berlatih dengan Kilo, tetapi prinsipnya berlaku di tool lain",
+            "body": "Untuk latihan, kita memakai **Kilo Code**, sebuah extension AI coding agent di VS Code. Kamu akan membuka project di VS Code, berbicara dengan agent lewat panel Kilo, lalu melihat perubahan yang dibuatnya pada file. Panduan pemasangan sudah tersedia di awal halaman kelas Vibe Coding; langkah pengaturannya dibahas lagi saat kamu mulai praktik di pelajaran 5.\n\nTool yang kamu pakai nanti bisa berbeda, tetapi alur dasarnya tetap mirip: **tujuan → konteks → rencana → agent memakai alat → tinjau → uji → perbaiki**.\n\n**Sumber bacaan**\n\n- [Dokumentasi Kilo Code untuk VS Code](https://kilo.ai/docs/code-with-ai/platforms/vscode)\n\n**Kilo sebagai alat latihan**\n\n- **Kilo Code:** Extension VS Code yang dipakai untuk latihan bersama coding agent di kelas ini.\n- **Tool lain:** OpenCode, Codex, Claude Code, Cursor, dan alat lain bisa punya interface berbeda.\n- **Pola umum:** Tujuan → konteks → rencana → alat → tinjau → uji → perbaiki.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.3",
+            "title": "Mengenal agent loop",
+            "body": "Cara kerja agent lebih mudah dipahami dari perubahan kecil. Misalnya, kamu meminta tulisan tombol pada halaman login diganti menjadi ‘Masuk’. Agent membaca permintaan dan konteks, mencari file yang memuat tombol itu, membuat perubahan jika diizinkan, lalu melihat hasilnya.\n\nProses berulang ini sering disebut **agent loop**. Agent bisa melanjutkan pekerjaan berdasarkan hasil tindakan sebelumnya sampai tugas selesai atau perlu bertanya lagi.\n\n**Agent loop: dari permintaan ke tindakan**\n\n- **Baca request:** Pahami tugas dan konteksnya.\n- **Pilih tool:** Tentukan alat yang tepat untuk membaca atau mengubah project.\n- **Lakukan:** Ambil tindakan jika diizinkan.\n- **Lihat hasil:** Gunakan hasilnya untuk memilih langkah berikutnya.\n\n**Diagram:** Agent tidak berhenti setelah memberi jawaban. Agent bisa memakai tool, membaca hasilnya, lalu menentukan langkah berikutnya. Kamu tetap memeriksa hasil akhirnya.\n\nAgent menerima tujuan, merencanakan langkah, memakai alat, lalu memeriksa hasilnya. Jika hasilnya belum sesuai, agent bisa mengulangi langkah-langkah ini.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.4",
+            "title": "Model dan agent bukan hal yang sama",
+            "body": "Saat memakai coding agent, dua istilah yang sering tercampur adalah **model** dan **agent**. Model dan agent berkaitan, tetapi perannya tidak sama.\n\n**Model** adalah AI yang menghasilkan jawaban dan melakukan penalaran. **Agent** adalah sistem yang menghubungkan model dengan konteks, instruksi, alat, izin, dan environment.\n\nCara paling mudah membedakannya: model menghasilkan respons, sedangkan agent mengatur bagaimana model memakai konteks, tools, permission, dan environment untuk menyelesaikan tugas. Karena itu, model yang sama bisa memberi pengalaman berbeda di agent yang berbeda.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.5",
+            "title": "Pilih model sesuai tingkat kesulitan",
+            "body": "Kebutuhan model bergantung pada kerumitan tugas. Mengubah tulisan tombol dari ‘Submit’ menjadi ‘Kirim’ jauh lebih sederhana daripada mencari bug yang melibatkan banyak file dan state aplikasi.\n\nUntuk perubahan sederhana, model yang lebih ringan atau gratis mungkin cukup. Untuk pekerjaan rumit, model yang lebih mampu bisa membantu. Pertimbangkan juga biaya, kecepatan, context window, privasi, dan kemampuan yang dibutuhkan.\n\n**Benchmark punya konteks.** SWE-bench menguji penyelesaian issue software di repository; LiveCodeBench berfokus pada soal coding; Terminal-Bench menguji penggunaan terminal dan alat. Angka dari satu benchmark tidak otomatis menentukan model terbaik untuk semua tugas. Agent, alat, prompt, environment, dan batas token juga berpengaruh.\n\n**Sumber bacaan**\n\n- [SWE-bench](https://github.com/swe-bench/SWE-bench)\n- [LiveCodeBench](https://github.com/GOTOIA/livecodebench)\n- [Terminal-Bench](https://github.com/harbor-framework/terminal-bench)\n\n**Sesuaikan model dengan kerumitan tugas**\n\n- **Perubahan kecil:** Ganti label tombol: model ringan mungkin sudah cukup.\n- **Bug lintas file:** Masalah pada banyak file dan state mungkin butuh model lebih mampu.\n- **Bandingkan:** Biaya, kecepatan, context window, privasi, dan benchmark.\n- **Checkpoint 2:** Tugas kecil tidak otomatis memerlukan model paling mahal.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "2.6",
+            "title": "Perlukah model paling mahal?",
+            "body": "Untuk perubahan kecil, model ringan sering cukup. Namun jika tugas mulai melibatkan beberapa file dan model yang dipakai belum bisa mengikuti masalahnya, kamu mungkin perlu mencoba model yang lebih mampu. Pertimbangkan situasi berikut.\n\nModel ringan sudah diberi langkah reproduksi dan log untuk bug lintas file, tetapi dua kali menyarankan perubahan yang tidak terkait. Apa langkah berikutnya?\n\n**A.** Ulangi permintaan tanpa log agar model tidak terdistraksi oleh detail error.\n\n**B.** Coba model lebih mampu dengan konteks yang sama, lalu tinjau penjelasan dan perubahannya.\n\n**C.** Pilih model dengan skor benchmark tertinggi dan langsung terima perubahan pertamanya.\n\n\n\n**Membaca benchmark sesuai konteksnya**\n\n- **SWE-bench:** Menguji penyelesaian issue software pada repository.\n- **LiveCodeBench:** Berfokus pada pemecahan soal coding.\n- **Terminal-Bench:** Melihat kemampuan agent menggunakan terminal dan tools.",
+            "activity": "",
+            "reflection": null,
+            "reveal": "**B.** Log dan langkah reproduksi tetap berguna. Model yang lebih mampu layak dicoba saat model ringan belum mampu menelusuri masalah yang lebih rumit, tetapi hasilnya tetap perlu diperiksa."
+          },
+          {
+            "number": "2.7",
+            "title": "Auto Free untuk latihan awal",
+            "body": "Kilo memiliki pilihan **Auto Free** yang mengarahkan permintaan ke model gratis yang tersedia. Model gratis bisa terkena batas penggunaan dan pilihan modelnya bisa berubah.\n\nJika ingin tetap memakai opsi gratis, periksa juga model yang dipakai autocomplete atau fitur background karena pengaturannya bisa terpisah. Perhatikan privasi: setiap provider bisa punya kebijakan penyimpanan data yang berbeda. Jangan kirim data pribadi atau rahasia sebelum memahami kebijakan tool yang kamu pakai.\n\n**Sumber bacaan**\n\n- [Kilo · Menggunakan Kilo secara gratis](https://kilo.ai/docs/getting-started/using-kilo-for-free)\n- [Kilo · Model dan provider](https://kilo.ai/docs/gateway/models-and-providers)",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Jika masih mencari ide, mulai dari chat. Jika perlu memperbaiki file project, gunakan agent. Pilih model yang cukup untuk tugas itu dan lihat kebijakan datanya sebelum mengirim isi project.",
+        "check": {
+          "question": "Kamu hanya ingin mengganti satu label tombol. Apa pilihan yang masuk akal?",
+          "choices": [
+            {
+              "label": "Mulai dengan model paling mampu agar perubahan kecil itu cukup dikerjakan sekali.",
+              "feedback": "Model lebih kuat bisa membantu, tetapi biayanya belum tentu sepadan untuk tugas yang sederhana.",
+              "correct": false
+            },
+            {
+              "label": "Coba model ringan yang cukup, lalu periksa apakah labelnya berubah tanpa mengganggu bagian lain.",
+              "feedback": "Tepat. Pilihan model mengikuti kerumitan tugas, dan hasilnya tetap perlu diperiksa.",
+              "correct": true
+            },
+            {
+              "label": "Pilih model dengan skor benchmark coding tertinggi tanpa melihat biaya tugas ini.",
+              "feedback": "Benchmark memberi petunjuk kemampuan umum, tetapi belum menentukan pilihan paling masuk akal untuk perubahan kecil.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Izin dan Cara Kerja Agent",
+        "question": "Tindakan apa yang perlu kamu izinkan?",
+        "intro": "Coding agent bisa membaca file, mengubah kode, dan menjalankan perintah di terminal. Setiap tindakan punya dampak yang berbeda, jadi izin sebaiknya diberikan sesuai kebutuhan. Pelajaran ini membahas permission dan pilihan agent di Kilo agar kamu tahu bantuan apa yang sedang dipakai dan tindakan apa yang boleh dijalankannya.",
+        "lead": "Coding agent bisa membaca file, mengubah kode, dan menjalankan perintah di terminal. Setiap tindakan punya dampak yang berbeda, jadi izin sebaiknya diberikan sesuai kebutuhan. Pelajaran ini membahas permission dan pilihan agent di Kilo agar kamu tahu bantuan apa yang sedang dipakai dan tindakan apa yang boleh dijalankannya.",
+        "sections": [
+          {
+            "number": "3.1",
+            "title": "Agent bisa melakukan tindakan",
+            "body": "Satu tugas agent bisa melibatkan beberapa tindakan: membuka file, mengubah tombol masuk, dan menjalankan aplikasi. Dampaknya tidak sama. Membaca file hanya memberi konteks; mengedit file mengubah project; menjalankan perintah bisa memasang package atau memulai program.\n\nKarena itu, izin membantu kita memilih tindakan yang boleh langsung berjalan, yang perlu kita setujui, dan yang sebaiknya diblokir.\n\n**Jenis tindakan yang bisa dilakukan agent**\n\n- **Contoh tindakan:** Membaca file, mengedit project, menjalankan command, atau memasang package.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.2",
+            "title": "Allow, Ask, Deny",
+            "body": "Di Kilo, permission bisa diatur per alat atau perintah:\n\n**Allow**: tindakan boleh berjalan tanpa bertanya.\n\n**Ask**: agent perlu meminta izin lebih dulu.\n\n**Deny**: tindakan diblokir.\n\nKilo juga memiliki aturan bawaan yang dapat mengizinkan beberapa tindakan secara otomatis. Karena itu, periksa pengaturan izin di panel Kilo sebelum memulai latihan; jangan berasumsi semua tindakan akan selalu meminta persetujuan.\n\n**Sumber bacaan**\n\n- [Kilo · Agent Permissions](https://kilo.ai/docs/customize/agent-permissions)\n- [Kilo · Auto-Approving Actions](https://kilo.ai/docs/getting-started/settings/auto-approving-actions)\n\n**Allow, Ask, dan Deny**\n\n**Diagram:** Setiap tindakan agent mengikuti salah satu dari tiga izin ini. Dengan Ask, agent berhenti dan menunggu persetujuanmu sebelum melanjutkan.\n\nJika memilih **Ask**, agent berhenti dan menunggu persetujuanmu sebelum menjalankan tindakan tersebut. Ini berguna untuk perubahan yang ingin kamu periksa lebih dulu.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.3",
+            "title": "Berikan izin secukupnya",
+            "body": "Untuk latihan awal, gunakan pengaturan yang sederhana dan hati-hati: izinkan agent membaca file, tetapi minta persetujuan sebelum agent mengubah file atau menjalankan perintah terminal. Tindakan di luar project juga perlu diperiksa terlebih dahulu.\n\nMisalnya agent ingin menjalankan `npm install random-ui-library`. Sebelum menyetujui, tanyakan kenapa package baru diperlukan. Bisa jadi memang berguna; bisa juga CSS yang sudah ada sudah cukup.\n\nAturan bisa dibuat lebih spesifik: `git status` bisa diizinkan otomatis, sedangkan perintah yang menghapus file sebaiknya ditolak atau tetap meminta persetujuan. Sebelum menyetujui perintah, baca dulu apa yang akan dijalankan dan apa dampaknya.\n\n**Periksa tindakan sebelum memberi izin**\n\n- **npm install random-ui-library:** Tanyakan kenapa package baru diperlukan.\n- **git status:** Perintah baca status bisa dibuat boleh jika sesuai aturan project.\n- **Menghapus file:** Pahami target dan dampaknya sebelum memberi izin.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.4",
+            "title": "Pilih agent: Ask, Plan, Code, Debug",
+            "body": "Permission mengatur tindakan yang boleh dilakukan. Di Kilo, kamu juga bisa memilih agent dari menu di panel chat sesuai jenis bantuan yang sedang dibutuhkan.\n\n**Ask** untuk memahami: ‘Jelaskan struktur project ini. Jangan ubah file.’\n\n**Plan** untuk merancang: ‘Saya ingin menambah pencarian. Jangan coding dulu; jelaskan file yang berubah dan cara kerjanya.’\n\n**Code** untuk menerapkan: ‘Implementasikan tahap pertama dari rencana. Jangan ubah bagian lain.’\n\n**Debug** untuk mencari penyebab: ‘Tombol ini tidak bekerja. Cari penyebabnya dan tunjukkan bukti sebelum mengubah kode.’",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "3.5",
+            "title": "Project belum kamu kenal: mulai dari mana?",
+            "body": "Permission saja belum cukup. Kalau kamu belum mengenal project-nya, pahami dulu struktur dan alurnya supaya perubahan dari agent lebih mudah diperiksa.\n\n**CHECKPOINT 3: Project belum kamu kenal**",
+            "activity": "Kamu belum tahu cara kerja sebuah project. Langkah pertama yang lebih aman?\n\n1. Minta agent membuat contoh fitur kecil dahulu supaya kamu bisa menebak alur project dari perubahan itu. — Perubahan contoh tetap bisa menyentuh bagian yang belum kamu pahami.\n\n2. Minta agent menjelaskan struktur dan alur project sebelum menyusun perubahan. **(jawaban tepat)** — Tepat. Penjelasan itu memberi pijakan untuk menilai rencana kerja agent.\n\n**Pembahasan:** Menulis ulang tanpa memahami project membuat kamu sulit menilai apakah perubahan yang dibuat memang diperlukan. Memahami struktur dan alurnya lebih dulu memudahkan kamu meninjau rencana sebelum implementasi.",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Sebelum menyetujui perintah tadi, baca apa yang akan dijalankan dan mengapa. Untuk belajar, biarkan agent membaca file; minta persetujuan saat ia akan mengubah atau menjalankan sesuatu.",
+        "check": {
+          "question": "Agent meminta izin memasang package baru hanya untuk mengganti warna satu tombol. Apa yang sebaiknya kamu lakukan?",
+          "choices": [
+            {
+              "label": "Tanyakan alasan package diperlukan dan periksa apakah CSS yang sudah ada cukup untuk mengubah warna tombol.",
+              "feedback": "Benar. Periksa kebutuhan dan dampak perintah sebelum memberi izin.",
+              "correct": true
+            },
+            {
+              "label": "Setujui setelah agent menunjukkan package itu populer dan masih diperbarui.",
+              "feedback": "Package yang terawat pun belum tentu diperlukan untuk perubahan satu warna.",
+              "correct": false
+            },
+            {
+              "label": "Setujui pemasangan di branch terpisah, lalu tinjau hasil warnanya sebelum digabung.",
+              "feedback": "Branch terpisah membatasi dampak, tetapi belum menjawab mengapa package baru dibutuhkan.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Beri Agent Arah dan Konteks",
+        "question": "Bagaimana agar agent memahami project?",
+        "intro": "Jika kebutuhan project tidak dijelaskan, agent harus menebak sendiri fitur dan teknologinya. Untuk project kecil, tebakan ini sering membuat solusi menjadi terlalu rumit. Misalnya, prompt ‘buat aplikasi belajar yang keren’ bisa membuat agent merencanakan login, database, dan kalender padahal kamu hanya ingin timer belajar sederhana.",
+        "lead": "Jika kebutuhan project tidak dijelaskan, agent harus menebak sendiri fitur dan teknologinya. Untuk project kecil, tebakan ini sering membuat solusi menjadi terlalu rumit. Misalnya, prompt ‘buat aplikasi belajar yang keren’ bisa membuat agent merencanakan login, database, dan kalender padahal kamu hanya ingin timer belajar sederhana.",
+        "sections": [
+          {
+            "number": "4.1",
+            "title": "Jangan mulai dari ‘buat aplikasi keren’",
+            "body": "Prompt yang terlalu umum membuat agent harus menebak banyak hal. Agent bisa menambahkan akun pengguna, kalender, atau database karena fitur-fitur itu terdengar masuk akal untuk aplikasi belajar, padahal timer sederhana belum membutuhkannya.\n\n> Rencana agent — Buat akun pengguna, simpan data di database, tambahkan kalender dan pengingat.\n\nCoba sebutkan siapa yang akan memakai aplikasi, satu masalah yang dibantu, dan fungsi pertama yang perlu bekerja. Untuk fitur besar, lanjutkan dengan **Ide → Kebutuhan → Rencana → Bangun → Uji → Perbaiki**. Untuk mengganti warna tombol, langkah panjang seperti itu tidak perlu.\n\n**Sesuaikan proses dengan ukuran perubahan**\n\n- **Perubahan kecil:** Warna tombol mungkin bisa langsung diubah.\n- **Fitur baru:** Rencana membantu memeriksa kebutuhan dan file yang perlu berubah.\n- **Aplikasi besar:** Pecah pekerjaan; jangan mulai dari ‘buat semuanya’.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.2",
+            "title": "Simpan aturan project yang terus berlaku",
+            "body": "Kalau ada aturan yang harus diikuti sepanjang project—misalnya ‘jangan menambah library tanpa alasan’, ‘jangan ubah file di luar tugas’, atau ‘pastikan tampilan nyaman di ponsel’—aturan itu bisa ditulis di **AGENTS.md**.\n\nFile ini berisi petunjuk yang perlu diikuti agent selama bekerja di project. Contohnya: utamakan solusi sederhana; jelaskan perubahan besar sebelum mengerjakannya; jangan menambah dependency tanpa alasan; setelah perubahan, pastikan aplikasi tetap bisa dijalankan.\n\nTidak semua project memerlukannya. Untuk project kecil, satu catatan `PROJECT.md` tentang tujuan, fitur, batasan, dan definisi selesai mungkin cukup. `product-spec.md` atau `architecture.md` baru berguna ketika project sudah cukup kompleks untuk membutuhkan dokumentasi tambahan.\n\n**Sumber bacaan**\n\n- [Kilo · Custom Instructions](https://kilo.ai/docs/customize/custom-instructions)\n\n**AGENTS.md sebagai petunjuk project**\n\n- **Contoh aturan:** Utamakan solusi sederhana; jangan tambah dependency tanpa alasan; batasi perubahan pada tugas.\n- **Tidak wajib:** Project kecil mungkin cukup punya catatan PROJECT.md yang ringkas.\n- **Dokumen lain:** Product spec atau architecture docs berguna jika ukuran project membutuhkannya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.3",
+            "title": "Skills menyimpan langkah kerja untuk tugas tertentu",
+            "body": "Selain aturan umum project, ada jenis tugas yang selalu mengikuti langkah serupa. Untuk tugas seperti ini, agent bisa diberi playbook melalui **skill** yang menjelaskan langkah kerja yang perlu diikuti.\n\n**AGENTS.md** menyimpan aturan atau konteks yang berlaku untuk project. **SKILL.md** berisi petunjuk untuk jenis tugas tertentu, misalnya langkah membuat interface atau meninjau tulisan.\n\nKilo bisa menemukan skill yang tersedia dan membaca instruksinya ketika skill tersebut relevan dengan tugas. Menambahkan banyak skill tidak otomatis membuat agent lebih baik; skill yang tidak berkaitan justru menambah informasi yang harus diproses.\n\n**Sumber bacaan**\n\n- [Kilo · Skills](https://kilo.ai/docs/customize/skills)",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.4",
+            "title": "MCP menambahkan akses ke alat lain",
+            "body": "Kalau agent perlu memakai tool atau layanan di luar project, kita perlu memberi akses ke tool itu, bukan hanya menjelaskannya lewat prompt. Salah satu cara yang bisa dipakai adalah MCP.\n\n**MCP (Model Context Protocol)** adalah cara menghubungkan agent dengan tools atau layanan tambahan, seperti alat desain, database, dokumentasi, atau pemantauan.\n\nCara membedakannya cukup sederhana: AGENTS.md berisi aturan project, SKILL.md berisi langkah kerja untuk tugas tertentu, dan MCP memberi agent akses ke tool atau layanan tambahan. Project pertama tidak perlu MCP jika belum ada kebutuhan yang jelas.\n\n**Sumber bacaan**\n\n- [Kilo · Menggunakan MCP](https://kilo.ai/docs/automate/mcp/using-in-kilo-code)\n\n**MCP untuk menghubungkan tools tambahan**\n\n- **Contoh:** Alat desain, database, dokumentasi, atau pemantauan.\n- **Ingat:** Untuk project pertama, MCP tidak wajib.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "4.5",
+            "title": "Aktivitas · pilih konteks yang cukup",
+            "body": "Tidak semua project membutuhkan AGENTS.md, skills, dan MCP sekaligus. Untuk project kecil, pilih hanya konteks dan tools yang benar-benar membantu tugas saat ini.\n\n**AKTIVITAS: Quiz kecil tanpa login**",
+            "activity": "Kamu membuat quiz kecil tanpa login. Apa yang perlu diminta lebih dulu?\n\n1. Minta agent menyiapkan struktur plugin dan beberapa paket soal agar quiz mudah diperluas nanti. — Persiapan untuk kemungkinan nanti menambah bagian yang belum dibutuhkan quiz pertama.\n\n2. Minta satu alur quiz yang bisa dijalankan di ponsel, lalu tambah layanan lain jika kebutuhan muncul. **(jawaban tepat)** — Tepat. Fungsi yang bisa dicoba memberi dasar untuk memutuskan tambahan berikutnya.\n\n**Pembahasan:** Tambahkan hanya konteks dan tool yang memang dibutuhkan untuk tugas sekarang. Login, database, skill tambahan, atau MCP bisa ditambahkan nanti ketika memang ada kebutuhan.",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Untuk timer itu, tulis siapa penggunanya, satu fungsi utama, dan fitur yang belum diperlukan. Jika aturan yang sama terus dibutuhkan, simpan sebagai petunjuk project.",
+        "check": {
+          "question": "Kapan AGENTS.md paling berguna?",
+          "choices": [
+            {
+              "label": "Saat kamu ingin menyimpan langkah penyelidikan untuk satu bug yang sedang dikerjakan.",
+              "feedback": "Catatan tugas sekali pakai lebih cocok disimpan bersama pembahasan bug itu.",
+              "correct": false
+            },
+            {
+              "label": "Saat kamu ingin membandingkan beberapa ide fitur yang belum disepakati tim.",
+              "feedback": "Daftar ide sementara bukan petunjuk tetap tentang cara agent bekerja di project.",
+              "correct": false
+            },
+            {
+              "label": "Saat ada aturan project yang perlu diikuti agent dalam banyak tugas.",
+              "feedback": "Tepat. AGENTS.md menyimpan petunjuk berulang tentang cara bekerja di project.",
+              "correct": true
+            }
+          ]
+        }
+      },
+      {
+        "title": "Dari Laptop ke Internet",
+        "question": "Apa yang membuat aplikasi bisa diakses orang lain?",
+        "intro": "Aplikasi yang berjalan di laptopmu belum tentu bisa dibuka dari perangkat lain. Jika timer belajar hanya tersedia di `localhost`, alamat itu hanya menunjuk ke aplikasi yang berjalan di komputermu sendiri. Pelajaran ini membahas perbedaan localhost dan deployment, kapan database dibutuhkan, serta cara menyimpan API key atau secret dengan aman.",
+        "lead": "Aplikasi yang berjalan di laptopmu belum tentu bisa dibuka dari perangkat lain. Jika timer belajar hanya tersedia di `localhost`, alamat itu hanya menunjuk ke aplikasi yang berjalan di komputermu sendiri. Pelajaran ini membahas perbedaan localhost dan deployment, kapan database dibutuhkan, serta cara menyimpan API key atau secret dengan aman.",
+        "sections": [
+          {
+            "number": "5.1",
+            "title": "Localhost hanya berjalan di perangkatmu",
+            "body": "Alamat seperti `http://localhost:5173` menunjuk ke aplikasi yang berjalan di komputer sendiri. Di laptop temanmu, alamat itu mencari aplikasi di komputernya, bukan di laptopmu.\n\nAgar temanmu bisa mencoba aplikasinya, kamu perlu melakukan **deployment**, yaitu menerbitkan aplikasi ke layanan yang memberi URL publik, misalnya `nama-project.vercel.app`.\n\n**Localhost dan URL publik**\n\n- **localhost:5173:** Alamat ini membuka aplikasi yang berjalan di komputer sendiri.\n- **Deployment:** Menerbitkan aplikasi agar bisa diakses pengguna melalui URL publik.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "5.2",
+            "title": "Tidak semua aplikasi perlu database",
+            "body": "Database baru diperlukan jika ada data yang perlu disimpan di luar browser atau dipakai oleh lebih dari satu perangkat/pengguna. Timer belajar yang hanya menyimpan pengaturan di browser yang sama, misalnya, belum membutuhkan database server. Kalkulator, kuis sederhana, portofolio interaktif, atau tracker lokal juga bisa dibuat tanpa database online.\n\nDatabase atau backend mulai berguna ketika aplikasi membutuhkan login, sinkronisasi data antarperangkat, banyak pengguna, atau penyimpanan online. Supabase adalah salah satu opsi yang menyediakan PostgreSQL, autentikasi, storage, dan API. Untuk project pertama, kamu tidak perlu menambahkannya jika fitur-fitur itu belum dibutuhkan.\n\n**Kapan database dibutuhkan**\n\n- **Tanpa database:** Pomodoro, calculator, quiz, portfolio, random generator, atau tracker lokal.\n- **Database mungkin perlu:** Login, data lintas perangkat, banyak pengguna, atau data online.\n- **Supabase:** Salah satu opsi untuk PostgreSQL, autentikasi, storage, dan API.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "5.3",
+            "title": "Jaga API key dan secret",
+            "body": "Aplikasi yang terhubung ke layanan eksternal sering membutuhkan API key atau kredensial lain. Jangan menaruh informasi rahasia itu di kode frontend atau repository publik.\n\nAplikasi biasanya menyimpan konfigurasi rahasia melalui **environment variables**, bukan menulisnya langsung di source code. Untuk tahap ini, ingat satu aturan penting: jangan unggah secret ke GitHub dan jangan menaruh secret di kode frontend yang akan dikirim ke browser pengguna.\n\n**Jaga API key dan secret**\n\n- **Environment variables:** Cara umum menyimpan konfigurasi rahasia di luar kode yang dikirim ke browser.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "5.4",
+            "title": "Setup Kilo untuk latihan",
+            "body": "Sebelum meminta agent membuat timer belajar, siapkan dulu tempat kerjanya. Untuk kelas ini, cukup gunakan extension Kilo Code di VS Code; kamu tidak perlu memasang Kilo CLI secara terpisah.\n\n**Pasang dan buka Kilo Code**\n\n1. Buka VS Code, lalu buka **Extensions** dari sidebar. Pintasannya `Ctrl+Shift+X` di Windows/Linux atau `Cmd+Shift+X` di macOS.\n2. Cari **Kilo Code**. Menurut panduan resmi saat ini, buka menu kecil di samping tombol **Install**, lalu pilih **Install Pre-Release Version**. Label Pre-Release di sini adalah nama kanal distribusinya.\n3. Setelah terpasang, klik ikon **Kilo Code** di sidebar. Pilih **Sign In** atau buat akun gratis, lalu selesaikan proses di browser dan izinkan browser kembali ke VS Code.\n4. Buka folder project yang ingin kamu kerjakan di VS Code. Panel Kilo sekarang siap membaca project itu saat kamu mengirim tugas.\n\n**Atur sebelum latihan pertama**\n\n1. Di panel Kilo, buka **Settings** lewat ikon roda gigi. Pilih **Auto Free** (`kilo-auto/free`) sebagai model utama jika tersedia. Pilihan model gratis dan batas pemakaiannya dapat berubah.\n2. Di **Settings → Auto Approve**, atur `read`, `glob`, dan `grep` ke **Allow** agar agent bisa memahami project. Atur `edit`, `bash`, dan `external_directory` ke **Ask** agar kamu melihat permintaan izin sebelum agent mengubah file, menjalankan perintah, atau mengakses folder lain. Periksa izin yang diminta setiap kali muncul.\n3. Jika ingin menjaga penggunaan tetap gratis, di **Settings → Models** pilih model gratis juga untuk **small model**. Autocomplete memakai pengaturan tersendiri; jika belum diperlukan, matikan di tab **Autocomplete**.\n\nSekarang coba tugas kecil dengan agent **Ask**: ‘Jelaskan isi folder project ini dalam tiga kalimat. Jangan ubah file.’ Setelah penjelasannya masuk akal, kamu bisa beralih ke **Plan** untuk menyusun langkah, lalu ke **Code** saat siap mengerjakannya. Tampilan Kilo dapat berubah; jika nama tombol berbeda dari yang kamu lihat di video, ikuti panduan resmi terbaru di bawah. Jangan masukkan data pribadi atau rahasia project ke model sebelum memahami kebijakan provider yang dipakai.\n\n**Sumber bacaan**\n\n- [Kilo · panduan instalasi VS Code](https://kilo.ai/docs/getting-started/installing)\n- [Kilo · masuk dan menghubungkan akun](https://kilo.ai/docs/getting-started/setup-authentication)\n- [Kilo · tugas pertama di VS Code](https://kilo.ai/docs/getting-started/quickstart)\n- [Kilo · pengaturan izin](https://kilo.ai/docs/getting-started/settings/auto-approving-actions)\n- [Kilo · memakai model gratis](https://kilo.ai/docs/getting-started/using-kilo-for-free)\n- [Video: memasang Kilo Code di VS Code (YouTube)](https://www.youtube.com/watch?v=rqyv8iM6KDA)\n- [Video: penggunaan dasar Kilo Code (YouTube)](https://youtu.be/4YPE73HE7r8?si=5HHsMuq1WfsHTNpW)",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "5.5",
+            "title": "Perlukah timer memakai database?",
+            "body": "Kamu ingin membuat timer belajar pribadi yang menyimpan pengaturan di browser perangkat yang sama. Apakah database online wajib?",
+            "activity": "",
+            "reflection": null,
+            "reveal": "**Tidak.** Mulai dengan solusi lokal yang sederhana; tambah database jika kebutuhan berubah."
+          }
+        ],
+        "takeaway": "Jika temanmu perlu mencoba aplikasi, terbitkan ke URL publik dan buka tautannya dari perangkat lain. Timer sederhana bisa berjalan tanpa database; simpan kunci rahasia di luar kode yang dibagikan.",
+        "check": {
+          "question": "Timer belajar sederhana hanya perlu menyimpan pengaturan di satu browser. Apa pilihan awal yang masuk akal?",
+          "choices": [
+            {
+              "label": "Gunakan database cloud agar pengaturan tetap ada setelah tab browser ditutup.",
+              "feedback": "Penyimpanan lokal di browser juga bisa bertahan setelah tab ditutup.",
+              "correct": false
+            },
+            {
+              "label": "Simpan pengaturan di browser dulu; tambah database jika nanti perlu sinkronisasi antarperangkat.",
+              "feedback": "Benar. Kebutuhan satu browser belum menuntut database online.",
+              "correct": true
+            },
+            {
+              "label": "Buat endpoint server untuk menyimpan pengaturan agar aplikasi tetap terasa cepat.",
+              "feedback": "Endpoint menambah layanan yang belum diperlukan untuk pengaturan pada satu browser.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Bangun Ide, Satu Bagian Dulu",
+        "question": "Bagaimana mengubah ide menjadi aplikasi?",
+        "intro": "Setelah memahami agent, permission, konteks project, dan deployment, sekarang kita masuk ke praktik membangun versi pertama. Project awal sengaja dibuat kecil agar setiap perubahan mudah dicoba. Untuk timer belajar, misalnya, versi pertama cukup punya satu layar dan tombol untuk mulai atau menjeda waktu. Fitur lain bisa ditambahkan setelah fungsi dasar ini bekerja.",
+        "lead": "Setelah memahami agent, permission, konteks project, dan deployment, sekarang kita masuk ke praktik membangun versi pertama. Project awal sengaja dibuat kecil agar setiap perubahan mudah dicoba. Untuk timer belajar, misalnya, versi pertama cukup punya satu layar dan tombol untuk mulai atau menjeda waktu. Fitur lain bisa ditambahkan setelah fungsi dasar ini bekerja.",
+        "sections": [
+          {
+            "number": "6.1",
+            "title": "Tentukan ide sebelum membuka coding agent",
+            "body": "Pilih kebutuhan yang cukup kecil untuk diselesaikan dan diuji dalam satu project latihan. Contohnya timer untuk sesi belajar, kuis untuk mengulang materi, atau halaman acara kampus. Tentukan siapa yang akan memakainya dan satu hal utama yang harus bisa dilakukan pengguna.\n\nIde lain juga boleh: kalkulator pengeluaran, flashcard, portfolio, atau permainan mini. Pilih sesuatu yang bisa dicoba orang lain, lalu tentukan satu fungsi yang membuatnya berguna.\n\n**Contoh ide project kecil**\n\n- **Belajar:** Pomodoro, study planner, quiz, flashcard, atau GPA calculator.\n- **Keseharian:** Expense calculator, habit tracker, book tracker, atau random meal picker.\n- **Karya pribadi:** Portfolio interaktif, event website, mini game, mood journal lokal, atau ide kamu sendiri.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "6.2",
+            "title": "Langkah 1 · jelaskan versi pertama",
+            "body": "Sebelum meminta agent menulis kode, jelaskan empat hal: **apa yang dibuat, siapa yang akan menggunakannya, apa 2-4 fungsi utama, dan apa yang belum perlu dibuat**. Deskripsinya boleh singkat.\n\nMinta AI membantu merapikan kebutuhan kalau perlu. Pastikan versi pertama tetap kecil dan bisa dicoba.\n\n**Langkah 1: definisikan versi pertama**",
+            "activity": "Tulis definisi versi pertama project kamu\n\n**Prompt awal:** Saya mau membuat aplikasi study planner.\n\n**Yang perlu ada pada revisi:**\n\n- Menyebut siapa penggunanya — Sebutkan siapa yang akan memakainya. (pola pemeriksaan: `untuk (mahasiswa|siswa|pengguna|saya|teman|dosen|guru|tim)|pengguna(nya)? (adalah|utama)`)\n\n- Menyebut 2-4 fungsi inti — Sebut minimal dua kemampuan inti, bukan satu daftar panjang. (pola pemeriksaan: `(fungsi|fitur)[\\s\\S]*(dan|,)|(menambah|menyimpan|menampilkan|mencatat|mengingatkan)[\\s\\S]*(menambah|menyimpan|menampilkan|mencatat|mengingatkan)`)\n\n- Menyebut yang belum perlu dibuat — Sebutkan satu hal yang sengaja belum dibuat di versi pertama. (pola pemeriksaan: `belum perlu|tidak perlu|tanpa (login|akun|database)|nanti saja|di luar (lingkup|cakupan)`)\n\n**Contoh hasil sebelum perbaikan:** Agent menebak sendiri fitur, pengguna, dan teknologinya, lalu membangun sesuatu yang lebih besar dari kebutuhanmu.\n\n**Contoh hasil setelah perbaikan:** Agent mengusulkan rencana yang sesuai dengan pengguna dan fungsi yang kamu sebutkan, tanpa menambahkan fitur yang sudah kamu nyatakan belum diperlukan pada versi pertama.",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "6.3",
+            "title": "Langkah 2-3 · minta agent memahami dan merencanakan",
+            "body": "Setelah kebutuhan versi pertama jelas, buka project di VS Code dan gunakan Ask atau Plan: ‘Saya ingin membuat aplikasi berikut. Bantu merancang versi pertama yang sederhana. Jangan coding dulu. Jelaskan fitur minimum, struktur project, dan urutan implementasinya. Hindari fitur yang tidak diperlukan.’\n\nBaca rencana itu. Kalau terlalu rumit, minta agent menyederhanakannya. Untuk project sederhana, aturan tambahan boleh dilewati. Jika memakai AGENTS.md, cukup tulis beberapa aturan yang benar-benar penting.\n\n**Langkah 2–3: pahami project dan tinjau rencana**\n\n- **Ask atau Plan:** Minta fitur minimum, struktur project, dan urutan implementasi.\n- **Tinjau:** Baca rencana. Jika terlalu rumit, minta disederhanakan.\n- **Rules bila perlu:** Pakai beberapa aturan penting; project sederhana boleh melewatinya.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "6.4",
+            "title": "Langkah 4-5 · bangun bagian terkecil",
+            "body": "Perubahan lebih mudah diperiksa jika project dibangun bertahap. Mulai dari tampilan utama atau satu fungsi inti, jalankan aplikasinya, lalu tambah fitur berikutnya satu per satu: tombol bisa ditekan, timer berjalan, data bisa ditambahkan, nilai bisa dihitung, quiz bisa dijawab, atau kartu bisa difilter.\n\nSetelah tiap perubahan, lihat file yang berubah dan coba fitur itu. Minta agent menjelaskan perubahan penting dengan kata-kata sederhana.\n\n**Langkah 4–5: bangun bagian kecil lalu uji**\n\n- **Tampilan utama:** Minta satu bagian UI, jalankan aplikasi, lalu lihat hasilnya.\n- **Fungsi inti:** Tambahkan timer, input data, kalkulasi, jawaban quiz, atau filter satu per satu.\n- **Periksa perubahan:** Lihat file yang berubah dan minta penjelasan bagian penting.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "6.5",
+            "title": "Tentukan bagian pertama yang akan dibangun",
+            "body": "Setelah rencana cukup jelas, pilih bagian terkecil yang bisa dibangun dan diuji terlebih dahulu.\n\n**CHECKPOINT: Apa yang dibuat lebih dulu?**",
+            "activity": "Untuk membuat study planner, langkah pertama mana yang lebih mudah diperiksa?\n\n1. Minta tampilan dan semua fungsi utama diselesaikan dalam satu tahap, lalu uji setelah terhubung. — Jika ada masalah, banyak bagian berubah sekaligus sehingga penyebabnya lebih sulit dicari.\n\n2. Minta tampilan utama, jalankan, lalu tambahkan satu fungsi inti dan uji lagi. **(jawaban tepat)** — Tepat. Perubahan kecil yang dicoba satu per satu lebih mudah diperiksa.\n\n**Pembahasan:** Dengan membangun satu bagian pada satu waktu, kamu lebih mudah mengetahui perubahan mana yang menyebabkan masalah jika sesuatu tidak bekerja.",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Mulai dari timer yang bisa dijalankan dan dijeda. Coba langsung hasilnya, lalu gunakan masalah yang kamu temukan untuk menentukan fitur atau perbaikan berikutnya.",
+        "check": {
+          "question": "Kamu mulai membuat study planner. Bagaimana membatasi versi pertama?",
+          "choices": [
+            {
+              "label": "Tentukan pengguna, dua sampai empat fungsi utama, dan fitur yang belum perlu dibuat.",
+              "feedback": "Tepat. Batas versi pertama jelas sehingga agent tidak perlu menebak cakupannya.",
+              "correct": true
+            },
+            {
+              "label": "Daftarkan semua fitur yang mungkin dibutuhkan, lalu biarkan agent memilih sendiri isi versi pertama.",
+              "feedback": "Agent belum tentu tahu prioritas pengguna jika batasnya kamu serahkan sepenuhnya.",
+              "correct": false
+            },
+            {
+              "label": "Rancang semua layar dan alur data lebih dulu agar teknologi yang diperlukan segera terlihat.",
+              "feedback": "Perencanaan berguna, tetapi tanpa batas fungsi, versi pertama bisa tetap membesar.",
+              "correct": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Uji, Perbaiki, dan Luncurkan",
+        "question": "Kapan project siap dibagikan?",
+        "intro": "Project belum selesai hanya karena aplikasinya bisa berjalan di laptop. Sebelum dibagikan, fungsi utama perlu diuji, tampilan perlu dicoba pada ukuran layar berbeda, dan masalah yang ditemukan perlu diperbaiki. Setelah itu barulah aplikasi diterbitkan dan URL publiknya diuji dari perangkat lain.",
+        "lead": "Project belum selesai hanya karena aplikasinya bisa berjalan di laptop. Sebelum dibagikan, fungsi utama perlu diuji, tampilan perlu dicoba pada ukuran layar berbeda, dan masalah yang ditemukan perlu diperbaiki. Setelah itu barulah aplikasi diterbitkan dan URL publiknya diuji dari perangkat lain.",
+        "sections": [
+          {
+            "number": "7.1",
+            "title": "Langkah 6-8 · uji, perbaiki, dan review",
+            "body": "Mulai pengujian dari hal yang benar-benar akan dilakukan pengguna. Ubah ukuran browser seperti layar ponsel, lalu coba fungsi utama: mulai, jeda, dan refresh halaman. Coba juga input yang tidak biasa dan gunakan aplikasi seperti pengguna biasa, misalnya dari layar ponsel dengan satu tangan. Cara ini sering menemukan masalah yang tidak terlihat hanya dengan membaca kode.\n\nPilih satu hal yang membingungkan atau rusak. Jelaskan kepada agent langkah-langkah yang membuat masalah itu muncul, lalu minta agent mencari penyebab dan memperbaikinya tanpa merusak bagian yang sudah bekerja.\n\nSebelum membagikan tautan, coba lagi fungsi utamanya. Lihat apakah ada error atau perubahan yang tidak diperlukan. Jika kamu belum paham satu bagian penting, minta agent menjelaskan mengapa bagian itu ada.\n\n**Langkah 6–8: uji → perbaiki → review**\n\n- **Coba sendiri:** Klik, ketik, ubah ukuran layar, refresh, dan masukkan nilai yang tidak biasa.\n- **Cari satu masalah:** Temukan bagian yang membingungkan, rusak, atau kurang nyaman.\n- **Minta bukti dan perbaikan:** Minta agent mencari penyebab lalu memperbaiki tanpa merusak bagian lain.\n- **Review:** Periksa fungsi, error, perubahan tak perlu, kerumitan, dan pemahamanmu.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.2",
+            "title": "Langkah 9 · deploy dengan jalur yang sesuai",
+            "body": "Setelah fungsi utama sudah diuji, pilih jalur deployment yang sesuai. Salah satu jalur sederhana adalah **Vercel Drop**: unggah file atau folder lewat browser, pilih nama project, lalu deploy. Vercel bisa mendeteksi framework tertentu dan memberi URL publik. Setelah itu, buka URL dari perangkat lain dan uji kembali.\n\nJika ingin menyimpan source code sebagai portofolio, kamu bisa memakai alur **GitHub → Vercel**. GitHub bukan syarat agar project dianggap selesai. Yang lebih penting adalah aplikasi bisa dibuka dan fitur utamanya sudah diuji. Deploy yang berhasil hanya berarti aplikasi berhasil diterbitkan, bukan berarti semua fiturnya pasti benar.\n\n**Sumber bacaan**\n\n- [Vercel · Vercel Drop](https://vercel.com/changelog/vercel-drop)\n- [Kilo · dokumentasi resmi](https://kilo.ai/docs)\n\n**Langkah 9: pilih jalur deployment**\n\n- **Vercel Drop:** Unggah file atau folder lewat browser; Vercel mendeteksi framework yang dikenali, menjalankan proses build, lalu memberi URL live.\n- **GitHub → Vercel:** Simpan repository sebagai portofolio dan hubungkan ke Vercel untuk deployment dari Git.\n- **Bukan syarat:** GitHub opsional. Yang penting project berhasil live dan diuji.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.3",
+            "title": "Tautan yang benar-benar bisa dibuka",
+            "body": "Deployment perlu diuji dari luar perangkat pengembang. Kirim tautannya kepada satu teman atau buka dari perangkat lain. Jika ia bisa membuka timer dan menekan tombol mulai serta jeda dari perangkatnya sendiri, versi pertama sudah mencapai tujuanmu. Catat masalah yang ia temukan untuk perbaikan berikutnya.\n\n**Hasil deployment: project bisa diakses dari perangkat lain**\n\n- **Dari ide ke internet:** Tentukan tujuan, arahkan agent, batasi izin, bangun, uji, perbaiki, dan bagikan URL yang berfungsi.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.4",
+            "title": "Refleksi singkat",
+            "body": "Setelah menguji aplikasi, catat singkat apa yang kamu buat dan siapa yang sudah mencobanya. Lalu refleksikan tiga hal: bagian mana yang paling banyak dibantu AI, keputusan apa yang kamu ambil sendiri, dan apa yang kamu ubah setelah mencoba aplikasi di ponsel.\n\nCatatan ini membantu kamu mengingat alasan di balik keputusan project, bukan hanya file apa saja yang dibuat.\n\n**Refleksi setelah project selesai**\n\n- **Apa yang dibuat?:** Tulis nama dan kegunaan project.\n- **AI membantu apa?:** Bagian mana yang paling banyak dibantu agent?\n- **Keputusanmu?:** Apa yang kamu putuskan sendiri?\n- **Apa yang berubah?:** Apa yang kamu ubah setelah melihat hasil AI?",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.5",
+            "title": "Opsional · ceritakan project kamu",
+            "body": "Jika tautan sudah bekerja dan hasilnya sudah cukup baik, project bisa dibagikan sesuai tujuanmu. Kirim kepada teman atau dosen untuk mendapat masukan; setelah itu, kamu bisa memasukkannya ke portofolio atau membagikannya lebih luas.\n\nCeritakan apa yang kamu buat, kenapa memilih ide itu, bagaimana AI membantu, keputusan apa yang tetap kamu buat sendiri, dan apa yang dipelajari. Sertakan tautan live; repository GitHub boleh ditambahkan jika ada. Ceritanya tetap ceritamu, meski AI membantu merapikan tulisan.\n\n**Opsional: bagikan project kepada orang lain**\n\n- **Ceritakan:** Apa yang kamu buat, mengapa memilihnya, bagaimana AI membantu, dan apa yang kamu putuskan sendiri.\n- **Sertakan:** Tautan live. Repository GitHub hanya jika tersedia.\n- **Tetap personal:** AI boleh merapikan tulisan, tetapi ceritanya tetap milikmu.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.6",
+            "title": "Ke mana melangkah setelah ini?",
+            "body": "Project berikutnya mungkin membutuhkan fitur yang lebih kompleks. Jika data harus tersimpan lintas perangkat atau dipakai banyak pengguna, database online seperti Supabase dan autentikasi mulai relevan. Jika aplikasi perlu mengambil data atau memakai layanan lain, API bisa menghubungkannya dengan layanan cuaca, peta, AI, dan sebagainya.\n\nGit dan GitHub membantu menyimpan riwayat perubahan dan berkolaborasi. Testing membantu memastikan fitur tetap bekerja setelah kode berubah. MCP, custom agents, dan skills bisa ditambahkan ketika kamu memang membutuhkan tool atau workflow yang lebih khusus.\n\n**Langkah berikutnya setelah project pertama**\n\n- **Database dan autentikasi:** Untuk data online lintas perangkat dan akun pengguna.\n- **API:** Untuk layanan cuaca, peta, AI, atau data lain.\n- **Git dan testing:** Untuk riwayat perubahan, kolaborasi, dan pemeriksaan sistematis.\n- **MCP, agents, skills:** Untuk menambah alat atau menyesuaikan workflow saat memang berguna.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          },
+          {
+            "number": "7.7",
+            "title": "Prinsip yang bisa dipakai lagi di project berikutnya",
+            "body": "Prinsip utamanya sederhana: mulai dari kebutuhan pengguna, bukan dari sebanyak mungkin fitur yang bisa dibuat AI. Setiap kali agent mengusulkan sesuatu, cek apakah fitur itu benar-benar dibutuhkan dan bagaimana kamu akan mengujinya.\n\nTool dan model akan terus berubah. Kebiasaan yang tetap berguna adalah menjelaskan tujuan, membaca rencana sebelum implementasi, mencoba hasilnya sendiri, lalu memperbaiki masalah yang benar-benar dialami pengguna.\n\nVersi pertama sudah layak dibagikan ketika fungsi utamanya bekerja lewat URL publik dan sudah kamu uji. Kode yang terlihat selesai di layar chat saja belum cukup.\n\n**Alur utama: Ide → Percakapan → Rencana → Bangun → Uji → Perbaiki → Deploy**\n\n- **Pegangan:** Jelaskan kebutuhanmu, periksa hasil agent, dan tentukan sendiri kapan software sudah cukup baik untuk dipakai atau dibagikan.",
+            "activity": "",
+            "reflection": null,
+            "reveal": null
+          }
+        ],
+        "takeaway": "Perbesar tombol jeda, coba lagi di ponsel, lalu minta temanmu menguji tautan yang sama. Ceritakan apa yang kamu ubah setelah melihat cara orang lain memakainya.",
+        "check": {
+          "question": "Deployment berhasil dan kamu mendapat URL. Apa langkah berikutnya?",
+          "choices": [
+            {
+              "label": "Periksa log build di Vercel dan bagikan tautan jika tidak ada error.",
+              "feedback": "Build yang berhasil belum membuktikan fungsi aplikasi bekerja saat dipakai orang lain.",
+              "correct": false
+            },
+            {
+              "label": "Buka URL di browser yang kamu pakai saat mengembangkan aplikasi, lalu bagikan jika halaman terlihat normal.",
+              "feedback": "Tampilan awal di satu browser belum memeriksa fungsi utama atau perangkat lain.",
+              "correct": false
+            },
+            {
+              "label": "Buka URL dari perangkat lain, coba fungsi utamanya, dan catat masalah yang perlu diperbaiki.",
+              "feedback": "Benar. Tautan publik perlu diuji seperti pengalaman pengguna sungguhan.",
+              "correct": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

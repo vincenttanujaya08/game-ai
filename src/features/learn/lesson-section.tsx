@@ -5,6 +5,7 @@ import type { Verdict } from "./activities/types";
 import type { LessonContent, LessonSection as LessonSectionData } from "./fundamentals-content";
 import type { SectionPresentation } from "./fundamentals-presentation";
 import { LearningPanel, ShortParagraphs } from "./learning-panel";
+import { MaterialBody } from "./material-body";
 import { LessonCheck, type CheckState } from "./lesson-check";
 import styles from "./fundamentals-reader.module.css";
 
@@ -36,20 +37,18 @@ export function LessonSection({ lesson, section, presentation, isLastSection, se
       onAttempt={onActivityAttempt}
     />
   ) : null;
-  const panelFirst = !activity && (presentation.kind === "stats" || presentation.kind === "statement");
-  const panel = activity
-    ? null
-    : <LearningPanel panel={presentation} selected={selectedPanelItem} onSelect={onSelectPanelItem} />;
+  // Ringkasan berbentuk kartu mengulang prosa; tampilkan panel saat ada visual atau pilihan yang perlu dicoba.
+  const panel = !activity && (presentation.visual || presentation.interactive)
+    ? <LearningPanel panel={presentation} selected={selectedPanelItem} onSelect={onSelectPanelItem} />
+    : null;
 
   return (
     <section aria-labelledby="lesson-section-title">
       <h2 id="lesson-section-title">{section.title}</h2>
-      <div className={styles.prose}>
-        {panelFirst ? panel : null}
-        <div className={styles.proseIntro} data-panel-first={panelFirst}>
+      {section.markdown ? <div className={styles.prose}><MaterialBody markdown={section.markdown} presentation={presentation} /></div> : <div className={styles.prose}>
+        <div className={styles.proseIntro}>
           <ShortParagraphs text={section.paragraphs[0]} lead />
         </div>
-        {!panelFirst ? panel : null}
         <div className={styles.proseMore} data-kind={presentation.kind} data-labeled={Boolean(presentation.bodyLabels)}>
           {section.paragraphs.slice(1).map((paragraph, index) => presentation.bodyLabels ? (
             <div className={styles.detailBlock} key={index}>
@@ -62,7 +61,8 @@ export function LessonSection({ lesson, section, presentation, isLastSection, se
             </div>
           ))}
         </div>
-      </div>
+        {panel}
+      </div>}
 
       {activity}
 
@@ -71,7 +71,8 @@ export function LessonSection({ lesson, section, presentation, isLastSection, se
           <summary>{section.reveal.label ?? "Lihat jawaban dan alasannya"}</summary>
           <div>
             {section.reveal.paragraphs.map((paragraph, index) => (
-              <ShortParagraphs key={index} text={paragraph} />
+              section.markdown ? <MaterialBody key={index} markdown={paragraph} presentation={presentation} />
+                : <ShortParagraphs key={index} text={paragraph} />
             ))}
           </div>
         </details>
@@ -84,7 +85,7 @@ export function LessonSection({ lesson, section, presentation, isLastSection, se
         </details>
       ) : null}
 
-      {section.sources ? (
+      {!section.markdown && section.sources ? (
         <div className={styles.sources} role="group" aria-label="Sumber bagian ini">
           <span>SUMBER &amp; BACA LANJUT</span>
           {section.sources.map((source) => (
@@ -102,7 +103,7 @@ export function LessonSection({ lesson, section, presentation, isLastSection, se
 
       <div className={styles.bridge}>
         <span>SELANJUTNYA</span>
-        <p>{presentation.bridge}</p>
+        {presentation.bridge ? <p>{presentation.bridge}</p> : null}
         <strong>{nextLabel}</strong>
       </div>
     </section>

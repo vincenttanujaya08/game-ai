@@ -28,11 +28,15 @@ async function openAtSection(
 
 /** Naikkan satu baris lewat keyboard, tanpa bergantung pada posisinya saat itu. */
 async function moveUp(page: import("@playwright/test").Page, label: string, times = 1) {
-  const row = page.getByRole("listitem").filter({ hasText: label }).getByRole("button");
+  const row = orderRows(page).filter({ hasText: label }).getByRole("button");
   await row.focus();
   for (let step = 0; step < times; step += 1) {
     await page.keyboard.press("ArrowUp");
   }
+}
+
+function orderRows(page: import("@playwright/test").Page) {
+  return page.getByRole("region", { name: /Susun urutan kerja robot/ }).getByRole("listitem");
 }
 
 test("estimate: tebak dulu, angka sebenarnya dibuka sesudahnya", async ({ page }) => {
@@ -62,7 +66,7 @@ test("arrange: urutan disusun dengan keyboard saja", async ({ page }) => {
   await openAtSection(page, fundamentalsKey, "/learn/ai-fundamentals/module-1", 4);
 
   // Urutan awal sengaja teracak di data: Uji, Amati, Awasi, Perkirakan.
-  const rows = page.getByRole("listitem").filter({ hasText: ":" });
+  const rows = orderRows(page);
   await expect(rows.first()).toContainText("Uji");
 
   await moveUp(page, "Amati");
@@ -78,7 +82,7 @@ test("arrange: urutan disusun dengan keyboard saja", async ({ page }) => {
 test("arrange: baris bisa diseret dengan tetikus", async ({ page }) => {
   await openAtSection(page, fundamentalsKey, "/learn/ai-fundamentals/module-1", 4);
 
-  const rows = page.getByRole("listitem").filter({ hasText: ":" });
+  const rows = orderRows(page);
   await expect(rows.first()).toContainText("Uji");
 
   // Seret "Amati" ke posisi pertama.
@@ -95,7 +99,7 @@ test("arrange: baris bisa diseret dengan tetikus", async ({ page }) => {
 test("arrange: baris bisa dioperasikan tanpa tetikus dan tanpa tombol tambahan", async ({ page }) => {
   await openAtSection(page, fundamentalsKey, "/learn/ai-fundamentals/module-1", 4);
 
-  const rows = page.getByRole("listitem").filter({ hasText: ":" });
+  const rows = orderRows(page);
 
   // Barisnya sendiri adalah satu-satunya kontrol: tidak ada pegangan atau tombol tambahan.
   await expect(rows.first().getByRole("button")).toHaveCount(1);
@@ -127,7 +131,7 @@ test("arrange: menjatuhkan ke baris jauh menukar dua baris itu saja", async ({ p
   await openAtSection(page, fundamentalsKey, "/learn/ai-fundamentals/module-1", 4);
 
   // Urutan awal: Uji, Amati, Awasi, Perkirakan.
-  const rows = page.getByRole("listitem").filter({ hasText: ":" });
+  const rows = orderRows(page);
   await expect(rows.nth(0)).toContainText("Uji");
   await expect(rows.nth(3)).toContainText("Perkirakan");
 
@@ -196,7 +200,7 @@ test("arrange pencocokan: tiap baris dipilih kategorinya", async ({ page }) => {
 
   await expect(check).toBeEnabled();
   await check.click();
-  await expect(page.getByText(/Task adalah pekerjaannya/)).toBeVisible();
+  await expect(page.getByText(/Task menjelaskan apa yang harus dikerjakan/)).toBeVisible();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 

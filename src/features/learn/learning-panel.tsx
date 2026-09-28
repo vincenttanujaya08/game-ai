@@ -6,11 +6,18 @@ import type { SectionPresentation } from "./fundamentals-presentation";
 import styles from "./fundamentals-reader.module.css";
 
 export function ShortParagraphs({ text, lead = false }: { text: string; lead?: boolean }) {
-  return text.split("\n\n").map((paragraph, index) => (
-    <p key={index} className={lead && index === 0 ? styles.proseLead : undefined}>
-      {paragraph.split("**").map((part, partIndex) => partIndex % 2 ? <strong key={partIndex}>{part}</strong> : part)}
-    </p>
-  ));
+  return text.split("\n\n").map((paragraph, index) => {
+    const quoted = paragraph.startsWith("> ");
+    const content = quoted ? paragraph.replace(/^> /gm, "") : paragraph;
+    const inline = content.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((part, partIndex) => {
+      if (part.startsWith("**")) return <strong key={partIndex}>{part.slice(2, -2)}</strong>;
+      if (part.startsWith("`")) return <code key={partIndex}>{part.slice(1, -1)}</code>;
+      return part;
+    });
+    return quoted
+      ? <blockquote key={index} className={styles.proseQuote}>{inline}</blockquote>
+      : <p key={index} className={lead && index === 0 ? styles.proseLead : undefined}>{inline}</p>;
+  });
 }
 
 export function LearningPanel({ panel, selected, onSelect }: { panel: SectionPresentation; selected: number; onSelect: (index: number) => void }) {
