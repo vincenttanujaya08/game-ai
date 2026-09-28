@@ -27,6 +27,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </nav>
         <h2>{mode === "signup" ? "Buat akun" : "Sign in"}</h2>
         <p>{mode === "signup" ? "Buat akun dengan Google atau daftar memakai alamat email dan kata sandi." : "Masuk dengan Google atau email yang terhubung ke akun NUSA Lab."}</p>
+        {(next === "/learn" || next.startsWith("/learn/")) && <p className={styles.note}>Materi belajar hanya terbuka untuk akun yang sudah masuk, supaya progresmu tersimpan dan bisa dilanjutkan di perangkat lain.</p>}
         {params.error && <p className={styles.error} role="alert">Autentikasi Google belum berhasil. Silakan coba lagi.</p>}
         <div className={styles.action}><LoginButton next={next} mode={mode} /></div>
         <p className={styles.note}>{mode === "signup" ? "Jika mendaftar dengan email, konfirmasi akun lewat tautan yang kami kirim." : "Progres belajarmu akan tersimpan di akun ini."}</p>
