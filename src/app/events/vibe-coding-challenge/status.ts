@@ -1,1 +1,1 @@
-export const isChallengeOpen = false;
+export const isChallengeOpen = true;

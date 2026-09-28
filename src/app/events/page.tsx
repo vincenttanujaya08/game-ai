@@ -1,3 +1,4 @@
+import Link from "next/link";
 import NusaHeader from "@/app/nusa-header";
 import landing from "@/app/landing.module.css";
 import styles from "./events.module.css";
@@ -18,15 +19,15 @@ export default function EventsPage() {
       </section>
 
       <section className={styles.list} aria-label="Daftar event">
-        <article className={styles.event} aria-label="Vibe Coding Challenge, Coming Soon">
+        <article className={styles.event} aria-label="Vibe Coding Challenge">
           <div className={styles.eventCopy}>
-            <span className={styles.label}>EVENT NUSA LAB · COMING SOON</span>
+            <span className={styles.label}>EVENT NUSA LAB · 7 HARI</span>
             <h2>Vibe Coding Challenge</h2>
             <p>Punya ide? Coba wujudkan dalam 7 hari. Buat aplikasi sederhana untuk membantu menyelesaikan masalah mahasiswa.</p>
-            <span className={styles.eventAction} aria-disabled="true">Coming Soon</span>
+            <Link className={styles.eventAction} href="/events/vibe-coding-challenge">Lihat challenge <span aria-hidden="true">→</span></Link>
           </div>
           <div className={styles.poster} aria-hidden="true">
-            <span>COMING SOON</span>
+            <span>VIBE CODING</span>
             <strong>07</strong>
             <span>HARI UNTUK MEMBUAT PROJECT</span>
           </div>
