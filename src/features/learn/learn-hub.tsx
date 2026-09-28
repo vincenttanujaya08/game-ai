@@ -10,7 +10,7 @@ import { initialLearnProgress, loadProgress, type LearnProgress } from "./progre
 import styles from "./learn-hub.module.css";
 
 type ProgressMap = Record<CourseId, LearnProgress>;
-const visibleCourses = courseList.slice(0, 2);
+const visibleCourses = courseList;
 
 const initialMap = Object.fromEntries(
   courseList.map((course) => [course.id, initialLearnProgress]),
@@ -60,9 +60,7 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
             <div className={styles.courseBody}>
               <p className={styles.courseLabel}>Materi aktif</p>
               <h2 id={titleId}>{course.title}</h2>
-              <p>{course.id === "ai-fundamentals"
-                ? "Kenali cara kerja AI, apa yang bisa dan tidak bisa dilakukannya, serta kapan kamu perlu mengecek kembali hasil yang diberikan."
-                : "Belajar memberi instruksi yang lebih jelas, menilai jawaban AI, dan memperbaiki hasilnya supaya benar-benar sesuai dengan yang kamu butuhkan."}</p>
+              <p>{course.hubSummary}</p>
               <dl className={styles.courseMeta}>
                 <div><dt>{total}</dt><dd>Pelajaran</dd></div>
                 <div><dt>{practice.total}</dt><dd>Latihan</dd></div>
