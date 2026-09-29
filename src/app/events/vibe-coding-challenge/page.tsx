@@ -18,6 +18,7 @@ export default function ChallengePage() {
         <h1>Vibe Coding Challenge</h1>
         <p className={styles.tagline}>Buat aplikasi sederhana untuk membantu mahasiswa.</p>
         <p className={styles.heroDescription}>Pilih satu masalah mahasiswa, lalu buat solusi yang bisa dicoba. Kamu boleh memakai AI tools atau coding agent pilihanmu.</p>
+        <p className={styles.heroDescription}>29 September–6 Oktober 2026 · Pendaftaran dan pengumpulan ditutup pukul 23.59 WIB.</p>
         <div className={styles.actions}>
           <Link className={landing.primaryAction} href="/events/vibe-coding-challenge/register">Daftar challenge <span aria-hidden="true">→</span></Link>
           <Link className={styles.textLink} href="/events/vibe-coding-challenge/submit">Sudah daftar? Kirim project <span aria-hidden="true">↗</span></Link>
@@ -29,10 +30,10 @@ export default function ChallengePage() {
         <div>
           <ol className={styles.deliverables}>
             <li><strong>Project di GitHub</strong><span>Isi README dengan masalah yang diselesaikan dan cara menjalankan aplikasi.</span></li>
-            <li><strong>Video demo</strong><span>Rekam aplikasi saat digunakan, lalu kirim tautan video yang bisa dibuka.</span></li>
+            <li><strong>Link demo</strong><span>Kirim link website/aplikasi yang bisa dicoba, atau link video demo kalau aplikasimu belum online.</span></li>
             <li><strong>Catatan AI</strong><span>Sebutkan AI tools yang dipakai dan bagian yang dibantu. Tulis di formulir submit.</span></li>
           </ol>
-          <p className={styles.sectionIntro}>Nama project dan ringkasan solusi juga diisi di formulir. Tanggal mulai dan batas pengumpulan akan diumumkan.</p>
+          <p className={styles.sectionIntro}>Nama project dan ringkasan solusi juga diisi di formulir.</p>
           <Link className={styles.textLink} href="/events/vibe-coding-challenge/submit">Kirim project <span aria-hidden="true">→</span></Link>
         </div>
       </section>

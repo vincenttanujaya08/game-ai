@@ -12,7 +12,7 @@ function configured() {
 }
 
 export async function registerChallenge(form: FormData) {
-  if (!isChallengeOpen) redirect(`${base}/register?status=closed`);
+  if (!isChallengeOpen()) redirect(`${base}/register?status=closed`);
   if (!configured()) redirect(`${base}/register?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -30,7 +30,7 @@ export async function registerChallenge(form: FormData) {
 }
 
 export async function submitChallenge(form: FormData) {
-  if (!isChallengeOpen) redirect(`${base}/submit?status=closed`);
+  if (!isChallengeOpen()) redirect(`${base}/submit?status=closed`);
   if (!configured()) redirect(`${base}/submit?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -40,14 +40,13 @@ export async function submitChallenge(form: FormData) {
   if (loadError || !registered) redirect(`${base}/register?status=required`);
   const parsed = submissionSchema.safeParse({
     projectName: form.get("projectName"), summary: form.get("summary"),
-    appUrl: form.get("appUrl") ?? "", repositoryUrl: form.get("repositoryUrl"),
-    demoUrl: form.get("demoUrl"), aiTools: form.get("aiTools"),
+    repositoryUrl: form.get("repositoryUrl"), demoUrl: form.get("demoUrl"), aiTools: form.get("aiTools"),
   });
   if (!parsed.success) redirect(`${base}/submit?status=invalid`);
   const { error } = await supabase.from("event_submissions").upsert({
     user_id: user.id, event_id: eventId,
     project_name: parsed.data.projectName, summary: parsed.data.summary,
-    app_url: parsed.data.appUrl || null, repository_url: parsed.data.repositoryUrl,
+    repository_url: parsed.data.repositoryUrl,
     demo_url: parsed.data.demoUrl, ai_tools: parsed.data.aiTools,
     updated_at: new Date().toISOString(),
   }, { onConflict: "user_id,event_id" });

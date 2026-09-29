@@ -7,7 +7,7 @@ const link = z.string().trim().max(500).url().refine((value) => URL.canParse(val
 
 export const registrationSchema = z.object({ name: text(100), university: text(150) });
 export const submissionSchema = z.object({
-  projectName: text(120), summary: text(600), appUrl: link.or(z.literal("")),
+  projectName: text(120), summary: text(600),
   repositoryUrl: link.refine((value) => {
     if (!URL.canParse(value)) return false;
     const url = new URL(value);

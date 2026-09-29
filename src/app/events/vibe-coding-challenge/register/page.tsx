@@ -10,7 +10,8 @@ export const metadata = { title: "Daftar Vibe Coding Challenge · NUSA Lab" };
 
 export default async function RegisterPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {
   const { status } = await searchParams;
-  const configured = isChallengeOpen && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+  const open = isChallengeOpen();
+  const configured = open && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
   const supabase = configured ? await createClient() : null;
   const user = supabase ? (await supabase.auth.getUser()).data.user : null;
   const { data: saved } = user ? await supabase!.from("event_registrations").select("name,university")
@@ -22,7 +23,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
       <Link className={styles.back} href="/events/vibe-coding-challenge">← Vibe Coding Challenge</Link>
       <h1>Daftar challenge.</h1>
       <p className={styles.formLead}>Daftarkan dirimu dengan akun Google. Setelah itu, kamu bisa mengirim atau memperbarui project dari halaman submit.</p>
-      {!isChallengeOpen ? <p className={styles.notice} role="status">Coming Soon. Pendaftaran akan dibuka saat event dimulai.</p>
+      {!open ? <p className={styles.notice} role="status">Pendaftaran ditutup. Periode challenge 29 September–6 Oktober 2026, sampai pukul 23.59 WIB.</p>
         : !configured ? <p className={styles.notice} data-error="true">Pendaftaran belum tersedia karena login Google dan database belum dikonfigurasi.</p>
         : !user ? <p className={styles.notice}><Link href="/login?mode=signin&next=%2Fevents%2Fvibe-coding-challenge%2Fregister">Sign in</Link> atau <Link href="/login?mode=signup&next=%2Fevents%2Fvibe-coding-challenge%2Fregister">Sign up</Link> dengan Google untuk melanjutkan.</p>
           : <>
@@ -33,7 +34,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
             <form className={styles.form} action={registerChallenge}>
               <label>Nama peserta<input name="name" required minLength={2} maxLength={100} defaultValue={saved?.name ?? user.user_metadata?.full_name ?? ""} autoComplete="name" /></label>
               <label>Universitas atau kampus<input name="university" required minLength={2} maxLength={150} defaultValue={saved?.university ?? ""} autoComplete="organization" /></label>
-              <p className={styles.formAside}>Akun pendaftaran: <strong>{user.email}</strong>. Tanggal mulai dan batas submit akan diumumkan di halaman challenge.</p>
+              <p className={styles.formAside}>Akun pendaftaran: <strong>{user.email}</strong>. Pendaftaran dan perubahan data ditutup 6 Oktober 2026 pukul 23.59 WIB.</p>
               <button type="submit">{saved ? "Perbarui pendaftaran" : "Daftar challenge"}</button>
             </form>
           </>}

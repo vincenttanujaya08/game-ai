@@ -39,13 +39,15 @@ grant select, insert, update on public.event_submissions to authenticated;
 create policy "Read own event registration" on public.event_registrations for select to authenticated
   using ((select auth.uid()) = user_id);
 create policy "Create own event registration" on public.event_registrations for insert to authenticated
-  with check ((select auth.uid()) = user_id);
+  with check ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz);
 create policy "Update own event registration" on public.event_registrations for update to authenticated
-  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+  using ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz)
+  with check ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz);
 
 create policy "Read own event submission" on public.event_submissions for select to authenticated
   using ((select auth.uid()) = user_id);
 create policy "Create own event submission" on public.event_submissions for insert to authenticated
-  with check ((select auth.uid()) = user_id);
+  with check ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz);
 create policy "Update own event submission" on public.event_submissions for update to authenticated
-  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+  using ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz)
+  with check ((select auth.uid()) = user_id and statement_timestamp() >= '2026-09-29 00:00:00+07'::timestamptz and statement_timestamp() < '2026-10-07 00:00:00+07'::timestamptz);
