@@ -1,4 +1,4 @@
-import type { CourseConfig } from "./courses";
+import type { CourseConfig, CourseId } from "./courses";
 
 /** Satu catatan percobaan untuk satu aktivitas di dalam satu bagian pelajaran. */
 export type Attempt = { tries: number; solved: boolean; firstTryCorrect: boolean };
@@ -10,6 +10,10 @@ export type LearnProgress = {
   sectionIndex: number;
   attempts: Record<string, Attempt>;
 };
+
+export type ProgressLimits = { stageCount: number; sectionCounts: number[] };
+export type CourseProgressInfo = ProgressLimits & { id: CourseId; progressKey: string };
+export type CourseState = { progress: LearnProgress; preTestCompleted: boolean; postTestCompleted: boolean };
 
 export const initialLearnProgress: LearnProgress = {
   completedStages: [],
@@ -53,8 +57,8 @@ function sanitizeAttempts(value: unknown, stageCount: number): Record<string, At
   );
 }
 
-export function normalizeProgress(value: unknown, course: CourseConfig): LearnProgress {
-  const stageCount = course.stages.length;
+export function normalizeProgress(value: unknown, course: Pick<CourseConfig, "stages" | "lessons"> | ProgressLimits): LearnProgress {
+  const stageCount = "stageCount" in course ? course.stageCount : course.stages.length;
   try {
     const input = value && typeof value === "object" ? value as Record<string, unknown> : {};
     const completedStages: number[] = Array.isArray(input.completedStages)
@@ -74,7 +78,9 @@ export function normalizeProgress(value: unknown, course: CourseConfig): LearnPr
       ? clamp(input.activeStage as number, stageCount - 1)
       : undefined;
     const activeStage = storedStage !== undefined && storedStage <= unlockedStage ? storedStage : unlockedStage;
-    const sectionCount = course.lessons[activeStage]?.sections.length ?? 1;
+    const sectionCount = "sectionCounts" in course
+      ? course.sectionCounts[activeStage] ?? 1
+      : course.lessons[activeStage]?.sections.length ?? 1;
     const sectionIndex = Number.isInteger(input.sectionIndex)
       ? clamp(input.sectionIndex as number, sectionCount - 1)
       : 0;
@@ -100,35 +106,132 @@ export function applyPostTestCompletion(progress: LearnProgress, course: CourseC
 }
 
 export function readProgress(course: CourseConfig): LearnProgress {
+  return readStoredProgress(course.progressKey, course);
+}
+
+const saveQueues = new Map<string, Promise<void>>();
+const pendingLoads = new Map<string, Promise<unknown>>();
+const CLOUD_CACHE_PREFIX = "nusa-cloud-progress-v1:";
+
+function readStoredProgress(key: string, limits: ProgressLimits | Pick<CourseConfig, "stages" | "lessons">) {
   if (typeof window === "undefined") return initialLearnProgress;
-  try { return normalizeProgress(JSON.parse(localStorage.getItem(course.progressKey) ?? "null"), course); }
+  try { return normalizeProgress(JSON.parse(localStorage.getItem(key) ?? "null"), limits); }
   catch { return initialLearnProgress; }
 }
 
-const cloudCourses = new Set<string>();
-const saveQueues = new Map<string, Promise<void>>();
+function cloudCacheKey(userId: string, courseId: string) {
+  return CLOUD_CACHE_PREFIX + userId + ":" + courseId;
+}
+
+function accountCourseKey(userId: string, courseId: string) {
+  return userId + ":" + courseId;
+}
+
+export function readCachedCourseState(course: CourseConfig, userId: string): CourseState | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(cloudCacheKey(userId, course.id));
+    if (!raw) return null;
+    const cached = JSON.parse(raw) as Partial<CourseState>;
+    return {
+      progress: normalizeProgress(cached.progress, course),
+      preTestCompleted: cached.preTestCompleted === true,
+      postTestCompleted: cached.postTestCompleted === true,
+    };
+  } catch { return null; }
+}
+
+function storeCloudCourseState(courseId: string, userId: string, state: CourseState) {
+  try { localStorage.setItem(cloudCacheKey(userId, courseId), JSON.stringify(state)); }
+  catch { /* Cache is optional; server progress stays authoritative. */ }
+}
+
+export function readHubProgress(course: CourseProgressInfo, userId: string | null) {
+  if (!userId || typeof window === "undefined") return readStoredProgress(course.progressKey, course);
+  try {
+    const cached = localStorage.getItem(cloudCacheKey(userId, course.id));
+    return cached ? normalizeProgress((JSON.parse(cached) as Partial<CourseState>).progress, course) : null;
+  } catch { return null; }
+}
+
+function localProgressMap(courseInfos: CourseProgressInfo[]) {
+  return Object.fromEntries(courseInfos.map((course) => [course.id, readStoredProgress(course.progressKey, course)])) as Record<CourseId, LearnProgress>;
+}
+
+/** One authenticated request loads progress and test status for every course. */
+export async function loadAllProgress(courseInfos: CourseProgressInfo[], userId: string | null) {
+  if (!userId || !process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) return localProgressMap(courseInfos);
+  const key = "all:" + userId;
+  const pending = pendingLoads.get(key) as Promise<Record<CourseId, LearnProgress>> | undefined;
+  if (pending) return pending;
+  const request = (async () => {
+    const response = await fetch("/api/progress", { cache: "no-store" });
+    if (!response.ok) throw new Error("PROGRESS_LOAD_FAILED");
+    const data = await response.json() as { courses: Record<CourseId, CourseState> };
+    for (const course of courseInfos) {
+      storeCloudCourseState(course.id, userId, data.courses[course.id]);
+    }
+    return Object.fromEntries(courseInfos.map(({ id }) => [id, data.courses[id].progress])) as Record<CourseId, LearnProgress>;
+  })();
+  pendingLoads.set(key, request);
+  try { return await request; }
+  finally { if (pendingLoads.get(key) === request) pendingLoads.delete(key); }
+}
+
+export async function loadCourseState(course: CourseConfig, userId: string) {
+  const key = accountCourseKey(userId, course.id);
+  const pendingSave = saveQueues.get(key);
+  if (pendingSave) await pendingSave;
+  const pendingKey = "course:" + key;
+  const pending = pendingLoads.get(pendingKey) as Promise<CourseState> | undefined;
+  if (pending) return pending;
+  const request = (async () => {
+    const response = await fetch(`/api/progress/${course.id}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("PROGRESS_LOAD_FAILED");
+    const data = await response.json() as CourseState;
+    const pendingSave = saveQueues.get(key);
+    if (pendingSave) {
+      await pendingSave.catch(() => {});
+      const latest = readCachedCourseState(course, userId);
+      if (latest) {
+        const state = { ...data, progress: latest.progress };
+        storeCloudCourseState(course.id, userId, state);
+        return state;
+      }
+    }
+    const state = { ...data, progress: normalizeProgress(data.progress, course) };
+    storeCloudCourseState(course.id, userId, state);
+    return state;
+  })();
+  pendingLoads.set(pendingKey, request);
+  try { return await request; }
+  finally { if (pendingLoads.get(pendingKey) === request) pendingLoads.delete(pendingKey); }
+}
 
 /** Signed-in users load the database record; guests keep the existing local progress. */
 export async function loadProgress(course: CourseConfig): Promise<LearnProgress> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
-    cloudCourses.delete(course.id);
     return readProgress(course);
   }
-  await saveQueues.get(course.id);
   const response = await fetch(`/api/progress/${course.id}`, { cache: "no-store" });
   if (response.status === 401 || response.status === 503) {
-    cloudCourses.delete(course.id);
     return readProgress(course);
   }
   if (!response.ok) throw new Error("PROGRESS_LOAD_FAILED");
-  cloudCourses.add(course.id);
   const data = await response.json();
   return normalizeProgress(data.progress, course);
 }
 
-export function saveProgress(progress: LearnProgress, course: CourseConfig) {
-  if (cloudCourses.has(course.id)) {
-    const previous = saveQueues.get(course.id) ?? Promise.resolve();
+export function saveProgress(progress: LearnProgress, course: CourseConfig, userId?: string) {
+  const key = userId ? accountCourseKey(userId, course.id) : "";
+  if (userId) {
+    const cached = readCachedCourseState(course, userId);
+    storeCloudCourseState(course.id, userId, {
+      progress,
+      preTestCompleted: cached?.preTestCompleted ?? false,
+      postTestCompleted: cached?.postTestCompleted ?? false,
+    });
+    const previous = saveQueues.get(key) ?? Promise.resolve();
     const next = previous.catch(() => {}).then(async () => {
       const response = await fetch(`/api/progress/${course.id}`, {
         method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(progress),
@@ -136,7 +239,7 @@ export function saveProgress(progress: LearnProgress, course: CourseConfig) {
       if (!response.ok) throw new Error("PROGRESS_SAVE_FAILED");
       window.dispatchEvent(new Event("nusa-progress-save-ok"));
     });
-    saveQueues.set(course.id, next);
+    saveQueues.set(key, next);
     void next.catch(() => window.dispatchEvent(new Event("nusa-progress-save-error")));
     return;
   }

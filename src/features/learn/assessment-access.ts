@@ -13,6 +13,7 @@ export async function requirePreTest(courseId: CourseId) {
   const { data } = await supabase.from("course_assessments").select("pre_test_completed_at")
     .eq("user_id", user.id).eq("course_id", courseId).maybeSingle();
   if (!data?.pre_test_completed_at) redirect(`${course.path}/assessment?kind=pre`);
+  return { user };
 }
 
 export async function requireAssessmentPage(courseId: CourseId, kind: "pre" | "post") {

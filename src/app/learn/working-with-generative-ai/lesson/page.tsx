@@ -7,6 +7,6 @@ export const metadata = {
 };
 
 export default async function WorkingWithGenerativeAILessonPage() {
-  await requirePreTest("working-with-generative-ai");
-  return <LessonReader course="working-with-generative-ai" />;
+  const { user } = await requirePreTest("working-with-generative-ai");
+  return <LessonReader course="working-with-generative-ai" userId={user.id} />;
 }

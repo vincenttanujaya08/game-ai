@@ -7,38 +7,37 @@ import { useEffect, useState } from "react";
 import NusaHeader from "../../app/nusa-header";
 import { courses, type CourseId } from "./courses";
 import { coursePractices, lessonPractices, masteryOf } from "./mastery";
-import { loadAssessmentStatus } from "./assessment-status";
-import { completedCount, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
+import { completedCount, initialLearnProgress, loadCourseState, readCachedCourseState, readProgress, saveProgress, type LearnProgress } from "./progress";
 import styles from "./learn.module.css";
 
-export default function CourseMap({ course: courseId, isAuthenticated }: { course: CourseId; isAuthenticated: boolean }) {
+export default function CourseMap({ course: courseId, userId }: { course: CourseId; userId: string | null }) {
   const course = courses[courseId];
   const { stages, hero } = course;
   const router = useRouter();
   const [progress, setProgress] = useState<LearnProgress>(initialLearnProgress);
   const [ready, setReady] = useState(false);
   const [preTestCompleted, setPreTestCompleted] = useState(false);
-  const [assessmentReady, setAssessmentReady] = useState(!isAuthenticated);
-  const [assessmentError, setAssessmentError] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [saveError, setSaveError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    void loadProgress(course).then((value) => {
-      if (!cancelled) { setProgress(value); setReady(true); }
+    if (!userId) {
+      setProgress(readProgress(course));
+      setReady(true);
+      return () => { cancelled = true; };
+    }
+    const cached = readCachedCourseState(course, userId);
+    if (cached) {
+      setProgress(cached.progress);
+      setPreTestCompleted(cached.preTestCompleted);
+      setReady(true);
+    }
+    void loadCourseState(course, userId).then((value) => {
+      if (!cancelled) { setProgress(value.progress); setPreTestCompleted(value.preTestCompleted); setReady(true); }
     }).catch(() => { if (!cancelled) setLoadError(true); });
     return () => { cancelled = true; };
-  }, [course]);
-
-  useEffect(() => {
-    if (!isAuthenticated) return;
-    let cancelled = false;
-    void loadAssessmentStatus(courseId).then((value) => {
-      if (!cancelled) { setPreTestCompleted(value.preTestCompleted); setAssessmentReady(true); }
-    }).catch(() => { if (!cancelled) setAssessmentError(true); });
-    return () => { cancelled = true; };
-  }, [courseId, isAuthenticated]);
+  }, [course, userId]);
 
   useEffect(() => {
     const onError = () => setSaveError(true);
@@ -52,8 +51,8 @@ export default function CourseMap({ course: courseId, isAuthenticated }: { cours
   }, []);
 
   function openStage(index: number) {
-    if (!ready || !assessmentReady || index > progress.unlockedStage) return;
-    if (!isAuthenticated) {
+    if (!ready || index > progress.unlockedStage) return;
+    if (!userId) {
       router.push(`/login?next=${encodeURIComponent(course.lessonPath)}`);
       return;
     }
@@ -62,7 +61,7 @@ export default function CourseMap({ course: courseId, isAuthenticated }: { cours
       return;
     }
     const next = { ...progress, activeStage: index, sectionIndex: index === progress.activeStage ? progress.sectionIndex : 0 };
-    saveProgress(next, course);
+    if (next.activeStage !== progress.activeStage || next.sectionIndex !== progress.sectionIndex) saveProgress(next, course, userId);
     setProgress(next);
     router.push(course.lessonPath);
   }
@@ -76,9 +75,8 @@ export default function CourseMap({ course: courseId, isAuthenticated }: { cours
     <main className={styles.page} data-nusa-theme="light">
       <NusaHeader active="belajar" />
       <div className={styles.wrap}>
-        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course)}>Coba simpan lagi</button></p>}
+        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course, userId ?? undefined)}>Coba simpan lagi</button></p>}
         {loadError && <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p>}
-        {assessmentError && <p role="alert">Tes awal kelas belum bisa disiapkan. Periksa koneksi dan konfigurasi database, lalu muat ulang halaman.</p>}
         <Link href="/learn" className={styles.back}>← Semua kursus</Link>
         <section className={styles.hero} aria-labelledby="course-title">
           <div className={styles.heroCopy}>
@@ -141,7 +139,7 @@ export default function CourseMap({ course: courseId, isAuthenticated }: { cours
           <div className={styles.lessonList}>
             {stages.map((stage, index) => {
               const isCompleted = progress.completedStages.includes(index);
-              const isUnlocked = ready && assessmentReady && index <= progress.unlockedStage;
+              const isUnlocked = ready && index <= progress.unlockedStage;
               const state = isCompleted ? "completed" : isUnlocked ? "current" : "locked";
               return (
                 <button key={stage.id} type="button" className={styles.lessonRow} data-reveal-on-scroll data-state={state} disabled={!isUnlocked} onClick={() => openStage(index)} aria-label={stage.title + ", " + (state === "locked" ? "terkunci" : isCompleted ? "baca lagi" : "siap dibaca")}>

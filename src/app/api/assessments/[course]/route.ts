@@ -55,6 +55,21 @@ export async function POST(request: NextRequest, context: Context) {
     .eq("user_id", data.user.id).eq("course_id", data.courseId).maybeSingle();
   if (loadError) return NextResponse.json({ error: "ASSESSMENT_LOAD_FAILED" }, { status: 500 });
 
+  if (input.kind === "rating") {
+    if (!existing?.post_test_completed_at) return NextResponse.json({ error: "POST_TEST_REQUIRED" }, { status: 403 });
+    if (!Number.isInteger(input.rating) || Number(input.rating) < 1 || Number(input.rating) > 5) {
+      return NextResponse.json({ error: "INVALID_RATING" }, { status: 400 });
+    }
+    const comment = typeof input.comment === "string" ? input.comment.trim() : "";
+    if (comment.length > 500) return NextResponse.json({ error: "INVALID_RATING" }, { status: 400 });
+    const { error } = await data.supabase.from("course_ratings").upsert({
+      user_id: data.user.id, course_id: data.courseId, rating: Number(input.rating),
+      comment: comment || null, updated_at: new Date().toISOString(),
+    }, { onConflict: "user_id,course_id" });
+    if (error) return NextResponse.json({ error: "RATING_SAVE_FAILED" }, { status: 500 });
+    return NextResponse.json({ saved: true });
+  }
+
   if (input.kind === "pre") {
     if (!validAnswers(input.answers, assessment.pre.length)) return NextResponse.json({ error: "ANSWER_EACH_QUESTION" }, { status: 400 });
     if (existing?.pre_test_completed_at) return NextResponse.json({ preTestCompleted: true });

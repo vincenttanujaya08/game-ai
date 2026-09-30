@@ -7,6 +7,6 @@ export const metadata = {
 };
 
 export default async function VibeCodingLessonPage() {
-  await requirePreTest("vibe-coding");
-  return <LessonReader course="vibe-coding" />;
+  const { user } = await requirePreTest("vibe-coding");
+  return <LessonReader course="vibe-coding" userId={user.id} />;
 }

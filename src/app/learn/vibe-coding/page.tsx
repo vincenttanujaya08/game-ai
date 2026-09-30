@@ -8,5 +8,5 @@ export const metadata = {
 
 export default async function VibeCodingPage() {
   const user = await getAuthenticatedUser();
-  return <CourseMap course="vibe-coding" isAuthenticated={Boolean(user)} />;
+  return <CourseMap course="vibe-coding" userId={user?.id ?? null} />;
 }

@@ -77,7 +77,7 @@ export function coursePractices(course: CourseConfig): PracticeRef[] {
 
 export type Mastery = { solved: number; firstTry: number; total: number };
 
-export function masteryOf(progress: LearnProgress, refs: PracticeRef[]): Mastery {
+export function masteryOf(progress: LearnProgress, refs: Array<Pick<PracticeRef, "key">>): Mastery {
   return {
     solved: refs.filter((ref) => progress.attempts[ref.key]?.solved).length,
     firstTry: refs.filter((ref) => progress.attempts[ref.key]?.firstTryCorrect).length,

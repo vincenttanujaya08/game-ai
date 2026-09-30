@@ -8,5 +8,5 @@ export const metadata = {
 
 export default async function AiFundamentalsPage() {
   const user = await getAuthenticatedUser();
-  return <CourseMap course="ai-fundamentals" isAuthenticated={Boolean(user)} />;
+  return <CourseMap course="ai-fundamentals" userId={user?.id ?? null} />;
 }

@@ -7,6 +7,6 @@ export const metadata = {
 };
 
 export default async function ModuleOnePage() {
-  await requirePreTest("ai-fundamentals");
-  return <LessonReader course="ai-fundamentals" />;
+  const { user } = await requirePreTest("ai-fundamentals");
+  return <LessonReader course="ai-fundamentals" userId={user.id} />;
 }

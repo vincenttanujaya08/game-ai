@@ -6,6 +6,11 @@ const text = (max: number) => z.string().trim().min(2).max(max);
 const link = z.string().trim().max(500).url().refine((value) => URL.canParse(value) && new URL(value).protocol === "https:");
 
 export const registrationSchema = z.object({ name: text(100), university: text(150) });
+export const feedbackSchema = z.object({
+  materialRating: z.coerce.number().int().min(1).max(5),
+  gameRating: z.coerce.number().int().min(1).max(5),
+  comment: z.string().trim().max(500),
+});
 export const submissionSchema = z.object({
   projectName: text(120), summary: text(600),
   repositoryUrl: link.refine((value) => {

@@ -4,29 +4,38 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import NusaHeader from "@/app/nusa-header";
 import shellStyles from "@/app/landing.module.css";
-import { courseList, type CourseId } from "./courses";
-import { coursePractices, masteryOf } from "./mastery";
-import { initialLearnProgress, loadProgress, type LearnProgress } from "./progress";
+import type { CourseId } from "./courses";
+import { masteryOf } from "./mastery";
+import { initialLearnProgress, loadAllProgress, readHubProgress, type CourseProgressInfo, type LearnProgress } from "./progress";
 import styles from "./learn-hub.module.css";
 
 type ProgressMap = Record<CourseId, LearnProgress>;
-const visibleCourses = courseList;
+type HubCourse = CourseProgressInfo & { title: string; order: string; path: string; hubSummary: string; practiceKeys: string[] };
 
-const initialMap = Object.fromEntries(
-  courseList.map((course) => [course.id, initialLearnProgress]),
-) as ProgressMap;
-
-export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean }) {
-  const [progressMap, setProgressMap] = useState<ProgressMap>(initialMap);
+export default function LearnHub({ courses, userId }: { courses: HubCourse[]; userId: string | null }) {
+  const [progressMap, setProgressMap] = useState<ProgressMap>(() => Object.fromEntries(courses.map((course) => [course.id, initialLearnProgress])) as ProgressMap);
+  const [known, setKnown] = useState<Partial<Record<CourseId, boolean>>>({});
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    void Promise.all(courseList.map(async (course) => [course.id, await loadProgress(course)] as const))
-      .then((entries) => { if (!cancelled) setProgressMap(Object.fromEntries(entries) as ProgressMap); })
+    const cached = Object.fromEntries(courses.flatMap((course) => {
+      const progress = readHubProgress(course, userId);
+      return progress ? [[course.id, progress] as const] : [];
+    })) as Partial<ProgressMap>;
+    if (Object.keys(cached).length) {
+      setProgressMap((current) => ({ ...current, ...cached }));
+      setKnown(Object.fromEntries(Object.keys(cached).map((id) => [id, true])) as Partial<Record<CourseId, boolean>>);
+    }
+    if (!userId) {
+      setKnown(Object.fromEntries(courses.map((course) => [course.id, true])));
+      return;
+    }
+    void loadAllProgress(courses, userId)
+      .then((value) => { if (!cancelled) { setProgressMap(value); setKnown(Object.fromEntries(courses.map((course) => [course.id, true]))); } })
       .catch(() => { if (!cancelled) setLoadError(true); });
     return () => { cancelled = true; };
-  }, []);
+  }, [courses, userId]);
 
   return (
     <main className={shellStyles.shell + " " + styles.learnHub} data-nusa-theme="light">
@@ -44,11 +53,11 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
         </p>
       </section>
 
-      {visibleCourses.map((course) => {
-        const total = course.stages.length;
+      {courses.map((course) => {
+        const total = course.stageCount;
         const completed = progressMap[course.id].completedStages.length;
         const label = completed === 0 ? "Belum dimulai" : completed + "/" + total + " selesai";
-        const practice = masteryOf(progressMap[course.id], coursePractices(course));
+        const practice = masteryOf(progressMap[course.id], course.practiceKeys.map((key) => ({ key })));
         const titleId = course.id + "-course-title";
         return (
           <section key={course.id} className={styles.activeCourse} aria-labelledby={titleId}>
@@ -71,9 +80,9 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
             <div className={styles.courseProgress}>
               <div>
                 <span>Progresmu</span>
-                <strong>{label}</strong>
+                <strong>{known[course.id] ? label : loadError ? "Gagal memuat" : "Memuat progres…"}</strong>
               </div>
-              <div className={styles.progressTrack} aria-label={completed + " dari " + total + " bagian selesai"}>
+              <div className={styles.progressTrack} data-loading={!known[course.id] || undefined} aria-label={known[course.id] ? completed + " dari " + total + " bagian selesai" : "Memuat progres"}>
                 <i style={{ width: (completed / total) * 100 + "%" }} />
                 {Array.from({ length: total }, (_, index) => (
                   <span
@@ -82,8 +91,8 @@ export default function LearnHub({ isAuthenticated }: { isAuthenticated: boolean
                   />
                 ))}
               </div>
-              <Link href={isAuthenticated ? course.path : `/login?next=${encodeURIComponent(course.path)}`} aria-label={"Buka materi " + course.title}>
-                {isAuthenticated ? (completed === 0 ? "Mulai belajar" : "Lanjutkan") : "Sign in untuk belajar"}
+              <Link href={userId ? course.path : `/login?next=${encodeURIComponent(course.path)}`} aria-label={"Buka materi " + course.title}>
+                {userId ? known[course.id] ? (completed === total ? "Kelas selesai" : completed === 0 ? "Mulai belajar" : "Lanjutkan") : "Memuat…" : "Sign in untuk belajar"}
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

@@ -22,18 +22,21 @@ export async function GET(_request: NextRequest, context: Context) {
   const data = await contextData(context);
   if (!data) return NextResponse.json({ error: "COURSE_NOT_FOUND" }, { status: 404 });
   if (!data.user) return NextResponse.json({ error: "LOGIN_REQUIRED" }, { status: 401 });
-  const { data: row, error } = await data.supabase.from("course_progress")
-    .select("progress").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle();
-  if (error) return NextResponse.json({ error: "LOAD_FAILED" }, { status: 500 });
-  const { data: assessment, error: assessmentError } = await data.supabase.from("course_assessments")
-    .select("post_test_completed_at").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle();
-  if (assessmentError) return NextResponse.json({ error: "ASSESSMENT_LOAD_FAILED" }, { status: 500 });
+  const [progressResult, assessmentResult] = await Promise.all([
+    data.supabase.from("course_progress").select("progress").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle(),
+    data.supabase.from("course_assessments").select("pre_test_completed_at,post_test_completed_at").eq("user_id", data.user.id).eq("course_id", data.course.id).maybeSingle(),
+  ]);
+  if (progressResult.error || assessmentResult.error) return NextResponse.json({ error: "PROGRESS_LOAD_FAILED" }, { status: 500 });
   const progress = applyPostTestCompletion(
-    row ? normalizeProgress(row.progress, data.course) : initialLearnProgress,
+    progressResult.data ? normalizeProgress(progressResult.data.progress, data.course) : initialLearnProgress,
     data.course,
-    Boolean(assessment?.post_test_completed_at),
+    Boolean(assessmentResult.data?.post_test_completed_at),
   );
-  return NextResponse.json({ progress });
+  return NextResponse.json({
+    progress,
+    preTestCompleted: Boolean(assessmentResult.data?.pre_test_completed_at),
+    postTestCompleted: Boolean(assessmentResult.data?.post_test_completed_at),
+  }, { headers: { "cache-control": "no-store" } });
 }
 
 export async function PUT(request: NextRequest, context: Context) {

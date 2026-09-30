@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { eventId, registrationSchema, submissionSchema } from "./validation";
+import { eventId, feedbackSchema, registrationSchema, submissionSchema } from "./validation";
 import { isChallengeOpen } from "./status";
 
 const base = "/events/vibe-coding-challenge";
@@ -38,6 +38,9 @@ export async function submitChallenge(form: FormData) {
   const { data: registered, error: loadError } = await supabase.from("event_registrations")
     .select("user_id").eq("user_id", user.id).eq("event_id", eventId).maybeSingle();
   if (loadError || !registered) redirect(`${base}/register?status=required`);
+  const { data: feedback, error: feedbackError } = await supabase.from("event_feedback")
+    .select("user_id").eq("user_id", user.id).eq("event_id", eventId).maybeSingle();
+  if (feedbackError || !feedback) redirect(`${base}/submit?status=feedback-required`);
   const parsed = submissionSchema.safeParse({
     projectName: form.get("projectName"), summary: form.get("summary"),
     repositoryUrl: form.get("repositoryUrl"), demoUrl: form.get("demoUrl"), aiTools: form.get("aiTools"),
@@ -52,4 +55,30 @@ export async function submitChallenge(form: FormData) {
   }, { onConflict: "user_id,event_id" });
   if (error) redirect(`${base}/submit?status=error`);
   redirect(`${base}/submit?status=saved`);
+}
+
+export async function saveChallengeFeedback(form: FormData) {
+  if (!isChallengeOpen()) redirect(`${base}/submit?status=closed`);
+  if (!configured()) redirect(`${base}/submit?status=setup`);
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect(`/login?next=${encodeURIComponent(`${base}/submit`)}`);
+  const { data: registered, error: loadError } = await supabase.from("event_registrations")
+    .select("user_id").eq("user_id", user.id).eq("event_id", eventId).maybeSingle();
+  if (loadError || !registered) redirect(`${base}/register?status=required`);
+  const parsed = feedbackSchema.safeParse({
+    materialRating: form.get("materialRating"),
+    gameRating: form.get("gameRating"),
+    comment: form.get("comment") ?? "",
+  });
+  if (!parsed.success) redirect(`${base}/submit?status=feedback-invalid`);
+  const { error } = await supabase.from("event_feedback").upsert({
+    user_id: user.id, event_id: eventId,
+    material_rating: parsed.data.materialRating,
+    game_rating: parsed.data.gameRating,
+    comment: parsed.data.comment || null,
+    updated_at: new Date().toISOString(),
+  }, { onConflict: "user_id,event_id" });
+  if (error) redirect(`${base}/submit?status=feedback-error`);
+  redirect(`${base}/submit?status=feedback-saved`);
 }

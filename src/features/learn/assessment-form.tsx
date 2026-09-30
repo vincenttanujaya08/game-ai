@@ -17,6 +17,11 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ score: number; total: number } | null>(null);
+  const [rating, setRating] = useState<number | null>(null);
+  const [ratingComment, setRatingComment] = useState("");
+  const [ratingSaved, setRatingSaved] = useState(false);
+  const [ratingBusy, setRatingBusy] = useState(false);
+  const [ratingError, setRatingError] = useState(false);
 
   const submitted = result !== null;
   const complete = answers.every((answer) => answer !== null)
@@ -34,15 +39,35 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
-      if (kind === "pre") router.replace(course.lessonPath);
-      else setResult({ score: data.score, total: data.total });
-      router.refresh();
+      if (kind === "pre") {
+        router.replace(course.lessonPath);
+        router.refresh();
+      } else setResult({ score: data.score, total: data.total });
     } catch (reason) {
       setError(reason instanceof Error && reason.message === "REFLECTION_LENGTH"
         ? "Jawaban terbuka perlu 30–1.200 karakter."
         : "Jawaban belum tersimpan. Periksa koneksi, lalu coba kirim lagi.");
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function submitRating() {
+    if (rating === null || ratingBusy || ratingSaved) return;
+    setRatingBusy(true);
+    setRatingError(false);
+    try {
+      const response = await fetch(`/api/assessments/${courseId}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ kind: "rating", rating, comment: ratingComment }),
+      });
+      if (!response.ok) throw new Error("RATING_SAVE_FAILED");
+      setRatingSaved(true);
+    } catch {
+      setRatingError(true);
+    } finally {
+      setRatingBusy(false);
     }
   }
 
@@ -83,10 +108,27 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
 
         {error && <p className={styles.error} role="alert">{error}</p>}
         {submitted ? (
-          <div className={styles.result} role="status">
-            <strong>{kind === "post" ? `Jawaban tersimpan · ${result.score}/${result.total} pilihan tepat` : "Jawaban tersimpan."}</strong>
-            <p>{kind === "post" ? "Kelas ini sudah selesai. Kamu bisa kembali ke peta belajar." : "Terima kasih. Sekarang materi kelas sudah terbuka."}</p>
+          <div className={styles.result}>
+            <div role="status">
+              <strong>{kind === "post" ? `Jawaban tersimpan · ${result.score}/${result.total} pilihan tepat` : "Jawaban tersimpan."}</strong>
+              <p>{kind === "post" ? "Kelas ini sudah selesai. Kamu bisa kembali ke peta belajar." : "Terima kasih. Sekarang materi kelas sudah terbuka."}</p>
+            </div>
             <Link href={course.path}>{kind === "post" ? "Kembali ke peta belajar" : "Lanjut ke materi"} →</Link>
+            {kind === "post" && !ratingSaved ? <div className={styles.courseRating}>
+              <h2>Beri rating untuk kelas ini</h2>
+              <p>Masukanmu membantu kami memperbaiki materi. Rating ini hanya untuk kelas {course.title}.</p>
+              <fieldset disabled={ratingBusy}>
+                <legend>Seberapa bermanfaat kelas ini?</legend>
+                <div className={styles.ratingChoices}>{[1, 2, 3, 4, 5].map((value) => <label key={value} data-selected={rating === value || undefined}>
+                  <input type="radio" name="course-rating" value={value} checked={rating === value} onChange={() => setRating(value)} />{value}
+                </label>)}</div>
+              </fieldset>
+              <label className={styles.ratingComment}>Komentar (opsional)<textarea value={ratingComment} maxLength={500} onChange={(event) => setRatingComment(event.target.value)} /></label>
+              {ratingError && <p className={styles.error} role="alert">Rating belum tersimpan. Coba lagi.</p>}
+              <button className={styles.submit} type="button" disabled={rating === null || ratingBusy} onClick={() => void submitRating()}>{ratingBusy ? "Menyimpan…" : "Kirim rating"}</button>
+              <Link className={styles.skipRating} href={course.path}>Lewati untuk sekarang</Link>
+            </div> : null}
+            {kind === "post" && ratingSaved ? <p className={styles.ratingThanks} role="status">Terima kasih atas rating untuk kelas ini.</p> : null}
           </div>
         ) : (
           <button className={styles.submit} type="button" disabled={!complete || busy} onClick={() => void submit()}>

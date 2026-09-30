@@ -23,6 +23,8 @@
 .progressTrack span { position:relative; width:18px; height:18px; border:2px solid var(--line); border-radius:50%; background:#f5f2eb; }
 .progressTrack span[data-state="complete"] { border-color:var(--teal); background:var(--teal); }
 .progressTrack span[data-state="active"] { border-color:var(--teal); background:var(--teal-soft); }
+.progressTrack[data-loading="true"]::before,.progressTrack[data-loading="true"] > i { background:var(--line); }
+.progressTrack[data-loading="true"] span { border-color:var(--line); background:var(--paper); }
 .courseProgress a { display:inline-flex; min-height:50px; padding:0 20px; align-items:center; justify-content:space-between; gap:28px; border-radius:8px; background:var(--teal); color:#f7ffff; font-size:.93rem; font-weight:760; text-decoration:none; transition:background-color 180ms ease,transform 180ms ease; }
 .courseProgress a:hover { background:var(--teal-dark); transform:translateY(-2px); }
 .upcoming { display:grid; grid-template-columns:minmax(220px,.55fr) minmax(0,1.45fr); gap:64px; padding:72px 0 92px; }

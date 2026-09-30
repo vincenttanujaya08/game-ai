@@ -26,4 +26,18 @@
 .result { margin-top: 24px; padding: 22px; border-left: 4px solid var(--teal); background: var(--surface); }
 .result strong { font-size: 1rem; }
 .result p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.courseRating { display: grid; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.courseRating h2 { margin: 0; font-size: 1.1rem; }
+.courseRating > p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+.courseRating fieldset { margin: 0; padding: 0; border: 0; }
+.courseRating legend, .ratingComment { color: var(--ink); font-size: .84rem; font-weight: 700; }
+.ratingChoices { display: flex; gap: 9px; margin-top: 10px; }
+.ratingChoices label { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); cursor: pointer; }
+.ratingChoices label[data-selected="true"] { border-color: var(--teal); background: var(--teal); color: white; }
+.ratingChoices input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ratingChoices label:focus-within { outline: 3px solid var(--coral); outline-offset: 3px; }
+.ratingComment { display: grid; gap: 7px; }
+.ratingComment textarea { width: 100%; min-height: 76px; padding: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-weight: 450; }
+.skipRating { color: var(--teal-dark); font-size: .82rem; font-weight: 700; }
+.ratingThanks { margin: 20px 0 0; color: var(--teal-dark) !important; font-weight: 700; }
 @media (max-width: 600px) { .top { width: calc(100% - 32px); } .content { width: calc(100% - 32px); } .question { padding: 17px; } }

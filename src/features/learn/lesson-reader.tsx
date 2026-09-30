@@ -10,8 +10,7 @@ import { initialCheckState, isCheckSettled, type CheckState } from "./lesson-che
 import { LessonMobileIndex, LessonRail } from "./lesson-rail";
 import { LessonSection } from "./lesson-section";
 import { lessonPractices, masteryOf } from "./mastery";
-import { loadAssessmentStatus } from "./assessment-status";
-import { attemptKey, initialLearnProgress, loadProgress, saveProgress, type LearnProgress } from "./progress";
+import { attemptKey, initialLearnProgress, loadCourseState, readCachedCourseState, saveProgress, type LearnProgress } from "./progress";
 import styles from "./fundamentals-reader.module.css";
 
 /** Satu bagian punya paling banyak satu blok latihan (indeks 0); cek pemahaman memakai indeks 1. */
@@ -21,7 +20,7 @@ const checkActivityIndex = 1;
 /** Tampilkan pilihan skip setelah jawaban pertama dicoba, benar ataupun salah. */
 const triesBeforeSkip = 1;
 
-export function LessonReader({ course: courseId }: { course: CourseId }) {
+export function LessonReader({ course: courseId, userId }: { course: CourseId; userId: string }) {
   const course = courses[courseId];
   const { stages, lessons, presentations } = course;
   const [progress, setProgress] = useState<LearnProgress>(initialLearnProgress);
@@ -40,11 +39,18 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
 
   useEffect(() => {
     let cancelled = false;
-    void Promise.all([loadProgress(course), loadAssessmentStatus(course.id)]).then(([value, assessment]) => {
-      if (!cancelled) { progressRef.current = value; setProgress(value); setPostTestCompleted(assessment.postTestCompleted); setReady(true); }
-    }).catch(() => { if (!cancelled) setLoadError(true); });
+    const cached = readCachedCourseState(course, userId);
+    if (cached) {
+      progressRef.current = cached.progress;
+      setProgress(cached.progress);
+      setPostTestCompleted(cached.postTestCompleted);
+      setReady(true);
+    }
+    void loadCourseState(course, userId).then((value) => {
+      if (!cancelled) { progressRef.current = value.progress; setProgress(value.progress); setPostTestCompleted(value.postTestCompleted); setReady(true); }
+    }).catch(() => { if (!cancelled && !cached) setLoadError(true); });
     return () => { cancelled = true; };
-  }, [course]);
+  }, [course, userId]);
 
   useEffect(() => {
     const onError = () => setSaveError(true);
@@ -82,9 +88,9 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
 
   const commit = useCallback((next: LearnProgress) => {
     progressRef.current = next;
-    saveProgress(next, course);
+    saveProgress(next, course, userId);
     setProgress(next);
-  }, [course]);
+  }, [course, userId]);
 
   function scrollToContent() {
     contentRef.current?.scrollIntoView({
@@ -131,9 +137,9 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
       },
     };
     progressRef.current = next;
-    saveProgress(next, course);
+    saveProgress(next, course, userId);
     setProgress(next);
-  }, [course]);
+  }, [course, userId]);
 
   /** Cek pemahaman: benar membuka jalan, salah boleh diulang tanpa penalti. */
   function answerCheck(index: number) {
@@ -212,7 +218,7 @@ export function LessonReader({ course: courseId }: { course: CourseId }) {
     <main className={styles.page} data-nusa-theme="light">
       <NusaHeader active="belajar" />
       <div className={styles.wrap}>
-        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course)}>Coba simpan lagi</button></p>}
+        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course, userId)}>Coba simpan lagi</button></p>}
         <div className={styles.utility}>
           <Link href={course.path}>← Peta pelajaran</Link>
           <span>{ready ? progress.completedStages.length : 0} / {stages.length} pelajaran selesai</span>
