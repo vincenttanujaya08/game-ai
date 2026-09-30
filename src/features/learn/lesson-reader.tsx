@@ -9,6 +9,7 @@ import { LessonFinish } from "./lesson-finish";
 import { initialCheckState, isCheckSettled, type CheckState } from "./lesson-check";
 import { LessonMobileIndex, LessonRail } from "./lesson-rail";
 import { LessonSection } from "./lesson-section";
+import { YesManPilot } from "./yes-man-pilot";
 import { lessonPractices, masteryOf } from "./mastery";
 import { attemptKey, initialLearnProgress, loadCourseState, readCachedCourseState, saveProgress, type LearnProgress } from "./progress";
 import styles from "./fundamentals-reader.module.css";
@@ -64,6 +65,7 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
   }, []);
 
   const stageIndex = progress.activeStage;
+  const isYesManPilot = courseId === "working-with-generative-ai" && stageIndex === 1;
   const stage = stages[stageIndex];
   const lesson = lessons[stageIndex];
   const sectionCount = lesson.sections.length;
@@ -120,9 +122,9 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
   }
 
   /** Satu percobaan blok latihan atau cek pemahaman dicatat di progres. */
-  const recordAttempt = useCallback((activityIndex: number, solved: boolean) => {
+  const recordAttempt = useCallback((activityIndex: number, solved: boolean, sectionOverride?: number) => {
     const prev = progressRef.current;
-    const key = attemptKey(prev.activeStage, prev.sectionIndex, activityIndex);
+    const key = attemptKey(prev.activeStage, sectionOverride ?? prev.sectionIndex, activityIndex);
     const previous = prev.attempts[key];
     const tries = (previous?.tries ?? 0) + 1;
     const next: LearnProgress = {
@@ -184,9 +186,24 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
     scrollToContent();
   }
 
+  function completeYesManPilot() {
+    const current = progressRef.current;
+    const nextIndex = 2;
+    setCheckState(initialCheckState);
+    setSelectedPanelItem(0);
+    commit({
+      ...current,
+      completedStages: [...new Set([...current.completedStages, 1])].sort((a, b) => a - b),
+      unlockedStage: Math.max(current.unlockedStage, nextIndex),
+      activeStage: nextIndex,
+      sectionIndex: 0,
+    });
+    scrollToContent();
+  }
+
   // Panah kiri/kanan memindahkan bagian, kecuali saat fokus sedang di kolom isian.
   useEffect(() => {
-    if (!ready || finished) return;
+    if (!ready || finished || isYesManPilot) return;
     function onKeyDown(event: KeyboardEvent) {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       const target = event.target as HTMLElement | null;
@@ -199,7 +216,7 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [ready, finished, sectionIndex, showSection, activityBlocks]);
+  }, [ready, finished, isYesManPilot, sectionIndex, showSection, activityBlocks]);
 
   const nextLabel = lesson.sections[sectionIndex + 1]?.title ?? stages[stageIndex + 1]?.title ?? "Cek pemahaman selesai";
   const masteryByStage = stages.map((_, index) => masteryOf(progress, lessonPractices(course, index)));
@@ -232,7 +249,7 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
               <div>
                 <span className={styles.eyebrow}>{course.eyebrow} · PELAJARAN {String(stageIndex + 1).padStart(2, "0")} / {String(stages.length).padStart(2, "0")}</span>
                 <h1>{stage.title}</h1>
-                <p>{lesson.lead}</p>
+                <p>{isYesManPilot ? "Saat kamu meminta pendapat tentang ide baru, AI bisa langsung memujinya. Coba cari tahu apa yang sebenarnya perlu diuji." : lesson.lead}</p>
               </div>
             </header>
 
@@ -247,9 +264,14 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
                 mastery={masteryByStage}
                 onOpenLesson={openLesson}
                 onShowSection={showSection}
+                showSections={!isYesManPilot}
               />
 
               <article className={styles.article} ref={contentRef}>
+                {isYesManPilot ? (
+                  <YesManPilot onAttempt={(index, correct) => recordAttempt(index, correct, 0)} onComplete={completeYesManPilot} />
+                ) : (
+                <>
                 <div className={styles.sectionTop}>
                   <span>BAGIAN {String(sectionIndex + 1).padStart(2, "0")} / {String(sectionCount).padStart(2, "0")}</span>
                   {lessonMastery.total > 0 ? (
@@ -304,6 +326,8 @@ export function LessonReader({ course: courseId, userId }: { course: CourseId; u
                     <button type="button" disabled={activityBlocks} onClick={() => showSection(sectionIndex + 1)}>Lanjut membaca →</button>
                   )}
                 </footer>
+                </>
+                )}
               </article>
             </div>
           </>

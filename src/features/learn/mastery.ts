@@ -40,6 +40,15 @@ function reasonOf(activity: Activity) { return activity.reveal; }
 
 /** Semua latihan dalam satu pelajaran, berurutan sesuai bacaan. */
 export function lessonPractices(course: CourseConfig, stageIndex: number): PracticeRef[] {
+  if (course.id === "working-with-generative-ai" && stageIndex === 1) {
+    return [
+      ["Pilih pertanyaan", "Pilih prompt yang membantu menguji ide", "Pertanyaan yang baik membuka alasan mendukung, alasan meragukan, dan hal yang belum diketahui."],
+      ["Periksa jawaban", "Apa yang masih perlu dicek langsung?", "Minat dan harga di lingkungan sendiri tidak bisa disimpulkan dari pujian AI atau tren umum."],
+      ["Susun pertanyaan lanjut", "Susun prompt untuk menguji ide", "Minta AI menandai asumsi dan sarankan cara sederhana mengumpulkan bukti."],
+    ].map(([section, question, reason], index) => ({
+      key: attemptKey(stageIndex, 0, index), stageIndex, sectionIndex: 0, section, question, reason,
+    }));
+  }
   const lesson = course.lessons[stageIndex];
   const panels = course.presentations[stageIndex] ?? [];
   const refs: PracticeRef[] = [];
