@@ -169,26 +169,35 @@ test("spot: menandai bagian yang benar ikut ditolak", async ({ page }) => {
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("pilot yes-man: pilihan bisa diperbaiki dan prompt tersusun di ponsel", async ({ page }) => {
+test("pilot yes-man: prompt dirakit, jawaban diaudit, dan tindak lanjut dipilih", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/dev/yes-man-pilot");
-  await page.getByRole("button", { name: /Coba tanya lagi/ }).click();
-  await page.getByRole("button", { name: /Bandingkan ide ini dengan tren/ }).click();
-  await expect(page.getByText(/Tren umum bisa memberi ide/)).toBeVisible();
-  await expect(page.getByRole("button", { name: /Periksa jawabannya/ })).toBeDisabled();
-  await page.getByRole("button", { name: /Apa yang mendukung dan meragukan/ }).click();
-  await page.getByRole("button", { name: /Periksa jawabannya/ }).click();
-  await page.getByRole("button", { name: /Apakah orang di sekitar kampus mau membeli/ }).click();
-  await page.getByRole("button", { name: /Susun pertanyaan lanjut/ }).click();
-  await page.getByRole("button", { name: /Beri nilai peluang sukses/ }).click();
-  await page.getByRole("button", { name: /Bandingkan alasan yang mendukung/ }).click();
-  await page.getByRole("button", { name: /Sarankan cara sederhana/ }).click();
-  await page.getByRole("button", { name: /Periksa pertanyaanku/ }).click();
-  await expect(page.getByText(/2 dari 3 bagian sudah membantu/)).toBeVisible();
-  await page.getByRole("button", { name: /Bantu saya menguji ide/ }).click();
-  await page.getByRole("button", { name: /Periksa pertanyaanku/ }).click();
-  await page.getByRole("button", { name: /Lihat inti pelajaran/ }).click();
-  await expect(page.getByRole("heading", { name: /Pujian AI belum membuktikan/ })).toBeVisible();
+  await page.getByRole("button", { name: /Mulai kasus/ }).click();
+  await page.getByRole("button", { name: /Bantu timku menguji rencana booth/ }).click();
+  await expect(page.getByText(/Arah yang lebih berguna/)).toBeVisible();
+  await page.getByRole("button", { name: /Lanjut pilah informasi/ }).click();
+
+  await page.getByRole("group", { name: /Panitia menargetkan 1.000/ }).getByRole("button", { name: "Ada di brief" }).click();
+  await page.getByRole("group", { name: /Pengunjung festival pasti tertarik/ }).getByRole("button", { name: "Asumsi" }).click();
+  await page.getByRole("group", { name: /Tawarkan sampel kecil/ }).getByRole("button", { name: "Langkah uji" }).click();
+  await page.getByRole("button", { name: "Periksa pasangan" }).click();
+  await page.getByRole("button", { name: /Rakit prompt/ }).click();
+
+  await page.getByRole("group", { name: "Tugas" }).getByRole("button", { name: /Bantu tim menilai/ }).click();
+  await page.getByRole("group", { name: "Konteks dan batas" }).getByRole("button", { name: /Festival 3 hari/ }).click();
+  await page.getByRole("group", { name: "Standar penilaian" }).getByRole("button", { name: /Cari alasan yang mendukung/ }).click();
+  await page.getByRole("group", { name: "Bentuk jawaban" }).getByRole("button", { name: /Buat tabel/ }).click();
+  await page.getByRole("button", { name: "Cek prompt" }).click();
+  await expect(page.getByText(/PROMPT TIMMU/)).toBeVisible();
+  await page.getByRole("button", { name: /Uji jawaban AI/ }).click();
+
+  await page.getByRole("button", { name: /Anak muda makin sadar kesehatan/ }).click();
+  await page.getByRole("button", { name: /Sebaiknya siapkan 50 porsi/ }).click();
+  await page.getByRole("button", { name: "Cek tandaku" }).click();
+  await page.getByRole("button", { name: /Tentukan tes kecil/ }).click();
+  await page.getByRole("button", { name: /Rancang tes satu hari/ }).click();
+  await page.getByRole("button", { name: /Lihat rangkuman/ }).click();
+  await expect(page.getByRole("heading", { name: /Minta AI menguji pikiranmu/ })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
