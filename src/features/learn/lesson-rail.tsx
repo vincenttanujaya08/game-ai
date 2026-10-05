@@ -18,9 +18,10 @@ type RailProps = {
   mastery: Mastery[];
   onOpenLesson: (index: number) => void;
   onShowSection: (index: number) => void;
+  showSections?: boolean;
 };
 
-export function LessonRail({ stages, lesson, stageIndex, sectionIndex, unlockedStage, completedStages, mastery, onOpenLesson, onShowSection }: RailProps) {
+export function LessonRail({ stages, lesson, stageIndex, sectionIndex, unlockedStage, completedStages, mastery, onOpenLesson, onShowSection, showSections = true }: RailProps) {
   return (
     <nav className={styles.rail} aria-label="Navigasi pelajaran">
       <p>Rute pelajaran</p>
@@ -45,6 +46,7 @@ export function LessonRail({ stages, lesson, stageIndex, sectionIndex, unlockedS
           </button>
         );
       })}
+      {showSections && <>
       <div className={styles.railDivider} />
       <p>Di pelajaran ini</p>
       <div className={styles.chapterLinks}>
@@ -54,6 +56,7 @@ export function LessonRail({ stages, lesson, stageIndex, sectionIndex, unlockedS
           </button>
         ))}
       </div>
+      </>}
     </nav>
   );
 }

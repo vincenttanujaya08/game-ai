@@ -169,16 +169,36 @@ test("spot: menandai bagian yang benar ikut ditolak", async ({ page }) => {
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("predict: pilihan salah memberi alasan tanpa mengunci", async ({ page }) => {
-  // AKTIVITAS 1 ada di pelajaran kedua, jadi pelajaran pertama diseed selesai.
-  await openAtSection(page, workingKey, "/learn/working-with-generative-ai/lesson", 3, { completedStages: [0], unlockedStage: 1, activeStage: 1 });
+test("pilot yes-man: prompt dirakit, jawaban diaudit, dan tindak lanjut dipilih", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/dev/yes-man-pilot");
+  await page.getByRole("button", { name: /Mulai kasus/ }).click();
+  await page.getByRole("button", { name: /Bantu timku menguji rencana booth/ }).click();
+  await expect(page.getByText(/Arah yang lebih berguna/)).toBeVisible();
+  await page.getByRole("button", { name: /Lanjut pilah informasi/ }).click();
 
-  await page.getByRole("button", { name: /Puji ide usaha makanan sehat saya/ }).click();
-  await expect(page.getByText(/Pujian tidak memberi bukti apa pun/)).toBeVisible();
+  await page.getByRole("group", { name: /Panitia menargetkan 1.000/ }).getByRole("button", { name: "Ada di brief" }).click();
+  await page.getByRole("group", { name: /Pengunjung festival pasti tertarik/ }).getByRole("button", { name: "Asumsi" }).click();
+  await page.getByRole("group", { name: /Tawarkan sampel kecil/ }).getByRole("button", { name: "Langkah uji" }).click();
+  await page.getByRole("button", { name: "Periksa pasangan" }).click();
+  await page.getByRole("button", { name: /Rakit prompt/ }).click();
 
-  await page.getByRole("button", { name: /Bandingkan peluang dan risiko/ }).click();
-  await expect(page.getByText(/meminta dua sisi sekaligus/)).toBeVisible();
-  await expect(page.getByText(/Cara bertanya ikut menentukan arah jawaban/)).toBeVisible();
+  await page.getByRole("group", { name: "Tugas" }).getByRole("button", { name: /Bantu tim menilai/ }).click();
+  await page.getByRole("group", { name: "Konteks dan batas" }).getByRole("button", { name: /Festival 3 hari/ }).click();
+  await page.getByRole("group", { name: "Standar penilaian" }).getByRole("button", { name: /Cari alasan yang mendukung/ }).click();
+  await page.getByRole("group", { name: "Bentuk jawaban" }).getByRole("button", { name: /Buat tabel/ }).click();
+  await page.getByRole("button", { name: "Cek prompt" }).click();
+  await expect(page.getByText(/PROMPT TIMMU/)).toBeVisible();
+  await page.getByRole("button", { name: /Uji jawaban AI/ }).click();
+
+  await page.getByRole("button", { name: /Anak muda makin sadar kesehatan/ }).click();
+  await page.getByRole("button", { name: /Sebaiknya siapkan 50 porsi/ }).click();
+  await page.getByRole("button", { name: "Cek tandaku" }).click();
+  await page.getByRole("button", { name: /Tentukan tes kecil/ }).click();
+  await page.getByRole("button", { name: /Rancang tes satu hari/ }).click();
+  await page.getByRole("button", { name: /Lihat rangkuman/ }).click();
+  await expect(page.getByRole("heading", { name: /Minta AI menguji pikiranmu/ })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
