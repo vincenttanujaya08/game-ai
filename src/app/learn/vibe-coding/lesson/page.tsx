@@ -1,4 +1,4 @@
-import { LessonReader } from "@/features/learn/lesson-reader";
+import { InteractiveCourse } from "@/features/learn/interactive-course";
 import { requirePreTest } from "@/features/learn/assessment-access";
 
 export const metadata = {
@@ -8,5 +8,5 @@ export const metadata = {
 
 export default async function VibeCodingLessonPage() {
   const { user } = await requirePreTest("vibe-coding");
-  return <LessonReader course="vibe-coding" userId={user.id} />;
+  return <InteractiveCourse course="vibe-coding" userId={user.id} />;
 }

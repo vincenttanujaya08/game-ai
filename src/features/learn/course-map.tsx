@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NusaHeader from "../../app/nusa-header";
 import { courses, type CourseId } from "./courses";
-import { coursePractices, lessonPractices, masteryOf } from "./mastery";
-import { completedCount, initialLearnProgress, loadCourseState, readCachedCourseState, readProgress, saveProgress, type LearnProgress } from "./progress";
+import { completedCount, initialLearnProgress, loadCourseState, readCachedCourseState, readProgress, type LearnProgress } from "./progress";
 import styles from "./learn.module.css";
 
 export default function CourseMap({ course: courseId, userId }: { course: CourseId; userId: string | null }) {
@@ -18,40 +17,31 @@ export default function CourseMap({ course: courseId, userId }: { course: Course
   const [ready, setReady] = useState(false);
   const [preTestCompleted, setPreTestCompleted] = useState(false);
   const [loadError, setLoadError] = useState(false);
-  const [saveError, setSaveError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    if (!userId) {
-      setProgress(readProgress(course));
-      setReady(true);
-      return () => { cancelled = true; };
-    }
-    const cached = readCachedCourseState(course, userId);
-    if (cached) {
-      setProgress(cached.progress);
-      setPreTestCompleted(cached.preTestCompleted);
-      setReady(true);
-    }
+    const frame = requestAnimationFrame(() => {
+      if (!userId) {
+        setProgress(readProgress(course));
+        setReady(true);
+        return;
+      }
+      const cached = readCachedCourseState(course, userId);
+      if (cached) {
+        setProgress(cached.progress);
+        setPreTestCompleted(cached.preTestCompleted);
+        setReady(true);
+      }
+    });
+    if (!userId) return () => cancelAnimationFrame(frame);
     void loadCourseState(course, userId).then((value) => {
       if (!cancelled) { setProgress(value.progress); setPreTestCompleted(value.preTestCompleted); setReady(true); }
     }).catch(() => { if (!cancelled) setLoadError(true); });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; cancelAnimationFrame(frame); };
   }, [course, userId]);
 
-  useEffect(() => {
-    const onError = () => setSaveError(true);
-    const onOk = () => setSaveError(false);
-    window.addEventListener("nusa-progress-save-error", onError);
-    window.addEventListener("nusa-progress-save-ok", onOk);
-    return () => {
-      window.removeEventListener("nusa-progress-save-error", onError);
-      window.removeEventListener("nusa-progress-save-ok", onOk);
-    };
-  }, []);
-
-  function openStage(index: number) {
-    if (!ready || index > progress.unlockedStage) return;
+  function openCourse() {
+    if (!ready) return;
     if (!userId) {
       router.push(`/login?next=${encodeURIComponent(course.lessonPath)}`);
       return;
@@ -60,22 +50,18 @@ export default function CourseMap({ course: courseId, userId }: { course: Course
       router.push(`${course.path}/assessment?kind=pre`);
       return;
     }
-    const next = { ...progress, activeStage: index, sectionIndex: index === progress.activeStage ? progress.sectionIndex : 0 };
-    if (next.activeStage !== progress.activeStage || next.sectionIndex !== progress.sectionIndex) saveProgress(next, course, userId);
-    setProgress(next);
     router.push(course.lessonPath);
   }
 
   const completed = completedCount(progress);
   const percent = Math.round((completed / stages.length) * 100);
-  const practice = masteryOf(progress, coursePractices(course));
-  const lessonMastery = stages.map((_, index) => masteryOf(progress, lessonPractices(course, index)));
+  const complete = completed === stages.length;
+  const sectionCount = courseId === "ai-fundamentals" ? "3 pelajaran" : "12 bagian";
 
   return (
     <main className={styles.page} data-nusa-theme="light">
       <NusaHeader active="belajar" />
       <div className={styles.wrap}>
-        {saveError && <p role="alert">Progres belum tersimpan di akun. <button type="button" onClick={() => saveProgress(progress, course, userId ?? undefined)}>Coba simpan lagi</button></p>}
         {loadError && <p role="alert">Progres belum bisa dimuat. Muat ulang halaman untuk mencoba lagi.</p>}
         <Link href="/learn" className={styles.back}>← Semua kursus</Link>
         <section className={styles.hero} aria-labelledby="course-title">
@@ -84,8 +70,8 @@ export default function CourseMap({ course: courseId, userId }: { course: Course
             <h1 id="course-title">{course.title}<span>.</span></h1>
             <p>{course.summary}</p>
             <div className={styles.heroFacts}>
-              <span><strong>{String(stages.length).padStart(2, "0")}</strong> pelajaran</span>
-              <span><strong>01</strong> cek pemahaman per pelajaran</span>
+              <span><strong>{sectionCount}</strong> interaktif</span>
+              <span>Latihan dan pembahasan bertahap</span>
               <span><strong>∞</strong> bisa dibaca ulang</span>
             </div>
           </div>
@@ -127,32 +113,22 @@ export default function CourseMap({ course: courseId, userId }: { course: Course
               <h2 id="path-title">Peta pelajaran</h2>
               <p>{course.mapSummary}</p>
             </div>
-            <div className={styles.progress} role="group" aria-label={completed + " dari " + stages.length + " pelajaran selesai"}>
-              <strong>{completed}<span> / {stages.length}</span></strong>
-              <small>pelajaran selesai</small>
+            <div className={styles.progress} role="group" aria-label="Progres kursus">
+              <strong>{percent}<span>%</span></strong>
+              <small>{complete ? "Kursus selesai" : "Progres penyelesaian kursus"}</small>
               <div><i style={{ width: percent + "%" }} /></div>
-              {ready && practice.solved > 0 ? (
-                <small>{practice.solved} dari {practice.total} latihan selesai</small>
-              ) : null}
             </div>
           </div>
           <div className={styles.lessonList}>
-            {stages.map((stage, index) => {
-              const isCompleted = progress.completedStages.includes(index);
-              const isUnlocked = ready && index <= progress.unlockedStage;
-              const state = isCompleted ? "completed" : isUnlocked ? "current" : "locked";
-              return (
-                <button key={stage.id} type="button" className={styles.lessonRow} data-reveal-on-scroll data-state={state} disabled={!isUnlocked} onClick={() => openStage(index)} aria-label={stage.title + ", " + (state === "locked" ? "terkunci" : isCompleted ? "baca lagi" : "siap dibaca")}>
-                  <span className={styles.lessonNumber}>{isCompleted ? "✓" : String(index + 1).padStart(2, "0")}</span>
-                  <span className={styles.lessonCopy}>
-                    <small>{stage.area}{lessonMastery[index].solved > 0 ? " · " + lessonMastery[index].solved + "/" + lessonMastery[index].total + " latihan" : ""}</small>
-                    <strong>{stage.title}</strong>
-                    <span>{stage.intro}</span>
-                  </span>
-                  <span className={styles.lessonAction}>{isCompleted ? "Baca lagi" : isUnlocked ? "Mulai belajar" : "Terkunci"}<i aria-hidden="true">{isUnlocked ? "↗" : "·"}</i></span>
-                </button>
-              );
-            })}
+            <button type="button" className={styles.lessonRow} data-state="current" disabled={!ready} onClick={openCourse}>
+              <span className={styles.lessonNumber}>→</span>
+              <span className={styles.lessonCopy}>
+                <small>{sectionCount} · simulasi dan latihan</small>
+                <strong>{complete ? "Baca ulang materi" : "Mulai atau lanjutkan belajar"}</strong>
+                <span>Lanjutkan dari posisi terakhir di browser ini. Setelah materi selesai, simpan progres dan kerjakan post-test.</span>
+              </span>
+              <span className={styles.lessonAction}>Buka materi<i aria-hidden="true">↗</i></span>
+            </button>
           </div>
           <p className={styles.footnote}>Saat mulai, kamu akan menjawab lima pertanyaan pemetaan awal. Tidak ada nilai minimum; setelah dikirim, materi langsung terbuka.</p>
         </section>

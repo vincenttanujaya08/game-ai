@@ -55,11 +55,26 @@ export type EstimateActivity = {
   source?: { label: string; url: string };
 };
 
+/** Alur beberapa keputusan untuk diagnosis, revisi, dan tantangan akhir. */
+export type GuidedActivity = {
+  kind: "guided";
+  title: string;
+  steps: {
+    id: string;
+    prompt: string;
+    options: { label: string; feedback: string; correct: boolean }[];
+  }[];
+  comparison?: { before: string; after: string };
+  checks?: { stepId: string; label: string }[];
+  reveal: string;
+};
+
 export type Activity =
   | PredictActivity
   | SpotActivity
   | ArrangeActivity
-  | EstimateActivity;
+  | EstimateActivity
+  | GuidedActivity;
 
 /** Hasil satu percobaan. Dipakai UI untuk umpan balik dan progres untuk penguasaan. */
 export type Verdict = {
@@ -69,6 +84,7 @@ export type Verdict = {
   /** Bagian yang belum tepat atau belum ditemukan. */
   misses: string[];
   message: string;
+  firstTryCorrect?: boolean;
 };
 
 export function isArrangeOrdering(activity: ArrangeActivity): activity is ArrangeActivity & { answer: string[] } {

@@ -117,6 +117,14 @@
   color: var(--ink);
 }
 
+.guidedResult { display: grid; gap: 14px; margin-top: 16px; }
+.guidedComparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.guidedComparison p { display: grid; gap: 6px; margin: 0; padding: 14px; background: #fff; border: 1px solid #dbe7e5; line-height: 1.55; }
+.guidedChecks { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.guidedChecks li { padding: 7px 10px; background: #fff; border: 1px solid #dbe7e5; font-size: .84rem; }
+.guidedChecks li[data-passed="true"] { border-color: #80b9b0; color: var(--teal-dark); }
+@media (max-width: 560px) { .guidedComparison { grid-template-columns: 1fr; } }
+
 /* predict */
 .options {
   display: grid;

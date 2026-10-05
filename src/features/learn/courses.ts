@@ -173,6 +173,14 @@ material.forEach((source, courseIndex) => {
   })));
 });
 
+// Public course labels follow the interactive material; IDs keep existing records compatible.
+courses["working-with-generative-ai"].title = "Prompt Engineering";
+courses["working-with-generative-ai"].eyebrow = "PROMPT ENGINEERING";
+courses["working-with-generative-ai"].label = "KURSUS 02 · PROMPT ENGINEERING";
+courses["working-with-generative-ai"].summary = "Coba menyampaikan kebutuhan, memilih detail, memberi contoh, dan memperbaiki jawaban AI.";
+courses["working-with-generative-ai"].mapSummary = "Ikuti 12 bagian interaktif dari prompt pertama sampai memeriksa dan memperbaiki hasilnya.";
+courses["working-with-generative-ai"].hubSummary = courses["working-with-generative-ai"].summary;
+
 export const courseList: CourseConfig[] = courseOrder.map((id) => courses[id]);
 
 /** Jumlah bagian tiap pelajaran, dipakai untuk clamp sectionIndex saat membaca progres. */

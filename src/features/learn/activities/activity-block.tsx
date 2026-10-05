@@ -2,6 +2,7 @@
 
 import { Arrange } from "./arrange";
 import { Estimate } from "./estimate";
+import { Guided } from "./guided";
 import { Predict } from "./predict";
 import { Spot } from "./spot";
 import type { Activity, Verdict } from "./types";
@@ -18,5 +19,7 @@ export function ActivityBlock({ activity, label, onAttempt }: Props) {
       return <Arrange activity={activity} label={label} onAttempt={onAttempt} />;
     case "estimate":
       return <Estimate activity={activity} label={label} onAttempt={onAttempt} />;
+    case "guided":
+      return <Guided activity={activity} label={label} onAttempt={onAttempt} />;
   }
 }

@@ -138,4 +138,105 @@ const workingPresentationSets: SectionPresentation[][] = [
   ],
 ];
 
+// Aktivitas disisipkan sesudah materi tiap bagian; semua pilihan dinilai lokal tanpa panggilan AI.
+workingPresentationSets[1][2].activity = {
+  kind: "arrange",
+  instruction: "Susun blok prompt dari tujuan sampai batas hasil.",
+  items: [
+    { id: "task", label: "Tugas: Buat pengumuman acara donor darah." },
+    { id: "context", label: "Konteks: Untuk mahasiswa baru yang belum tahu lokasi gedung kegiatan." },
+    { id: "output", label: "Bentuk: Tulis pesan singkat untuk grup WhatsApp." },
+    { id: "requirements", label: "Batas: Maksimal 80 kata dan cantumkan waktu serta lokasi." },
+  ],
+  answer: ["task", "context", "output", "requirements"],
+  hint: "Mulai dari hasil yang diminta, lalu tambahkan konteks dan bentuk yang dibutuhkan.",
+  reveal: "Contoh prompt utuh: ‘Buat pengumuman acara donor darah untuk mahasiswa baru yang belum tahu lokasi gedung kegiatan. Tulis pesan singkat untuk grup WhatsApp, maksimal 80 kata, dan cantumkan waktu serta lokasi.’ Tujuan menentukan pekerjaan, konteks membantu memilih isi, output menentukan bentuk, dan batas menjaga hasil tetap berguna.",
+};
+workingPresentationSets[1][5].activity = {
+  kind: "guided",
+  title: "Tulis pengumuman yang bisa langsung dipakai",
+  steps: [
+    { id: "context", prompt: "Kamu diminta membuat pengumuman donor darah. Kumpulan informasi mana yang paling berguna?", options: [
+      { label: "Target peserta, tanggal dan waktu, lokasi, serta tempat pengumuman akan dibagikan.", correct: true, feedback: "Ya. Semua detail ini memengaruhi siapa yang diajak, informasi praktis yang harus dicantumkan, dan gaya pesannya." },
+      { label: "Tanggal, lokasi, jumlah peserta tahun lalu, dan warna favorit panitia.", correct: false, feedback: "Tanggal dan lokasi membantu. Jumlah tahun lalu bisa berguna untuk laporan, sedangkan warna favorit panitia tidak membantu isi pengumuman." },
+      { label: "Nama panitia, semua kegiatan organisasi, dan sejarah acara sejak pertama diadakan.", correct: false, feedback: "Sebagian mungkin berguna untuk tulisan lain, tetapi pengumuman singkat tidak membutuhkan seluruh riwayat acara." },
+    ] },
+    { id: "format", prompt: "Pengumuman ini dikirim ke grup WhatsApp dan perlu dibaca cepat. Bentuk mana yang paling cocok?", options: [
+      { label: "Paragraf pendek dengan ajakan yang jelas dan detail waktu-lokasi.", correct: true, feedback: "Cocok untuk pesan singkat yang dibaca cepat dan tetap terasa alami di grup." },
+      { label: "Tabel lengkap berisi sejarah acara, panitia, target, dan jadwal.", correct: false, feedback: "Tabel membantu membandingkan data, tetapi terlalu berat untuk pengumuman singkat di grup." },
+      { label: "Daftar langkah bernomor dari persiapan sampai evaluasi acara.", correct: false, feedback: "Langkah bernomor cocok untuk panduan kerja, bukan ajakan singkat kepada calon peserta." },
+    ] },
+  ],
+  reveal: "Context yang baik dipilih dari kebutuhan tugas, bukan dikumpulkan sebanyak mungkin. Format juga mengikuti cara hasil itu akan dipakai.",
+};
+workingPresentationSets[2][2].activity = {
+  kind: "guided",
+  title: "Draf email konsultasi masih terasa kaku",
+  steps: [
+    { id: "diagnosis", prompt: "Apa masalah utama dari draf ini? ‘Dengan hormat, saya bermaksud mengajukan permohonan untuk dapat melakukan konsultasi terkait tugas yang sedang saya kerjakan. Besar harapan saya agar Bapak berkenan.’", options: [
+      { label: "Nadanya sangat formal dan inti permintaannya tertutup kalimat panjang.", correct: true, feedback: "Tepat. Tujuannya bisa dipahami, tetapi bahasa resmi dan kalimat berlapis membuatnya terasa jauh." },
+      { label: "AI tidak tahu fakta terbaru tentang mata kuliah.", correct: false, feedback: "Mungkin fakta perlu dicek, tetapi masalah yang terlihat di contoh ini adalah nada dan panjang kalimat." },
+      { label: "Formatnya salah karena email seharusnya selalu berupa poin-poin.", correct: false, feedback: "Email tidak selalu perlu daftar. Untuk meminta konsultasi, paragraf singkat tetap bisa jelas dan sopan." },
+    ] },
+    { id: "revision", prompt: "Arahan mana yang memperbaiki masalah itu tanpa menghilangkan sopan santun?", options: [
+      { label: "Buat lebih santai dan pendek.", correct: false, feedback: "Arahnya masuk akal, tetapi ‘lebih santai’ belum memberi batas atau bagian penting yang perlu dipertahankan." },
+      { label: "Tulis ulang maksimal 80 kata dengan nada hangat dan sopan. Sebutkan mata kuliah, topik yang ingin dibahas, dan dua pilihan waktu; pertahankan permintaan konsultasinya.", correct: true, feedback: "Tepat. Perubahan nadanya jelas, panjangnya bisa diperiksa, dan detail untuk menjadwalkan konsultasi tetap ada." },
+      { label: "Tambahkan penjelasan panjang tentang latar belakang tugas dan gunakan bahasa yang lebih profesional.", correct: false, feedback: "Latar belakang bisa membantu jika diperlukan, tetapi menambah penjelasan panjang justru tidak menyelesaikan masalah utama." },
+    ] },
+  ],
+  comparison: {
+    before: "Dengan hormat, saya bermaksud mengajukan permohonan untuk dapat melakukan konsultasi terkait tugas yang sedang saya kerjakan.",
+    after: "Halo, Pak. Saya ingin bertanya tentang bagian analisis di tugas Metode Riset. Apakah Bapak ada waktu Selasa atau Rabu sore untuk konsultasi?",
+  },
+  reveal: "Perbaikan dimulai dengan mengenali masalah pada hasil. Setelah itu, ubah prompt secara spesifik dan lihat apakah versi baru benar-benar lebih sesuai.",
+};
+workingPresentationSets[2][3].activity = {
+  kind: "spot", mode: "flaw",
+  lead: "AI merangkum kebiasaan belajar mahasiswa dan memberi dua klaim yang terdengar meyakinkan. Pilih bagian yang perlu diperiksa sebelum dipakai.",
+  spans: [
+    { id: "adopsi", text: "Mahasiswa biasanya belajar dengan gabungan membaca dan latihan soal.", target: false, why: "Ini pernyataan umum, tetapi tetap perlu sumber jika dipakai sebagai temuan penelitian." },
+    { id: "angka", text: "Sebanyak 74% mahasiswa Indonesia belajar lebih cepat dengan AI.", tag: "Angka tanpa rujukan", target: true, why: "Angka tepat tanpa nama survei, sampel, atau tautan belum punya dasar yang bisa diperiksa." },
+    { id: "sumber", text: "Menurut Laporan Belajar Digital Nasional 2025, penggunaan AI menaikkan nilai rata-rata 32%.", tag: "Judul sumber dan angka yang perlu dibuka", target: true, why: "Periksa apakah laporannya benar ada, siapa penerbitnya, bagaimana metodenya, dan apakah angka itu memang menyatakan kenaikan nilai." },
+    { id: "batas", text: "Hasil belajar juga dapat dipengaruhi waktu latihan, pengetahuan awal, dan kualitas materi.", target: false, why: "Ini batasan yang masuk akal, tetapi sumber tetap dibutuhkan bila disebut sebagai temuan khusus." },
+  ],
+  requiredHits: 2,
+  reveal: "Angka dan nama laporan perlu dibuka ke sumber asli. Prompt dapat meminta rujukan, tetapi tidak dapat menjamin sumber yang diberikan AI benar-benar ada.",
+};
+workingPresentationSets[3][6].activity = {
+  kind: "guided", title: "Bantu timmu menguji layanan karier",
+  steps: [
+    { id: "context", prompt: "Tim ingin tahu apakah mahasiswa membutuhkan bantuan membuat CV. Informasi mana yang perlu masuk ke prompt?", options: [
+      { label: "Sasaran mahasiswa, masalah CV yang ingin dipahami, dan bahwa belum ada data minat calon pengguna.", correct: true, feedback: "Benar. Ini menjelaskan siapa yang dibahas, keputusan yang ingin dibuat, dan batas pengetahuan saat ini." },
+      { label: "Jumlah semua mahasiswa kampus, warna logo layanan, dan contoh startup terkenal.", correct: false, feedback: "Beberapa detail mungkin berguna nanti, tetapi belum menjawab siapa yang punya masalah atau bukti apa yang tersedia." },
+      { label: "Minta AI membuat layanan yang pasti sukses untuk semua mahasiswa.", correct: false, feedback: "Kata ‘pasti’ dan ‘semua’ menganggap kesimpulan sebelum kebutuhan pengguna diuji." },
+    ] },
+    { id: "prompt", prompt: "Pilih prompt yang paling membantu mengeksplorasi ide tanpa meminta AI memutuskan.", options: [
+      { label: "Buat ide layanan CV yang menarik dan jelaskan mengapa mahasiswa akan menyukainya.", correct: false, feedback: "Prompt ini mencari dukungan dan belum membedakan dugaan dari bukti." },
+      { label: "Bandingkan tiga bentuk bantuan CV untuk mahasiswa tingkat akhir. Untuk tiap pilihan, tulis calon pengguna, manfaat, risiko, asumsi yang belum diuji, dan satu cara mencari bukti. Sajikan dalam tabel ringkas.", correct: true, feedback: "Prompt ini menyebut tugas, audiens, kriteria pembanding, hal yang belum diketahui, cara mencari bukti, dan bentuk hasil." },
+      { label: "Kamu konsultan karier terbaik. Susun strategi lengkap dan profesional untuk layanan CV.", correct: false, feedback: "Peran dan gaya belum memberi kriteria untuk membandingkan pilihan atau menguji asumsi." },
+    ] },
+    { id: "diagnosis", prompt: "AI menjawab: ‘Layanan CV pasti diminati. Survei internal menunjukkan 82% mahasiswa membutuhkannya.’ Apa yang perlu dicermati?", options: [
+      { label: "Kata ‘pasti’ dan angka 82% belum disertai bukti atau sumber yang bisa diperiksa.", correct: true, feedback: "Ya. AI menyampaikan keyakinan dan angka, tetapi belum menunjukkan dari mana angka itu berasal." },
+      { label: "Jawabannya terlalu pendek; minta dibuat lima halaman.", correct: false, feedback: "Menambah panjang tidak menyelesaikan masalah bukti dan kesimpulan yang terlalu yakin." },
+      { label: "AI sudah menyebut survei, jadi hasilnya cukup dapat dipercaya.", correct: false, feedback: "Penyebutan survei belum membuktikan surveinya ada. Minta dan buka sumber aslinya." },
+    ] },
+    { id: "revision", prompt: "Apa arahan lanjutan yang paling berguna?", options: [
+      { label: "Buat jawabannya lebih meyakinkan dan tambahkan beberapa angka pendukung.", correct: false, feedback: "Angka tambahan tanpa sumber hanya membuat jawaban tampak lebih meyakinkan, bukan lebih kuat." },
+      { label: "Pisahkan fakta, asumsi, dan saran. Beri sumber yang bisa dibuka untuk tiap angka; jika tidak ada, tandai sebagai informasi yang belum diketahui. Usulkan wawancara singkat untuk menguji kebutuhan.", correct: true, feedback: "Arahan ini memisahkan jenis klaim, membuat sumber dapat diperiksa, dan menghubungkan analisis dengan langkah nyata." },
+      { label: "Tanyakan lagi ke chatbot lain dan pilih jawaban yang paling mendukung ide.", correct: false, feedback: "Jawaban serupa dari chatbot lain bukan bukti independen, apalagi jika yang dicari hanya dukungan." },
+    ] },
+  ],
+  checks: [
+    { stepId: "context", label: "Tujuan dan konteks jelas" },
+    { stepId: "prompt", label: "Batas dan format sesuai" },
+    { stepId: "diagnosis", label: "Klaim diperiksa" },
+    { stepId: "revision", label: "Ada langkah uji" },
+  ],
+  comparison: {
+    before: "Layanan CV pasti diminati. Survei internal menunjukkan 82% mahasiswa membutuhkannya.",
+    after: "Belum ada data minat yang dapat dipastikan. Wawancarai 8–10 mahasiswa tingkat akhir: kapan mereka kesulitan menyusun CV, bantuan apa yang sudah dicoba, dan apa yang masih kurang. Catat pola, bukan hanya jawaban yang mendukung ide.",
+  },
+  reveal: "Kamu sudah menghubungkan kebutuhan, konteks, prompt, tinjauan jawaban, revisi, dan langkah uji. Prompt membantu mengarahkan percakapan; bukti dan keputusan tetap perlu diperiksa manusia.",
+};
+
 export const workingPresentations = [workingPresentationSets[1], workingPresentationSets[0], workingPresentationSets[2], workingPresentationSets[3]];

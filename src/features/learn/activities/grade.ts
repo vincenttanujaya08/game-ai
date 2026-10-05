@@ -110,5 +110,7 @@ export function grade(activity: Activity, response: unknown): Verdict {
       return gradeArrange(activity, response);
     case "estimate":
       return gradeEstimate(activity, response);
+    case "guided":
+      return unsolved("Ikuti langkah-langkah latihan ini dulu.");
   }
 }

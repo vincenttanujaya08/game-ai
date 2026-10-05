@@ -260,3 +260,26 @@ export function lessonMastery(progress: LearnProgress, activityKeys: string[]) {
   const firstTry = activityKeys.filter((key) => progress.attempts[key]?.firstTryCorrect).length;
   return { solved, firstTry, total: activityKeys.length };
 }
+
+/** Save interactive material completion before navigating to the post-test. */
+export async function completeInteractiveCourse(course: CourseConfig, userId: string) {
+  const state = await loadCourseState(course, userId);
+  const last = course.stages.length - 1;
+  const progress = {
+    ...state.progress,
+    completedStages: course.stages.slice(0, -1).map((_, index) => index),
+    unlockedStage: last,
+    activeStage: last,
+    sectionIndex: 0,
+  };
+  // Only the existing post-test can complete the final lesson.
+  if (state.postTestCompleted) progress.completedStages.push(last);
+  const response = await fetch(`/api/progress/${course.id}`, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(progress),
+  });
+  if (!response.ok) throw new Error("PROGRESS_SAVE_FAILED");
+  await loadCourseState(course, userId);
+  return state.postTestCompleted ? course.path : `${course.path}/assessment?kind=post`;
+}

@@ -1,6 +1,5 @@
 import LearnHub from "@/features/learn/learn-hub";
 import { courseList } from "@/features/learn/courses";
-import { coursePractices } from "@/features/learn/mastery";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
 export const metadata = {
@@ -19,7 +18,6 @@ export default async function LearnPage() {
     progressKey: course.progressKey,
     stageCount: course.stages.length,
     sectionCounts: course.lessons.map((lesson) => lesson.sections.length),
-    practiceKeys: coursePractices(course).map((practice) => practice.key),
   }));
   return <LearnHub courses={hubCourses} userId={user?.id ?? null} />;
 }

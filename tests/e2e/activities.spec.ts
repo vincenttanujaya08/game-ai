@@ -169,37 +169,80 @@ test("spot: menandai bagian yang benar ikut ditolak", async ({ page }) => {
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("pilot yes-man: prompt dirakit, jawaban diaudit, dan tindak lanjut dipilih", async ({ page }) => {
+test("pilot prompting: pilihan dan hasil bertahap, posisi tersimpan", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/dev/yes-man-pilot");
-  await page.getByRole("button", { name: /Mulai kasus/ }).click();
-  await page.getByRole("button", { name: /Bantu timku menguji rencana booth/ }).click();
-  await expect(page.getByText(/Arah yang lebih berguna/)).toBeVisible();
-  await page.getByRole("button", { name: /Lanjut pilah informasi/ }).click();
-
-  await page.getByRole("group", { name: /Panitia menargetkan 1.000/ }).getByRole("button", { name: "Ada di brief" }).click();
-  await page.getByRole("group", { name: /Pengunjung festival pasti tertarik/ }).getByRole("button", { name: "Asumsi" }).click();
-  await page.getByRole("group", { name: /Tawarkan sampel kecil/ }).getByRole("button", { name: "Langkah uji" }).click();
-  await page.getByRole("button", { name: "Periksa pasangan" }).click();
-  await page.getByRole("button", { name: /Rakit prompt/ }).click();
-
-  await page.getByRole("group", { name: "Tugas" }).getByRole("button", { name: /Bantu tim menilai/ }).click();
-  await page.getByRole("group", { name: "Konteks dan batas" }).getByRole("button", { name: /Festival 3 hari/ }).click();
-  await page.getByRole("group", { name: "Standar penilaian" }).getByRole("button", { name: /Cari alasan yang mendukung/ }).click();
-  await page.getByRole("group", { name: "Bentuk jawaban" }).getByRole("button", { name: /Buat tabel/ }).click();
-  await page.getByRole("button", { name: "Cek prompt" }).click();
-  await expect(page.getByText(/PROMPT TIMMU/)).toBeVisible();
-  await page.getByRole("button", { name: /Uji jawaban AI/ }).click();
-
-  await page.getByRole("button", { name: /Anak muda makin sadar kesehatan/ }).click();
-  await page.getByRole("button", { name: /Sebaiknya siapkan 50 porsi/ }).click();
-  await page.getByRole("button", { name: "Cek tandaku" }).click();
-  await page.getByRole("button", { name: /Tentukan tes kecil/ }).click();
-  await page.getByRole("button", { name: /Rancang tes satu hari/ }).click();
-  await page.getByRole("button", { name: /Lihat rangkuman/ }).click();
-  await expect(page.getByRole("heading", { name: /Minta AI menguji pikiranmu/ })).toBeVisible();
+  await page.goto("/dev/yes-man-pilot/prompt-engineering");
+  const click = async (name: string) => page.getByRole("button", { name, exact: true }).click();
+  await click("Mulai belajar →");
+  await expect(page.getByRole("button", { name: "Lihat jawabannya →" })).toBeDisabled();
+  await click("Sudah cukup untuk mulai");
+  await click("Lihat jawabannya →");
+  await click("Detail acaranya belum ada");
+  await click("Coba ubah prompt-nya →");
+  await click("Untuk orang yang baru mulai belajar AI");
+  await click("Gratis, Sabtu pukul 10.00");
+  await click("Ajak pembaca mendaftar");
+  await expect(page.getByText("Daftar melalui [cara daftar].", { exact: false })).toHaveCount(0);
+  await click("Lihat perubahan jawabannya →");
+  await expect(page.getByText("Daftar melalui [cara daftar].", { exact: false })).toBeVisible();
+  await click("Coba hapus satu detail");
+  await expect(page.getByText("Daftar melalui [cara daftar].", { exact: false })).toHaveCount(0);
+  await click("← Kembali");
+  await expect(page.getByRole("button", { name: "Gratis, Sabtu pukul 10.00" })).toHaveAttribute("aria-pressed", "true");
+  await click("Lihat perubahan jawabannya →");
+  await click("Pilih detail yang perlu →");
+  for (let i = 0; i < 6; i++) {
+    await page.getByRole("button", { name: /^Perlu untuk caption ini/ }).click();
+    await click(i < 5 ? "Detail berikutnya →" : "Lihat hasil pengelompokan →");
+  }
+  // A mistaken classification is explained and still allows progress.
+  await click("Coba pakai contoh →");
+  await click("Pilih contoh gaya →");
+  await page.getByRole("button", { name: /^Contoh A:/ }).click();
+  await click("Lihat pesan yang mengikuti contoh →");
+  await click("Kalau detailnya belum lengkap? →");
+  await click("Ketiganya bisa berpengaruh");
+  await expect(page.getByRole("heading", { name: "AI bertanya · simulasi" })).toHaveCount(0);
+  await click("Coba minta AI bertanya →");
+  await click("Kuliner");
+  await expect(page.getByRole("heading", { name: "Gudeg di Wijilan" })).toHaveCount(0);
+  await click("Lihat contoh rencananya →");
+  await expect(page.getByRole("heading", { name: "Gudeg di Wijilan" })).toBeVisible();
+  await click("Coba untuk pekerjaan yang lebih besar →");
+  await page.getByRole("button", { name: /^Naikkan: Pahami brief/ }).click();
+  await click("Lihat percakapannya →");
+  await click("Perbaiki jawaban yang kurang pas →");
+  await click("Bahasa yang lebih sederhana");
+  await click("Lihat jawaban setelah diperbaiki →");
+  await click("Coba dengan bahan bacaan →");
+  await page.getByRole("button", { name: /^Prompt A:/ }).click();
+  await click("Lihat contoh jawabannya →");
+  await expect(page.getByText(/‘100 peserta’ tidak ada dalam artikel/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Bandingkan arahannya →" })).toBeDisabled();
+  await click("Lihat jawaban B");
+  await click("Bandingkan arahannya →");
+  await click("Prompt B");
+  await click("Cek fakta dalam jawabannya →");
+  await click("Pakai langsung karena angkanya spesifik");
+  await expect(page.getByText(/Angka yang terlihat spesifik tetap bisa salah atau dibuat-buat/)).toBeVisible();
+  await click("Sekarang coba sendiri →");
+  await click("Kebutuhan lain");
+  await click("Tulis permintaanmu →");
+  const literal = "Bantu aku jelasin ini ya—jangan ubah gaya tulisku!";
+  await page.getByRole("textbox", { name: /Apa yang ingin kamu minta/ }).fill(literal);
+  await click("Simpan dan berhenti");
+  await page.reload();
+  await click("Lanjutkan belajar →");
+  await expect(page.getByRole("textbox", { name: /Apa yang ingin kamu minta/ })).toHaveValue(literal);
+  for (const name of ["Tambahkan konteks →", "Lanjut ke batasan →", "Lanjut ke bentuk jawaban →", "Lanjut ke contoh →", "Lihat saran untuk prompt ini"]) await click(name);
+  await expect(page.getByText(literal, { exact: true })).toBeVisible();
+  await click("Lanjut ke refleksi →");
+  await click("Cari dulu apa yang masih kurang");
+  await click("Lihat ringkasannya →");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await click("Selesaikan materi →");
+  await expect(page.getByRole("heading", { name: "Siap dicoba untuk kebutuhanmu sendiri" })).toBeVisible();
 });
 
 test("arrange pencocokan: tiap baris dipilih kategorinya", async ({ page }) => {

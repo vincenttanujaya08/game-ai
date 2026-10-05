@@ -1,4 +1,4 @@
-import { LessonReader } from "@/features/learn/lesson-reader";
+import { InteractiveCourse } from "@/features/learn/interactive-course";
 import { requirePreTest } from "@/features/learn/assessment-access";
 
 export const metadata = {
@@ -8,5 +8,5 @@ export const metadata = {
 
 export default async function ModuleOnePage() {
   const { user } = await requirePreTest("ai-fundamentals");
-  return <LessonReader course="ai-fundamentals" userId={user.id} />;
+  return <InteractiveCourse course="ai-fundamentals" userId={user.id} />;
 }
