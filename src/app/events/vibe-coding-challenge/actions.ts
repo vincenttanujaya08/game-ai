@@ -67,15 +67,16 @@ export async function saveChallengeFeedback(form: FormData) {
     .select("user_id").eq("user_id", user.id).eq("event_id", eventId).maybeSingle();
   if (loadError || !registered) redirect(`${base}/register?status=required`);
   const parsed = feedbackSchema.safeParse({
-    materialRating: form.get("materialRating"),
-    gameRating: form.get("gameRating"),
+    teachingRating: form.get("teachingRating"),
+    practiceRating: form.get("practiceRating"),
     comment: form.get("comment") ?? "",
   });
   if (!parsed.success) redirect(`${base}/submit?status=feedback-invalid`);
   const { error } = await supabase.from("event_feedback").upsert({
     user_id: user.id, event_id: eventId,
-    material_rating: parsed.data.materialRating,
-    game_rating: parsed.data.gameRating,
+    feedback_version: 2,
+    teaching_rating: parsed.data.teachingRating,
+    practice_rating: parsed.data.practiceRating,
     comment: parsed.data.comment || null,
     updated_at: new Date().toISOString(),
   }, { onConflict: "user_id,event_id" });

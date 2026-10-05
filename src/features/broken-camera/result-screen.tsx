@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { GameNavigation } from "./navigation";
 import { CameraTimeline } from "./case-figures";
 import { kamuDanAi, type Catatan } from "./commitment";
@@ -19,11 +20,12 @@ type Props = {
   terpakai: number;
   catatan: Catatan[];
   aiTrail: Candidate[];
+  feedback?: ReactNode;
   onReview: () => void;
   onRestart: () => void;
 };
 
-export function ResultScreen({ conclusion, decision, verdict, interviewed, followedUp, terpakai, catatan, aiTrail, onReview, onRestart }: Props) {
+export function ResultScreen({ conclusion, decision, verdict, interviewed, followedUp, terpakai, catatan, aiTrail, feedback, onReview, onRestart }: Props) {
   const perbandingan = kamuDanAi(catatan, aiTrail);
   const andai = jalurLain(interviewed, followedUp, terpakai);
 
@@ -52,7 +54,7 @@ export function ResultScreen({ conclusion, decision, verdict, interviewed, follo
           <p>{verdict.isi}</p>
           <p><b>Langkah berikutnya:</b> {verdict.langkah}</p>
 
-          <h3>Keputusan yang dinilai</h3>
+          <h3>Skor keputusan: {Math.round(verdict.tepat / verdict.total * 100)}/100</h3>
           <p className={styles.muted}>{verdict.ringkas}</p>
           <ul className={styles.keputusan}>
             {verdict.keputusan.map((item) => (
@@ -95,6 +97,7 @@ export function ResultScreen({ conclusion, decision, verdict, interviewed, follo
         </article>
       </section>
 
+      {feedback}
       <footer>
         <button className={styles.secondary} onClick={onReview}>Tinjau kembali kasus</button>
         <button onClick={onRestart}>{scenario.andaiKata.mainLagi}</button>

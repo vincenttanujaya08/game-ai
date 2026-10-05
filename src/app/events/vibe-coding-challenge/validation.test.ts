@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { registrationSchema, submissionSchema } from "./validation";
+import { feedbackSchema, registrationSchema, submissionSchema } from "./validation";
 
 const valid = {
   projectName: "Planner Kuliah", summary: "Membantu menyusun tugas kuliah.",
@@ -16,4 +16,11 @@ test("pendaftaran dan submit hanya menerima data peserta serta tautan yang sesua
   expect(submissionSchema.safeParse({ ...valid, repositoryUrl: "" }).success).toBe(false);
   expect(submissionSchema.safeParse({ ...valid, repositoryUrl: "https://notgithub.com/student/planner" }).success).toBe(false);
   expect(submissionSchema.safeParse({ ...valid, repositoryUrl: "https://github.com/" }).success).toBe(false);
+});
+
+
+test("feedback event validates teaching usefulness independently from old material/game ratings", () => {
+  expect(feedbackSchema.safeParse({ teachingRating: "5", practiceRating: "4", comment: "Terbantu saat membuat project" }).success).toBe(true);
+  expect(feedbackSchema.safeParse({ materialRating: 5, gameRating: 4, comment: "" }).success).toBe(false);
+  expect(feedbackSchema.safeParse({ teachingRating: 0, practiceRating: 6, comment: "" }).success).toBe(false);
 });

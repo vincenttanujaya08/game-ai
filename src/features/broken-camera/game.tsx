@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState, useSyncExternalStore } from "react";
+import { GameFeedback } from "@/features/game-feedback/game-feedback";
 import { formatSisa } from "./budget";
 import { FinalScreen } from "./final-screen";
 import { rankCandidates } from "./game-logic";
@@ -24,6 +25,7 @@ export default function BrokenCameraGame() {
   const [remoteRun, setRemoteRun] = useState<ReturnType<typeof bacaRun>>(null);
   const [remoteReady, setRemoteReady] = useState(!cloudEnabled);
   const [cloudError, setCloudError] = useState(false);
+  const [resultReady, setResultReady] = useState(false);
   const saveQueue = useRef<Promise<void>>(Promise.resolve());
   const { stage, interviewed, followedUp, decision, conclusion, citations, keterbatasan } = state;
 
@@ -35,6 +37,7 @@ export default function BrokenCameraGame() {
       });
       if (!response.ok) throw new Error("GAME_SAVE_FAILED");
       setCloudError(false);
+      setResultReady(method === "PUT" && body?.completed === true);
     });
     void saveQueue.current.catch(() => setCloudError(true));
   }, []);
@@ -42,7 +45,11 @@ export default function BrokenCameraGame() {
   const saveCloudState = useCallback(() => {
     let saved: string | null = null;
     simpanRun({ getItem: () => null, setItem: (_key, value) => { saved = value; }, removeItem() {} }, state);
-    if (saved) queueCloud("PUT", { state: JSON.parse(saved), completed: state.stage === "hasil" });
+    if (saved) {
+      const payload = JSON.parse(saved);
+      if (state.stage === "hasil") payload.finalSubmission = { conclusion: state.conclusion, citations: state.citations, keterbatasan: state.keterbatasan };
+      queueCloud("PUT", { state: payload, completed: state.stage === "hasil" });
+    }
   }, [state, queueCloud]);
 
   useEffect(() => {
@@ -149,6 +156,7 @@ export default function BrokenCameraGame() {
         terpakai={state.terpakai}
         catatan={state.catatan}
         aiTrail={state.aiTrail}
+        feedback={<GameFeedback gameId="kamera-rusak" ready={resultReady} theme="dark" />}
         onReview={() => dispatch({ type: "kembaliKePenyelidikan" })}
         onRestart={() => {
           // Main lagi dengan jalur berbeda memang harus benar-benar bersih.

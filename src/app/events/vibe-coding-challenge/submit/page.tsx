@@ -8,8 +8,8 @@ import { isChallengeOpen } from "../status";
 
 export const metadata = { title: "Kirim Project Vibe Coding Challenge · NUSA Lab" };
 
-export default async function SubmitPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {
-  const { status } = await searchParams;
+export default async function SubmitPage({ searchParams }: { searchParams: Promise<{ status?: string; feedback?: string }> }) {
+  const { status, feedback: editFeedback } = await searchParams;
   const open = isChallengeOpen();
   const configured = open && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
   const supabase = configured ? await createClient() : null;
@@ -17,7 +17,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: Promi
   const { data: registered } = user ? await supabase!.from("event_registrations").select("user_id")
     .eq("user_id", user.id).eq("event_id", "vibe-coding-challenge").maybeSingle() : { data: null };
   const { data: feedback, error: feedbackError } = registered ? await supabase!.from("event_feedback")
-    .select("material_rating,game_rating,comment").eq("user_id", user!.id).eq("event_id", "vibe-coding-challenge").maybeSingle() : { data: null, error: null };
+    .select("feedback_version,teaching_rating,practice_rating,comment").eq("user_id", user!.id).eq("event_id", "vibe-coding-challenge").maybeSingle() : { data: null, error: null };
   const { data: saved } = registered && feedback ? await supabase!.from("event_submissions")
     .select("project_name,summary,repository_url,demo_url,ai_tools")
     .eq("user_id", user!.id).eq("event_id", "vibe-coding-challenge").maybeSingle() : { data: null };
@@ -35,23 +35,24 @@ export default async function SubmitPage({ searchParams }: { searchParams: Promi
             : <>
               {status === "invalid" ? <p className={styles.notice} data-error="true" role="alert">Lengkapi semua kolom wajib. Tautan yang diisi harus memakai HTTPS dan repository harus berada di GitHub.</p> : null}
               {status === "error" ? <p className={styles.notice} data-error="true" role="alert">Project belum tersimpan. Periksa konfigurasi database, lalu coba lagi.</p> : null}
-              {feedbackError ? <p className={styles.notice} data-error="true" role="alert">Rating belum bisa dimuat. Coba muat ulang halaman.</p> : !feedback ? <>
-                <p className={styles.formAside}>Sebelum mengirim karya, bantu kami memperbaiki NUSA Lab dengan memberi rating materi dan game yang sudah kamu coba.</p>
-                {status === "feedback-invalid" ? <p className={styles.notice} data-error="true" role="alert">Pilih rating untuk materi dan game.</p> : null}
+              {feedbackError ? <p className={styles.notice} data-error="true" role="alert">Rating belum bisa dimuat. Coba muat ulang halaman.</p> : !feedback || editFeedback === "edit" ? <>
+                <p className={styles.formAside}>Beri feedback tentang manfaat pembelajaran di kelas atau melalui website NUSA Lab untuk memahami materi dan membuat project challenge. Feedback ini terpisah dari penilaian course dan game di aplikasi.</p>
+                {status === "feedback-invalid" ? <p className={styles.notice} data-error="true" role="alert">Pilih rating manfaat pembelajaran dan penerapannya dalam project.</p> : null}
                 {status === "feedback-error" ? <p className={styles.notice} data-error="true" role="alert">Rating belum tersimpan. Coba lagi.</p> : null}
                 <form className={styles.form} action={saveChallengeFeedback}>
-                  {([ ["materialRating", "Materi kelas"], ["gameRating", "Game NUSA Lab"] ] as const).map(([name, label]) => <fieldset className={styles.rating} key={name}>
+                  {([ ["teachingRating", "Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab dalam memahami materi?"], ["practiceRating", "Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab saat membuat project ini?"] ] as const).map(([name, label]) => <fieldset className={styles.rating} key={name}>
                     <legend>{label}</legend>
-                    <div>{[1, 2, 3, 4, 5].map((rating) => <label key={rating}><input type="radio" name={name} value={rating} required /><span>{rating}</span></label>)}</div>
-                    <small>1 = perlu banyak perbaikan · 5 = sangat membantu</small>
+                    <div>{[1, 2, 3, 4, 5].map((rating) => <label key={rating}><input type="radio" name={name} value={rating} defaultChecked={feedback !== null && [2, 3].includes(feedback.feedback_version) && (name === "teachingRating" ? feedback.teaching_rating : feedback.practice_rating) === rating} required /><span>{rating}</span></label>)}</div>
+                    <small>1 = tidak membantu · 5 = sangat membantu</small>
                   </fieldset>)}
-                  <label>Komentar (opsional)<textarea name="comment" maxLength={500} placeholder="Apa yang paling membantu atau perlu diperbaiki?" /></label>
+                  <label>Komentar (opsional)<textarea name="comment" maxLength={500} defaultValue={feedback && [2, 3].includes(feedback.feedback_version) ? feedback.comment ?? "" : ""} placeholder="Bagian pembelajaran apa yang kamu terapkan di project? Apa yang perlu diperbaiki?" /></label>
                   <button type="submit">Simpan rating dan lanjutkan →</button>
                 </form>
               </> : <>
               {status === "feedback-saved" ? <p className={styles.notice} role="status">Terima kasih! Rating tersimpan. Sekarang kamu bisa mengirim karya.</p> : null}
-              {status === "feedback-required" ? <p className={styles.notice} role="status">Beri rating materi dan game terlebih dahulu sebelum mengirim karya.</p> : null}
+              {status === "feedback-required" ? <p className={styles.notice} role="status">Beri feedback manfaat pembelajaran terlebih dahulu sebelum mengirim karya.</p> : null}
               {(status === "saved" || (saved && status !== "invalid" && status !== "error")) ? <p className={styles.notice} role="status">Projectmu tersimpan. Kamu dapat memperbarui tautan atau penjelasannya di bawah.</p> : null}
+              <p className={styles.formAside}>{[2, 3].includes(feedback.feedback_version) ? "Feedback pembelajaranmu sudah tersimpan." : "Feedback sebelumnya tetap tersimpan. Kamu boleh mengisi feedback pembelajaran tanpa mengumpulkan karya ulang."} <Link href="?feedback=edit">Perbarui feedback pembelajaran →</Link></p>
               <form className={styles.form} action={submitChallenge}>
                 <label>Nama project<input name="projectName" required minLength={2} maxLength={120} defaultValue={saved?.project_name ?? ""} /></label>
                 <label>Masalah yang diselesaikan dan cara aplikasi membantunya<textarea name="summary" required minLength={2} maxLength={600} defaultValue={saved?.summary ?? ""} /></label>

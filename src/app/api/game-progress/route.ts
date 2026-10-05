@@ -1,4 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { cameraScore } from "@/server/games/scoring";
+import { recordFirstGameScore } from "@/server/games/results";
 import { createClient } from "@/lib/supabase/server";
 
 async function account() {
@@ -32,10 +34,19 @@ export async function PUT(request: NextRequest) {
   }
   const { state, completed } = body as { state: unknown; completed: unknown };
   if (!state || typeof state !== "object" || typeof completed !== "boolean") return NextResponse.json({ error: "INVALID_STATE" }, { status: 400 });
+  let score: number | null = null;
+  if (completed) {
+    try { score = cameraScore(state); }
+    catch { return NextResponse.json({ error: "INVALID_FINAL_ANSWER" }, { status: 400 }); }
+  }
   const { error } = await context.supabase.from("game_progress").upsert({
     user_id: context.userId, game_id: "kamera-rusak", state, completed, updated_at: new Date().toISOString(),
   }, { onConflict: "user_id,game_id" });
   if (error) return NextResponse.json({ error: "SAVE_FAILED" }, { status: 500 });
+  if (score !== null) {
+    try { await recordFirstGameScore(context.userId, "kamera-rusak", score); }
+    catch { return NextResponse.json({ error: "RESULT_SAVE_FAILED" }, { status: 500 }); }
+  }
   return NextResponse.json({ ok: true });
 }
 

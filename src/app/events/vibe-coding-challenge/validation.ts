@@ -7,8 +7,8 @@ const link = z.string().trim().max(500).url().refine((value) => URL.canParse(val
 
 export const registrationSchema = z.object({ name: text(100), university: text(150) });
 export const feedbackSchema = z.object({
-  materialRating: z.coerce.number().int().min(1).max(5),
-  gameRating: z.coerce.number().int().min(1).max(5),
+  teachingRating: z.coerce.number().int().min(1).max(5),
+  practiceRating: z.coerce.number().int().min(1).max(5),
   comment: z.string().trim().max(500),
 });
 export const submissionSchema = z.object({

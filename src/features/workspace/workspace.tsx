@@ -3,6 +3,7 @@
 import "./game-flow.css";
 import "./source-selection-game.css";
 import Link from "next/link";
+import { GameFeedback } from "@/features/game-feedback/game-feedback";
 import {
   useEffect,
   useRef,
@@ -691,9 +692,9 @@ function ResultScreen({
           className="result-score"
           aria-label={`${passed} dari ${possible} keputusan tepat`}
         >
-          <strong>{passed}</strong>
-          <span>/{possible}</span>
-          <small>keputusan tepat</small>
+          <strong>{report.total}</strong>
+          <span>/100</span>
+          <small>skor keputusan</small>
         </div>
       </section>
       <section className="feedback-section">
@@ -735,6 +736,7 @@ function ResultScreen({
           yang menerbitkan, dan bagaimana datanya diperoleh.
         </p>
       </section>
+      <GameFeedback gameId="sitasi-bermasalah" />
       <div className="result-actions">
         <button className="case-primary" type="button" onClick={onRestart}>
           Main lagi
