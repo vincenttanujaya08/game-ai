@@ -26,8 +26,8 @@ afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 it("asks about classroom teaching instead of rating the app course or game", async () => {
   const html = renderToStaticMarkup(await SubmitPage({ searchParams: Promise.resolve({}) }));
-  expect(html).toContain("Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab dalam memahami materi?");
-  expect(html).toContain("Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab saat membuat project ini?");
+  expect(html).toContain("Seberapa membantu materi di kelas maupun di website NUSA Lab dalam memahami materi?");
+  expect(html).toContain("Seberapa membantu materi di kelas maupun di website NUSA Lab saat membuat project ini?");
   expect(html).not.toContain('name="gameRating"');
   expect(html).not.toContain('name="materialRating"');
 });

@@ -36,11 +36,11 @@ export default async function SubmitPage({ searchParams }: { searchParams: Promi
               {status === "invalid" ? <p className={styles.notice} data-error="true" role="alert">Lengkapi semua kolom wajib. Tautan yang diisi harus memakai HTTPS dan repository harus berada di GitHub.</p> : null}
               {status === "error" ? <p className={styles.notice} data-error="true" role="alert">Project belum tersimpan. Periksa konfigurasi database, lalu coba lagi.</p> : null}
               {feedbackError ? <p className={styles.notice} data-error="true" role="alert">Rating belum bisa dimuat. Coba muat ulang halaman.</p> : !feedback || editFeedback === "edit" ? <>
-                <p className={styles.formAside}>Beri feedback tentang manfaat pembelajaran di kelas atau melalui website NUSA Lab untuk memahami materi dan membuat project challenge. Feedback ini terpisah dari penilaian course dan game di aplikasi.</p>
+                <p className={styles.formAside}>Sebelum mengirim karya, beri rating seberapa membantu materi yang kamu pelajari di kelas maupun di website NUSA Lab dalam memahami materi dan membuat project challenge.</p>
                 {status === "feedback-invalid" ? <p className={styles.notice} data-error="true" role="alert">Pilih rating manfaat pembelajaran dan penerapannya dalam project.</p> : null}
                 {status === "feedback-error" ? <p className={styles.notice} data-error="true" role="alert">Rating belum tersimpan. Coba lagi.</p> : null}
                 <form className={styles.form} action={saveChallengeFeedback}>
-                  {([ ["teachingRating", "Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab dalam memahami materi?"], ["practiceRating", "Seberapa membantu pembelajaran di kelas atau melalui website NUSA Lab saat membuat project ini?"] ] as const).map(([name, label]) => <fieldset className={styles.rating} key={name}>
+                  {([ ["teachingRating", "Seberapa membantu materi di kelas maupun di website NUSA Lab dalam memahami materi?"], ["practiceRating", "Seberapa membantu materi di kelas maupun di website NUSA Lab saat membuat project ini?"] ] as const).map(([name, label]) => <fieldset className={styles.rating} key={name}>
                     <legend>{label}</legend>
                     <div>{[1, 2, 3, 4, 5].map((rating) => <label key={rating}><input type="radio" name={name} value={rating} defaultChecked={feedback !== null && [2, 3].includes(feedback.feedback_version) && (name === "teachingRating" ? feedback.teaching_rating : feedback.practice_rating) === rating} required /><span>{rating}</span></label>)}</div>
                     <small>1 = tidak membantu · 5 = sangat membantu</small>
