@@ -17,6 +17,7 @@ const postAnswers: Record<CourseId, number[]> = {
   "working-with-generative-ai": [1, 0, 1, 0],
   "vibe-coding": [2, 1, 0, 1],
 };
+const possibleDemoScores = [0, 20, 40, 60, 80, 100];
 
 export async function POST(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
@@ -48,7 +49,8 @@ export async function POST(request: NextRequest) {
   }
 
   for (const item of parsed.data.games) {
-    try { await recordFirstGameScore(user.id, item.id as GameId, 100); }
+    const demoScore = possibleDemoScores[Math.floor(Math.random() * possibleDemoScores.length)];
+    try { await recordFirstGameScore(user.id, item.id as GameId, demoScore, true); }
     catch { return NextResponse.json({ error: "PROGRESS_SAVE_FAILED" }, { status: 500 }); }
     const progress = item.id === "sitasi-bermasalah"
       ? await (async () => {
