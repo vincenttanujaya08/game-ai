@@ -46,7 +46,7 @@ export default async function AdminPage() {
     db.from("game_sessions").select("user_id,snapshot").eq("id", "demo"),
     db.from("game_progress").select("user_id,completed").eq("game_id", "kamera-rusak"),
     db.from("game_results").select("user_id,game_id,score,is_mock"),
-    db.from("game_ratings").select("user_id,game_id,usefulness_rating,clarity_rating,is_mock"),
+    db.from("game_ratings").select("user_id,game_id,usefulness_rating,clarity_rating,comment,is_mock"),
   ]);
   const queryError = registrationsResult.error || submissionsResult.error || feedbackResult.error || courseRatingsResult.error || progressResult.error || assessmentsResult.error;
   if (authUsersResult.error || queryError) return <Notice>Data dashboard belum bisa dimuat. Pastikan service role key dan skema Supabase sudah tersedia.</Notice>;
@@ -87,7 +87,7 @@ export default async function AdminPage() {
       if (isComplete) completedLearners.add(item.user_id);
       return isComplete;
     }).length;
-    return { course, participants: courseProgress.length, completed, ongoing: courseProgress.length - completed };
+    return { course, participants: courseProgress.length, completed, ongoing: courseProgress.length - completed, ratings: courseRatings.filter((item) => item.course_id === course.id) };
   });
   const activeLearners = new Set(progress.map((item) => item.user_id)).size;
   const completedCourses = courseStats.reduce((sum, item) => sum + item.completed, 0);
@@ -142,15 +142,15 @@ export default async function AdminPage() {
           <div className={styles.panelHeading}><h2 id="courses-title">Course</h2><p>Peserta berdasarkan progres belajar.</p></div>
           <div className={`${styles.tableWrap} ${styles.compactTable}`}>
             <table>
-              <thead><tr><th>Course</th><th>Peserta</th><th>Selesai</th><th>Masih belajar</th></tr></thead>
-              <tbody>{courseStats.map(({ course, participants, completed, ongoing }) => <tr key={course.id}>
-                <th scope="row">{course.title}</th><td>{number(participants)}</td><td>{number(completed)}</td><td>{number(ongoing)}</td>
+              <thead><tr><th>Course</th><th>Peserta</th><th>Selesai</th><th>Masih belajar</th><th>Rating manfaat /5</th></tr></thead>
+              <tbody>{courseStats.map(({ course, participants, completed, ongoing, ratings }) => <tr key={course.id}>
+                <th scope="row">{course.title}</th><td>{number(participants)}</td><td>{number(completed)}</td><td>{number(ongoing)}</td><td>{mean(ratings.map((item) => item.rating))}<small>{number(ratings.length)} rating</small></td>
               </tr>)}</tbody>
             </table>
           </div>
           <p className={styles.note}>{number(completedLearners.size)} orang tuntas minimal satu course · {number(completedCourses)} course selesai. Satu orang bisa mengikuti beberapa course.</p>
           {courseRatings.length > 0 ? <details className={styles.details}>
-            <summary>Rating dan komentar course ({number(courseRatings.length)})</summary>
+            <summary>Rincian rating manfaat dan komentar per peserta ({number(courseRatings.length)})</summary>
             <div className={styles.tableWrap}><table><thead><tr><th>Peserta</th><th>Course</th><th>Rating</th><th>Komentar</th></tr></thead><tbody>
               {courseRatings.map((item) => <tr key={item.user_id + item.course_id}><td>{registrationByUser.get(item.user_id)?.name ?? authUserById.get(item.user_id)?.email ?? "Pengguna"}</td><td>{courseTitle.get(item.course_id) ?? item.course_id}</td><td>{item.rating}/5</td><td>{item.comment || "—"}</td></tr>)}
             </tbody></table></div>
@@ -165,6 +165,16 @@ export default async function AdminPage() {
             </tbody></table>
           </div>}
           <p className={styles.note}>Skor keputusan memakai penyelesaian pertama yang tersimpan (0–100). Manfaat dan kejelasan memakai rating setelah game (1–5). Rating event tidak menandai penyelesaian course atau game.</p>
+          {gameStats.map((game) => game.results.length ? <details className={styles.details} key={game.id}>
+            <summary>Rincian skor dan rating {game.title} ({number(game.results.length)} peserta)</summary>
+            <div className={styles.tableWrap}><table><thead><tr><th>Peserta</th><th>Skor keputusan /100</th><th>Manfaat /5</th><th>Kejelasan /5</th><th>Komentar</th></tr></thead><tbody>
+              {game.results.map((result) => {
+                const rating = game.ratings.find((item) => item.user_id === result.user_id);
+                const name = registrationByUser.get(result.user_id)?.name ?? authUserById.get(result.user_id)?.email ?? "Pengguna";
+                return <tr key={result.user_id}><th scope="row">{name}</th><td className={styles.rating}>{result.score}/100</td><td>{rating ? `${rating.usefulness_rating}/5` : "—"}</td><td>{rating ? `${rating.clarity_rating}/5` : "—"}</td><td>{rating?.comment || "—"}</td></tr>;
+              })}
+            </tbody></table></div>
+          </details> : null)}
           {gameMetricsError ? <p className={styles.note} role="alert">Skor dan rating game belum bisa dimuat. Pastikan migrasi game sudah dijalankan.</p> : null}
           {gameResults.some((item) => item.is_mock) || gameRatings.some((item) => item.is_mock) ? <p className={styles.note}>Termasuk {number(gameResults.filter((item) => item.is_mock).length)} skor dan {number(gameRatings.filter((item) => item.is_mock).length)} rating mock untuk uji tampilan.</p> : null}
         </section>

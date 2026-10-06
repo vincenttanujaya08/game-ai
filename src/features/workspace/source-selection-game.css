@@ -87,6 +87,10 @@ body:has(.case-state) {
   padding: 34px 0 100px;
 }
 
+.phase-back {
+  margin-bottom: 16px;
+}
+
 .case-progress {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

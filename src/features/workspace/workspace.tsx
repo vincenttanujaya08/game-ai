@@ -33,6 +33,7 @@ const claims: Array<{
   sourceId: (typeof sourceIds)[number];
   expected: Decision;
   correction: string;
+  lesson: string;
 }> = [
   {
     id: "claim_prompt_only",
@@ -40,7 +41,8 @@ const claims: Array<{
     sourceId: "doc_prompt_guide",
     expected: "tidak_pakai",
     correction:
-      "Program perlu mengajarkan cara menulis prompt sebagai salah satu keterampilan, sambil tetap melatih mahasiswa memeriksa keluaran dan mengambil keputusan sendiri.",
+      "Prompt yang jelas membantu memberi instruksi, tetapi tidak menjamin jawaban AI benar atau aman. Karena itu klaim bahwa prompt otomatis membuat penggunaan AI bertanggung jawab terlalu jauh.",
+    lesson: "Anggap prompt sebagai alat bantu; tetap periksa fakta, sumber, dan dampak jawaban.",
   },
   {
     id: "claim_unesco_scope",
@@ -48,7 +50,8 @@ const claims: Array<{
     sourceId: "doc_unesco_students",
     expected: "pakai",
     correction:
-      "Bagian ini sesuai dengan panduan resmi untuk pembelajaran di perguruan tinggi.",
+      "Klaim ini sesuai dengan cakupan panduan UNESCO untuk mahasiswa: memahami kemampuan dan batas AI, memeriksa informasi, menjaga privasi, dan tetap bertanggung jawab.",
+    lesson: "Klaim yang didukung sumber bisa dipakai, selama cakupannya tidak diperluas melebihi isi sumber.",
   },
   {
     id: "claim_vendor_overreach",
@@ -56,7 +59,8 @@ const claims: Array<{
     sourceId: "doc_vendor_whitepaper",
     expected: "tidak_pakai",
     correction:
-      "Angka ini berasal dari perkiraan pelanggan produk berbayar. Itu belum membuktikan manfaat bagi mahasiswa, apalagi tujuan utama program.",
+      "Angka 6,4 jam berasal dari perkiraan pelanggan produk berbayar, bukan pengukuran mahasiswa. Laporan pemasaran ini juga tidak membuktikan bahwa produktivitas harus menjadi tujuan utama program.",
+    lesson: "Periksa siapa yang disurvei, bagaimana angka diperoleh, dan apakah sumber mendukung kesimpulan yang ditarik.",
   },
   {
     id: "claim_grade_impact",
@@ -64,7 +68,8 @@ const claims: Array<{
     sourceId: "doc_grade_impact",
     expected: "tidak_pakai",
     correction:
-      "Survei hanya menanyakan kepuasan. Tanpa data nilai dan kelompok pembanding, sumber ini tidak membuktikan kenaikan nilai.",
+      "Survei ini menanyakan kepuasan 83 mahasiswa, bukan perubahan nilai. Tanpa data nilai dan pembanding, klaim sebab-akibat bahwa chatbot meningkatkan nilai tidak didukung.",
+    lesson: "Kepuasan bukan bukti peningkatan hasil; klaim sebab-akibat memerlukan data yang mengujinya.",
   },
   {
     id: "claim_campus_policy",
@@ -72,7 +77,8 @@ const claims: Array<{
     sourceId: "doc_campus_policy",
     expected: "pakai",
     correction:
-      "Pedoman kampus mendukung bagian ini. Aturannya berlaku di NUSA, bukan otomatis di semua kampus.",
+      "Pedoman NUSA memang meminta mahasiswa memeriksa fakta dan sitasi serta bertanggung jawab atas tugas. Namun, aturan ini hanya menjelaskan kebijakan NUSA.",
+    lesson: "Gunakan aturan sesuai konteks institusinya; jangan menganggap kebijakan satu kampus berlaku di semua tempat.",
   },
 ];
 
@@ -226,12 +232,32 @@ export default function Workspace() {
   async function openDocument(documentId: string) {
     setActiveDocumentId(documentId);
     if (!snapshot?.openedDocumentIds.includes(documentId)) {
-      await act("document_opened", { documentId });
+      setSnapshot((current) => current && {
+        ...current,
+        openedDocumentIds: [...current.openedDocumentIds, documentId],
+      });
+      const saved = await act("document_opened", { documentId });
+      if (!saved) setSnapshot((current) => current && {
+        ...current,
+        openedDocumentIds: current.openedDocumentIds.filter((id) => id !== documentId),
+      });
     }
   }
 
   async function chooseClaim(claimId: string, decision: Decision) {
-    await act("claim_state_changed", { claimId, state: decision });
+    const previous = snapshot?.claimStates[claimId];
+    setSnapshot((current) => current && {
+      ...current,
+      claimStates: { ...current.claimStates, [claimId]: decision },
+    });
+    const saved = await act("claim_state_changed", { claimId, state: decision });
+    if (!saved) setSnapshot((current) => {
+      if (!current || current.claimStates[claimId] !== decision) return current;
+      const claimStates = { ...current.claimStates };
+      if (previous === undefined) delete claimStates[claimId];
+      else claimStates[claimId] = previous;
+      return { ...current, claimStates };
+    });
   }
 
   async function submit() {
@@ -291,6 +317,7 @@ export default function Workspace() {
           sources={sources}
           snapshot={snapshot}
           onOpen={openDocument}
+          onBack={() => goTo("brief")}
           onContinue={() => goTo("decision")}
         />
       )}
@@ -298,6 +325,7 @@ export default function Workspace() {
         <DecisionScreen
           snapshot={snapshot}
           onChoose={chooseClaim}
+          onBack={() => goTo("evidence")}
           onReview={() => goTo("review")}
         />
       )}
@@ -417,11 +445,13 @@ function EvidenceScreen({
   sources,
   snapshot,
   onOpen,
+  onBack,
   onContinue,
 }: {
   sources: ScenarioDocument[];
   snapshot: SessionSnapshot;
   onOpen: (id: string) => Promise<void>;
+  onBack: () => void;
   onContinue: () => void;
 }) {
   const openedCount = sourceIds.filter((id) =>
@@ -430,6 +460,7 @@ function EvidenceScreen({
   const ready = openedCount.length === sourceIds.length;
   return (
     <main className="case-main audit-main">
+      <button className="case-secondary phase-back" type="button" onClick={onBack}>← Kembali ke kasus</button>
       <Progress step={2} />
       <section className="audit-intro">
         <p className="case-kicker">DRAF AI DAN BUKTI YANG DICANTUMKAN</p>
@@ -565,15 +596,18 @@ function ClaimCard({
 function DecisionScreen({
   snapshot,
   onChoose,
+  onBack,
   onReview,
 }: {
   snapshot: SessionSnapshot;
   onChoose: (id: string, decision: Decision) => Promise<void>;
+  onBack: () => void;
   onReview: () => void;
 }) {
   const ready = claims.every((claim) => snapshot.claimStates[claim.id]);
   return (
     <main className="case-main decision-main">
+      <button className="case-secondary phase-back" type="button" onClick={onBack}>← Kembali ke bukti</button>
       <Progress step={3} />
       <section className="audit-intro">
         <div>
@@ -720,7 +754,8 @@ function ResultScreen({
                       : "BELUM DIPILIH"}
                   </p>
                   <h3>{claim.text}</h3>
-                  <span>{claim.correction}</span>
+                  <span><strong>Mengapa:</strong> {claim.correction}</span>
+                  <span><strong>Pelajaran:</strong> {claim.lesson}</span>
                 </div>
                 <strong>{aligned ? "Tepat" : "Cek lagi"}</strong>
               </article>
