@@ -818,6 +818,9 @@
   font-size: 1rem;
 }
 
+.footerLinks { display: flex; gap: 18px; }
+.footerLinks a { color: var(--teal-dark); text-underline-offset: 3px; }
+
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr);

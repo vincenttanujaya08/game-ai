@@ -71,6 +71,7 @@ export default function HomePage() {
       <footer className={styles.siteFooter}>
         <span><strong>NUSA</strong> Lab</span>
         <span>Tempat belajar dan mencoba AI untuk anak muda Indonesia.</span>
+        <nav className={styles.footerLinks} aria-label="Halaman kebijakan"><Link href="/privacy">Privasi</Link><Link href="/terms">Ketentuan</Link></nav>
       </footer>
     </main>
   );
