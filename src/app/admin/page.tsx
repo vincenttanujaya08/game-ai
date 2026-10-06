@@ -5,6 +5,7 @@ import { courseList } from "@/features/learn/courses";
 import { applyPostTestCompletion, normalizeProgress } from "@/features/learn/progress";
 import { createAdminClient, isAdminEmail } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { SubmissionExport } from "./submission-export";
 import styles from "./admin.module.css";
 
 export const metadata = { title: "Admin · NUSA Lab" };
@@ -38,7 +39,7 @@ export default async function AdminPage() {
   const [authUsersResult, registrationsResult, submissionsResult, feedbackResult, courseRatingsResult, progressResult, assessmentsResult, citationResult, cameraResult, gameResultsResult, gameRatingsResult] = await Promise.all([
     listAuthUsers(db),
     db.from("event_registrations").select("user_id,name,university,email,created_at").eq("event_id", "vibe-coding-challenge").order("created_at", { ascending: false }),
-    db.from("event_submissions").select("user_id,project_name,summary,repository_url,demo_url,ai_tools,updated_at").eq("event_id", "vibe-coding-challenge").order("updated_at", { ascending: false }),
+    db.from("event_submissions").select("user_id,project_name,summary,repository_url,demo_url,ai_tools,is_late,updated_at").eq("event_id", "vibe-coding-challenge").order("updated_at", { ascending: false }),
     db.from("event_feedback").select("user_id,feedback_version,teaching_rating,practice_rating,comment,updated_at").eq("event_id", "vibe-coding-challenge").order("updated_at", { ascending: false }),
     db.from("course_ratings").select("user_id,course_id,rating,comment,updated_at").order("updated_at", { ascending: false }),
     db.from("course_progress").select("user_id,course_id,progress"),
@@ -181,13 +182,16 @@ export default async function AdminPage() {
       </div>
 
       <section className={styles.panel} id="karya" aria-labelledby="submissions-title">
-        <div className={styles.panelHeading}><h2 id="submissions-title">Karya peserta</h2><p>Project yang sudah dikirim ke Vibe Coding Challenge.</p></div>
+        <div className={`${styles.panelHeading} ${styles.submissionHeading}`}><div><h2 id="submissions-title">Karya peserta</h2><p>Project yang sudah dikirim ke Vibe Coding Challenge.</p></div><SubmissionExport rows={submissions.map((item) => {
+          const registration = registrationByUser.get(item.user_id);
+          return { name: registration?.name ?? null, university: registration?.university ?? null, projectName: item.project_name, summary: item.summary, aiTools: item.ai_tools, demoUrl: item.demo_url, repositoryUrl: item.repository_url, late: item.is_late };
+        })} /></div>
         <div className={styles.tableWrap}><table><thead><tr><th>Peserta</th><th>Project</th><th>Tautan</th><th>Diperbarui</th></tr></thead><tbody>
           {submissions.map((item) => {
             const registration = registrationByUser.get(item.user_id);
             return <tr key={item.user_id}>
               <td><strong>{registration?.name ?? "—"}</strong><small>{registration?.university}</small></td>
-              <td><strong>{item.project_name}</strong><details className={styles.projectDetails}><summary>Ringkasan dan proses AI</summary><p>{item.summary}</p><p><strong>Alat AI:</strong> {item.ai_tools}</p></details></td>
+              <td><strong>{item.project_name}</strong>{item.is_late ? <small className={styles.lateFlag}>Terlambat</small> : null}<details className={styles.projectDetails}><summary>Ringkasan dan proses AI</summary><p>{item.summary}</p><p><strong>Alat AI:</strong> {item.ai_tools}</p></details></td>
               <td><div className={styles.links}><a href={item.demo_url} target="_blank" rel="noreferrer">Demo ↗</a><a href={item.repository_url} target="_blank" rel="noreferrer">GitHub ↗</a></div></td>
               <td className={styles.date}>{date(item.updated_at)}</td>
             </tr>;

@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { eventId, feedbackSchema, registrationSchema, submissionSchema } from "./validation";
-import { isChallengeOpen } from "./status";
+import { hasChallengeStarted, isChallengeLate, isChallengeOpen } from "./status";
 
 const base = "/events/vibe-coding-challenge";
 
@@ -30,7 +30,7 @@ export async function registerChallenge(form: FormData) {
 }
 
 export async function submitChallenge(form: FormData) {
-  if (!isChallengeOpen()) redirect(`${base}/submit?status=closed`);
+  if (!hasChallengeStarted()) redirect(`${base}/submit?status=closed`);
   if (!configured()) redirect(`${base}/submit?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -41,6 +41,7 @@ export async function submitChallenge(form: FormData) {
   const { data: feedback, error: feedbackError } = await supabase.from("event_feedback")
     .select("user_id").eq("user_id", user.id).eq("event_id", eventId).maybeSingle();
   if (feedbackError || !feedback) redirect(`${base}/submit?status=feedback-required`);
+  const late = isChallengeLate();
   const parsed = submissionSchema.safeParse({
     projectName: form.get("projectName"), summary: form.get("summary"),
     repositoryUrl: form.get("repositoryUrl"), demoUrl: form.get("demoUrl"), aiTools: form.get("aiTools"),
@@ -51,14 +52,15 @@ export async function submitChallenge(form: FormData) {
     project_name: parsed.data.projectName, summary: parsed.data.summary,
     repository_url: parsed.data.repositoryUrl,
     demo_url: parsed.data.demoUrl, ai_tools: parsed.data.aiTools,
+    is_late: late,
     updated_at: new Date().toISOString(),
   }, { onConflict: "user_id,event_id" });
   if (error) redirect(`${base}/submit?status=error`);
-  redirect(`${base}/submit?status=saved`);
+  redirect(`${base}/submit?status=${late ? "saved-late" : "saved"}`);
 }
 
 export async function saveChallengeFeedback(form: FormData) {
-  if (!isChallengeOpen()) redirect(`${base}/submit?status=closed`);
+  if (!hasChallengeStarted()) redirect(`${base}/submit?status=closed`);
   if (!configured()) redirect(`${base}/submit?status=setup`);
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

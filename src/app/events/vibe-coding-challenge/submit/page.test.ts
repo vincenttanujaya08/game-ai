@@ -4,7 +4,12 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import SubmitPage from "./page";
 
 const fixture = vi.hoisted(() => ({ feedback: null as Record<string, unknown> | null }));
-vi.mock("../status", () => ({ isChallengeOpen: () => true }));
+vi.mock("../status", () => ({
+  challengeClosesAt: new Date("2026-10-07T00:00:00+07:00"),
+  hasChallengeStarted: () => true,
+  isChallengeLate: () => false,
+  isChallengeOpen: () => true,
+}));
 vi.mock("../actions", () => ({ saveChallengeFeedback: "/save-feedback", submitChallenge: "/save-project" }));
 vi.mock("@/app/nusa-header", () => ({ default: () => null }));
 vi.mock("next/link", () => ({ default: ({ children, ...props }: React.ComponentProps<"a">) => React.createElement("a", props, children) }));

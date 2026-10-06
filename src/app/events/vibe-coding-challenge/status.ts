@@ -4,3 +4,11 @@ export const challengeClosesAt = new Date("2026-10-07T00:00:00+07:00");
 export function isChallengeOpen(now = Date.now()) {
   return now >= challengeStartsAt.getTime() && now < challengeClosesAt.getTime();
 }
+
+export function hasChallengeStarted(now = Date.now()) {
+  return now >= challengeStartsAt.getTime();
+}
+
+export function isChallengeLate(now = Date.now()) {
+  return now >= challengeClosesAt.getTime();
+}
