@@ -82,6 +82,64 @@ textarea:focus-visible {
 .wide {
   width: 100%;
 }
+.maintenance-page {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 32px 24px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 38%, #20354a 0, #0a111b 68%);
+}
+.maintenance-mark {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #25b5a655;
+  border-radius: 18px;
+  background: #25b5a61a;
+  color: #64d6c5;
+  font: 700 28px Georgia, serif;
+}
+.maintenance-eyebrow {
+  margin: 22px 0 12px;
+  color: #64d6c5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+.maintenance-page h1 {
+  max-width: 620px;
+  margin: 0;
+  font-size: clamp(32px, 6vw, 52px);
+  letter-spacing: -.04em;
+  line-height: 1.08;
+}
+.maintenance-copy {
+  max-width: 480px;
+  margin: 20px 0 24px;
+  color: #b4c2ce;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.maintenance-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 13px;
+  border: 1px solid #ffffff1c;
+  border-radius: 999px;
+  color: #d5e1e8;
+  font-size: 13px;
+}
+.maintenance-status span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e1a33b;
+  box-shadow: 0 0 12px #e1a33b88;
+}
 .app header {
   height: 64px;
   display: grid;
