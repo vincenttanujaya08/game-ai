@@ -16,8 +16,8 @@ async function getContext(context: Context) {
   return { courseId, supabase, user };
 }
 
-function validAnswers(value: unknown, count: number) {
-  return Array.isArray(value) && value.length === count && value.every((answer) => Number.isInteger(answer) && answer >= 0 && answer < 3);
+function validAnswers(value: unknown, questions: { choices: string[] }[]) {
+  return Array.isArray(value) && value.length === questions.length && value.every((answer, index) => Number.isInteger(answer) && answer >= 0 && answer < questions[index].choices.length);
 }
 
 export async function GET(_request: NextRequest, context: Context) {
@@ -28,13 +28,12 @@ export async function GET(_request: NextRequest, context: Context) {
   if (!data) return NextResponse.json({ error: "COURSE_NOT_FOUND" }, { status: 404 });
   if (!data.user) return NextResponse.json({ error: "LOGIN_REQUIRED" }, { status: 401 });
   const { data: row, error } = await data.supabase.from("course_assessments")
-    .select("pre_test_completed_at, post_test_completed_at, post_test_score")
+    .select("pre_test_completed_at, post_test_completed_at")
     .eq("user_id", data.user.id).eq("course_id", data.courseId).maybeSingle();
   if (error) return NextResponse.json({ error: "ASSESSMENT_LOAD_FAILED" }, { status: 500 });
   return NextResponse.json({
     preTestCompleted: Boolean(row?.pre_test_completed_at),
     postTestCompleted: Boolean(row?.post_test_completed_at),
-    postTestScore: row?.post_test_score ?? null,
   }, { headers: { "cache-control": "no-store" } });
 }
 
@@ -71,7 +70,7 @@ export async function POST(request: NextRequest, context: Context) {
   }
 
   if (input.kind === "pre") {
-    if (!validAnswers(input.answers, assessment.pre.length)) return NextResponse.json({ error: "ANSWER_EACH_QUESTION" }, { status: 400 });
+    if (!validAnswers(input.answers, assessment.pre)) return NextResponse.json({ error: "ANSWER_EACH_QUESTION" }, { status: 400 });
     if (existing?.pre_test_completed_at) return NextResponse.json({ preTestCompleted: true });
     const result = await data.supabase.rpc("submit_course_assessment", {
       p_course_id: data.courseId,
@@ -83,12 +82,12 @@ export async function POST(request: NextRequest, context: Context) {
     return NextResponse.json({ preTestCompleted: true });
   }
 
-  if (input.kind !== "post" || !validAnswers(input.answers, assessment.post.length)) {
+  if (input.kind !== "post" || !validAnswers(input.answers, assessment.post)) {
     return NextResponse.json({ error: "ANSWER_EACH_QUESTION" }, { status: 400 });
   }
   const reflection = typeof input.reflection === "string" ? input.reflection.trim() : "";
   const answers = input.answers as number[];
-  if (reflection.length < 30 || reflection.length > 1200) {
+  if (assessment.reflection && (reflection.length < 30 || reflection.length > 1200)) {
     return NextResponse.json({ error: "REFLECTION_LENGTH" }, { status: 400 });
   }
   if (!existing?.pre_test_completed_at) return NextResponse.json({ error: "PRE_TEST_REQUIRED" }, { status: 403 });
@@ -103,9 +102,8 @@ export async function POST(request: NextRequest, context: Context) {
     p_course_id: data.courseId,
     p_kind: "post",
     p_answers: answers,
-    p_reflection: reflection,
+    p_reflection: assessment.reflection ? reflection : null,
   });
   if (result.error) return NextResponse.json({ error: "ASSESSMENT_SAVE_FAILED" }, { status: 500 });
-  const score = Number((result.data as { score?: number } | null)?.score ?? 0);
-  return NextResponse.json({ postTestCompleted: true, score, total: assessment.post.length });
+  return NextResponse.json({ postTestCompleted: true });
 }

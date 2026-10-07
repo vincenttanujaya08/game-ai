@@ -3,22 +3,124 @@ import type { CourseId } from "./courses";
 export type AssessmentQuestion = { prompt: string; choices: string[]; answer: number; feedback: string };
 export type CourseAssessment = { pre: AssessmentQuestion[]; post: AssessmentQuestion[]; reflection: string };
 
+const aiLiteracyQuestions: AssessmentQuestion[] = [
+  {
+    "prompt": "Aplikasi musik merekomendasikan lagu berdasarkan kebiasaan mendengarmu. Penjelasan mana yang paling tepat?",
+    "choices": [
+      "Sistem menilai kualitas lagu, lalu memilih yang paling sesuai dengan selera musik secara umum.",
+      "Sistem mengenali pola aktivitas untuk memperkirakan lagu yang mungkin kamu sukai.",
+      "Sistem membentuk profil kepribadian untuk memahami alasanmu menyukai sebuah lagu.",
+      "Sistem menyusun daftar lagu populer, lalu menyesuaikan urutannya dengan waktu kamu mendengarkan."
+    ],
+    "answer": 1,
+    "feedback": "Rekomendasi memperkirakan kecocokan dari pola aktivitas, bukan memahami alasan pribadi pengguna."
+  },
+  {
+    "prompt": "Sebuah model dilatih mengenali buah menggunakan foto yang sebagian besar diambil dengan pencahayaan terang. Model kemudian kesulitan mengenali buah dalam foto gelap. Apa penjelasan paling masuk akal?",
+    "choices": [
+      "Pola yang dipelajari belum cukup mewakili kondisi foto yang digunakan saat ini.",
+      "Model perlu diberi nama buah dalam instruksi agar dapat mengenalinya dalam kondisi berbeda.",
+      "Jumlah foto pelatihan lebih menentukan daripada variasi pencahayaan dalam foto tersebut.",
+      "Hasil ini menunjukkan bahwa pengenalan buah lebih cocok menggunakan aturan daripada model terlatih."
+    ],
+    "answer": 0,
+    "feedback": "Variasi data pelatihan memengaruhi kemampuan model bekerja pada kondisi baru."
+  },
+  {
+    "prompt": "Chatbot menghasilkan jawaban terperinci tentang sebuah buku, tetapi beberapa kejadian yang disebutkan tidak ada di buku tersebut. Mengapa hal ini bisa terjadi?",
+    "choices": [
+      "Chatbot mengambil ringkasan buku dari sumber yang berbeda, sehingga rincian ceritanya ikut berubah.",
+      "Chatbot mempersingkat isi buku dan menggabungkan kejadian untuk memudahkan pembaca.",
+      "Chatbot menyusun teks berdasarkan pola dan konteks, sehingga detail yang masuk akal bisa muncul tanpa dasar faktual.",
+      "Chatbot menafsirkan cerita secara kreatif karena pertanyaan pengguna belum meminta kutipan langsung."
+    ],
+    "answer": 2,
+    "feedback": "Model bahasa dapat menghasilkan detail yang masuk akal tetapi tidak didukung sumber; ini disebut halusinasi."
+  },
+  {
+    "prompt": "Sebuah AI memperoleh skor tinggi dalam pengujian matematika. Temanmu menyimpulkan bahwa AI tersebut juga dapat dipercaya untuk menjelaskan aturan asuransi. Bagaimana menilai kesimpulan itu?",
+    "choices": [
+      "Cukup beralasan, karena matematika menguji ketelitian yang juga dibutuhkan untuk membaca aturan.",
+      "Cukup beralasan apabila penjelasan asuransinya konsisten ketika pertanyaan diulang.",
+      "Belum cukup, karena penjelasan aturan lebih ditentukan oleh panjang dokumen daripada kemampuan model.",
+      "Belum cukup, karena kemampuan pada tugas lain tetap perlu diperiksa dengan sumber dan pengujian yang sesuai."
+    ],
+    "answer": 3,
+    "feedback": "Hasil benchmark berlaku pada tugas dan kondisi yang diuji, bukan jaminan kemampuan pada semua tugas."
+  },
+  {
+    "prompt": "Dua chatbot memberi angka yang sama tentang pengangguran. Salah satunya menyertakan tautan ke sebuah laporan. Apa langkah paling kuat sebelum kamu membagikan angka tersebut?",
+    "choices": [
+      "Membuka laporan dan mencocokkan angka, periode, serta kelompok yang dihitung dengan klaimnya.",
+      "Meminta kedua chatbot menjelaskan perhitungannya, lalu membandingkan apakah alasannya konsisten.",
+      "Memastikan laporan diterbitkan lembaga tepercaya dan membahas topik pengangguran.",
+      "Menanyakan angka itu kepada chatbot ketiga tanpa memperlihatkan dua jawaban sebelumnya."
+    ],
+    "answer": 0,
+    "feedback": "Kesepakatan chatbot dan adanya tautan belum membuktikan klaim; cocokkan klaim dengan isi sumber."
+  },
+  {
+    "prompt": "AI menyarankan pilihan A, sedangkan kamu awalnya memilih B. Penjelasan AI panjang dan meyakinkan. Apa cara paling tepat untuk menentukan pilihan?",
+    "choices": [
+      "Mengikuti A apabila AI menyebutkan lebih banyak pertimbangan daripada yang kamu pikirkan sebelumnya.",
+      "Mempertahankan B apabila pilihan awalmu didasarkan pada pengalaman langsung dalam situasi serupa.",
+      "Membandingkan A dan B berdasarkan tujuan, kondisi, dan bukti yang dapat diperiksa.",
+      "Mengulang pertanyaan dengan susunan berbeda, lalu memilih saran yang paling sering diberikan."
+    ],
+    "answer": 2,
+    "feedback": "Nilai rekomendasi berdasarkan tujuan dan bukti, bukan keyakinan AI atau keyakinan awalmu saja."
+  },
+  {
+    "prompt": "Kamu ingin meminta AI merangkum dokumen yang berisi informasi pribadi beberapa orang. Nama sudah dihapus, tetapi alamat, tanggal kejadian, dan rincian keluarga masih ada. Apa langkah paling tepat?",
+    "choices": [
+      "Mengunggah dokumen setelah memastikan penggunaan percakapan untuk pelatihan model sudah dimatikan.",
+      "Memeriksa izin berbagi dan kebijakan layanan, lalu membatasi isi serta rincian yang dapat mengidentifikasi orang.",
+      "Mengganti nama dengan kode agar hubungan antarbagian tetap jelas, lalu mengunggah dokumen lengkap.",
+      "Mengunggah dokumen dan meminta AI mengabaikan informasi pribadi ketika membuat ringkasan."
+    ],
+    "answer": 1,
+    "feedback": "Menghapus nama atau mematikan training belum menghilangkan risiko identifikasi maupun menggantikan izin berbagi."
+  },
+  {
+    "prompt": "Kamu membuat video AI yang meniru wajah dan suara teman untuk lelucon. Video terlihat nyata dan akan dibagikan di grup. Apa pertimbangan paling tepat sebelum membagikannya?",
+    "choices": [
+      "Apakah hasilnya cukup lucu sehingga anggota grup memahami bahwa video itu dibuat untuk hiburan.",
+      "Apakah grup bersifat tertutup sehingga kemungkinan video tersebar ke orang lain lebih kecil.",
+      "Apakah keterangan “dibuat dengan AI” sudah ditambahkan untuk menjelaskan asal video kepada penonton.",
+      "Apakah temanmu menyetujui penggunaan identitasnya dan bagaimana video itu dapat memengaruhi dirinya."
+    ],
+    "answer": 3,
+    "feedback": "Pertimbangkan persetujuan dan dampak terhadap orang yang identitasnya digunakan, meskipun konten diberi label AI."
+  },
+  {
+    "prompt": "Kamu ingin memahami topik baru dan mampu menjelaskannya sendiri. Cara menggunakan AI mana yang paling mendukung tujuan tersebut?",
+    "choices": [
+      "Meminta penjelasan dan contoh, mencoba menjelaskan kembali, lalu memeriksa bagian yang belum dipahami.",
+      "Meminta ringkasan lengkap, membacanya beberapa kali, lalu menghafalkan poin-poin yang diberikan.",
+      "Meminta jawaban untuk latihan, mempelajari langkahnya, lalu menyimpan jawaban sebagai contoh.",
+      "Meminta beberapa versi penjelasan, lalu memilih versi yang terasa paling mudah dan meyakinkan."
+    ],
+    "answer": 0,
+    "feedback": "Mencoba menjelaskan kembali dan memeriksa pemahaman membuat peserta tetap aktif berpikir saat belajar dengan AI."
+  },
+  {
+    "prompt": "AI membantu menulis pengumuman untuk kegiatan yang kamu kelola. Drafnya menyebut fasilitas yang belum dikonfirmasi. Apa tindakan paling tepat sebelum pengumuman diterbitkan?",
+    "choices": [
+      "Menerbitkan draf dengan keterangan bahwa informasi disusun menggunakan bantuan AI.",
+      "Meminta AI meninjau ulang apakah fasilitas tersebut masuk akal untuk kegiatan sejenis.",
+      "Mengonfirmasi fasilitas kepada pihak terkait dan memperbaiki informasi sebelum diterbitkan.",
+      "Mengubah pernyataan fasilitas menjadi perkiraan agar pengumuman tetap bisa diterbitkan."
+    ],
+    "answer": 2,
+    "feedback": "Pengguna tetap bertanggung jawab atas informasi yang diterbitkan; label AI tidak menggantikan konfirmasi."
+  }
+];
+
 export const assessments: Record<CourseId, CourseAssessment> = {
   "ai-fundamentals": {
-    pre: [
-      { prompt: "Aplikasi musik menyarankan lagu berdasarkan kebiasaan mendengarmu. Apa yang paling mungkin terjadi di balik rekomendasi itu?", choices: ["Sistem mengenali pola dari riwayat lagu dan pilihan pengguna lain", "Editor aplikasi memilih satu daftar lagu yang sama untuk semua orang", "Sistem hanya mengurutkan lagu dari yang paling baru dirilis"], answer: 0, feedback: "AI dapat mengenali pola pada data untuk memperkirakan lagu yang mungkin kamu sukai." },
-      { prompt: "AI memberi jawaban yang terdengar yakin, tetapi kamu belum tahu sumbernya. Apa langkah berikut yang paling berguna?", choices: ["Meminta penjelasan lain dari AI yang sama", "Memeriksa klaim penting lewat sumber tepercaya", "Membandingkan panjang jawaban dengan artikel daring"], answer: 1, feedback: "Jawaban yang lancar tetap perlu diperiksa, terutama untuk klaim penting." },
-      { prompt: "Dua sistem AI memberi hasil berbeda untuk pertanyaan yang sama. Apa penjelasan yang paling masuk akal?", choices: ["Salah satunya pasti memiliki tujuan pribadi", "Sistem yang lebih baru selalu menghasilkan jawaban benar", "Keduanya dapat memakai data, rancangan, atau konteks yang berbeda"], answer: 2, feedback: "Data, rancangan, dan konteks dapat membuat keluaran sistem berbeda." },
-      { prompt: "Kamu melihat fitur pengenal wajah di ponsel. Contoh ini paling tepat menunjukkan bahwa AI dapat…", choices: ["Mengenali pola pada gambar untuk mencocokkan wajah", "Mengetahui identitas seseorang tanpa menerima data", "Menjamin foto selalu menggambarkan keadaan sebenarnya"], answer: 0, feedback: "Sistem pengenal gambar mencari pola visual; hasilnya tetap bisa keliru dan perlu konteks." },
-      { prompt: "AI menyusun ringkasan dari banyak artikel. Hal apa yang tetap perlu kamu lakukan?", choices: ["Menganggap ringkasan mewakili semua sudut pandang", "Memeriksa klaim penting dengan sumber aslinya", "Memilih versi paling panjang sebagai yang paling lengkap"], answer: 1, feedback: "Ringkasan bisa melewatkan konteks atau keliru, jadi periksa klaim penting pada sumber." },
-    ],
-    post: [
-      { prompt: "Sebuah aplikasi menyarankan berita yang mirip dengan berita yang sering kamu baca. Penjelasan paling tepat adalah…", choices: ["Sistem menemukan pola dari aktivitas dan memperkirakan berita yang mungkin kamu pilih", "Sistem menyimpulkan alasan pribadi di balik setiap bacaanmu", "Sistem memeriksa kebenaran berita sebelum memasukkannya ke rekomendasi"], answer: 0, feedback: "Rekomendasi menunjukkan kecocokan pola, bukan bukti bahwa isi berita sudah diverifikasi." },
-      { prompt: "AI merangkum aturan beasiswa, tetapi satu tanggal tampak janggal. Apa tindakan terbaik?", choices: ["Meminta AI menyebutkan tanggal itu sekali lagi", "Mencocokkan tanggal dengan pengumuman resmi penyelenggara", "Mencari artikel lain yang mengutip ringkasan serupa"], answer: 1, feedback: "Untuk informasi yang berdampak, cocokkan detail dengan sumber primer." },
-      { prompt: "Manakah pernyataan yang paling akurat tentang kemampuan AI?", choices: ["AI selalu memahami konteks seperti manusia", "AI dapat menemukan pola, tetapi hasilnya masih perlu dinilai manusia", "AI hanya bekerja jika semua jawabannya sudah ditulis sebelumnya"], answer: 1, feedback: "AI berguna untuk mengenali pola, sementara manusia tetap memeriksa konteks dan dampaknya." },
-      { prompt: "AI menyarankan rute perjalanan dari data lalu lintas. Apa yang paling tepat disimpulkan?", choices: ["Saran itu bisa membantu, tetapi kondisi terbaru tetap perlu diperiksa", "Rute itu pasti paling aman karena dipilih oleh AI", "AI mengetahui perubahan jalan sebelum informasinya tersedia"], answer: 0, feedback: "Prediksi membantu mengambil keputusan, tetapi data dan kondisi nyata dapat berubah." },
-    ],
-    reflection: "Jika AI memberi saran yang memengaruhi keputusanmu, apa satu hal yang akan kamu periksa lebih dulu? Jelaskan alasannya.",
+    pre: aiLiteracyQuestions,
+    post: aiLiteracyQuestions,
+    reflection: "",
   },
   "working-with-generative-ai": {
     pre: [

@@ -43,7 +43,7 @@ export default async function AdminPage() {
     db.from("event_feedback").select("user_id,feedback_version,teaching_rating,practice_rating,comment,updated_at").eq("event_id", "vibe-coding-challenge").order("updated_at", { ascending: false }),
     db.from("course_ratings").select("user_id,course_id,rating,comment,updated_at").order("updated_at", { ascending: false }),
     db.from("course_progress").select("user_id,course_id,progress"),
-    db.from("course_assessments").select("user_id,course_id,post_test_completed_at"),
+    db.from("course_assessments").select("user_id,course_id,pre_test_completed_at,post_test_completed_at,pre_test_answers,post_test_answers,pre_test_score,post_test_score,assessment_version"),
     db.from("game_sessions").select("user_id,snapshot").eq("id", "demo"),
     db.from("game_progress").select("user_id,completed").eq("game_id", "kamera-rusak"),
     db.from("game_results").select("user_id,game_id,score,is_mock"),
@@ -97,6 +97,16 @@ export default async function AdminPage() {
     return ratings.length ? (ratings.reduce((sum, item) => sum + item, 0) / ratings.length).toFixed(1) : "—";
   };
   const courseTitle = new Map(courseList.map((course) => [course.id, course.title]));
+  const literacyAssessments = assessments.filter((item) => item.course_id === "ai-fundamentals");
+  const literacyPairs = literacyAssessments.filter((item) => item.assessment_version === 2
+    && item.pre_test_completed_at && item.post_test_completed_at
+    && Array.isArray(item.pre_test_answers) && item.pre_test_answers.length === 10
+    && Array.isArray(item.post_test_answers) && item.post_test_answers.length === 10
+    && typeof item.pre_test_score === "number" && typeof item.post_test_score === "number");
+  const assessmentScore = (score: unknown, answers: unknown, completedAt: unknown) =>
+    completedAt && typeof score === "number" && Array.isArray(answers) && answers.length > 0 ? `${score}/${answers.length}` : "—";
+  const signed = (value: number) => value > 0 ? `+${value}` : String(value);
+
 
   const submittedUserIds = new Set(submissions.map((item) => item.user_id));
   const awaitingSubmissions = allFeedback.filter((item) => !submittedUserIds.has(item.user_id)).length;
@@ -180,6 +190,34 @@ export default async function AdminPage() {
           {gameResults.some((item) => item.is_mock) || gameRatings.some((item) => item.is_mock) ? <p className={styles.note}>Termasuk {number(gameResults.filter((item) => item.is_mock).length)} skor dan {number(gameRatings.filter((item) => item.is_mock).length)} rating mock untuk uji tampilan.</p> : null}
         </section>
       </div>
+
+      <section className={styles.panel} id="asesmen" aria-labelledby="assessments-title">
+        <div className={styles.panelHeading}><h2 id="assessments-title">Asesmen AI literacy · AI Fundamentals</h2><p>Pre-test dan post-test memakai 10 soal yang sama. Skor hanya ditampilkan di admin.</p></div>
+        <div className={styles.tableWrap}><table>
+          <thead><tr><th>Pasangan tes lengkap</th><th>Rata-rata pre-test /10</th><th>Rata-rata post-test /10</th><th>Rata-rata selisih</th></tr></thead>
+          <tbody><tr>
+            <td>{number(literacyPairs.length)}</td><td>{mean(literacyPairs.map((item) => item.pre_test_score))}</td><td>{mean(literacyPairs.map((item) => item.post_test_score))}</td>
+            <td>{literacyPairs.length ? signed(Number(mean(literacyPairs.map((item) => item.post_test_score - item.pre_test_score)))) : "—"}</td>
+          </tr></tbody>
+        </table></div>
+        <p className={styles.note}>Rata-rata dihitung dari peserta yang sudah menyelesaikan kedua tes versi 10 soal. Selisih = post-test − pre-test. Asesmen versi lama tidak masuk perbandingan.</p>
+        {literacyAssessments.length > 0 ? <details className={styles.details}>
+          <summary>Rincian pre-test dan post-test ({number(literacyAssessments.length)} peserta)</summary>
+          <div className={styles.tableWrap}><table>
+            <thead><tr><th>Peserta</th><th>Pre-test</th><th>Post-test</th><th>Selisih /10</th></tr></thead>
+            <tbody>{literacyAssessments.map((item) => {
+              const name = registrationByUser.get(item.user_id)?.name ?? authUserById.get(item.user_id)?.email ?? item.user_id;
+              const comparable = literacyPairs.includes(item);
+              return <tr key={item.user_id}>
+                <th scope="row">{name}</th>
+                <td>{assessmentScore(item.pre_test_score, item.pre_test_answers, item.pre_test_completed_at)}</td>
+                <td>{assessmentScore(item.post_test_score, item.post_test_answers, item.post_test_completed_at)}</td>
+                <td>{comparable ? signed(item.post_test_score - item.pre_test_score) : "—"}</td>
+              </tr>;
+            })}</tbody>
+          </table></div>
+        </details> : <p className={styles.note}>Belum ada jawaban asesmen AI Fundamentals.</p>}
+      </section>
 
       <section className={styles.panel} id="karya" aria-labelledby="submissions-title">
         <div className={`${styles.panelHeading} ${styles.submissionHeading}`}><div><h2 id="submissions-title">Karya peserta</h2><p>Project yang sudah dikirim ke Vibe Coding Challenge.</p></div><SubmissionExport rows={submissions.map((item) => {

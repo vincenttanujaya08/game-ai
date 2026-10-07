@@ -174,13 +174,14 @@ describe("applyPostTestCompletion", () => {
 });
 
 describe("assessment question counts", () => {
-  it("keeps five prompts per pre-test and post-test in every course", () => {
-    for (const assessment of Object.values(assessments)) {
-      expect(assessment.pre).toHaveLength(5);
-      expect(assessment.post).toHaveLength(4);
-      expect(assessment.post.length + 1).toBe(5);
+  it("uses ten literacy questions for Fundamentals and preserves the other assessments", () => {
+    for (const [courseId, assessment] of Object.entries(assessments)) {
+      const isFundamentals = courseId === "ai-fundamentals";
+      expect(assessment.pre).toHaveLength(isFundamentals ? 10 : 5);
+      expect(assessment.post).toHaveLength(isFundamentals ? 10 : 4);
+      expect(Boolean(assessment.reflection)).toBe(!isFundamentals);
       for (const question of [...assessment.pre, ...assessment.post]) {
-        expect(question.choices).toHaveLength(3);
+        expect(question.choices).toHaveLength(isFundamentals ? 4 : 3);
         expect(question.answer).toBeGreaterThanOrEqual(0);
         expect(question.answer).toBeLessThan(question.choices.length);
       }

@@ -16,7 +16,7 @@ export function LessonFinish({ course, progress, postTestCompleted, onReview }: 
     <section className={styles.finish}>
       <span className={styles.eyebrow}>{total} / {total} {postTestCompleted ? "KELAS SELESAI" : "MATERI DIBACA"}</span>
       <h1>{postTestCompleted ? course.finish.title : "Materi kelas sudah kamu baca."}</h1>
-      <p>{postTestCompleted ? course.finish.body : "Tinggal satu langkah: kirim post-test singkat untuk menutup kelas. Jawaban terbukamu menjadi refleksi, bukan nilai otomatis."}</p>
+      <p>{postTestCompleted ? course.finish.body : course.id === "ai-fundamentals" ? "Tinggal satu langkah: jawab 10 pertanyaan post-test untuk menutup kelas." : "Tinggal satu langkah: kirim post-test singkat untuk menutup kelas. Jawaban terbukamu menjadi refleksi, bukan nilai otomatis."}</p>
 
       {attempted.length > 0 ? (
         <div className={styles.journal}>

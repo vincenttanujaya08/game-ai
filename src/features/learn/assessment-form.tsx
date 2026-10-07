@@ -16,16 +16,16 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
   const [reflection, setReflection] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState<{ score: number; total: number } | null>(null);
+  const [submitted, setSubmitted] = useState(false);
   const [rating, setRating] = useState<number | null>(null);
   const [ratingComment, setRatingComment] = useState("");
   const [ratingSaved, setRatingSaved] = useState(false);
   const [ratingBusy, setRatingBusy] = useState(false);
   const [ratingError, setRatingError] = useState(false);
 
-  const submitted = result !== null;
+  const needsReflection = kind === "post" && Boolean(assessment.reflection);
   const complete = answers.every((answer) => answer !== null)
-    && (kind === "pre" || reflection.trim().length >= 30);
+    && (!needsReflection || reflection.trim().length >= 30);
 
   async function submit() {
     if (!complete || busy || submitted) return;
@@ -35,14 +35,14 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
       const response = await fetch(`/api/assessments/${courseId}`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ kind, answers, ...(kind === "post" ? { reflection } : {}) }),
+        body: JSON.stringify({ kind, answers, ...(needsReflection ? { reflection } : {}) }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       if (kind === "pre") {
         router.replace(course.lessonPath);
         router.refresh();
-      } else setResult({ score: data.score, total: data.total });
+      } else setSubmitted(true);
     } catch (reason) {
       setError(reason instanceof Error && reason.message === "REFLECTION_LENGTH"
         ? "Jawaban terbuka perlu 30–1.200 karakter."
@@ -78,8 +78,8 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
         <p className={styles.eyebrow}>{kind === "pre" ? "SEBELUM BELAJAR" : "LANGKAH TERAKHIR"}</p>
         <h1 id="assessment-title">{kind === "pre" ? "Cek titik awalmu." : "Coba gunakan yang sudah kamu pelajari."}</h1>
         <p className={styles.intro}>{kind === "pre"
-          ? "Jawab lima pertanyaan singkat. Ini bukan ujian dan tidak ada nilai minimum—jawabanmu hanya menjadi titik awal sebelum masuk ke materi."
-          : "Jawab empat soal pilihan ganda, lalu ceritakan singkat cara kamu menerapkan ide dari kelas ini. Skor menjadi umpan balik, bukan syarat selesai; jawaban terbuka disimpan sebagai refleksi dan tidak dinilai otomatis."}</p>
+          ? `Jawab ${questions.length} pertanyaan pilihan ganda. Jawabanmu menjadi titik awal sebelum masuk ke materi. Tidak ada nilai minimum untuk mulai belajar.`
+          : `Jawab ${questions.length} pertanyaan pilihan ganda${needsReflection ? ", lalu ceritakan singkat cara kamu menerapkan ide dari kelas ini" : ""}. Jawabanmu disimpan untuk melihat perkembangan pemahaman. Tidak ada nilai minimum untuk menyelesaikan kelas.`}</p>
 
         {questions.map((question, questionIndex) => (
           <fieldset className={styles.question} key={question.prompt} disabled={submitted}>
@@ -93,14 +93,14 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
                 </label>
               ))}
             </div>
-            {submitted && <p className={styles.feedback}>
+            {submitted && courseId !== "ai-fundamentals" && <p className={styles.feedback}>
               Jawaban paling tepat: <strong>{question.choices[question.answer]}</strong>. {answers[questionIndex] === question.answer ? "Pilihanmu sudah tepat. " : ""}{question.feedback}
             </p>}
           </fieldset>
         ))}
 
-        {kind === "post" && <div className={styles.reflection}>
-          <label htmlFor="assessment-reflection"><span>05</span>{assessment.reflection}</label>
+        {needsReflection && <div className={styles.reflection}>
+          <label htmlFor="assessment-reflection"><span>{String(questions.length + 1).padStart(2, "0")}</span>{assessment.reflection}</label>
           <textarea id="assessment-reflection" value={reflection} maxLength={1200} minLength={30} rows={4}
             disabled={submitted} onChange={(event) => setReflection(event.target.value)} />
           <small>{reflection.trim().length}/1.200 karakter · minimal 30</small>
@@ -110,7 +110,7 @@ export function AssessmentForm({ courseId, kind }: { courseId: CourseId; kind: "
         {submitted ? (
           <div className={styles.result}>
             <div role="status">
-              <strong>{kind === "post" ? `Jawaban tersimpan · ${result.score}/${result.total} pilihan tepat` : "Jawaban tersimpan."}</strong>
+              <strong>Jawaban tersimpan.</strong>
               <p>{kind === "post" ? "Kelas ini sudah selesai. Kamu bisa kembali ke peta belajar." : "Terima kasih. Sekarang materi kelas sudah terbuka."}</p>
             </div>
             <Link href={course.path}>{kind === "post" ? "Kembali ke peta belajar" : "Lanjut ke materi"} →</Link>

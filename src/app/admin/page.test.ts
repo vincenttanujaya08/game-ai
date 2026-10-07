@@ -82,14 +82,13 @@ it("counts accounts that have not started a course, game, or event", async () =>
   expect(html).toContain("Karya event</span><strong>2</strong>");
 });
 
-it("shows course participants, completed, and ongoing without assessment details or empty ratings", async () => {
+it("shows course participation independently of the assessment panel", async () => {
   const course = courseList[0];
   fixture.tables.course_progress.push({ user_id: "trial", course_id: course.id, progress: { completedStages: [] } });
   const html = await render();
   expect(html).toContain(`${course.title}</th><td>2</td><td>1</td><td>1</td>`);
   expect(html).toContain("Masih belajar");
-  expect(html).not.toContain("pre-test");
-  expect(html).not.toContain("post-test");
+  expect(html).toContain("Asesmen AI literacy");
   expect(html).not.toContain("Belum ada rating course");
 });
 
@@ -115,4 +114,25 @@ it("summarizes game scores and both ratings independently of event feedback", as
   expect(html).toContain("Sitasi Bermasalah</th><td>2</td><td>2</td><td>60.0<small>2 skor");
   expect(html).toContain("4.5<small>2 jawaban");
   expect(html).toContain("4.0<small>2 jawaban");
+});
+
+
+it("shows paired literacy scores without simulation labels", async () => {
+  const answers = Array(10).fill(0);
+  fixture.tables.course_assessments = [
+    { user_id: "learner", course_id: "ai-fundamentals", pre_test_completed_at: "2026-10-07", post_test_completed_at: "2026-10-07", pre_test_answers: answers, post_test_answers: answers, pre_test_score: 6, post_test_score: 8, assessment_version: 2, is_mock: false },
+    { user_id: "trial", course_id: "ai-fundamentals", pre_test_completed_at: "2026-10-07", post_test_completed_at: "2026-10-07", pre_test_answers: answers, post_test_answers: answers, pre_test_score: 9, post_test_score: 8, assessment_version: 2, is_mock: true },
+    { user_id: "incomplete", course_id: "ai-fundamentals", pre_test_completed_at: "2026-10-07", pre_test_answers: answers, pre_test_score: 0, assessment_version: 2, is_mock: false },
+    { user_id: "legacy", course_id: "ai-fundamentals", pre_test_completed_at: "2026-10-04", post_test_completed_at: "2026-10-04", pre_test_answers: Array(5).fill(0), post_test_answers: Array(4).fill(0), post_test_score: 3, assessment_version: 1, is_mock: false },
+  ];
+  const html = await render();
+  expect(html).toContain("<td>2</td><td>7.5</td><td>8.0</td><td>+0.5</td>");
+  expect(html).toContain("learner</th><td>6/10</td><td>8/10</td><td>+2</td>");
+  expect(html).toContain("trial</th><td>9/10</td><td>8/10</td><td>-1</td>");
+  expect(html).toContain("incomplete</th><td>0/10</td><td>—</td><td>—</td>");
+  expect(html).toContain("legacy</th><td>—</td><td>3/4</td><td>—</td>");
+  expect(html).not.toContain("Simulasi");
+  expect(html).not.toContain("Data simulasi");
+  expect(html).not.toContain("Sumber data");
+  expect(html).not.toContain("NaN");
 });

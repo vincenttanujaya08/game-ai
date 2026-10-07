@@ -13,7 +13,7 @@ const payloadSchema = z.object({
 }).refine(({ courses: selectedCourses, games }) => new Set(selectedCourses.map(({ id }) => id)).size === 3 && new Set(games.map(({ id }) => id)).size === 2);
 
 const postAnswers: Record<CourseId, number[]> = {
-  "ai-fundamentals": [0, 1, 1, 0],
+  "ai-fundamentals": [1, 0, 2, 3, 0, 2, 1, 3, 0, 2],
   "working-with-generative-ai": [1, 0, 1, 0],
   "vibe-coding": [2, 1, 0, 1],
 };
@@ -40,9 +40,9 @@ export async function POST(request: NextRequest) {
     const progress = { completedStages: course.stages.map((_, index) => index), unlockedStage: lastStage, activeStage: lastStage, sectionIndex: 0, attempts: {} };
     const saved = await supabase.from("course_progress").upsert({ user_id: user.id, course_id: courseId, progress, updated_at: new Date().toISOString() }, { onConflict: "user_id,course_id" });
     if (saved.error) return NextResponse.json({ error: "PROGRESS_SAVE_FAILED" }, { status: 500 });
-    const pre = await supabase.rpc("submit_course_assessment", { p_course_id: courseId, p_kind: "pre", p_answers: [0, 0, 0, 0, 0], p_reflection: null });
+    const pre = await supabase.rpc("submit_course_assessment", { p_course_id: courseId, p_kind: "pre", p_answers: Array(courseId === "ai-fundamentals" ? 10 : 5).fill(0), p_reflection: null });
     if (pre.error) return NextResponse.json({ error: "PROGRESS_SAVE_FAILED" }, { status: 500 });
-    const post = await supabase.rpc("submit_course_assessment", { p_course_id: courseId, p_kind: "post", p_answers: postAnswers[courseId], p_reflection: "Saya telah mengikuti demo course ini dan memberikan feedback melalui formulir." });
+    const post = await supabase.rpc("submit_course_assessment", { p_course_id: courseId, p_kind: "post", p_answers: postAnswers[courseId], p_reflection: courseId === "ai-fundamentals" ? null : "Saya telah mengikuti demo course ini dan memberikan feedback melalui formulir." });
     if (post.error) return NextResponse.json({ error: "PROGRESS_SAVE_FAILED" }, { status: 500 });
     const rating = await admin.from("course_ratings").upsert({ user_id: user.id, course_id: courseId, rating: item.rating, comment: item.comment || null, updated_at: new Date().toISOString() }, { onConflict: "user_id,course_id" });
     if (rating.error) return NextResponse.json({ error: "RATING_SAVE_FAILED" }, { status: 500 });
